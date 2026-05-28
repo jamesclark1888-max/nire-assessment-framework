@@ -1,0 +1,79 @@
+# Regional: Germany
+#
+# Tier 2 regional support.
+
+region: de
+tier: 2
+last-reviewed: 2026-05-28
+
+ecosystem:
+  accelerators:
+    - name: Axel Springer Plug and Play
+      stage: pre-seed
+    - name: Berlin Startup School
+      stage: pre-seed
+    - name: TechFounders (Munich)
+      stage: pre-seed
+    - name: Antler Berlin
+      stage: pre-seed (pre-team)
+    - name: Startupbootcamp Berlin
+      stage: pre-seed to seed
+
+  government-programmes:
+    - name: EXIST Business Start-up Grant
+      type: grant
+      typical-amount: "Up to €130k for founders + project costs"
+    - name: KfW StartGeld
+      type: loan
+      typical-amount: "Up to €125k"
+    - name: High-Tech Gründerfonds (HTGF)
+      type: equity
+      typical-amount: "Up to €1m"
+      who-it-suits: "Technical/deeptech early-stage"
+    - name: INVEST
+      type: investor-grant
+      description: "20% bonus for business angels investing in young companies"
+
+  tax-schemes:
+    - name: VSOP (Virtual Stock Option Plan)
+      description: |
+        Standard mechanism for employee equity in Germany due to
+        historic dry-income tax issues with real options. Recent reform
+        has improved real option taxation but VSOPs remain prevalent.
+    - name: Forschungszulagengesetz (FZulG)
+      description: "Federal R&D tax credit, available since 2020."
+
+  notable-vc-funds:
+    pre-seed:
+      - High-Tech Gründerfonds (HTGF)
+      - Picus Capital (early)
+      - Cherry Ventures (early)
+      - Project A (some early)
+    seed:
+      - Earlybird Venture Capital
+      - Project A Ventures
+      - Cherry Ventures
+      - Visionaries Club
+      - 468 Capital
+    series-a:
+      - HV Capital
+      - Lakestar (German activity)
+      - Acton Capital
+      - EQT Ventures (DACH)
+
+  founder-networks:
+    - Bundesverband Deutsche Startups
+    - Berlin Startup Community
+    - Munich Startup Network
+
+recommendation-references:
+  - context: "EXIST grant application"
+    url: "https://www.exist.de"
+  - context: "HTGF investment process"
+    url: "https://www.htgf.de"
+
+regional-vocabulary:
+  - global: "co-founder"
+    local: "Mitgründer"
+  - global: "limited liability company"
+    local: "GmbH or UG"

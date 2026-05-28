@@ -1,0 +1,37 @@
+PROPRIETARY LICENCE
+
+Copyright © 2026 NIRE HQ LIMITED. All rights reserved.
+
+This repository and all of its contents, including but not limited to the
+assessment framework, question bank, scoring methodology, regional adaptation
+layers, VC archetype definitions, recommendation templates, routing logic,
+documentation, schemas, tooling, and examples (collectively, the "Materials"),
+are the proprietary and confidential property of NIRE HQ LIMITED, a company
+registered in England and Wales.
+
+NO LICENCE IS GRANTED. No part of the Materials may be reproduced, distributed,
+publicly displayed, publicly performed, modified, adapted, translated, sublicensed,
+sold, leased, transmitted, or used in any way, whether in whole or in part, for
+any purpose, without the express prior written permission of NIRE HQ LIMITED.
+
+Access to this repository, whether granted directly or through any other means,
+does not constitute permission to use the Materials. Any unauthorised use,
+reproduction, or distribution is strictly prohibited and may result in civil
+and/or criminal penalties.
+
+The Materials are provided "as is" without warranty of any kind, either express
+or implied. NIRE HQ LIMITED makes no representations or warranties regarding the
+accuracy, completeness, or fitness for any particular purpose of the Materials.
+
+Trademarks: "NIRE" and the NIRE logo are trademarks of NIRE HQ LIMITED.
+
+For licensing enquiries, contact: legal@nirehq.com
+
+---
+
+CONTRIBUTIONS
+
+By submitting any contribution to this repository (whether by pull request,
+issue, comment, or other means), you irrevocably assign to NIRE HQ LIMITED all
+right, title, and interest, including all intellectual property rights, in and
+to your contribution. See CONTRIBUTING.md for details.

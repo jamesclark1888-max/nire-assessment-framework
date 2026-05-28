@@ -1,0 +1,116 @@
+# Regional: United Kingdom
+#
+# Tier 1 regional support. Deepest layer of localisation in the framework.
+
+region: uk
+tier: 1
+last-reviewed: 2026-05-28
+
+ecosystem:
+  accelerators:
+    - name: Y Combinator UK office
+      stage: pre-seed
+      typical-cheque: "$500k"
+    - name: Seedcamp
+      stage: pre-seed
+      typical-cheque: "£100-200k"
+    - name: Entrepreneur First
+      stage: pre-seed (pre-team)
+      typical-cheque: "£80k for 8%"
+    - name: Techstars London
+      stage: pre-seed
+      typical-cheque: "£100k"
+    - name: Antler London
+      stage: pre-seed (pre-team)
+      typical-cheque: "£100k"
+    - name: Founders Factory
+      stage: pre-seed
+      typical-cheque: varies
+    - name: Zinc VC
+      stage: pre-seed (mission-driven)
+      typical-cheque: "£35k"
+
+  government-programmes:
+    - name: Innovate UK Smart Grants
+      type: grant
+      typical-amount: "£25k-£500k"
+      who-it-suits: "R&D-heavy startups with technical risk"
+    - name: Innovate UK Loans
+      type: loan
+      typical-amount: "£100k-£1m"
+    - name: British Business Bank co-investment
+      type: equity-co-invest
+      who-it-suits: "Lead investor must be approved BBB delivery partner"
+    - name: Future Fund Breakthrough
+      type: equity
+      typical-amount: "£500k-£5m"
+      who-it-suits: "Series A R&D-intensive"
+
+  tax-schemes:
+    - name: SEIS
+      description: |
+        50% income tax relief for investors in companies raising their
+        first £250k. Critical for UK angel deal flow.
+    - name: EIS
+      description: |
+        30% income tax relief for investors. Companies under 7 years
+        old, under £15m gross assets, under 250 employees.
+    - name: EMI
+      description: |
+        Tax-advantaged employee share option scheme. Standard from
+        seed stage.
+    - name: R&D Tax Credits (SME scheme)
+      description: |
+        Cash credit on qualifying R&D spend. Recently reformed; still
+        significant for eligible startups.
+    - name: R&D Expenditure Credit (RDEC)
+      description: |
+        For larger companies and grant-funded R&D.
+
+  notable-vc-funds:
+    pre-seed:
+      - LocalGlobe (Latitude)
+      - Seedcamp
+      - Episode 1
+      - Forward Partners
+      - Concept Ventures
+      - Form Ventures
+    seed:
+      - Octopus Ventures
+      - Hoxton Ventures
+      - Crane Venture Partners
+      - Mosaic Ventures
+      - Connect Ventures
+      - Sequoia Surge (UK presence)
+    series-a:
+      - Balderton Capital
+      - Index Ventures
+      - Accel
+      - Atomico
+      - Eight Roads
+      - Northzone
+
+  founder-networks:
+    - The Mint
+    - Tech London Advocates
+    - Founders Forum
+    - Helm
+    - 20VC podcast network
+
+recommendation-references:
+  # Reference URLs and resources used in UK recommendations
+  - context: "SEIS/EIS Advance Assurance application"
+    url: "https://www.gov.uk/guidance/venture-capital-schemes-apply-to-use-the-seed-enterprise-investment-scheme"
+  - context: "EMI scheme setup"
+    url: "https://www.gov.uk/tax-employee-share-schemes/enterprise-management-incentives-emis"
+  - context: "Innovate UK grant opportunities"
+    url: "https://apply-for-innovation-funding.service.gov.uk/competition/search"
+
+regional-vocabulary:
+  # How concepts are referred to locally
+  - global: "Series A"
+    local: "Series A"
+  - global: "Seed round"
+    local: "seed round"
+  - global: "Cap table"
+    local: "cap table (or share register)"

@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nirehq.com/schemas/scoring-rule.schema.json",
+  "title": "NIRE Scoring Rule",
+  "description": "Schema for scoring rules and rubrics",
+  "type": "object",
+  "required": ["dimension", "rules"],
+  "properties": {
+    "dimension": {
+      "type": "string",
+      "enum": [
+        "founder-team",
+        "problem-insight",
+        "market",
+        "product-traction",
+        "business-model",
+        "go-to-market",
+        "competition-moat",
+        "round-capital"
+      ]
+    },
+    "rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "applies-to-question", "logic"],
+        "properties": {
+          "id": { "type": "string" },
+          "applies-to-question": { "type": "string" },
+          "description": { "type": "string" },
+          "logic": {
+            "type": "object",
+            "oneOf": [
+              { "required": ["type", "thresholds"] },
+              { "required": ["type", "mapping"] },
+              { "required": ["type", "rubric"] }
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": ["threshold", "mapping", "rubric", "formula"]
+              },
+              "thresholds": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["min", "max", "score"],
+                  "properties": {
+                    "min": { "type": ["number", "null"] },
+                    "max": { "type": ["number", "null"] },
+                    "score": { "type": "number", "minimum": 0, "maximum": 100 },
+                    "interpolate": {
+                      "type": "boolean",
+                      "description": "If true, score is interpolated linearly between min and max"
+                    }
+                  }
+                }
+              },
+              "mapping": {
+                "type": "object",
+                "additionalProperties": {
+                  "type": "number",
+                  "minimum": 0,
+                  "maximum": 100
+                }
+              },
+              "rubric": {
+                "type": "object",
+                "required": ["criteria"],
+                "properties": {
+                  "criteria": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "required": ["name", "weight", "description"],
+                      "properties": {
+                        "name": { "type": "string" },
+                        "weight": { "type": "number" },
+                        "description": { "type": "string" },
+                        "examples-strong": { "type": "array", "items": { "type": "string" } },
+                        "examples-weak": { "type": "array", "items": { "type": "string" } }
+                      }
+                    }
+                  },
+                  "score-bounds": {
+                    "type": "object",
+                    "properties": {
+                      "min": { "type": "number" },
+                      "max": { "type": "number" }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "dimension-weight-override": {
+      "type": "object",
+      "description": "Optional override of question weights for specific stages",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": { "type": "number" }
+      }
+    }
+  }
+}

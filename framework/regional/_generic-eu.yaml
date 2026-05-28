@@ -1,0 +1,62 @@
+# Regional: Generic EU (fallback)
+#
+# Tier 3 regional support. Used for EU/EEA countries without dedicated
+# regional files (e.g. Spain, Italy, Portugal, Belgium, Austria, Poland,
+# Czech Republic, Romania, Greece, Hungary, etc.).
+#
+# Founders in these countries see a UI banner indicating lighter
+# regional precision.
+
+region: _generic-eu
+tier: 3
+last-reviewed: 2026-05-28
+
+countries-covered:
+  - es  # Spain
+  - it  # Italy
+  - pt  # Portugal
+  - be  # Belgium
+  - lu  # Luxembourg
+  - at  # Austria
+  - pl  # Poland
+  - cz  # Czech Republic
+  - ro  # Romania
+  - gr  # Greece
+  - hu  # Hungary
+  - ie  # Ireland (until ie.yaml exists; currently routed via uk.yaml)
+
+ecosystem:
+  notes: |
+    This is a generic EU fallback. For specific country precision,
+    NIRE will progressively roll out dedicated regional files. Founders
+    in these countries should expect:
+
+    - Generic EU benchmarks (broader ranges than country-specific)
+    - No regulatory question layer (e.g. no SEIS/EIS, no JEI questions)
+    - Generic recommendation templates with EU-level context
+    - Reference to EU-level programmes where relevant
+
+  notable-eu-wide-programmes:
+    - name: European Innovation Council (EIC) Accelerator
+      type: grant-equity
+      typical-amount: "Up to €2.5m grant + €15m equity"
+    - name: Horizon Europe
+      type: research-grant
+    - name: European Investment Fund (EIF)
+      type: fund-of-funds
+      description: "Significant LP in many EU venture funds"
+
+prioritisation-for-future-tier-2:
+  description: |
+    Countries planned for Tier 2 promotion based on ecosystem depth
+    and likely user volume:
+  next:
+    - es  # Spain (Barcelona/Madrid ecosystem)
+    - it  # Italy (Milan)
+    - pt  # Portugal (Lisbon)
+    - be  # Belgium (Brussels)
+
+ui-banner:
+  message: |
+    Generic EU benchmarks are being used for your assessment. We're
+    working to add deeper precision for your country.

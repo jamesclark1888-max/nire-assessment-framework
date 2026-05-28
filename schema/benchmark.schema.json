@@ -1,0 +1,67 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nirehq.com/schemas/benchmark.schema.json",
+  "title": "NIRE Benchmark",
+  "description": "Schema for regional benchmark data",
+  "type": "object",
+  "required": ["region", "last-reviewed", "expires", "benchmarks"],
+  "properties": {
+    "region": {
+      "type": "string",
+      "enum": ["global", "uk", "ie", "fr", "de", "nl", "se", "no", "fi", "dk", "eu-other", "us"]
+    },
+    "last-reviewed": {
+      "type": "string",
+      "format": "date"
+    },
+    "expires": {
+      "type": "string",
+      "format": "date"
+    },
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "url-or-citation"],
+        "properties": {
+          "name": { "type": "string" },
+          "url-or-citation": { "type": "string" },
+          "year": { "type": "integer" }
+        }
+      }
+    },
+    "benchmarks": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["description"],
+        "properties": {
+          "description": { "type": "string" },
+          "applies-to-stage": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["pre-seed", "seed", "series-a", "series-b", "later"]
+            }
+          },
+          "applies-to-business-model": {
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "thresholds": {
+            "type": "object",
+            "properties": {
+              "exceptional": { "type": ["number", "string"] },
+              "strong": { "type": ["number", "string"] },
+              "median": { "type": ["number", "string"] },
+              "weak": { "type": ["number", "string"] },
+              "concerning": { "type": ["number", "string"] }
+            }
+          },
+          "unit": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      }
+    }
+  }
+}

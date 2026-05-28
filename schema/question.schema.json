@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nirehq.com/schemas/question.schema.json",
+  "title": "NIRE Question",
+  "description": "Schema for a single question in the NIRE Assessment Framework",
+  "type": "object",
+  "required": ["id", "dimension", "tier", "type", "question", "why-it-matters", "applies-to", "scoring"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^q[0-9]+\\.(uk|fr|de|nl|nordic|eu)?[0-9]+$",
+      "description": "Unique identifier, e.g. q1.5 or q1.uk1"
+    },
+    "dimension": {
+      "type": "string",
+      "enum": [
+        "founder-team",
+        "problem-insight",
+        "market",
+        "product-traction",
+        "business-model",
+        "go-to-market",
+        "competition-moat",
+        "round-capital"
+      ]
+    },
+    "tier": {
+      "type": "string",
+      "enum": ["required", "recommended", "optional"]
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "short-text",
+        "long-text",
+        "number",
+        "currency",
+        "percentage",
+        "date",
+        "single-select",
+        "multi-select",
+        "yes-no",
+        "yes-no-unsure",
+        "yes-no-planning",
+        "repeating-block",
+        "file-upload",
+        "structured-input"
+      ]
+    },
+    "question": {
+      "type": "string",
+      "minLength": 10,
+      "maxLength": 500
+    },
+    "helper-text": {
+      "type": "string",
+      "maxLength": 500
+    },
+    "why-it-matters": {
+      "type": "string",
+      "minLength": 20,
+      "maxLength": 500,
+      "description": "Internal-facing explanation of the VC perspective behind this question"
+    },
+    "options": {
+      "type": "array",
+      "description": "For single-select, multi-select, and yes-no variants",
+      "items": {
+        "type": "object",
+        "required": ["value", "label"],
+        "properties": {
+          "value": { "type": "string" },
+          "label": { "type": "string" },
+          "description": { "type": "string" }
+        }
+      }
+    },
+    "fields": {
+      "type": "array",
+      "description": "For repeating-block and structured-input types",
+      "items": {
+        "type": "object",
+        "required": ["name", "type"],
+        "properties": {
+          "name": { "type": "string" },
+          "type": { "type": "string" },
+          "label": { "type": "string" },
+          "required": { "type": "boolean" }
+        }
+      }
+    },
+    "validation": {
+      "type": "object",
+      "properties": {
+        "min": { "type": "number" },
+        "max": { "type": "number" },
+        "min-chars": { "type": "integer" },
+        "max-chars": { "type": "integer" },
+        "min-items": { "type": "integer" },
+        "max-items": { "type": "integer" },
+        "pattern": { "type": "string" },
+        "allow-not-known": {
+          "type": "boolean",
+          "description": "If true, founder can answer 'I don't know yet' which is itself scored"
+        }
+      }
+    },
+    "applies-to": {
+      "type": "object",
+      "required": ["stages", "business-models", "regions"],
+      "properties": {
+        "stages": {
+          "oneOf": [
+            { "type": "string", "enum": ["all"] },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["pre-seed", "seed", "series-a", "series-b", "later"]
+              }
+            }
+          ]
+        },
+        "business-models": {
+          "oneOf": [
+            { "type": "string", "enum": ["all"] },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["saas", "marketplace", "consumer", "hardware", "deeptech", "fintech", "healthtech", "services", "biotech", "climate", "other"]
+              }
+            }
+          ]
+        },
+        "regions": {
+          "oneOf": [
+            { "type": "string", "enum": ["all"] },
+            {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": ["uk", "ie", "fr", "de", "nl", "se", "no", "fi", "dk", "es", "it", "pt", "be", "lu", "eu-other", "us", "row"]
+              }
+            }
+          ]
+        },
+        "revenue-status": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": ["pre-revenue", "generating-revenue", "profitable"]
+          }
+        }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "required": ["type", "weight"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": [
+            "quantitative-threshold",
+            "categorical",
+            "multi-select-coverage",
+            "ai-qualitative",
+            "boolean",
+            "composite",
+            "informational-only"
+          ]
+        },
+        "weight": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1,
+          "description": "Weight within the dimension. All weights in a dimension should sum to 1.0"
+        },
+        "rubric-ref": {
+          "type": "string",
+          "description": "Reference to a rubric defined in scoring.yaml"
+        },
+        "benchmark-ref": {
+          "type": "string",
+          "description": "Reference to a benchmark defined in benchmarks/"
+        }
+      }
+    },
+    "recommendation-trigger": {
+      "type": "object",
+      "properties": {
+        "low-score": { "type": ["string", "null"] },
+        "medium-score": { "type": ["string", "null"] },
+        "high-score": { "type": ["string", "null"] }
+      }
+    },
+    "consistency-checks": {
+      "type": "array",
+      "description": "References to cross-question consistency rules",
+      "items": { "type": "string" }
+    },
+    "version-added": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "version-deprecated": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    }
+  }
+}

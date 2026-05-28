@@ -1,0 +1,111 @@
+# Business model routing
+#
+# Determines which questions apply for which business models.
+# Some questions are universal; others are model-specific.
+
+version: 0.1.0
+
+# ─────────────────────────────────────────────────────────────────
+# Supported business models
+# ─────────────────────────────────────────────────────────────────
+# These are the canonical business model classifications.
+
+models:
+  - id: saas
+    label: "B2B SaaS"
+    description: "Subscription software sold to businesses"
+  - id: marketplace
+    label: "Marketplace"
+    description: "Two-sided platform matching buyers and sellers"
+  - id: consumer
+    label: "Consumer (DTC, app, etc.)"
+    description: "Direct-to-consumer product or service"
+  - id: hardware
+    label: "Hardware / Connected Devices"
+    description: "Physical products, often with software layer"
+  - id: deeptech
+    label: "Deep Tech"
+    description: "Novel science or engineering; long R&D timelines"
+  - id: fintech
+    label: "FinTech"
+    description: "Financial services or financial infrastructure"
+  - id: healthtech
+    label: "HealthTech"
+    description: "Health, medical, biotech-adjacent"
+  - id: biotech
+    label: "Biotech"
+    description: "Life sciences with regulatory pathway"
+  - id: climate
+    label: "Climate"
+    description: "Climate-mitigation or sustainability tech"
+  - id: services
+    label: "Services"
+    description: "Services-led or services-heavy business"
+  - id: other
+    label: "Other"
+
+# ─────────────────────────────────────────────────────────────────
+# Function coverage critical functions by model
+# ─────────────────────────────────────────────────────────────────
+# For scoring q1.4 (function coverage), the stage-critical functions
+# vary by business model.
+
+function-coverage-critical:
+  saas:
+    pre-seed: [technical, product]
+    seed: [technical, product, commercial]
+    series-a: [technical, product, commercial, marketing]
+  marketplace:
+    pre-seed: [technical, product, commercial]
+    seed: [technical, product, commercial, operations]
+    series-a: [technical, product, commercial, operations, marketing]
+  consumer:
+    pre-seed: [technical, product, marketing]
+    seed: [technical, product, marketing, operations]
+    series-a: [technical, product, marketing, operations, commercial]
+  hardware:
+    pre-seed: [technical, product, operations]
+    seed: [technical, product, operations, commercial]
+    series-a: [technical, product, operations, commercial, marketing]
+  deeptech:
+    pre-seed: [technical, domain-expertise]
+    seed: [technical, domain-expertise, commercial]
+    series-a: [technical, domain-expertise, commercial, operations]
+  fintech:
+    pre-seed: [technical, product, domain-expertise]
+    seed: [technical, product, domain-expertise, commercial]
+    series-a: [technical, product, domain-expertise, commercial, operations]
+  healthtech:
+    pre-seed: [technical, domain-expertise]
+    seed: [technical, domain-expertise, commercial]
+    series-a: [technical, domain-expertise, commercial, operations]
+  biotech:
+    pre-seed: [domain-expertise, technical]
+    seed: [domain-expertise, technical, operations]
+    series-a: [domain-expertise, technical, operations, commercial]
+  climate:
+    pre-seed: [technical, domain-expertise]
+    seed: [technical, domain-expertise, commercial]
+    series-a: [technical, domain-expertise, commercial, operations]
+  services:
+    pre-seed: [domain-expertise, operations]
+    seed: [domain-expertise, operations, commercial]
+    series-a: [domain-expertise, operations, commercial, marketing]
+
+# ─────────────────────────────────────────────────────────────────
+# Question visibility by business model
+# ─────────────────────────────────────────────────────────────────
+# Dimension 1 questions are mostly universal; substantial model-specific
+# routing will be defined for Dimensions 4-6 once those are drafted.
+
+visibility-overrides:
+  # Examples for dimensions to be drafted:
+  # saas:
+  #   show: [q5.saas1, q5.saas2]  # NRR, gross margin SaaS-specific
+  #   hide: []
+  # marketplace:
+  #   show: [q5.mp1, q5.mp2]      # Take rate, GMV
+  #   hide: [q5.saas1]
+  # hardware:
+  #   show: [q5.hw1]               # Inventory turn, BOM cost
+  pass: true  # Placeholder until D4-8 questions exist

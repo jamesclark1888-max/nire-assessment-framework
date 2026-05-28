@@ -1,0 +1,74 @@
+# Dimension 1: Founder & Team
+# France benchmarks
+#
+# Validated against: schema/benchmark.schema.json
+
+region: fr
+last-reviewed: "2026-05-28"
+expires: "2027-05-28"
+
+sources:
+  - name: "France Digitale Tech Tour 2025"
+    url-or-citation: "https://francedigitale.org"
+    year: 2025
+  - name: "BPI France Le Hub"
+    url-or-citation: "https://lehub.bpifrance.fr"
+    year: 2025
+  - name: "Dealroom French Tech Report 2025"
+    url-or-citation: "https://dealroom.co"
+    year: 2025
+
+benchmarks:
+
+  team-size-pre-seed:
+    description: "Total team size at pre-seed in France"
+    unit: people
+    applies-to-stage: [pre-seed]
+    thresholds:
+      exceptional: ">=4"
+      strong: "3-4"
+      median: "2-3"
+      weak: "1"
+      concerning: "<1"
+
+  team-size-seed:
+    description: "Total team size at seed stage in France"
+    unit: people
+    applies-to-stage: [seed]
+    thresholds:
+      exceptional: ">=12"
+      strong: "8-12"
+      median: "5-8"
+      weak: "3-5"
+      concerning: "<3"
+    notes: |
+      French seed teams tend to be slightly larger than UK equivalents
+      due to BPI co-investment dynamics and JEI status enabling cost-
+      efficient hiring.
+
+  team-size-series-a:
+    description: "Total team size at Series A in France"
+    unit: people
+    applies-to-stage: [series-a]
+    thresholds:
+      exceptional: ">=30"
+      strong: "20-30"
+      median: "15-20"
+      weak: "10-15"
+      concerning: "<10"
+
+  bspce-adoption:
+    description: "Percentage of French seed-funded startups with BSPCE in place"
+    unit: percentage
+    thresholds:
+      median: "70%"
+    notes: "Less universal than UK EMI adoption but rising"
+
+  jei-eligibility-take-up:
+    description: "Percentage of eligible French startups holding JEI status"
+    unit: percentage
+    thresholds:
+      median: "60%"
+    notes: |
+      Many eligible companies don't claim JEI due to administrative
+      complexity. Take-up is a signal of operational rigour.

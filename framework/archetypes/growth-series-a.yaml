@@ -1,0 +1,93 @@
+# VC Archetype: Growth / Series A
+#
+# Funds deploying larger cheques at Series A. Metric-driven, demand
+# evidence of product-market fit and unit economics.
+#
+# Validated against: schema/archetype.schema.json
+
+id: growth-series-a
+name: Growth / Series A
+description: |
+  Series A and growth-stage VC funds. Typical cheque sizes £3m-£15m at
+  Series A in the UK/EU. Lead Series A rounds. Underwrite on metrics
+  more than narrative; expect product-market fit signal.
+
+examples:
+  - name: Balderton Capital
+    region: uk
+  - name: Index Ventures
+    region: uk
+  - name: Accel London
+    region: uk
+  - name: Atomico (early growth)
+    region: uk
+  - name: Lakestar
+    region: eu
+  - name: Highland Europe
+    region: eu
+  - name: EQT Ventures
+    region: eu
+
+stages-applicable: [series-a, series-b, later]
+
+dimension-weights:
+  founder-team: 0.15
+  problem-insight: 0.05
+  market: 0.12
+  product-traction: 0.25
+  business-model: 0.18
+  go-to-market: 0.15
+  competition-moat: 0.07
+  round-capital: 0.03
+
+question-adjustments:
+  - question-id: q1.14
+    adjustment:
+      weight-multiplier: 1.4
+      rationale: |
+        Hiring philosophy and team scaling are central to Series A
+        underwriting. Series A VCs need confidence the team can grow
+        from ~15 to 60 people.
+
+bonus-rules:
+  - id: strong-net-revenue-retention
+    condition: "Dimension 5 unit economics show NRR >= 110% for SaaS"
+    bonus: 12
+    rationale: |
+      Strong NRR is the cleanest signal of product-market fit and
+      expansion potential. Highly weighted.
+  - id: repeatable-acquisition
+    condition: "Dimension 6 shows consistent monthly cohorts with stable CAC"
+    bonus: 8
+    rationale: "Repeatability is the Series A test."
+
+penalty-rules:
+  - id: pre-product-market-fit
+    condition: "Dimension 4 traction signals are pre-PMF (e.g. flat retention, churn > 10% monthly)"
+    penalty: 20
+    rationale: |
+      Series A pricing requires PMF. Without it, the round is structurally
+      mispriced regardless of other strengths.
+  - id: weak-unit-economics
+    condition: "CAC payback > 18 months or LTV:CAC < 2:1"
+    penalty: 15
+    rationale: "Series A unit economics expectations are well-defined."
+  - id: spray-and-pray-gtm
+    condition: "Dimension 6 shows no dominant channel; spread across many low-volume sources"
+    penalty: 10
+    rationale: |
+      A working motion is concentrated, not diffuse. Spread without
+      depth signals lack of repeatability.
+
+regional-variants:
+  uk:
+    notes: |
+      UK Series A typically £4-8m. Valuation expectations reflect this.
+  fr:
+    notes: |
+      French Series A rounds increasingly competitive with UK; reference
+      benchmarks similar.
+  de:
+    notes: |
+      German Series A often slightly larger (€6-12m) reflecting deeper
+      technical talent pool and capex-heavier businesses.

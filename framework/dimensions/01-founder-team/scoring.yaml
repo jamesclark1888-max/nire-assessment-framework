@@ -1,0 +1,458 @@
+# Dimension 1: Founder & Team
+# Scoring rules and rubrics
+#
+# Validated against: schema/scoring-rule.schema.json
+#
+# Each rule defines how a raw answer is converted into a 0-100 score.
+# Rule IDs match the rubric-ref values in questions.yaml.
+
+dimension: founder-team
+version: 0.1.0
+rules:
+
+  # ─────────────────────────────────────────────────────────────────
+  # Co-founder count (q1.1)
+  # ─────────────────────────────────────────────────────────────────
+  - id: cofounder-count-categorical
+    applies-to-question: q1.1
+    description: |
+      Scores team size. Solo founders score lower because they're harder
+      to back at most stages. 2-3 is optimal. 4+ raises governance questions.
+    logic:
+      type: mapping
+      mapping:
+        "1": 45
+        "2": 95
+        "3": 100
+        "4": 75
+        "5+": 55
+
+  # ─────────────────────────────────────────────────────────────────
+  # Co-founder details composite (q1.2)
+  # ─────────────────────────────────────────────────────────────────
+  - id: cofounder-details-composite
+    applies-to-question: q1.2
+    description: |
+      Composite score across co-founder rows. Considers:
+      - Average relevant experience (weighted 30%)
+      - Commitment levels (weighted 40%)
+      - Equity distribution health (weighted 30%)
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: average-relevant-experience
+            weight: 0.30
+            description: |
+              Average years of relevant industry experience across founders.
+              0-2 years: score 30
+              3-5 years: score 60
+              6-10 years: score 85
+              10+ years: score 100
+          - name: commitment-levels
+            weight: 0.40
+            description: |
+              All full-time: 100
+              CEO full-time, others part-time: 60
+              Mixed full/part-time: 50
+              Any founder part-time at seed or beyond: -20 penalty
+          - name: equity-distribution
+            weight: 0.30
+            description: |
+              Even or near-even splits (within 20pp) score highest.
+              Very uneven splits (>80/20 between two co-founders) score lower
+              due to commitment concerns.
+              No founder under 10% (after dilution): healthy
+              Any founder under 5%: flag
+        score-bounds:
+          min: 10
+          max: 100
+
+  # ─────────────────────────────────────────────────────────────────
+  # Working relationship (q1.3)
+  # ─────────────────────────────────────────────────────────────────
+  - id: working-relationship-categorical
+    applies-to-question: q1.3
+    description: |
+      Maps prior working relationship to score.
+      Strong predictor of co-founder breakup risk.
+    logic:
+      type: mapping
+      mapping:
+        "never": 35
+        "less-than-1": 55
+        "1-to-3": 80
+        "3-plus": 100
+        "not-applicable": 50  # Solo founder; this dimension does not apply
+
+  # ─────────────────────────────────────────────────────────────────
+  # Function coverage (q1.4)
+  # ─────────────────────────────────────────────────────────────────
+  - id: function-coverage-multi-select
+    applies-to-question: q1.4
+    description: |
+      Scores coverage of critical functions weighted by stage and business model.
+      Pre-seed: technical + product expected; commercial nice-to-have.
+      Seed: technical + product + (commercial OR domain expertise) expected.
+      Series A: all of technical, product, commercial, plus marketing or operations.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: stage-appropriate-coverage
+            weight: 1.0
+            description: |
+              Score = 100 - (15 * number of missing stage-critical functions)
+              Stage-critical mapping:
+                pre-seed: [technical, product]
+                seed: [technical, product, commercial]
+                series-a: [technical, product, commercial, marketing OR operations]
+              Business-model adjustments:
+                - deeptech: domain-expertise is stage-critical at all stages
+                - marketplace: commercial AND operations stage-critical at seed+
+                - fintech: domain-expertise stage-critical (regulatory)
+        score-bounds:
+          min: 20
+          max: 100
+
+  # ─────────────────────────────────────────────────────────────────
+  # Founder-market fit rubric (q1.5)
+  # ─────────────────────────────────────────────────────────────────
+  - id: founder-market-fit-rubric
+    applies-to-question: q1.5
+    description: |
+      AI-evaluated qualitative scoring for the founder-market fit paragraph.
+      Bounded 30-95 to reflect inherent subjectivity.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: specificity
+            weight: 0.30
+            description: |
+              Does the answer name specific prior experience, roles, projects,
+              or moments that make the founder the right person for THIS problem?
+              Generic statements about passion or interest score low.
+            examples-strong:
+              - "I spent 8 years at Stripe leading risk operations, where I built the internal tool that became the basis for this product."
+              - "My co-founder and I have run procurement at three different mid-market companies and lived this exact problem."
+            examples-weak:
+              - "We are passionate about solving this problem."
+              - "Our team has the right experience to succeed."
+          - name: evidence
+            weight: 0.25
+            description: |
+              Does the answer provide checkable evidence (named companies,
+              quantifiable experience, specific products built, customers
+              spoken to)?
+          - name: unfair-advantage
+            weight: 0.25
+            description: |
+              Does the answer articulate something the founders know or can do
+              that competitors cannot easily replicate? Domain insight,
+              relationships, data, technical depth all count.
+          - name: clarity
+            weight: 0.20
+            description: |
+              Is the answer well-structured and free of jargon? Could a VC
+              repeat it back accurately after one read?
+        score-bounds:
+          min: 30
+          max: 95
+
+  # ─────────────────────────────────────────────────────────────────
+  # Prior founder experience (q1.6)
+  # ─────────────────────────────────────────────────────────────────
+  - id: prior-founder-experience
+    applies-to-question: q1.6
+    description: |
+      Composite score across founders' prior company history.
+      The strongest signal is at least one founder having a prior successful exit.
+      A prior failure with articulated learnings is still positive.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: best-prior-outcome
+            weight: 0.70
+            description: |
+              Any founder with a successful exit: 100
+              Any founder with a prior still-operating company: 80
+              Any founder with a prior failed company (acknowledged): 65
+              All first-time founders: 55
+          - name: depth
+            weight: 0.30
+            description: |
+              Multiple founders with prior experience: bonus
+              Mixed experience (one experienced, others first-time): typical
+              All first-time founders: typical at pre-seed
+        score-bounds:
+          min: 40
+          max: 100
+
+  # ─────────────────────────────────────────────────────────────────
+  # Team size (q1.7)
+  # ─────────────────────────────────────────────────────────────────
+  - id: team-size-by-stage
+    applies-to-question: q1.7
+    description: |
+      Team size benchmarked against stage. Outliers (too small or too large)
+      may indicate capital inefficiency or under-investment.
+    logic:
+      type: threshold
+      thresholds:
+        # Note: actual benchmarks live in benchmarks/{region}.yaml
+        # These are illustrative defaults; resolved at runtime against region
+        - min: null
+          max: 1
+          score: 30
+        - min: 2
+          max: 3
+          score: 60
+        - min: 4
+          max: 8
+          score: 100
+        - min: 9
+          max: 15
+          score: 85
+        - min: 16
+          max: null
+          score: 70
+
+  # ─────────────────────────────────────────────────────────────────
+  # Advisor structure (q1.9)
+  # ─────────────────────────────────────────────────────────────────
+  - id: advisor-structure-categorical
+    applies-to-question: q1.9
+    description: |
+      Stage-adjusted scoring for advisor and board structure.
+      Pre-seed founders aren't expected to have formal boards.
+    logic:
+      type: mapping
+      mapping:
+        formal-board-with-independents: 100
+        formal-board-investors-only: 85
+        informal-advisory-board: 75
+        individual-advisors: 60
+        mentor-relationships: 50
+        none-yet: 35
+    dimension-weight-override:
+      pre-seed:
+        # At pre-seed, this question carries less weight
+        q1.9: 0.02
+
+  # ─────────────────────────────────────────────────────────────────
+  # Self-awareness rubric (q1.10)
+  # ─────────────────────────────────────────────────────────────────
+  - id: self-awareness-rubric
+    applies-to-question: q1.10
+    description: |
+      AI-evaluated qualitative scoring for risks/tensions reflection.
+      Rewards thoughtful honesty; penalises deflection.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: honesty
+            weight: 0.40
+            description: |
+              Does the answer name real, plausible risks specific to this team?
+              Generic answers ("we sometimes disagree") score lower than
+              specific ones ("my co-founder pushes for speed, I push for quality").
+          - name: management-framework
+            weight: 0.35
+            description: |
+              Does the founder describe a framework, process, or specific
+              actions for managing the risks? Or is it a vague "we'll work
+              it out"?
+          - name: maturity
+            weight: 0.25
+            description: |
+              Does the answer reflect operational maturity (regular reviews,
+              defined decision authorities, external counsel)? Or improvisation?
+        score-bounds:
+          min: 25
+          max: 95
+
+  # ─────────────────────────────────────────────────────────────────
+  # Founder vesting (q1.12)
+  # ─────────────────────────────────────────────────────────────────
+  - id: founder-vesting-composite
+    applies-to-question: q1.12
+    description: |
+      Scores vesting structure. Standard is 4-year vest with 1-year cliff.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: vesting-in-place
+            weight: 0.60
+            description: |
+              Yes: 90
+              In progress / planned: 60
+              No: 25
+          - name: terms-standard
+            weight: 0.40
+            description: |
+              4 years with 1-year cliff: 100
+              4 years no cliff: 80
+              3 years with cliff: 75
+              Less than 3 years: 50
+              Other: 60
+        score-bounds:
+          min: 25
+          max: 100
+
+  # ─────────────────────────────────────────────────────────────────
+  # Founder departure rubric (q1.13)
+  # ─────────────────────────────────────────────────────────────────
+  - id: founder-departure-rubric
+    applies-to-question: q1.13
+    description: |
+      Scores transparency and cleanliness of any founder departures.
+      Most founders will leave this blank (no departures), which is fine.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: disclosure
+            weight: 0.50
+            description: |
+              Empty (no departures): neutral, 75 default
+              Clean disclosure: 85+
+              Disclosure of messy departure: 50-65 (transparency rewarded over hiding)
+              Vague or evasive answer: 30-45
+          - name: resolution
+            weight: 0.50
+            description: |
+              Equity reassigned, clean separation documented: high
+              Ongoing dispute or unresolved: low
+        score-bounds:
+          min: 25
+          max: 95
+
+  # ─────────────────────────────────────────────────────────────────
+  # Hiring philosophy rubric (q1.14)
+  # ─────────────────────────────────────────────────────────────────
+  - id: hiring-philosophy-rubric
+    applies-to-question: q1.14
+    description: |
+      AI-evaluated scoring of hiring philosophy + specific recent example.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: specificity
+            weight: 0.40
+            description: |
+              Does the answer include a specific recent hire (named role,
+              process used, what they learned)? Or abstract principles only?
+          - name: process-maturity
+            weight: 0.35
+            description: |
+              Structured process (sourcing → screening → assessment → reference
+              checking → close) vs ad hoc.
+          - name: self-reflection
+            weight: 0.25
+            description: |
+              Acknowledgement of what's worked and what hasn't, with clear
+              learnings.
+        score-bounds:
+          min: 30
+          max: 95
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: UK EMI scheme (q1.uk1)
+  # ─────────────────────────────────────────────────────────────────
+  - id: emi-scheme-categorical
+    applies-to-question: q1.uk1
+    description: |
+      UK-specific. EMI is the standard UK employee option scheme.
+    logic:
+      type: mapping
+      mapping:
+        "yes": 100
+        planning: 70
+        "no": 35
+        not-applicable: 75
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: UK SEIS/EIS (q1.uk2)
+  # ─────────────────────────────────────────────────────────────────
+  - id: seis-eis-categorical
+    applies-to-question: q1.uk2
+    description: |
+      UK-specific. SEIS/EIS Advance Assurance is near-universal expectation.
+    logic:
+      type: mapping
+      mapping:
+        yes-seis: 95
+        yes-eis: 95
+        yes-both: 100
+        applied-waiting: 75
+        "no": 30
+        unsure: 40
+        not-applicable: 70
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: France BSPCE (q1.fr1)
+  # ─────────────────────────────────────────────────────────────────
+  - id: bspce-categorical
+    applies-to-question: q1.fr1
+    description: |
+      France-specific. BSPCE is standard French employee equity instrument.
+    logic:
+      type: mapping
+      mapping:
+        "yes": 100
+        planning: 70
+        "no": 35
+        not-applicable: 75
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: France JEI (q1.fr2)
+  # ─────────────────────────────────────────────────────────────────
+  - id: jei-categorical
+    applies-to-question: q1.fr2
+    description: |
+      France-specific. JEI status is substantial tax/social charge relief.
+    logic:
+      type: mapping
+      mapping:
+        yes-active: 100
+        applied: 80
+        planning: 65
+        "no": 35
+        not-eligible: 70  # Reviewed and excluded; not a flag
+        unsure: 40
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: Germany entity (q1.de1)
+  # ─────────────────────────────────────────────────────────────────
+  - id: german-entity-categorical
+    applies-to-question: q1.de1
+    description: |
+      Germany-specific. Entity type signals investor-readiness.
+    logic:
+      type: mapping
+      mapping:
+        gmbh: 100
+        ug: 60
+        ag: 90
+        gmbh-in-formation: 80
+        other: 50
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: Germany VSOP (q1.de2)
+  # ─────────────────────────────────────────────────────────────────
+  - id: vsop-categorical
+    applies-to-question: q1.de2
+    description: |
+      Germany-specific. VSOP is the standard employee equity mechanism.
+    logic:
+      type: mapping
+      mapping:
+        "yes": 100
+        planning: 70
+        "no": 35
+        not-applicable: 75

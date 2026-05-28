@@ -1,0 +1,74 @@
+# Regional: Nordics (Sweden, Norway, Finland, Denmark)
+#
+# Tier 2 regional support. Combined file because of strong cross-Nordic
+# investor patterns. Country-specific details noted within.
+# Skeleton: to be populated in v0.2.0.
+
+region: nordics
+tier: 2
+last-reviewed: 2026-05-28
+
+countries-covered: [se, no, fi, dk]
+
+ecosystem:
+  accelerators:
+    - name: Antler (Nordic hubs in Stockholm, Oslo, Copenhagen, Helsinki)
+      stage: pre-seed (pre-team)
+    - name: Nordic Makers
+      stage: pre-seed (angel collective)
+    - name: Sting (Stockholm)
+      stage: pre-seed
+    - name: Maria 01 (Helsinki)
+      stage: ecosystem hub
+
+  government-programmes:
+    sweden:
+      - name: Vinnova
+        type: innovation-grant
+      - name: Almi Företagspartner
+        type: loan-and-equity
+    norway:
+      - name: Innovation Norway
+        type: grant-loan-equity
+    finland:
+      - name: Business Finland (formerly Tekes)
+        type: grant-loan
+      - name: Tesi
+        type: equity
+    denmark:
+      - name: Innovation Fund Denmark
+        type: grant-equity
+      - name: Vækstfonden
+        type: equity-loan
+
+  tax-schemes:
+    sweden:
+      - name: Kvalificerade personaloptioner
+        description: "Qualifying employee stock options with favourable tax treatment."
+    finland:
+      - name: Innovation Tax Deduction
+        description: "Tax deduction for R&D activities."
+
+  notable-vc-funds:
+    pre-seed-seed:
+      - byFounders (DK)
+      - Inventure (FI)
+      - Maki.vc (FI)
+      - Heartcore Capital (DK)
+      - Creandum (SE, early)
+    series-a:
+      - Creandum
+      - Northzone
+      - EQT Ventures
+      - Atomico (Nordic activity)
+
+  founder-networks:
+    - Slush (Helsinki annual conference, ecosystem hub)
+    - Nordic Startup Awards
+    - Sting Day
+
+recommendation-references: []
+
+regional-vocabulary:
+  - global: "private limited company"
+    local: "AB (SE), AS (NO), Oy (FI), ApS (DK)"

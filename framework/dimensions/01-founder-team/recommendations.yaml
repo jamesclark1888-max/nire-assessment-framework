@@ -1,0 +1,765 @@
+# Dimension 1: Founder & Team
+# Recommendation templates
+#
+# Validated against: schema/recommendation.schema.json
+#
+# Each template defines a recommendation that is triggered by specific
+# scoring conditions and personalised at runtime using the founder's
+# specific data.
+#
+# free-tier-visible: true means the recommendation appears in the free report.
+# Others are paywalled.
+
+dimension: founder-team
+version: 0.1.0
+templates:
+
+  # ─────────────────────────────────────────────────────────────────
+  # Solo founder without a plan
+  # ─────────────────────────────────────────────────────────────────
+  - id: solo-founder-no-plan
+    trigger:
+      question-ids: [q1.1]
+      score-band: low
+    priority: high
+    free-tier-visible: true
+    diagnostic: |
+      You're building solo. VCs are typically more cautious about solo
+      founders, particularly at seed and beyond, because the workload
+      and risk are concentrated in one person.
+    gap: |
+      You haven't articulated a clear plan to address the solo-founder risk.
+      This is the most common reason solo-founder companies struggle to
+      raise institutional funding.
+    fix: |
+      Decide on one of three paths and communicate it clearly:
+      1. Bring on a co-founder (most powerful, hardest to execute).
+      2. Hire a strong "co-founder equivalent" senior leader early, with
+         meaningful equity (5-10%).
+      3. Build a strong advisory bench with named, credible operators who
+         actively engage with the business.
+      Whichever path you choose, document it in your pitch and your
+      next-round materials.
+    evidence: |
+      Solo-founder companies that successfully raise institutional rounds
+      typically have one of these patterns. The minority that raise without
+      any of them tend to be repeat founders with prior successful exits.
+    stage-variants:
+      pre-seed:
+        diagnostic: |
+          Solo founder status is a smaller concern at pre-seed, but planning
+          your team-building strategy now sets up your seed raise.
+        fix: |
+          For pre-seed, the lightest credible plan is: name 2-3 senior
+          advisors with relevant experience, and articulate the first
+          critical hire you'd make with seed capital.
+      seed:
+        fix: |
+          By seed stage, "I plan to hire" is no longer enough. VCs want to
+          see a named first senior hire (committed, even if not yet signed),
+          a structured advisory board, or evidence you're actively recruiting
+          a co-founder.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Team size suboptimal
+  # ─────────────────────────────────────────────────────────────────
+  - id: team-size-suboptimal
+    trigger:
+      question-ids: [q1.1]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      Your founding team size raises moderate flags. Teams of 4+ co-founders
+      can struggle with governance and equity dilution.
+    gap: |
+      Large founding teams need clear decision rights and a plan for
+      equity dilution at fundraising rounds.
+    fix: |
+      Document who has decision authority over what (technical, commercial,
+      strategic). Model your cap table through to Series A to ensure no
+      founder ends up under-incentivised.
+    evidence: |
+      VCs raise this in IC. A clear founder framework defuses the concern
+      before it becomes an issue.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Founder equity or commitment issue
+  # ─────────────────────────────────────────────────────────────────
+  - id: founder-equity-or-commitment-issue
+    trigger:
+      question-ids: [q1.2]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      Your founder commitment levels or equity distribution raise structural
+      concerns. Part-time founders at seed stage or beyond, or heavily
+      skewed equity splits, are red flags for institutional investors.
+    gap: |
+      You haven't established a structure that signals full founder
+      commitment and aligned incentives.
+    fix: |
+      Two priority actions:
+      1. Any founder still part-time should commit to a clear transition
+         date to full-time, or have their equity rebalanced to reflect
+         their actual contribution.
+      2. Equity splits should reflect contribution and commitment.
+         Severely uneven splits (90/10, 95/5) need either rebalancing or
+         a documented explanation that reads well to a sceptical VC.
+    evidence: |
+      Founder vesting and equity disputes are among the most common
+      reasons deals fall through in legal due diligence.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Founder experience gaps
+  # ─────────────────────────────────────────────────────────────────
+  - id: founder-experience-gaps
+    trigger:
+      question-ids: [q1.2]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your founding team has relatively limited relevant industry
+      experience for the problem you're tackling.
+    gap: |
+      The founder-market fit narrative is harder to make when founders
+      don't have deep direct experience in the domain.
+    fix: |
+      Compensate by:
+      1. Surrounding the team with credible advisors who do have the depth
+      2. Investing more heavily in customer development (50+ interviews)
+      3. Articulating the specific insight or pattern recognition that
+         brought you to this problem
+    evidence: |
+      VCs often back outsiders who've done deep work to compensate for
+      their lack of pedigree. Surface-level pitches from inexperienced
+      teams don't typically convert.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Weak co-founder relationship
+  # ─────────────────────────────────────────────────────────────────
+  - id: weak-cofounder-relationship
+    trigger:
+      question-ids: [q1.3]
+      score-band: low
+    priority: high
+    free-tier-visible: true
+    diagnostic: |
+      Your co-founders haven't worked together before. This is the single
+      strongest predictor of co-founder conflict, which is the leading
+      cause of early-stage company failure.
+    gap: |
+      You haven't yet established the working patterns, decision frameworks,
+      and trust that come from prior collaboration. This is fixable but
+      requires deliberate action.
+    fix: |
+      Three concrete actions:
+      1. Run a structured "founder agreement" exercise: roles, decision
+         rights, working styles, what success looks like, what you'd do
+         if you disagreed on something important. Document it.
+      2. Implement founder vesting (4 years, 1-year cliff). This protects
+         the company and signals commitment.
+      3. Establish a regular cadence (e.g. monthly "team health" check-ins)
+         where you discuss tensions before they become conflicts.
+    evidence: |
+      VCs who systematically track post-investment founder breakups find
+      that lack of prior working relationship is the single biggest predictor.
+      Demonstrating that you've taken the risk seriously goes a long way.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Developing co-founder relationship
+  # ─────────────────────────────────────────────────────────────────
+  - id: developing-cofounder-relationship
+    trigger:
+      question-ids: [q1.3]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      Your co-founder working history is moderate. You have some shared
+      context but not deep mutual operational experience.
+    gap: |
+      Without longer working history, you're more reliant on explicit
+      frameworks to navigate inevitable disagreements.
+    fix: |
+      Document founder roles, decision authorities, and tie-breaking
+      mechanisms. Implement founder vesting if not already in place.
+    evidence: |
+      The most resilient teams have either long history or explicit
+      governance. Without one, you need the other.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Critical function gaps
+  # ─────────────────────────────────────────────────────────────────
+  - id: critical-function-gaps
+    trigger:
+      question-ids: [q1.4]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      You're missing critical functions for your stage and business model.
+      Specifically (personalised at runtime based on which functions are
+      missing and which are critical for the founder's stage/model).
+    gap: |
+      The specific function gaps are: [dynamic insertion of missing
+      stage-critical functions]
+    fix: |
+      For each gap, decide between:
+      1. A senior hire pre-raise (most credible signal, hardest to execute)
+      2. A senior hire with raised funds, with a specific named candidate
+         already engaged (still credible)
+      3. A strong advisor covering the gap until full-time hire (acceptable
+         only at pre-seed)
+      Treat function coverage as a hiring strategy and communicate it
+      explicitly in your pitch.
+    evidence: |
+      Different VC archetypes weight these gaps differently. Generalists
+      see commercial gaps at seed as significant; deeptech specialists
+      may forgive them if the technology is strong. Sector specialists
+      have specific function priorities for their vertical.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Function coverage gaps (medium)
+  # ─────────────────────────────────────────────────────────────────
+  - id: function-coverage-gaps
+    trigger:
+      question-ids: [q1.4]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your team covers the most critical functions, but has gaps in
+      secondary areas that will matter as you scale.
+    gap: |
+      The next 12 months will expose any gaps in [dynamic: marketing,
+      operations, customer success, finance based on what's missing].
+    fix: |
+      Plan your post-raise hiring sequence to address these. The strongest
+      pitch decks include a hiring roadmap that maps to use of funds.
+    evidence: |
+      VCs at Series A specifically look for evidence that founders have
+      thought through scaling the team, not just raising capital.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Generic founder-market fit
+  # ─────────────────────────────────────────────────────────────────
+  - id: generic-founder-market-fit
+    trigger:
+      question-ids: [q1.5]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      Your founder-market fit answer is generic. Phrases like "passionate",
+      "right experience", and "uniquely positioned" without specifics
+      signal a weak narrative.
+    gap: |
+      A VC reading your answer can't picture WHY specifically you're the
+      right team. There's no story, no evidence, no unfair advantage.
+    fix: |
+      Rewrite your founder-market fit narrative with three elements:
+      1. **A specific moment** that brought you to this problem (named
+         job, named project, named customer interaction)
+      2. **Quantifiable evidence** (years spent on it, number of customer
+         conversations, specific products built, named companies worked at)
+      3. **An unfair advantage** the team has that competitors can't
+         easily replicate (proprietary insight, relationships, technical
+         depth, data access)
+      Strong example: "I led risk operations at Stripe for 5 years and
+      built the internal tool that detected the fraud pattern we now solve
+      for in production. My co-founder ran the same function at Adyen.
+      Between us we have 12 years of context, a network of 200+ risk
+      operators we can sell to, and proprietary insight no outsider could
+      replicate inside 18 months."
+    evidence: |
+      Founder-market fit is the single most-discussed factor in early-
+      stage IC meetings. A weak narrative here loses deals before the
+      first call.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Improvable founder-market fit
+  # ─────────────────────────────────────────────────────────────────
+  - id: improvable-founder-market-fit
+    trigger:
+      question-ids: [q1.5]
+      score-band: medium
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your founder-market fit answer is solid but could be sharper. It
+      includes some specifics but lacks either evidence or articulation
+      of your unfair advantage.
+    gap: |
+      Specifically, your answer is missing: [dynamic: stronger evidence /
+      clearer unfair advantage / more specific moments]
+    fix: |
+      Add the missing element. Pull from your real history; the goal is
+      to make a VC able to repeat your founder-market fit narrative back
+      to a partner after one call.
+    evidence: |
+      Founders whose narratives are easily retold tend to spread faster
+      through VC networks. This compounds reach in fundraising.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Hiring priorities misaligned (consistency)
+  # ─────────────────────────────────────────────────────────────────
+  - id: hiring-priorities-misaligned
+    trigger:
+      question-ids: [q1.4, q1.8]
+      score-band: any
+      additional-conditions: "hiring priorities don't address functional gaps"
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      The roles you've prioritised for hiring don't fully address the
+      functional gaps in your team.
+    gap: |
+      Your stated hiring priorities skip [dynamic: function name], which
+      is one of your stated gaps.
+    fix: |
+      Either reprioritise your hiring to fill the critical gaps first, or
+      articulate why the apparent gap is actually being covered another way
+      (e.g. advisor, founder rotation, strategic partner).
+    evidence: |
+      Cross-question inconsistencies are exactly what VCs probe in
+      partner meetings. Self-aware founders catch these before they're
+      asked about.
+
+  # ─────────────────────────────────────────────────────────────────
+  # No advisor structure
+  # ─────────────────────────────────────────────────────────────────
+  - id: no-advisor-structure
+    trigger:
+      question-ids: [q1.9]
+      score-band: low
+    priority: medium
+    free-tier-visible: true
+    diagnostic: |
+      You don't currently have a meaningful advisor or board structure.
+      This is acceptable at pre-seed but starts to matter at seed and beyond.
+    gap: |
+      Strong advisors give you access to expertise, networks, and credibility
+      you don't yet have. Their absence is noticeable to sophisticated VCs.
+    fix: |
+      Target 3-5 named advisors with specific value:
+      1. A senior operator from your sector (credibility + expertise)
+      2. A successful founder one stage ahead of you (pattern recognition)
+      3. A potential customer or channel partner (commercial signal)
+      4. A technical or product expert if you have gaps there
+      Offer 0.25-0.5% equity per advisor, vesting over 2 years, with
+      defined expectations (monthly call, intro to X relationships, etc.)
+    evidence: |
+      Named advisors on a pitch deck materially increase response rates
+      to cold investor outreach. They are also one of the fastest
+      credibility-building moves a founder can make.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Develop advisor structure
+  # ─────────────────────────────────────────────────────────────────
+  - id: develop-advisor-structure
+    trigger:
+      question-ids: [q1.9]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      You have some advisor relationships but they're not yet formalised
+      or strategically structured.
+    gap: |
+      Informal advisor relationships can fade without structure. Formal
+      advisory engagements (with equity, defined expectations, regular
+      cadence) deliver materially more value.
+    fix: |
+      Convert your strongest 2-3 advisor relationships into formal
+      arrangements with vesting equity and defined commitments.
+    evidence: |
+      A formal advisory board is a stage-appropriate signal at seed and beyond.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Deflective self-assessment
+  # ─────────────────────────────────────────────────────────────────
+  - id: deflective-self-assessment
+    trigger:
+      question-ids: [q1.10]
+      score-band: low
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your reflection on team risks reads as deflective. Phrases like
+      "we have no significant risks" or "we work well together always"
+      signal a lack of self-awareness that VCs pattern-match negatively.
+    gap: |
+      You haven't articulated real, plausible risks specific to your team,
+      or a framework for managing them.
+    fix: |
+      Honest founders identify 2-3 real risks. Common ones:
+      - Difference in operating tempo between co-founders
+      - One founder pulling toward a different product direction
+      - Lack of commercial DNA in the team
+      - Energy management given personal commitments
+      Don't manufacture risks, but be honest. Then describe how you've
+      structured for them: weekly check-ins, defined decision authorities,
+      external coaching, etc.
+    evidence: |
+      Self-aware founders are dramatically easier to back. VCs explicitly
+      probe for self-awareness in partner meetings because it predicts
+      coachability and resilience under pressure.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Improvable self-awareness
+  # ─────────────────────────────────────────────────────────────────
+  - id: improvable-self-awareness
+    trigger:
+      question-ids: [q1.10]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your self-assessment is reasonable but could be sharper. You've
+      named risks but the management framework is light.
+    gap: |
+      "We talk about it" is not a framework. Sophisticated VCs are
+      looking for structure.
+    fix: |
+      Add specificity: cadence (e.g. monthly), forum (e.g. half-day
+      offsite quarterly), tooling (e.g. retro template), external
+      counsel (e.g. coach engaged).
+    evidence: |
+      Structured operating rhythms differentiate teams that scale from
+      teams that improvise.
+
+  # ─────────────────────────────────────────────────────────────────
+  # No founder vesting
+  # ─────────────────────────────────────────────────────────────────
+  - id: no-founder-vesting
+    trigger:
+      question-ids: [q1.12]
+      score-band: low
+    priority: critical
+    free-tier-visible: false
+    diagnostic: |
+      You don't have founder vesting in place. This will be a near-
+      certain investor requirement at your first priced round.
+    gap: |
+      Without vesting, a founder departure leaves significant equity
+      stranded with someone no longer contributing. VCs require this
+      to be fixed before investment.
+    fix: |
+      Implement standard founder vesting:
+      - 4-year vesting period
+      - 1-year cliff (no equity vests for the first 12 months)
+      - Monthly vesting thereafter
+      Get this documented with proper legal counsel before your raise.
+    evidence: |
+      This is one of the most common blockers in legal due diligence.
+      Fixing it pre-raise is dramatically cheaper than fixing it under
+      time pressure during a term sheet negotiation.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Weak founder vesting
+  # ─────────────────────────────────────────────────────────────────
+  - id: weak-founder-vesting
+    trigger:
+      question-ids: [q1.12]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your founder vesting structure differs from the standard expected
+      by institutional investors.
+    gap: |
+      Non-standard vesting (no cliff, shorter periods, etc.) is usually
+      renegotiated at the priced round, often under time pressure.
+    fix: |
+      Migrate to standard 4-year vesting with 1-year cliff ahead of your raise.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Messy founder departure
+  # ─────────────────────────────────────────────────────────────────
+  - id: messy-founder-departure
+    trigger:
+      question-ids: [q1.13]
+      score-band: low
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your description of a prior founder departure indicates incomplete
+      resolution. This will be probed in diligence.
+    gap: |
+      Outstanding equity disputes, undocumented separations, or unclear
+      reasoning are red flags that get probed.
+    fix: |
+      Document the separation properly: signed separation agreement,
+      reassigned equity, clear narrative for investors. Engage legal
+      counsel if the situation is still open.
+    evidence: |
+      VCs invariably ask "have any founders left?" and follow up extensively.
+      Clean documentation defuses the concern; ambiguity amplifies it.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Weak hiring philosophy
+  # ─────────────────────────────────────────────────────────────────
+  - id: weak-hiring-philosophy
+    trigger:
+      question-ids: [q1.14]
+      score-band: low
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your hiring philosophy answer suggests an ad hoc approach without
+      structured process.
+    gap: |
+      As you scale, ad hoc hiring leads to inconsistent quality and
+      wasted founder time. Series A VCs specifically probe this.
+    fix: |
+      Document your hiring funnel: sourcing channels, screening
+      criteria, assessment process, reference checking, close. Start
+      tracking time-to-hire and offer-accept rate.
+    evidence: |
+      The strongest scaling stories at Series A involve founders who can
+      describe their hiring machine.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Developing hiring philosophy
+  # ─────────────────────────────────────────────────────────────────
+  - id: developing-hiring-philosophy
+    trigger:
+      question-ids: [q1.14]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      Your hiring approach is reasonable but lacks process maturity.
+    gap: |
+      Documented process makes hiring delegable and consistent.
+    fix: |
+      Write down your hiring process as a playbook. Iterate based on
+      what worked and what didn't in your last 3 hires.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: UK - No EMI scheme
+  # ─────────────────────────────────────────────────────────────────
+  - id: no-emi-scheme-uk
+    trigger:
+      question-ids: [q1.uk1]
+      score-band: low
+      region: [uk]
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      You don't have an EMI option scheme set up. This is the UK's
+      standard tax-advantaged employee share scheme.
+    gap: |
+      Without EMI, equity grants to employees face less favourable tax
+      treatment, making them less valuable for recruiting and retention.
+    fix: |
+      Engage a UK startup lawyer to set up an EMI scheme. Costs typically
+      £2-5k. Required filings: EMI valuation with HMRC, share option pool
+      authorised by board, individual grant agreements.
+    evidence: |
+      UK VCs at seed expect EMI to be in place or being set up at close.
+      The cost-benefit is unambiguous.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: UK - EMI planning
+  # ─────────────────────────────────────────────────────────────────
+  - id: emi-scheme-planning-uk
+    trigger:
+      question-ids: [q1.uk1]
+      score-band: medium
+      region: [uk]
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      You're planning to set up EMI but it's not yet in place.
+    gap: |
+      Planning is not yet executing. UK seed VCs prefer to see it done.
+    fix: |
+      Prioritise completion ahead of your next round. The work takes 4-8
+      weeks end-to-end including HMRC valuation.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: UK - No SEIS/EIS
+  # ─────────────────────────────────────────────────────────────────
+  - id: no-seis-eis-uk
+    trigger:
+      question-ids: [q1.uk2]
+      score-band: low
+      region: [uk]
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      You haven't obtained SEIS or EIS Advance Assurance. This is a
+      near-universal expectation from UK angel investors and many
+      institutional seed funds.
+    gap: |
+      Without Advance Assurance, you're effectively asking UK angels to
+      invest without their 50% (SEIS) or 30% (EIS) income tax relief.
+      Most won't.
+    fix: |
+      Apply for Advance Assurance immediately. Process:
+      1. Prepare business plan, financial forecasts, and shareholder
+         list
+      2. Submit application via HMRC's online portal
+      3. Response typically within 4-8 weeks
+      A specialist accountant can support for £500-1500. Worth it.
+    evidence: |
+      UK angel investors structurally rely on SEIS/EIS. Companies without
+      Advance Assurance are filtered out of most angel deal flow.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: UK - SEIS/EIS in progress
+  # ─────────────────────────────────────────────────────────────────
+  - id: seis-eis-in-progress-uk
+    trigger:
+      question-ids: [q1.uk2]
+      score-band: medium
+      region: [uk]
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your SEIS/EIS application is in progress.
+    gap: |
+      Investors prefer to see Advance Assurance confirmed before committing.
+    fix: |
+      Follow up with HMRC and your accountant. Have draft Advance
+      Assurance correspondence ready to share with prospective investors.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: France - No BSPCE
+  # ─────────────────────────────────────────────────────────────────
+  - id: no-bspce-fr
+    trigger:
+      question-ids: [q1.fr1]
+      score-band: low
+      region: [fr]
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      You don't have BSPCE set up for employees.
+    gap: |
+      Without BSPCE, employee equity grants in France face less favourable
+      tax treatment.
+    fix: |
+      Engage a French startup avocat to implement a BSPCE plan. Standard
+      practice includes board authorisation, valuation, and individual
+      grant agreements.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: France - BSPCE planning
+  # ─────────────────────────────────────────────────────────────────
+  - id: bspce-planning-fr
+    trigger:
+      question-ids: [q1.fr1]
+      score-band: medium
+      region: [fr]
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      You're planning BSPCE but haven't implemented yet.
+    gap: |
+      French seed investors prefer to see equity infrastructure in place.
+    fix: |
+      Complete BSPCE setup ahead of your next round.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: France - No JEI
+  # ─────────────────────────────────────────────────────────────────
+  - id: no-jei-fr
+    trigger:
+      question-ids: [q1.fr2]
+      score-band: low
+      region: [fr]
+    priority: medium
+    free-tier-visible: true
+    diagnostic: |
+      You haven't applied for JEI status. If eligible, this represents
+      substantial tax and social charge savings.
+    gap: |
+      Eligible French startups that don't claim JEI are leaving meaningful
+      money on the table, which signals an operational gap.
+    fix: |
+      Review eligibility (under 8 years old, under 250 employees, R&D
+      spend over 15% of expenses, etc.). If eligible, apply through your
+      DDFiP. A specialised accountant typically handles this for a few
+      thousand euros, often paid from the savings.
+    evidence: |
+      French VCs notice when JEI-eligible companies haven't applied.
+      It's a leading indicator of operational rigour.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: France - JEI explore
+  # ─────────────────────────────────────────────────────────────────
+  - id: jei-explore-fr
+    trigger:
+      question-ids: [q1.fr2]
+      score-band: medium
+      region: [fr]
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      You're aware of JEI but haven't yet acted.
+    fix: |
+      Schedule an eligibility review with your accountant within the
+      next month.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: Germany - Entity conversion needed
+  # ─────────────────────────────────────────────────────────────────
+  - id: entity-conversion-needed-de
+    trigger:
+      question-ids: [q1.de1]
+      score-band: low
+      region: [de]
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your entity structure may not be suitable for institutional funding.
+      UG companies typically convert to GmbH ahead of seed rounds.
+    gap: |
+      Most German VCs invest in GmbHs. Conversion is a standard pre-raise step.
+    fix: |
+      Engage a German Steuerberater and Notar to plan the conversion to
+      GmbH ahead of your seed round. The process takes 2-4 months and
+      requires minimum share capital of €25,000.
+    evidence: |
+      The conversion is well-understood and standard; not doing it pre-raise
+      creates last-minute pressure.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: Germany - No VSOP
+  # ─────────────────────────────────────────────────────────────────
+  - id: no-vsop-de
+    trigger:
+      question-ids: [q1.de2]
+      score-band: low
+      region: [de]
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      You don't have a VSOP (Virtual Stock Option Plan) set up.
+    gap: |
+      VSOPs are the German standard for employee equity. Without one,
+      you're at a disadvantage hiring against startups that have proper
+      equity infrastructure.
+    fix: |
+      Work with a German startup lawyer to implement a VSOP. Standard
+      structures are well-established.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Regional: Germany - VSOP planning
+  # ─────────────────────────────────────────────────────────────────
+  - id: vsop-planning-de
+    trigger:
+      question-ids: [q1.de2]
+      score-band: medium
+      region: [de]
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      VSOP is planned but not yet implemented.
+    fix: |
+      Complete implementation ahead of your next round.

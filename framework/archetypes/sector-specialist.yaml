@@ -1,0 +1,87 @@
+# VC Archetype: Sector Specialist
+#
+# Funds with deep focus on a specific vertical: deeptech, fintech,
+# healthtech, climate, AI, biotech, etc.
+#
+# Validated against: schema/archetype.schema.json
+
+id: sector-specialist
+name: Sector Specialist
+description: |
+  Funds with deep vertical focus. Bring domain expertise, networks, and
+  pattern recognition specific to their sector. Tend to back founders
+  with strong domain credentials and proprietary insight.
+
+examples:
+  - name: Octopus Ventures (deeptech)
+    region: uk
+  - name: Mosaic Ventures (fintech)
+    region: uk
+  - name: Heartcore Capital (consumer)
+    region: eu
+  - name: Sofinnova Partners (healthtech)
+    region: fr
+  - name: World Fund (climate)
+    region: de
+  - name: HV Capital (deeptech)
+    region: de
+
+stages-applicable: [pre-seed, seed, series-a]
+
+dimension-weights:
+  founder-team: 0.28
+  problem-insight: 0.22
+  market: 0.12
+  product-traction: 0.10
+  business-model: 0.06
+  go-to-market: 0.08
+  competition-moat: 0.10
+  round-capital: 0.04
+
+question-adjustments:
+  - question-id: q1.5
+    adjustment:
+      weight-multiplier: 1.5
+      rationale: |
+        Founder-market fit is decisive for sector specialists. Domain
+        expertise is the centrepiece of their underwriting.
+  - question-id: q1.2
+    adjustment:
+      weight-multiplier: 1.3
+      rationale: |
+        Specific industry experience years matter enormously.
+
+bonus-rules:
+  - id: deep-domain-expertise
+    condition: "average founder experience in q1.2 >= 8 years in the relevant sector"
+    bonus: 10
+    rationale: "Domain expertise compounds in sector-specialist evaluation."
+  - id: proprietary-insight
+    condition: "q1.5 founder-market fit AI rubric scores high on 'unfair advantage' criterion"
+    bonus: 6
+    rationale: "Proprietary insight is the sector-specialist thesis."
+
+penalty-rules:
+  - id: tourist-founders
+    condition: "average founder relevant experience < 3 years in the relevant sector"
+    penalty: 12
+    rationale: |
+      Sector specialists strongly distrust 'tourist' founders entering
+      a domain they don't deeply understand.
+  - id: weak-technical-moat-in-technical-market
+    condition: "business model is deeptech / biotech / hardware AND moat answer (Dimension 7) lacks technical/IP substance"
+    penalty: 10
+    rationale: |
+      Technical sectors require technical defensibility. Soft moats
+      (brand, GTM) score poorly here.
+
+regional-variants:
+  uk:
+    notes: |
+      UK sector specialists often have R&D tax credit and Innovate UK
+      grant pattern recognition. Engagement with these programmes is
+      positive signal.
+  fr:
+    notes: |
+      French sector specialists often co-invest with BPI France's
+      vertical-specific funds (e.g. BPI Healthcare).

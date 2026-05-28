@@ -1,0 +1,76 @@
+# Dimension 1: Founder & Team
+# Germany benchmarks
+#
+# Validated against: schema/benchmark.schema.json
+
+region: de
+last-reviewed: "2026-05-28"
+expires: "2027-05-28"
+
+sources:
+  - name: "BVK German Private Equity and Venture Capital Association Annual Report"
+    url-or-citation: "https://www.bvkap.de"
+    year: 2025
+  - name: "Deutsche Startups Monitor 2024"
+    url-or-citation: "https://deutschestartupmonitor.de"
+    year: 2024
+  - name: "Dealroom DACH Tech Report 2025"
+    url-or-citation: "https://dealroom.co"
+    year: 2025
+
+benchmarks:
+
+  team-size-pre-seed:
+    description: "Total team size at pre-seed in Germany"
+    unit: people
+    applies-to-stage: [pre-seed]
+    thresholds:
+      exceptional: ">=5"
+      strong: "3-5"
+      median: "2-3"
+      weak: "1"
+      concerning: "<1"
+
+  team-size-seed:
+    description: "Total team size at seed stage in Germany"
+    unit: people
+    applies-to-stage: [seed]
+    thresholds:
+      exceptional: ">=12"
+      strong: "8-12"
+      median: "6-8"
+      weak: "4-6"
+      concerning: "<4"
+    notes: |
+      German seed teams tend to be slightly larger and more technical
+      than UK equivalents, reflecting strong technical talent pool and
+      EXIST/KfW co-financing dynamics.
+
+  team-size-series-a:
+    description: "Total team size at Series A in Germany"
+    unit: people
+    applies-to-stage: [series-a]
+    thresholds:
+      exceptional: ">=35"
+      strong: "22-35"
+      median: "15-22"
+      weak: "10-15"
+      concerning: "<10"
+
+  vsop-adoption:
+    description: "Percentage of German seed-funded startups with VSOP in place"
+    unit: percentage
+    thresholds:
+      median: "65%"
+    notes: |
+      VSOP adoption has accelerated in the past 3 years following clearer
+      guidance and reform efforts around employee equity taxation.
+
+  gmbh-vs-ug-at-seed:
+    description: "Percentage of German seed-stage companies structured as GmbH (vs UG or other)"
+    unit: percentage
+    thresholds:
+      median: "85%"
+    notes: |
+      Most German seed-stage VCs invest in GmbHs. UG companies typically
+      convert before or at the seed round.

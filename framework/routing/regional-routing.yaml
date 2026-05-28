@@ -1,0 +1,102 @@
+# Regional routing
+#
+# Determines which regional layer applies and which regional questions are surfaced.
+# Based on country of incorporation (primary) and other geographic context.
+
+version: 0.1.0
+
+# ─────────────────────────────────────────────────────────────────
+# Regional tiers
+# ─────────────────────────────────────────────────────────────────
+
+tiers:
+  tier-1:
+    description: "Deep regional support: full question layer, validated benchmarks, deep recommendation localisation"
+    regions: [uk, ie]
+
+  tier-2:
+    description: "Strong support: regional question layer, localised benchmarks, region-specific recommendations"
+    regions: [fr, de, nl, se, no, fi, dk]
+
+  tier-3:
+    description: "Generic EU support: EU-wide benchmarks, no regulatory layer, generic recommendations"
+    regions: [es, it, pt, be, lu, at, pl, cz, ro, gr, hu, ie-not-tier-1, eu-other]
+    note: "Founders see a banner indicating lighter regional precision"
+
+  tier-4:
+    description: "Acknowledged limitations: global generic benchmarks, banner indicating limited regional precision"
+    regions: [us, ca, au, sg, in, br, ar, mx, il, ae, sa, za, row]
+
+# ─────────────────────────────────────────────────────────────────
+# Question visibility by region
+# ─────────────────────────────────────────────────────────────────
+
+visibility-overrides:
+  uk:
+    show:
+      - q1.uk1  # EMI scheme
+      - q1.uk2  # SEIS/EIS Advance Assurance
+      # More UK-specific questions added in future dimensions
+
+  fr:
+    show:
+      - q1.fr1  # BSPCE
+      - q1.fr2  # JEI status
+
+  de:
+    show:
+      - q1.de1  # Entity structure
+      - q1.de2  # VSOP
+
+  nl:
+    show: []  # To be added in future versions
+
+  se:
+    show: []
+
+  no:
+    show: []
+
+  fi:
+    show: []
+
+  dk:
+    show: []
+
+  ie:
+    show: []  # Ireland: KEEP scheme etc. to be added
+
+# ─────────────────────────────────────────────────────────────────
+# Benchmark selection priority
+# ─────────────────────────────────────────────────────────────────
+# When scoring a quantitative question, which benchmark file to use.
+# Resolution order: country-specific → tier benchmark → global fallback.
+
+benchmark-resolution-order:
+  uk:    [uk.yaml, global.yaml]
+  ie:    [ie.yaml, uk.yaml, global.yaml]  # Fallback to UK if no Ireland-specific
+  fr:    [france.yaml, global.yaml]
+  de:    [germany.yaml, global.yaml]
+  nl:    [netherlands.yaml, _generic-eu.yaml, global.yaml]
+  se:    [nordics.yaml, _generic-eu.yaml, global.yaml]
+  no:    [nordics.yaml, _generic-eu.yaml, global.yaml]
+  fi:    [nordics.yaml, _generic-eu.yaml, global.yaml]
+  dk:    [nordics.yaml, _generic-eu.yaml, global.yaml]
+  es:    [_generic-eu.yaml, global.yaml]
+  it:    [_generic-eu.yaml, global.yaml]
+  default: [global.yaml]
+
+# ─────────────────────────────────────────────────────────────────
+# UI banners by tier
+# ─────────────────────────────────────────────────────────────────
+
+ui-banners:
+  tier-3:
+    message: |
+      Generic EU benchmarks are being used for your assessment. Regional
+      precision is limited compared to Tier 1 and Tier 2 countries.
+  tier-4:
+    message: |
+      NIRE currently optimises for UK and EU founders. Your assessment
+      will use generic benchmarks and may be less precise for your region.
+      We're working to deepen coverage; your data helps us prioritise.

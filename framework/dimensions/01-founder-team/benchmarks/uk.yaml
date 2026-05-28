@@ -1,0 +1,96 @@
+# Dimension 1: Founder & Team
+# UK benchmarks
+#
+# Validated against: schema/benchmark.schema.json
+
+region: uk
+last-reviewed: "2026-05-28"
+expires: "2027-05-28"
+
+sources:
+  - name: "Beauhurst The Deal 2025"
+    url-or-citation: "https://www.beauhurst.com"
+    year: 2025
+  - name: "British Business Bank Small Business Equity Tracker"
+    url-or-citation: "https://www.british-business-bank.co.uk"
+    year: 2025
+  - name: "Tech Nation Report 2024"
+    url-or-citation: "https://technation.io"
+    year: 2024
+
+benchmarks:
+
+  team-size-pre-seed:
+    description: "Total team size at pre-seed in the UK"
+    unit: people
+    applies-to-stage: [pre-seed]
+    thresholds:
+      exceptional: ">=4"
+      strong: "3-4"
+      median: "2-3"
+      weak: "1"
+      concerning: "<1"
+    notes: |
+      UK pre-seed teams tend to be smaller than US equivalents due to
+      smaller round sizes (typical UK pre-seed £150k-£500k vs US $500k-$1.5m).
+
+  team-size-seed:
+    description: "Total team size at seed stage in the UK"
+    unit: people
+    applies-to-stage: [seed]
+    thresholds:
+      exceptional: ">=10"
+      strong: "7-10"
+      median: "5-7"
+      weak: "3-5"
+      concerning: "<3"
+    notes: |
+      UK seed teams typically smaller than US peers given UK seed median
+      of £1.0-1.5m vs US $2-3m.
+
+  team-size-series-a:
+    description: "Total team size at UK Series A"
+    unit: people
+    applies-to-stage: [series-a]
+    thresholds:
+      exceptional: ">=25"
+      strong: "18-25"
+      median: "12-18"
+      weak: "8-12"
+      concerning: "<8"
+
+  founder-experience-years-uk:
+    description: |
+      Average years of relevant experience across UK founders.
+      Reference data: Beauhurst median founder age at incorporation: 33.
+    unit: years
+    thresholds:
+      exceptional: ">=10"
+      strong: "6-10"
+      median: "3-6"
+      weak: "1-3"
+      concerning: "<1"
+
+  emi-scheme-adoption:
+    description: |
+      Reference: percentage of UK seed-funded startups with EMI in place.
+      Used as a context point for scoring.
+    unit: percentage
+    thresholds:
+      exceptional: "n/a"
+      strong: "n/a"
+      median: "75%"
+      weak: "n/a"
+      concerning: "n/a"
+    notes: |
+      Approximately 75% of UK seed-funded startups have an EMI scheme.
+      Companies without one at seed stand out.
+
+  advance-assurance-adoption:
+    description: "Percentage of UK seed-stage startups with SEIS or EIS Advance Assurance"
+    unit: percentage
+    thresholds:
+      median: "85%"
+    notes: |
+      Advance Assurance is near-universal for UK companies raising from
+      angels. Companies without it are filtered out by most angel networks.

@@ -1,0 +1,82 @@
+# Regional: France
+#
+# Tier 2 regional support.
+
+region: fr
+tier: 2
+last-reviewed: 2026-05-28
+
+ecosystem:
+  accelerators:
+    - name: Station F (various programmes)
+      stage: pre-seed to seed
+    - name: HEC Incubateur
+      stage: pre-seed
+    - name: The Family
+      stage: pre-seed
+    - name: Numa
+      stage: pre-seed
+    - name: Day One Ventures (Paris office)
+      stage: pre-seed
+    - name: Antler Paris
+      stage: pre-seed (pre-team)
+
+  government-programmes:
+    - name: BPI France financing
+      type: equity-loan-grant-mix
+      description: |
+        BPI France offers a wide range of financing instruments from
+        innovation grants to direct co-investment in priced rounds.
+    - name: French Tech Visa
+      type: talent-attraction
+    - name: French Tech 120 / Next 40
+      type: scale-up-acceleration
+    - name: CIR (Crédit d'Impôt Recherche)
+      type: r-and-d-tax-credit
+
+  tax-schemes:
+    - name: BSPCE
+      description: |
+        French employee equity instrument. Standard mechanism for granting
+        options to employees with favourable tax treatment.
+    - name: JEI (Jeune Entreprise Innovante)
+      description: |
+        Tax and social charge relief for innovative companies under 8
+        years old with R&D spend over 15% of expenses.
+    - name: IR-PME
+      description: |
+        French income tax reduction for individuals investing in SMEs.
+        Less significant than UK SEIS/EIS but contributes to angel ecosystem.
+
+  notable-vc-funds:
+    pre-seed:
+      - Kima Ventures
+      - Daphni
+      - Elaia Partners (early)
+      - Iris Capital (early)
+    seed:
+      - Partech Ventures (seed)
+      - Eutopia
+      - Stride.VC
+      - 360 Capital
+    series-a:
+      - Partech Ventures
+      - Idinvest (Eurazeo)
+      - Cathay Innovation
+      - Alven Capital
+
+  founder-networks:
+    - France Digitale
+    - La French Tech
+    - Tech.eu Paris chapter
+
+recommendation-references:
+  - context: "BPI France financing options"
+    url: "https://www.bpifrance.fr"
+  - context: "JEI status application"
+    url: "https://www.impots.gouv.fr"
+
+regional-vocabulary:
+  - global: "co-founder"
+    local: "co-fondateur / fondateur associé"
+    notes: "English term widely used in startup context"

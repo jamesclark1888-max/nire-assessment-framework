@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nirehq.com/schemas/archetype.schema.json",
+  "title": "NIRE VC Archetype",
+  "description": "Schema for VC archetype definitions",
+  "type": "object",
+  "required": ["id", "name", "description", "dimension-weights"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$"
+    },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "examples": {
+      "type": "array",
+      "description": "Real-world examples of funds matching this archetype",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": { "type": "string" },
+          "region": { "type": "string" }
+        }
+      }
+    },
+    "stages-applicable": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": ["pre-seed", "seed", "series-a", "series-b", "later"]
+      }
+    },
+    "dimension-weights": {
+      "type": "object",
+      "required": [
+        "founder-team",
+        "problem-insight",
+        "market",
+        "product-traction",
+        "business-model",
+        "go-to-market",
+        "competition-moat",
+        "round-capital"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "founder-team": { "type": "number", "minimum": 0, "maximum": 1 },
+        "problem-insight": { "type": "number", "minimum": 0, "maximum": 1 },
+        "market": { "type": "number", "minimum": 0, "maximum": 1 },
+        "product-traction": { "type": "number", "minimum": 0, "maximum": 1 },
+        "business-model": { "type": "number", "minimum": 0, "maximum": 1 },
+        "go-to-market": { "type": "number", "minimum": 0, "maximum": 1 },
+        "competition-moat": { "type": "number", "minimum": 0, "maximum": 1 },
+        "round-capital": { "type": "number", "minimum": 0, "maximum": 1 }
+      }
+    },
+    "question-adjustments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["question-id", "adjustment"],
+        "properties": {
+          "question-id": { "type": "string" },
+          "adjustment": {
+            "type": "object",
+            "properties": {
+              "weight-multiplier": { "type": "number" },
+              "score-bonus": { "type": "number" },
+              "score-penalty": { "type": "number" },
+              "rationale": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "bonus-rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "condition", "bonus", "rationale"],
+        "properties": {
+          "id": { "type": "string" },
+          "condition": { "type": "string" },
+          "bonus": { "type": "number" },
+          "rationale": { "type": "string" }
+        }
+      }
+    },
+    "penalty-rules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "condition", "penalty", "rationale"],
+        "properties": {
+          "id": { "type": "string" },
+          "condition": { "type": "string" },
+          "penalty": { "type": "number" },
+          "rationale": { "type": "string" }
+        }
+      }
+    },
+    "regional-variants": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "description": "Region-specific overrides for this archetype"
+      }
+    }
+  }
+}

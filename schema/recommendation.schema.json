@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://nirehq.com/schemas/recommendation.schema.json",
+  "title": "NIRE Recommendation Template",
+  "description": "Schema for AI recommendation templates",
+  "type": "object",
+  "required": ["dimension", "templates"],
+  "properties": {
+    "dimension": {
+      "type": "string",
+      "enum": [
+        "founder-team",
+        "problem-insight",
+        "market",
+        "product-traction",
+        "business-model",
+        "go-to-market",
+        "competition-moat",
+        "round-capital"
+      ]
+    },
+    "templates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "trigger", "priority", "diagnostic", "fix"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "trigger": {
+            "type": "object",
+            "description": "Conditions under which this recommendation fires",
+            "properties": {
+              "question-ids": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "score-band": {
+                "type": "string",
+                "enum": ["low", "medium", "high", "any"]
+              },
+              "stage": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "business-model": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "region": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "additional-conditions": { "type": "string" }
+            }
+          },
+          "priority": {
+            "type": "string",
+            "enum": ["critical", "high", "medium", "low"]
+          },
+          "free-tier-visible": {
+            "type": "boolean",
+            "description": "If true, shown in the free report; if false, paywalled"
+          },
+          "diagnostic": {
+            "type": "string",
+            "description": "What the founder's answers indicate"
+          },
+          "gap": {
+            "type": "string",
+            "description": "What's specifically missing"
+          },
+          "fix": {
+            "type": "string",
+            "description": "What the founder should do"
+          },
+          "evidence": {
+            "type": "string",
+            "description": "Why VCs care about this"
+          },
+          "stage-variants": {
+            "type": "object",
+            "description": "Stage-specific framings of the same recommendation",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "diagnostic": { "type": "string" },
+                "gap": { "type": "string" },
+                "fix": { "type": "string" },
+                "evidence": { "type": "string" }
+              }
+            }
+          },
+          "regional-variants": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "fix": { "type": "string" },
+                "evidence": { "type": "string" },
+                "additional-context": { "type": "string" }
+              }
+            }
+          },
+          "estimated-impact": {
+            "type": "object",
+            "description": "Estimated score uplift if the recommendation is followed",
+            "properties": {
+              "dimension-score-uplift": { "type": "number" },
+              "confidence": {
+                "type": "string",
+                "enum": ["low", "medium", "high"]
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

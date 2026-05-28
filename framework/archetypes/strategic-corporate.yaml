@@ -1,0 +1,95 @@
+# VC Archetype: Strategic / Corporate
+#
+# CVCs (Corporate Venture Capital) investing for strategic alignment
+# as well as financial return.
+#
+# Validated against: schema/archetype.schema.json
+
+id: strategic-corporate
+name: Strategic / Corporate
+description: |
+  Corporate venture capital arms. Invest with dual objectives: financial
+  return and strategic alignment with the parent corporation. Tend to
+  participate in seed and Series A; rarely lead at the earliest stages.
+  Heavily weight partnership and integration potential.
+
+examples:
+  - name: Google Ventures (GV)
+    region: global
+  - name: Salesforce Ventures
+    region: global
+  - name: Microsoft M12
+    region: global
+  - name: BMW i Ventures
+    region: de
+  - name: Aviva Ventures
+    region: uk
+  - name: Orange Ventures
+    region: fr
+
+stages-applicable: [seed, series-a, series-b, later]
+
+dimension-weights:
+  founder-team: 0.15
+  problem-insight: 0.12
+  market: 0.10
+  product-traction: 0.18
+  business-model: 0.12
+  go-to-market: 0.15
+  competition-moat: 0.13
+  round-capital: 0.05
+
+question-adjustments:
+  - question-id: q1.4
+    adjustment:
+      weight-multiplier: 1.3
+      rationale: |
+        Enterprise-ready team composition matters: presence of operations,
+        compliance, and senior commercial leadership signals readiness
+        to engage with the parent corporation.
+
+bonus-rules:
+  - id: enterprise-traction
+    condition: "Dimension 4 reveals signed enterprise customers, especially in adjacent verticals"
+    bonus: 10
+    rationale: |
+      Enterprise customer traction signals operational readiness for
+      strategic partnership.
+  - id: strategic-value-articulated
+    condition: "founder can articulate specific strategic value to CVC's parent beyond 'we're disruptive'"
+    bonus: 8
+    rationale: "Strategic alignment is the CVC thesis."
+  - id: regulatory-and-compliance-posture
+    condition: "Dimension 1 and Dimension 5 show explicit regulatory and compliance maturity"
+    bonus: 5
+    rationale: "Procurement-ready posture is decisive for CVC."
+
+penalty-rules:
+  - id: pure-consumer-no-enterprise-angle
+    condition: "business model is pure consumer with no plausible enterprise angle"
+    penalty: 15
+    rationale: |
+      Strategic CVCs typically need an enterprise or strategic partnership
+      angle. Pure consumer plays often don't fit their thesis.
+  - id: ip-conflict-with-parent
+    condition: "IP position conflicts with or duplicates parent corporation's existing assets"
+    penalty: 20
+    rationale: |
+      IP overlap creates internal conflicts that block CVC investment
+      decisions.
+  - id: cant-navigate-procurement
+    condition: "founder has no prior experience selling into large enterprise"
+    penalty: 8
+    rationale: |
+      Enterprise procurement is its own discipline. Founders unable to
+      navigate it are higher-risk for CVC.
+
+regional-variants:
+  uk:
+    notes: |
+      UK CVCs increasingly active; many major UK corporates now have
+      venture arms or partnerships with VC funds.
+  de:
+    notes: |
+      German CVC ecosystem is among the most developed in Europe given
+      strong Mittelstand and large enterprise base.

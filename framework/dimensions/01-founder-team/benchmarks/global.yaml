@@ -1,0 +1,82 @@
+# Dimension 1: Founder & Team
+# Global benchmarks (default when no regional file applies)
+#
+# Validated against: schema/benchmark.schema.json
+
+region: global
+last-reviewed: "2026-05-28"
+expires: "2027-05-28"
+
+sources:
+  - name: "Atomico State of European Tech 2025"
+    url-or-citation: "https://stateofeuropeantech.com"
+    year: 2025
+  - name: "PitchBook Global Venture Report 2025"
+    url-or-citation: "PitchBook Data, Inc."
+    year: 2025
+  - name: "First Round Capital State of Startups"
+    url-or-citation: "https://stateofstartups.firstround.com"
+    year: 2024
+
+benchmarks:
+
+  team-size-by-stage:
+    description: |
+      Total full-time team size benchmarked by stage. Values are global
+      medians, used as fallback when no region-specific benchmark applies.
+    unit: people
+    thresholds:
+      # Pre-seed
+      exceptional: ">=4"
+      strong: "3-4"
+      median: "2-3"
+      weak: "1"
+      concerning: "<1"
+    notes: |
+      Stage-specific thresholds resolved at runtime. The values above
+      illustrate pre-seed; seed and series-a benchmarks differ.
+    applies-to-stage: [pre-seed]
+
+  team-size-seed:
+    description: "Total team size at seed stage"
+    unit: people
+    thresholds:
+      exceptional: ">=12"
+      strong: "8-12"
+      median: "5-8"
+      weak: "3-5"
+      concerning: "<3"
+    applies-to-stage: [seed]
+
+  team-size-series-a:
+    description: "Total team size at Series A"
+    unit: people
+    thresholds:
+      exceptional: ">=30"
+      strong: "20-30"
+      median: "12-20"
+      weak: "8-12"
+      concerning: "<8"
+    applies-to-stage: [series-a]
+
+  cofounder-equity-spread:
+    description: |
+      Largest co-founder equity holding minus smallest, as a percentage point gap.
+      Smaller spreads indicate more balanced commitment.
+    unit: percentage-points
+    thresholds:
+      exceptional: "<=15"
+      strong: "15-30"
+      median: "30-50"
+      weak: "50-70"
+      concerning: ">70"
+
+  founder-experience-years:
+    description: "Average years of relevant industry experience across co-founders"
+    unit: years
+    thresholds:
+      exceptional: ">=10"
+      strong: "6-10"
+      median: "3-6"
+      weak: "1-3"
+      concerning: "<1"

@@ -1,0 +1,45 @@
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.cursor/
+
+# Python tooling
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Node tooling (in case it gets added)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Validation output
+validation-report.json
+validation-report.html
+
+# OS-level temp
+*.tmp
+*.bak
+
+# Local Claude artefacts
+.claude/
+CLAUDE.local.md

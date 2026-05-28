@@ -1,0 +1,52 @@
+# Regional: Netherlands
+#
+# Tier 2 regional support. Skeleton: to be populated in v0.2.0.
+
+region: nl
+tier: 2
+last-reviewed: 2026-05-28
+
+ecosystem:
+  accelerators:
+    - name: Rockstart
+      stage: pre-seed
+    - name: YES!Delft
+      stage: pre-seed (deeptech focus)
+    - name: HighTechXL
+      stage: pre-seed (hardware focus)
+
+  government-programmes:
+    - name: WBSO
+      type: r-and-d-wage-tax-credit
+      description: "R&D wage tax credit, widely used by Dutch startups."
+    - name: Innovation Box
+      type: corporate-tax-reduction
+      description: "9% effective tax rate on qualifying IP-related profits."
+    - name: Vroegefasefinanciering (VFF)
+      type: loan
+      description: "Early-stage loans for innovative companies."
+
+  tax-schemes:
+    - name: 30% ruling
+      description: "Tax advantage for international talent moving to NL."
+
+  notable-vc-funds:
+    pre-seed-seed:
+      - Peak Capital
+      - LUMO Labs
+      - Volta Ventures
+      - henQ
+    series-a:
+      - Endeit Capital
+      - Inkef Capital
+      - Prime Ventures
+
+  founder-networks:
+    - Startup Amsterdam
+    - StartupDelta
+
+recommendation-references: []
+
+regional-vocabulary:
+  - global: "private limited company"
+    local: "BV (Besloten Vennootschap)"

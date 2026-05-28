@@ -1,0 +1,85 @@
+# VC Archetype: Angel Syndicate
+#
+# Groups of angels investing together, often via platforms.
+# Conviction-driven, faster decisions, smaller cheques.
+#
+# Validated against: schema/archetype.schema.json
+
+id: angel-syndicate
+name: Angel Syndicate
+description: |
+  Groups of angel investors coordinating via syndicates. Typical cheque
+  sizes £50k-£500k. Often follow rather than lead. Decisions are faster
+  and more conviction-driven than institutional VC. Heavy reliance on
+  social proof and brand-name angels.
+
+examples:
+  - name: SyndicateRoom
+    region: uk
+  - name: Odin
+    region: uk
+  - name: AngelList syndicates
+    region: global
+  - name: Seedrs (crowdfunding-syndicate hybrid)
+    region: uk
+
+stages-applicable: [pre-seed, seed]
+
+dimension-weights:
+  founder-team: 0.30
+  problem-insight: 0.18
+  market: 0.12
+  product-traction: 0.12
+  business-model: 0.07
+  go-to-market: 0.08
+  competition-moat: 0.05
+  round-capital: 0.08
+
+question-adjustments:
+  - question-id: q1.5
+    adjustment:
+      weight-multiplier: 1.4
+      rationale: |
+        Founder conviction is the primary driver of angel decisions.
+        Personality and narrative matter heavily.
+
+bonus-rules:
+  - id: brand-name-angel-committed
+    condition: "Dimension 8 reveals brand-name angels already committed"
+    bonus: 15
+    rationale: |
+      Social proof is the primary lever in syndicate decision-making.
+      Existing angel signal is decisive.
+  - id: seis-eligible-uk
+    condition: "UK-incorporated AND q1.uk2 shows SEIS Advance Assurance granted"
+    bonus: 8
+    rationale: "SEIS 50% tax relief is central to UK angel decisions."
+
+penalty-rules:
+  - id: unclear-fundraising-ask
+    condition: "Dimension 8 round size or terms are unclear or shifting"
+    penalty: 12
+    rationale: |
+      Angels move quickly and need clarity. Vague or shifting terms
+      kill momentum.
+  - id: messy-cap-table
+    condition: "Dimension 8 cap table indicates complications"
+    penalty: 10
+    rationale: |
+      Angels are unwilling to navigate cap table complexity. Cleaning
+      this up is a pre-raise requirement.
+  - id: slow-founder-responsiveness
+    condition: "founder takes more than 5 days to respond to investor outreach"
+    penalty: 6
+    rationale: |
+      Angel momentum is fragile. Slow responses kill deals.
+
+regional-variants:
+  uk:
+    notes: |
+      UK angel syndicates lean heavily on SEIS/EIS. Without Advance
+      Assurance, the practical pool of UK angel capital is much smaller.
+  fr:
+    notes: |
+      French angel ecosystem more concentrated than UK; fewer syndicate
+      platforms but BPI co-investment available.

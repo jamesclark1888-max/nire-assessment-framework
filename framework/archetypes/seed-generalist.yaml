@@ -1,0 +1,97 @@
+# VC Archetype: Seed Generalist
+#
+# The default mental model for early-stage investing.
+# Backs teams and insights more than metrics at this stage.
+#
+# Validated against: schema/archetype.schema.json
+
+id: seed-generalist
+name: Seed Generalist
+description: |
+  Generalist VC funds focused on seed-stage investment. Typical cheque
+  sizes £200k-£1.5m at seed in the UK/EU. Lead or co-lead seed rounds.
+  Back teams and insights more than current metrics.
+
+examples:
+  - name: Seedcamp
+    region: uk
+  - name: LocalGlobe
+    region: uk
+  - name: Episode 1
+    region: uk
+  - name: Octopus Ventures (early)
+    region: uk
+  - name: Forward Partners
+    region: uk
+  - name: Point Nine
+    region: de
+  - name: Cherry Ventures
+    region: de
+  - name: Daphni
+    region: fr
+
+stages-applicable: [pre-seed, seed]
+
+dimension-weights:
+  founder-team: 0.25
+  problem-insight: 0.18
+  market: 0.15
+  product-traction: 0.10
+  business-model: 0.08
+  go-to-market: 0.10
+  competition-moat: 0.07
+  round-capital: 0.07
+
+question-adjustments:
+  - question-id: q1.5
+    adjustment:
+      weight-multiplier: 1.3
+      rationale: |
+        Founder-market fit is the heaviest signal for seed generalists.
+        They will read this answer carefully.
+  - question-id: q1.1
+    adjustment:
+      weight-multiplier: 1.2
+      rationale: |
+        Team size and composition matter heavily at seed; solo founders
+        face additional friction.
+
+bonus-rules:
+  - id: prior-exit-founder
+    condition: "any founder in q1.6 has a successful prior exit"
+    bonus: 8
+    rationale: |
+      Repeat founders with prior exits are meaningfully more fundable
+      to seed generalists.
+  - id: warm-intro-network
+    condition: "founder has named credible advisors who are connected to VC networks"
+    bonus: 3
+    rationale: "Distribution of social proof matters at seed."
+
+penalty-rules:
+  - id: weak-customer-development
+    condition: "fewer than 20 customer conversations documented for pre-seed/seed"
+    penalty: 6
+    rationale: |
+      Seed generalists particularly weight evidence of insight derived
+      from customer work, not just intuition.
+  - id: vague-use-of-funds
+    condition: "use of funds in q8 questions is generic or non-milestone-linked"
+    penalty: 5
+    rationale: "Sophisticated seed VCs expect milestone-linked planning."
+
+regional-variants:
+  uk:
+    notes: |
+      UK seed generalists often expect SEIS/EIS Advance Assurance and EMI
+      scheme in place. The archetype's penalty rules are extended to
+      include these UK-specific expectations.
+  fr:
+    notes: |
+      French seed generalists often co-invest with BPI France. Familiarity
+      with French ecosystem programmes is implicit. BSPCE adoption is
+      weighted in evaluation.
+  de:
+    notes: |
+      German seed generalists prefer GmbH structure and VSOP adoption.
+      EXIST grant participation is a positive signal.
