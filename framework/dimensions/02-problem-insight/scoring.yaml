@@ -1,0 +1,421 @@
+# Dimension 2: Problem & Insight
+# Scoring rules and rubrics
+#
+# Validated against: schema/scoring-rule.schema.json
+#
+# Each rule defines how a raw answer is converted into a 0-100 score.
+# Rule IDs match the rubric-ref or benchmark-ref values in questions.yaml.
+
+dimension: problem-insight
+version: 0.1.0
+rules:
+
+  # ─────────────────────────────────────────────────────────────────
+  # Problem articulation (q2.1)
+  # ─────────────────────────────────────────────────────────────────
+  - id: problem-articulation-rubric
+    applies-to-question: q2.1
+    description: |
+      AI-evaluated qualitative scoring for the problem statement.
+      Rewards customer-centric, specific, evidence-grounded descriptions.
+      Penalises solution-first framing and vague assertions.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: customer-centricity
+            weight: 0.35
+            description: |
+              Is the problem described from the customer's perspective — in
+              their language, with their pain — rather than as a feature of
+              the founder's product?
+              Strong: "Finance directors at mid-market SaaS companies spend
+              15 hours a month manually reconciling..."
+              Weak: "Our platform solves the problem of inefficient finance workflows."
+            examples-strong:
+              - "Mid-market procurement teams manually reconcile supplier invoices against 4 different systems, spending ~8 hours per FTE per week with a 12% error rate that leads to overpayment."
+              - "Junior doctors in A&E spend 40% of a 12-hour shift on administrative tasks that delay treatment decisions for patients already in the building."
+            examples-weak:
+              - "We solve the problem of inefficient operations for businesses."
+              - "Our AI platform addresses productivity gaps in enterprise workflows."
+          - name: specificity
+            weight: 0.30
+            description: |
+              Is a named customer segment identified? Is the frequency and cost
+              of the pain quantified or estimated? Or is the description generic
+              enough to apply to dozens of different problems?
+          - name: evidence-signals
+            weight: 0.20
+            description: |
+              Does the description reference specific customers, named companies,
+              measured costs, or observations from customer conversations? Or is
+              it entirely hypothesis-based?
+          - name: clarity
+            weight: 0.15
+            description: |
+              Could a VC repeat this problem statement accurately after one read?
+              Does it avoid jargon? Is it a single, coherent problem rather than
+              a cluster of loosely related pains?
+        score-bounds:
+          min: 25
+          max: 95
+
+  # ─────────────────────────────────────────────────────────────────
+  # Customer discovery depth (q2.2)
+  # ─────────────────────────────────────────────────────────────────
+  - id: customer-interviews-by-stage
+    applies-to-question: q2.2
+    description: |
+      Maps number of customer discovery interviews to a score, benchmarked by
+      stage. Thresholds below represent pre-seed defaults; resolved at runtime
+      against actual stage using benchmarks/global.yaml.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 5
+          score: 20
+        - min: 6
+          max: 15
+          score: 45
+        - min: 16
+          max: 30
+          score: 68
+        - min: 31
+          max: 50
+          score: 88
+        - min: 51
+          max: null
+          score: 100
+
+  # ─────────────────────────────────────────────────────────────────
+  # Core insight (q2.3)
+  # ─────────────────────────────────────────────────────────────────
+  - id: core-insight-rubric
+    applies-to-question: q2.3
+    description: |
+      AI-evaluated scoring for the non-obvious insight. The highest-weighted
+      rubric in this dimension. Rewards specificity and falsifiability;
+      penalises restatements of the problem or market size observations.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: non-obviousness
+            weight: 0.35
+            description: |
+              Is this genuinely non-consensus? Would a smart, well-informed
+              person in this industry push back on this claim? Or does it restate
+              something widely understood?
+              Strong: "Every prior attempt failed because they built for IT buyers;
+              the actual pain is owned by the CFO who is never in the room."
+              Weak: "Most companies don't have good data visibility." (obvious)
+            examples-strong:
+              - "The problem isn't that companies lack the data — they have too much of it. The real problem is that their internal analysts are the bottleneck, not the tools."
+              - "Insurers believe fraud happens at claims. It actually happens at policy inception; by the time the claim arrives the loss is already locked in."
+            examples-weak:
+              - "Most businesses struggle with inefficiency."
+              - "The market is large and growing and no one has a great solution yet."
+          - name: specificity
+            weight: 0.30
+            description: |
+              Is the insight named with precision — a specific mechanism, a
+              specific failure mode, a specific customer behaviour — or is it
+              a vague directional observation?
+          - name: defensibility
+            weight: 0.20
+            description: |
+              Can the founder explain why they know this and others don't?
+              Is there a source for the insight (proprietary data, specific
+              customer access, prior role, independent research)?
+          - name: connection-to-solution
+            weight: 0.15
+            description: |
+              Does the insight logically connect to why their approach is the
+              right one? Or is the insight disconnected from what they're building?
+        score-bounds:
+          min: 20
+          max: 95
+
+  # ─────────────────────────────────────────────────────────────────
+  # Timing thesis (q2.4)
+  # ─────────────────────────────────────────────────────────────────
+  - id: timing-thesis-rubric
+    applies-to-question: q2.4
+    description: |
+      AI-evaluated qualitative scoring for the why-now argument.
+      Rewards named, specific catalysts and evidence-based reasoning.
+      Penalises vague trend statements and assumed inevitability.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: specific-catalyst
+            weight: 0.40
+            description: |
+              Is there a named, specific catalyst — a technology becoming
+              available, a regulation passing, a behaviour shifting — rather
+              than a vague reference to macro trends or "the time is right"?
+            examples-strong:
+              - "The EU AI Act (effective August 2026) now mandates explainability for automated credit decisions — and no incumbent is compliant."
+              - "LLM inference costs have dropped 40x in 18 months; what cost £5 per query in 2023 now costs £0.12, making our unit economics viable for the first time."
+            examples-weak:
+              - "AI is transforming every industry."
+              - "The time is right because the market is ready for change."
+          - name: evidence-of-change
+            weight: 0.35
+            description: |
+              Is the change described with evidence, data, or specific events?
+              Or is it asserted without support?
+          - name: defensibility
+            weight: 0.25
+            description: |
+              Is this a timing thesis a sceptic could accept as plausible?
+              If no specific catalyst exists, is the market-size argument
+              credible as the basis for building now?
+        score-bounds:
+          min: 25
+          max: 95
+
+  # ─────────────────────────────────────────────────────────────────
+  # Problem evidence (q2.5)
+  # ─────────────────────────────────────────────────────────────────
+  - id: problem-evidence-coverage
+    applies-to-question: q2.5
+    description: |
+      Multi-select coverage score. Rewards both breadth and signal quality.
+      Higher-quality evidence types (paying customers, LOIs) are weighted more
+      than softer signals (market research, personal experience).
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: evidence-quality-and-breadth
+            weight: 1.0
+            description: |
+              Score based on number and quality of evidence signals selected.
+              High-quality signals: paying-early-customers, pilots-or-lois (each worth 25 pts)
+              Mid-quality signals: unsolicited-inbounds, documented-interviews,
+                                   regulatory-mandate, incumbent-failure (each worth 15 pts)
+              Low-quality signals: market-research, personal-deep-experience (each worth 10 pts)
+              Total score = min(sum of signal weights, 100). Scale from 0-100.
+              0 signals: 15
+              Only low-quality signals: 25-35
+              1-2 mid-quality signals: 40-60
+              1+ high-quality signal: 65-80
+              High + 2+ corroborating: 85-100
+        score-bounds:
+          min: 15
+          max: 100
+
+  # ─────────────────────────────────────────────────────────────────
+  # Customer story (q2.6)
+  # ─────────────────────────────────────────────────────────────────
+  - id: customer-story-rubric
+    applies-to-question: q2.6
+    description: |
+      AI-evaluated scoring for the best customer story or quote.
+      Rewards vivid, specific, role-anchored stories with direct quotes.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: specificity-and-role
+            weight: 0.30
+            description: |
+              Is a specific role, company type, or situation named? Or is the
+              story generic ("a customer told me they find it hard")? A named
+              role + scenario is the minimum for a strong story.
+          - name: customer-voice
+            weight: 0.30
+            description: |
+              Is the story told in the customer's words — what they said, what
+              they did, what they felt — rather than the founder's interpretation?
+              Direct quotes score highest; close paraphrases score well; summary
+              narration scores lowest.
+          - name: impact-signal
+            weight: 0.25
+            description: |
+              Does the story include what the problem cost the customer — in
+              time, money, risk, or emotional weight? Without a cost signal,
+              the story illustrates the problem but not the urgency.
+          - name: memorability
+            weight: 0.15
+            description: |
+              Is this a story a VC would repeat to a partner? Does it have
+              a beginning (situation), middle (pain), and implied end (what
+              the customer wanted)?
+        score-bounds:
+          min: 25
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Problem severity (q2.7)
+  # ─────────────────────────────────────────────────────────────────
+  - id: problem-severity-categorical
+    applies-to-question: q2.7
+    description: |
+      Maps stated problem severity to a score. Mission-critical and high-severity
+      problems score highest. "Not yet confirmed" scores as a discovery gap, not
+      a problem severity judgement.
+    logic:
+      type: mapping
+      mapping:
+        mission-critical: 100
+        high-severity: 80
+        medium-severity: 55
+        low-severity: 30
+        not-yet-confirmed: 35
+
+  # ─────────────────────────────────────────────────────────────────
+  # Alternatives analysis (q2.8)
+  # ─────────────────────────────────────────────────────────────────
+  - id: alternatives-analysis-rubric
+    applies-to-question: q2.8
+    description: |
+      AI-evaluated scoring of how well the founder understands existing
+      alternatives and their failure modes. Rewards specificity and
+      structural analysis of why alternatives fail.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: named-alternatives
+            weight: 0.40
+            description: |
+              Are specific alternatives named — product names, process names,
+              or specific workarounds? Or is it generic ("they use old tools")?
+              The strongest answers name 2-4 distinct alternatives with different
+              failure modes.
+            examples-strong:
+              - "Large customers use Workiva for the reporting layer but it requires a full-time analyst to maintain. Mid-market customers use Excel, where the main failure is version control and human error. Newer companies try to stitch together Google Sheets with Zapier, which breaks under any complexity."
+            examples-weak:
+              - "They use spreadsheets, which are inefficient."
+              - "There's no good solution out there right now."
+          - name: failure-mode-depth
+            weight: 0.40
+            description: |
+              For each alternative named, does the founder explain specifically
+              WHY it fails — the mechanism of failure, not just that it does?
+              "Excel doesn't scale" scores lower than "Excel fails because
+              formula auditing breaks when the file exceeds 50MB, and there's
+              no access control, so the finance director can't share it with
+              external auditors."
+          - name: completeness
+            weight: 0.20
+            description: |
+              Are the most obvious alternatives covered? Does the answer include
+              both build-it-internally options and buy options where both exist?
+        score-bounds:
+          min: 25
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Prior failed attempts (q2.9)
+  # ─────────────────────────────────────────────────────────────────
+  - id: prior-attempts-rubric
+    applies-to-question: q2.9
+    description: |
+      AI-evaluated scoring of the founder's knowledge of prior attempts.
+      Rewards depth of failure analysis and connection to their own approach.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: knowledge-depth
+            weight: 0.50
+            description: |
+              Can the founder name specific prior attempts — companies, products,
+              internal initiatives — and describe what they tried? Or is the
+              answer a generic "many have tried and failed"?
+          - name: failure-analysis
+            weight: 0.35
+            description: |
+              Does the founder explain the root cause of failure — the structural
+              reason the attempt didn't work — rather than just the outcome?
+              "They ran out of money" scores lower than "They built a
+              self-serve product in a market that requires enterprise sales;
+              their ACV was £500 and the sales cycle was 9 months."
+          - name: applied-learning
+            weight: 0.15
+            description: |
+              Does the founder connect the failure analysis to their own approach?
+              How does knowing why others failed inform what they're doing differently?
+        score-bounds:
+          min: 30
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Contrarian insight (q2.10)
+  # ─────────────────────────────────────────────────────────────────
+  - id: contrarian-insight-rubric
+    applies-to-question: q2.10
+    description: |
+      AI-evaluated scoring for the contrarian belief question. The highest-
+      weighted recommended question. Rewards named, falsifiable, evidence-based
+      claims that diverge from conventional wisdom.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: specificity
+            weight: 0.35
+            description: |
+              Is this a named, falsifiable claim? Or a vague directional
+              statement about the market? A contrarian insight should be
+              specific enough that a reader could disagree and cite evidence
+              against it.
+            examples-strong:
+              - "The market believes the bottleneck is data access. We believe the bottleneck is analyst capacity — and therefore the right product is a reasoning layer, not a data layer."
+              - "Everyone thinks the enterprise contract cycle is the barrier to this market. We think it's churn at month 6 after onboarding fails. The contract gets signed; the usage dies."
+            examples-weak:
+              - "We believe AI is going to transform this industry."
+              - "Most people underestimate how big this market is."
+          - name: genuine-non-consensus
+            weight: 0.35
+            description: |
+              Would a smart, informed person in this industry actually disagree
+              with this? Or is it a comfortable statement that sounds contrarian
+              but isn't actually contested?
+          - name: evidence-or-reasoning
+            weight: 0.30
+            description: |
+              Is there evidence, data, or rigorous first-principles reasoning
+              to support the claim? Or is it asserted without grounding?
+        score-bounds:
+          min: 25
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Hypothesis evolution (q2.13)
+  # ─────────────────────────────────────────────────────────────────
+  - id: hypothesis-evolution-rubric
+    applies-to-question: q2.13
+    description: |
+      AI-evaluated scoring for how the founder's problem understanding has evolved.
+      Rewards specific, evidence-driven updates over static conviction narratives.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: honesty
+            weight: 0.40
+            description: |
+              Does the founder name a specific belief they held that turned out
+              to be wrong? Or do they describe a linear journey of consistent
+              conviction? Naming a specific wrong belief scores higher.
+          - name: evidence-driven-change
+            weight: 0.35
+            description: |
+              Was the change in understanding driven by specific customer
+              conversations, data, or market events — rather than a general
+              feeling or vague feedback?
+          - name: quality-of-learning
+            weight: 0.25
+            description: |
+              Is the lesson clear, specific, and applicable to future decisions?
+              Does the founder understand WHY they were wrong, not just that
+              they were?
+        score-bounds:
+          min: 25
+          max: 90

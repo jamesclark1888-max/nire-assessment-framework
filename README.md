@@ -67,7 +67,7 @@ See [`docs/00-overview.md`](docs/00-overview.md) for a full guided tour.
 | # | Dimension | Status |
 |---|-----------|--------|
 | 1 | Founder & Team | ✅ Drafted |
-| 2 | Problem & Insight | 🟡 Skeleton |
+| 2 | Problem & Insight | ✅ Drafted |
 | 3 | Market | 🟡 Skeleton |
 | 4 | Product & Traction | 🟡 Skeleton |
 | 5 | Business Model & Unit Economics | 🟡 Skeleton |

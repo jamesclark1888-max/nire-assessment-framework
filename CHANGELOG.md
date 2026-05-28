@@ -9,6 +9,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 ## [Unreleased]
 
 ### Added
+- Dimension 2 (Problem & Insight) fully populated: 13 questions across 3 tiers, 11 scoring rules and rubrics, 17 recommendation templates, and global benchmarks for customer discovery interview counts
+- Dimension 2 README updated from skeleton to full specification
+
+## [0.1.1] - 2026-05-28
+
+### Added
 - Initial repository scaffolding
 - Strategic documentation: philosophy, scoring methodology, regional strategy, VC archetypes, data flow, paywall strategy, glossary
 - Architecture Decision Record 0001: YAML chosen as the structured data format for questions

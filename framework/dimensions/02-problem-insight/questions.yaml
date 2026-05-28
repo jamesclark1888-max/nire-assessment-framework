@@ -1,0 +1,452 @@
+# Dimension 2: Problem & Insight
+# Questions
+#
+# Validated against: schema/question.schema.json
+#
+# Conventions:
+# - Required tier: 5 questions, sufficient for a meaningful score
+# - Recommended tier: 5 questions, improve confidence and recommendation sharpness
+# - Optional tier: 3 questions, for founders seeking maximum precision
+# - No regional layers for this dimension; problem insight is universal
+
+dimension: problem-insight
+version: 0.1.0
+questions:
+
+  # ─────────────────────────────────────────────────────────────────
+  # REQUIRED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q2.1
+    dimension: problem-insight
+    tier: required
+    type: long-text
+    question: "In plain language, describe the problem you are solving and who experiences it."
+    helper-text: |
+      Avoid product-first answers. Describe the problem as a customer would
+      describe it, not as a feature of your solution. Who feels this pain,
+      how often, and what does it currently cost them in time or money?
+    why-it-matters: |
+      Problem clarity is the most basic test of founder insight. Founders who
+      can describe their problem in customer terms — not solution terms — have
+      done the discovery work. Vague or solution-first descriptions are a strong
+      signal that the problem hasn't been validated with real customers.
+    validation:
+      min-chars: 200
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.15
+      rubric-ref: problem-articulation-rubric
+    recommendation-trigger:
+      low-score: weak-problem-articulation
+      medium-score: improvable-problem-articulation
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q2.2
+    dimension: problem-insight
+    tier: required
+    type: number
+    question: "How many unique potential customers have you spoken to about this problem (not your product)?"
+    helper-text: |
+      Count only one-on-one conversations where you were primarily listening
+      to them describe the problem, not pitching your solution. Group demos,
+      surveys, and friend conversations do not count.
+    why-it-matters: |
+      Customer discovery depth is the most reliable leading indicator of
+      product-market fit probability. Founders with fewer than 10 substantive
+      interviews are forming hypotheses, not validating them. Most founders
+      who go on to raise top-tier institutional rounds have 30-100+ interviews
+      before they pitch.
+    validation:
+      min: 0
+      max: 10000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.15
+      benchmark-ref: customer-interviews-by-stage
+    recommendation-trigger:
+      low-score: insufficient-customer-discovery
+      medium-score: deepen-customer-discovery
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q2.3
+    dimension: problem-insight
+    tier: required
+    type: long-text
+    question: "What is the non-obvious insight at the core of your company? What do you know about this problem that most people — including competitors — don't?"
+    helper-text: |
+      This is the hardest question in the assessment. The strongest answers name
+      a specific, verifiable belief that differs from conventional wisdom. Weak
+      answers re-describe the problem, or simply restate that the market is large.
+    why-it-matters: |
+      The best venture-backed companies are built on a non-consensus insight. If
+      the insight is obvious, the market is already crowded or soon will be. A
+      strong, specific, defensible insight is the single highest-signal item in
+      a pre-seed or seed assessment. Most founders cannot articulate one cleanly.
+    validation:
+      min-chars: 200
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.20
+      rubric-ref: core-insight-rubric
+    recommendation-trigger:
+      low-score: weak-core-insight
+      medium-score: improvable-core-insight
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q2.4
+    dimension: problem-insight
+    tier: required
+    type: long-text
+    question: "Why does this problem need solving now? What has changed — technically, behaviourally, or regulatorily — to make this the right moment?"
+    helper-text: |
+      Name the specific shift that makes now the right time: a new enabling
+      technology, a regulatory change, a behavioural shift, or a macro trend.
+      If you believe timing is not a key factor, explain why the problem is
+      large enough to build on regardless.
+    why-it-matters: |
+      Timing is one of the most underrated factors in startup success. A solution
+      that arrives too early fails on adoption; too late, and incumbents own it.
+      A specific, defensible timing thesis signals market intelligence and
+      strategic judgement — both of which VCs underwrite on at every stage.
+    validation:
+      min-chars: 150
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.15
+      rubric-ref: timing-thesis-rubric
+    recommendation-trigger:
+      low-score: weak-timing-thesis
+      medium-score: improvable-timing-thesis
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q2.5
+    dimension: problem-insight
+    tier: required
+    type: multi-select
+    question: "Which of the following evidence types support the existence and urgency of this problem? Select all that apply."
+    helper-text: "Be honest — claiming evidence you don't have scores lower than honest absence. We verify where possible."
+    why-it-matters: |
+      Evidence of problem existence separates a hypothesis from a validated
+      opportunity. Multiple independent corroborating signals are far more
+      credible than a single source. VCs probe this specifically because
+      over-claiming problem evidence is common and easy to catch in due diligence.
+    options:
+      - value: paying-early-customers
+        label: "Paying customers — even at very early or discounted pricing"
+      - value: pilots-or-lois
+        label: "Signed pilots or letters of intent"
+      - value: unsolicited-inbounds
+        label: "Unsolicited inbound interest without active marketing"
+      - value: documented-interviews
+        label: "Documented customer interviews with consistent pain themes"
+      - value: market-research
+        label: "Independent market research or analyst reports confirming the pain"
+      - value: regulatory-mandate
+        label: "Regulatory or compliance mandate creating the problem"
+      - value: incumbent-failure
+        label: "Evidence of incumbent solutions failing (reviews, churn data, public complaints)"
+      - value: personal-deep-experience
+        label: "Deep personal experience of the problem in a prior professional role"
+    validation:
+      min-items: 0
+      max-items: 8
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: multi-select-coverage
+      weight: 0.10
+      rubric-ref: problem-evidence-coverage
+    recommendation-trigger:
+      low-score: weak-problem-evidence
+      medium-score: strengthen-problem-evidence
+      high-score: null
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # RECOMMENDED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q2.6
+    dimension: problem-insight
+    tier: recommended
+    type: long-text
+    question: "Share the single most compelling customer story or direct quote that illustrates the problem."
+    helper-text: |
+      Name the person's role (not their name) and describe what they told you.
+      Direct quotes are more powerful than paraphrases. The best stories make
+      a VC lean forward.
+    why-it-matters: |
+      A vivid, specific customer story is the most persuasive element of a
+      problem narrative in a VC meeting. It converts partner scepticism more
+      effectively than any market size statistic. Founders who have it have
+      done real discovery; founders who don't, often haven't.
+    validation:
+      min-chars: 100
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.08
+      rubric-ref: customer-story-rubric
+    recommendation-trigger:
+      low-score: weak-customer-story
+      medium-score: improvable-customer-story
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q2.7
+    dimension: problem-insight
+    tier: recommended
+    type: single-select
+    question: "How do the customers you've spoken to characterise the severity of this problem?"
+    helper-text: "Choose the most honest option based on what you've actually heard, not the most optimistic framing."
+    why-it-matters: |
+      Problem severity is a primary input for TAM sizing and willingness to pay.
+      Hair-on-fire problems drive urgency, faster sales cycles, and premium pricing.
+      Vitamin problems require far more evangelism, longer sales cycles, and often
+      compress pricing power. This shapes VC appetite at every stage.
+    options:
+      - value: mission-critical
+        label: "Mission-critical — their business stops or is materially at risk without a solution"
+      - value: high-severity
+        label: "High severity — significant cost, risk, or time loss that urgently needs addressing"
+      - value: medium-severity
+        label: "Medium severity — meaningful pain, but workarounds exist and are used regularly"
+      - value: low-severity
+        label: "Low severity — an inefficiency they would address if it were convenient"
+      - value: not-yet-confirmed
+        label: "Not yet confirmed — I haven't directly asked customers to characterise severity"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: categorical
+      weight: 0.05
+      rubric-ref: problem-severity-categorical
+    recommendation-trigger:
+      low-score: low-problem-severity
+      medium-score: medium-problem-severity
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q2.8
+    dimension: problem-insight
+    tier: recommended
+    type: long-text
+    question: "What do customers currently use to address this problem, and why is it unsatisfactory?"
+    helper-text: |
+      Name specific alternatives: spreadsheets, named incumbents, internal tools,
+      manual processes, or nothing at all. For each, explain what specifically
+      fails. Generic answers ("they use Excel") without explaining the failure
+      mode score lower.
+    why-it-matters: |
+      Knowing existing alternatives is essential for positioning and pricing.
+      Founders who name specific alternatives and articulate their failure modes
+      demonstrate deep customer understanding and a clear wedge. VCs ask this
+      question in every meeting; unprepared founders lose credibility fast.
+    validation:
+      min-chars: 100
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.06
+      rubric-ref: alternatives-analysis-rubric
+    recommendation-trigger:
+      low-score: weak-alternatives-analysis
+      medium-score: improvable-alternatives-analysis
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q2.9
+    dimension: problem-insight
+    tier: recommended
+    type: long-text
+    question: "Have others tried to solve this problem before? If so, why did they fail or fall short?"
+    helper-text: |
+      Include direct competitors that pivoted or failed, adjacent products that
+      pulled back, and internal tools that never scaled. If no one has tried,
+      explain why — and whether that's a positive signal or a reason for concern.
+    why-it-matters: |
+      Prior failed attempts are one of the strongest signals of insight depth.
+      Founders who know why previous solutions didn't work understand the problem
+      at a structural level. It also defuses the "why hasn't anyone done this
+      before?" challenge, which VCs raise in virtually every meeting on a
+      genuinely new problem space.
+    validation:
+      min-chars: 100
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.04
+      rubric-ref: prior-attempts-rubric
+    recommendation-trigger:
+      low-score: weak-prior-attempts-knowledge
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q2.10
+    dimension: problem-insight
+    tier: recommended
+    type: long-text
+    question: "What do you believe about this market or problem that most smart, informed people would disagree with?"
+    helper-text: |
+      This is the contrarian truth question. The strongest answers name a
+      specific, falsifiable claim — not a vague vision statement. If you
+      genuinely don't hold a contrarian view, answering honestly scores better
+      than manufacturing one.
+    why-it-matters: |
+      Non-consensus insights are the origin of asymmetric returns in venture.
+      Founders with a specific, defensible view that diverges from conventional
+      wisdom are building a more defensible company than those executing on
+      consensus ideas. Top-tier funds use this as a primary filter.
+    validation:
+      min-chars: 150
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.08
+      rubric-ref: contrarian-insight-rubric
+    recommendation-trigger:
+      low-score: weak-contrarian-insight
+      medium-score: improvable-contrarian-insight
+      high-score: null
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # OPTIONAL DEEP-DIVE
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q2.11
+    dimension: problem-insight
+    tier: optional
+    type: file-upload
+    question: "Optional: upload customer discovery artefacts — interview notes, survey data, or research reports."
+    helper-text: |
+      Any format accepted. Files are encrypted at rest and shared with VCs only
+      with your explicit consent. Uploads increase your confidence rating and
+      allow richer AI analysis of your discovery rigour.
+    why-it-matters: |
+      Discovery artefacts provide external validation of problem claims and
+      raise the confidence rating materially. They also give VCs visibility into
+      the quality of your process, which differentiates you in competitive deal
+      processes where multiple companies are assessed simultaneously.
+    validation:
+      pattern: "\\.(pdf|xlsx|csv|docx|pptx|png|jpg|jpeg|txt)$"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.00
+    version-added: "0.1.0"
+
+  - id: q2.12
+    dimension: problem-insight
+    tier: optional
+    type: structured-input
+    question: "Describe the profile of the customers you have spoken to."
+    helper-text: "This helps us benchmark your discovery against founders at similar stages and in similar sectors."
+    why-it-matters: |
+      Discovery quality depends as much on who you spoke to as how many. A sample
+      concentrated in one company, role, or geography is less robust than a diverse
+      one. This data also enables stage-appropriate benchmarking of discovery breadth.
+    fields:
+      - name: typical-company-size
+        type: short-text
+        label: "Typical company size (B2B) or demographic profile (B2C)"
+        required: false
+      - name: typical-role
+        type: short-text
+        label: "Typical role or decision-maker spoken to"
+        required: false
+      - name: geographies
+        type: short-text
+        label: "Geographies represented in your interviews"
+        required: false
+      - name: percent-from-network
+        type: percentage
+        label: "Approximate % of interviewees who were warm introductions or personal network"
+        required: false
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.02
+    version-added: "0.1.0"
+
+  - id: q2.13
+    dimension: problem-insight
+    tier: optional
+    type: long-text
+    question: "How has your understanding of the problem evolved since you started? What did you believe at the outset that turned out to be wrong?"
+    helper-text: |
+      Founders who have meaningfully changed their view often understand the
+      problem better than those who haven't. Honest reflection about being
+      wrong scores higher than a static narrative of consistent conviction.
+    why-it-matters: |
+      Hypothesis evolution is a reliable marker of genuine discovery. Founders
+      who updated their problem framing based on customer evidence are demonstrating
+      the intellectual honesty and adaptability that predicts execution success.
+      Static narratives often signal that the founder stopped learning too early.
+    validation:
+      min-chars: 100
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.03
+      rubric-ref: hypothesis-evolution-rubric
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"

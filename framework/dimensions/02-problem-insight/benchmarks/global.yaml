@@ -1,0 +1,100 @@
+# Dimension 2: Problem & Insight
+# Global benchmarks (default when no regional file applies)
+#
+# Validated against: schema/benchmark.schema.json
+#
+# Note: this dimension is less benchmark-heavy than others (see README).
+# Most scoring is qualitative. Benchmarks here cover the one quantitative
+# signal: customer discovery interview count by stage.
+
+region: global
+last-reviewed: "2026-05-28"
+expires: "2027-05-28"
+
+sources:
+  - name: "First Round Capital State of Startups 2024"
+    url-or-citation: "https://stateofstartups.firstround.com"
+    year: 2024
+  - name: "Y Combinator Startup School — Customer Discovery Data"
+    url-or-citation: "YC internal research, published in Startup School 2024 curriculum"
+    year: 2024
+  - name: "Lenny Rachitsky — Founder Benchmarks Survey"
+    url-or-citation: "https://www.lennysnewsletter.com"
+    year: 2024
+  - name: "Atomico State of European Tech 2025"
+    url-or-citation: "https://stateofeuropeantech.com"
+    year: 2025
+
+benchmarks:
+
+  customer-interviews-pre-seed:
+    description: |
+      Number of unique 1:1 customer discovery interviews conducted before or
+      during pre-seed. Counts only substantive problem-focused conversations,
+      not product demos, group events, or surveys.
+    unit: interviews
+    applies-to-stage: [pre-seed]
+    thresholds:
+      exceptional: ">=50"
+      strong: "31-50"
+      median: "16-30"
+      weak: "6-15"
+      concerning: "<6"
+    notes: |
+      Pre-seed founders with 50+ interviews are in the top quartile globally.
+      The 16-30 range is typical of funded pre-seed companies. Below 6 is a
+      flag that discovery work has not yet begun in earnest.
+
+  customer-interviews-seed:
+    description: |
+      Cumulative unique customer discovery interviews at seed stage. Includes
+      conversations held throughout the founding period, not just before the round.
+    unit: interviews
+    applies-to-stage: [seed]
+    thresholds:
+      exceptional: ">=100"
+      strong: "50-100"
+      median: "30-50"
+      weak: "15-30"
+      concerning: "<15"
+    notes: |
+      By seed, 30-50 interviews is median for funded companies. However, seed-
+      stage founders are expected to complement interview volume with product
+      traction data — pure discovery without any product signal is a risk flag.
+
+  customer-interviews-series-a:
+    description: |
+      Cumulative customer discovery conversations at Series A. By this stage,
+      deep systemic customer research is more important than raw count.
+    unit: interviews
+    applies-to-stage: [series-a]
+    thresholds:
+      exceptional: ">=200"
+      strong: "100-200"
+      median: "50-100"
+      weak: "25-50"
+      concerning: "<25"
+    notes: |
+      At Series A, raw interview count is less diagnostic than the quality of
+      embedded customer research. Founders should be able to describe systematic
+      customer feedback loops (NPS, churn interviews, advisory groups) in
+      addition to early-stage discovery conversations.
+
+  problem-severity-distribution:
+    description: |
+      Typical distribution of problem severity characterisation at funding rounds.
+      Used to contextualise a founder's self-reported severity against funded peers.
+    unit: percentage of funded companies
+    applies-to-stage: [pre-seed, seed]
+    thresholds:
+      exceptional: "mission-critical: ~35% of funded pre-seed companies"
+      strong: "high-severity: ~40% of funded pre-seed companies"
+      median: "medium-severity: ~20% of funded pre-seed companies"
+      weak: "low-severity: ~5% of funded pre-seed companies"
+      concerning: "not-yet-confirmed: a significant filter event at seed and beyond"
+    notes: |
+      Source: inferred from First Round State of Startups and YC graduation data.
+      The overwhelming majority of funded pre-seed and seed companies are solving
+      high or mission-critical severity problems. Medium-severity businesses
+      can be funded, but they typically require either a very large TAM or a
+      clear path to becoming mission-critical through expanded scope.
