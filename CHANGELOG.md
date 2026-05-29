@@ -8,6 +8,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Future work / Open questions
+
+- **Conditional question visibility based on prior answers.** For example, q1.3
+  (co-founder working relationship) should be hidden when q1.1 = "1 (solo founder)"
+  because the question is not applicable. The current `applies-to` schema only supports
+  static filtering by stage, business-model, and region — it has no mechanism for
+  answer-dependent visibility. Implementing this requires either: (a) a new
+  `show-if` / `hide-if` field in the question schema referencing another question ID
+  and a set of trigger values, or (b) keeping the logic in the rendering layer as a
+  hardcoded mapping. Either approach needs schema design and validator support before
+  it can be built. Deferring to a future framework schema revision.
+
 ### Added
 - CLAUDE.md with engineering standards, definition of done, pre-commit rule, spec-first discipline, git hygiene, and common task guides
 - Dimension 2 (Problem & Insight) fully populated: 13 questions across 3 tiers, 11 scoring rules and rubrics, 17 recommendation templates, and global benchmarks for customer discovery interview counts
