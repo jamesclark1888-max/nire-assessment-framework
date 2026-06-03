@@ -99,6 +99,10 @@
         "min-items": { "type": "integer" },
         "max-items": { "type": "integer" },
         "pattern": { "type": "string" },
+        "count-question": {
+          "type": "string",
+          "description": "ID of a sibling question whose answer is parsed as an integer lower bound on the number of repeating-block rows required"
+        },
         "allow-not-known": {
           "type": "boolean",
           "description": "If true, founder can answer 'I don't know yet' which is itself scored"

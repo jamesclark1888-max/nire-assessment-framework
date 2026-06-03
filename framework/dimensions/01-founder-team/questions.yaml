@@ -96,6 +96,7 @@ questions:
     validation:
       min-items: 1
       max-items: 6
+      count-question: q1.1
     applies-to:
       stages: all
       business-models: all

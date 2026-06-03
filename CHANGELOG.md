@@ -24,6 +24,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - CLAUDE.md with engineering standards, definition of done, pre-commit rule, spec-first discipline, git hygiene, and common task guides
 - Dimension 2 (Problem & Insight) fully populated: 13 questions across 3 tiers, 11 scoring rules and rubrics, 17 recommendation templates, and global benchmarks for customer discovery interview counts
 - Dimension 2 README updated from skeleton to full specification
+- `count-question` field added to `schema/question.schema.json` validation block — allows a repeating-block question to declare a sibling single-select question whose answer is parsed as the minimum required row count
+- q1.2 annotated with `count-question: q1.1` so the co-founder detail block enforces that the number of filled rows matches the co-founder count selected in q1.1
 
 ## [0.1.1] - 2026-05-28
 
