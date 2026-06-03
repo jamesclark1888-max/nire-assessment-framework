@@ -1,0 +1,74 @@
+# Pre-qualifying questions
+#
+# These questions are shown before the scored dimensions. They capture
+# profile data (stage, region) used to contextualise scoring and
+# recommendations. They are informational-only — no scoring weight,
+# no recommendation triggers.
+#
+# IDs follow the preq.<slug> convention.
+
+dimension: pre-qualifying
+version: 0.1.0
+questions:
+
+  - id: preq.stage
+    dimension: pre-qualifying
+    tier: required
+    type: single-select
+    question: "What is your current funding stage?"
+    helper-text: "This helps us benchmark your answers against founders at the same stage."
+    why-it-matters: |
+      Stage context is the single most important calibration input for VC
+      benchmarking. A pre-seed team of 2 with no revenue is normal; the same
+      profile at Series A is a flag. All scoring thresholds and recommendation
+      priorities are stage-adjusted.
+    options:
+      - value: pre-seed
+        label: "Pre-seed (no institutional funding yet)"
+      - value: seed
+        label: "Seed (~£100k – £1.5m raised)"
+      - value: series-a
+        label: "Series A (~£1.5m – £8m raised)"
+      - value: series-b-plus
+        label: "Series B+ (~£8m+ raised)"
+      - value: not-raising
+        label: "Not raising right now"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.00
+    version-added: "0.1.0"
+
+  - id: preq.region
+    dimension: pre-qualifying
+    tier: required
+    type: single-select
+    question: "What is your primary market region?"
+    helper-text: "Select the region where your customers are primarily located, not where you are incorporated."
+    why-it-matters: |
+      Regional market context shapes VC expectations around regulatory
+      environment, market size, and exit opportunities. Scores for market
+      sizing and go-to-market questions are benchmarked against regional
+      comparables.
+    options:
+      - value: uk
+        label: "UK"
+      - value: eu-eea
+        label: "EU / EEA"
+      - value: north-america
+        label: "North America"
+      - value: asia
+        label: "Asia"
+      - value: rest-of-world
+        label: "Rest of world"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.00
+    version-added: "0.1.0"

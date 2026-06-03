@@ -26,6 +26,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 - Dimension 2 README updated from skeleton to full specification
 - `count-question` field added to `schema/question.schema.json` validation block — allows a repeating-block question to declare a sibling single-select question whose answer is parsed as the minimum required row count
 - q1.2 annotated with `count-question: q1.1` so the co-founder detail block enforces that the number of filled rows matches the co-founder count selected in q1.1
+- `show-if` field added to `schema/question.schema.json` as a peer of `validation` — schema slot for future conditional question visibility (enforcement in the rendering layer); shape: `{ question: string, values: string[] }`
+- ID pattern in `schema/question.schema.json` updated to allow `preq.[a-z-]+` style identifiers for pre-qualifying questions
+- `framework/pre-qualifying/questions.yaml` created with two informational-only required questions: `preq.stage` (funding stage, 5 options) and `preq.region` (primary market region, 5 options)
 
 ## [0.1.1] - 2026-05-28
 
