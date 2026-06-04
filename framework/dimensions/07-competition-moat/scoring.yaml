@@ -1,0 +1,581 @@
+# Dimension 7: Competition & Moat
+# Scoring rules and rubrics
+#
+# Validated against: schema/scoring-rule.schema.json
+#
+# Each rule defines how a raw answer is converted into a 0-100 score.
+# Rule IDs match the rubric-ref values in questions.yaml exactly.
+#
+# q7.3 is informational-only (weight 0.00) and has no rule here.
+# All scored questions use ai-qualitative rubric scoring.
+# No benchmarks file is needed — this dimension has no quantitative signals.
+
+dimension: competition-moat
+version: 0.1.0
+rules:
+
+  # ─────────────────────────────────────────────────────────────────
+  # Competitive landscape (q7.1)
+  # ─────────────────────────────────────────────────────────────────
+  - id: competitive-landscape-rubric
+    applies-to-question: q7.1
+    description: |
+      AI-evaluated scoring for depth and specificity of the competitive map.
+      Rewards founders who name direct competitors, characterise indirect
+      substitutes, and acknowledge the "do nothing" baseline. Penalises generic
+      category references without named companies, and claims of no competition.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: completeness
+            weight: 0.35
+            description: |
+              Does the competitive map cover all three categories — direct
+              competitors, indirect substitutes, and the "do nothing" option —
+              or does it focus only on direct competitors? A complete map signals
+              that the founder understands the full range of choices a buyer
+              considers, not just the most obvious alternatives.
+              Strong: names 2+ direct competitors with product characterisation,
+              1+ indirect substitute (e.g. "spreadsheets and a part-time analyst"),
+              and acknowledges what customers currently do if they don't buy.
+              Weak: lists one or two direct competitors by name with no further
+              differentiation; claims the market has no real competition.
+          - name: named-specificity
+            weight: 0.35
+            description: |
+              Are competitors named specifically — with actual company names,
+              product characteristics, and an explanation of why customers
+              choose them — or are they described in category terms?
+              "Veeva Systems for pharma-specific CRM, Salesforce Health Cloud
+              for larger enterprises who need customisation, and manual
+              relationship tracking for cost-sensitive accounts" is specific.
+              "Large CRM vendors and smaller point solutions" is a category
+              reference with no analytical content.
+          - name: competitive-self-awareness
+            weight: 0.30
+            description: |
+              Does the founder demonstrate awareness of their own position relative
+              to each competitor — where they win, where they lose, and why buyers
+              choose each option? Or is the view purely external, treating all
+              competitors as universally inferior? Self-aware founders who
+              acknowledge where a competitor is stronger, and explain why they
+              still win the deals that matter, are significantly more credible
+              than those who dismiss all alternatives.
+        score-bounds:
+          min: 20
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Primary differentiation (q7.2)
+  # ─────────────────────────────────────────────────────────────────
+  - id: primary-differentiation-rubric
+    applies-to-question: q7.2
+    description: |
+      AI-evaluated scoring for the specificity and defensibility of the
+      differentiation claim. Rewards testable, outcome-grounded claims.
+      Penalises generic quality assertions and feature lists without context.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: specificity-and-testability
+            weight: 0.40
+            description: |
+              Is the differentiation claim specific enough to test — a measurable
+              outcome, a named capability with a demonstrable result, a
+              quantifiable time or cost difference? Or is it a general assertion
+              of superiority ("we're more intuitive", "we have better support")?
+              Strong: "We deploy in 4 working days; the incumbent takes 6 months.
+              Our last 8 customers went live in an average of 3.8 days."
+              Weak: "We offer a more user-friendly interface with better customer
+              service than the alternatives."
+            examples-strong:
+              - "Our models run on-device with no cloud dependency — the only product in this category that works in air-gapped environments. Three of our six customers specifically required this."
+              - "We process the full annual compliance report in 40 minutes; the category leader takes 2-3 days of analyst time. We have the benchmarks from four direct comparison pilots."
+            examples-weak:
+              - "We are more flexible and easier to use than the incumbent solutions."
+              - "We focus on the mid-market which the large vendors ignore."
+          - name: defensibility
+            weight: 0.35
+            description: |
+              Is the differentiation rooted in something structurally hard to copy —
+              a proprietary process, an exclusive data source, a regulatory
+              position, deep domain expertise embedded in the product, or a
+              customer relationship that took years to build? Or could a
+              well-funded competitor replicate it within 12 months with
+              sufficient engineering effort? Time-to-copy is the key diagnostic:
+              features are fast to copy; processes, data, and relationships are slow.
+          - name: customer-centricity
+            weight: 0.25
+            description: |
+              Is the differentiation framed in terms of the customer's desired
+              outcome and decision criteria, or in terms of the company's
+              internal features and technical capabilities? A differentiation
+              that connects directly to what the buyer is trying to achieve —
+              "we remove the 3-week delay that costs our customers £40k in
+              penalties per incident" — is more credible than one expressed
+              purely in feature terms. The buyer's frame of reference matters
+              more than the founder's.
+        score-bounds:
+          min: 15
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Incumbent threat response (q7.4)
+  # ─────────────────────────────────────────────────────────────────
+  - id: incumbent-threat-rubric
+    applies-to-question: q7.4
+    description: |
+      AI-evaluated scoring for the structural depth of the incumbent threat
+      response. Rewards named incumbents, specific structural arguments, and
+      an offensive response. Penalises generic "move faster" claims without
+      structural backing and answers that treat the question as hypothetical
+      rather than strategic.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: structural-argument
+            weight: 0.40
+            description: |
+              Does the response explain a structural reason why an incumbent
+              cannot easily replicate the competitive position — channel
+              conflict, cultural mismatch, customer relationship lock-in,
+              proprietary data inaccessible to incumbents, niche depth the
+              incumbent's architecture cannot serve? Or does it rely primarily
+              on speed and agility, which are temporary advantages that well-funded
+              incumbents can overcome by hiring?
+              Strong: "Salesforce would face immediate channel conflict — their
+              SI partner network earns 40-60% of revenue from implementation
+              fees on the product we replace. They cannot ship a simpler
+              product without destroying that revenue base."
+              Weak: "We would move faster and iterate more quickly than any
+              large company could."
+          - name: named-incumbent-specificity
+            weight: 0.30
+            description: |
+              Is a specific large player named, with their likely response
+              characterised with strategic detail? Or is the answer about a
+              generic "large company" with no analysis of that specific
+              player's constraints, incentives, or capabilities?
+              The value of naming the specific incumbent is that it forces
+              analysis of their actual strategic situation rather than a
+              theoretical incumbent that the founder can define conveniently.
+          - name: offensive-response
+            weight: 0.30
+            description: |
+              Does the founder articulate an active response — not just a
+              defensive posture? What would the company do to accelerate if
+              this happened: which customers would they lock in first, which
+              product capability would they rush to ship, which partnership
+              would they sign? Founders who have a proactive plan for the
+              incumbent scenario are building a real competitive strategy;
+              those who only describe why they would survive are in a defensive
+              crouch.
+        score-bounds:
+          min: 20
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Moat evidence (q7.5) — highest weight in dimension
+  # ─────────────────────────────────────────────────────────────────
+  - id: moat-evidence-rubric
+    applies-to-question: q7.5
+    description: |
+      AI-evaluated scoring for the quality and objectivity of observable moat
+      evidence. This is the highest-weight question in the dimension. Rewards
+      quantified, present-tense, independently observable signals. Penalises
+      founder assertions, logical arguments substituted for evidence, and
+      forward-looking projections stated as current proof.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: evidence-quality
+            weight: 0.40
+            description: |
+              Are the cited signals high-quality — quantified retention data,
+              named customer testimony, head-to-head win rates against a named
+              competitor, or a measurable data asymmetry — or are they
+              low-quality proxies such as general customer satisfaction,
+              anecdotal feedback, or logical arguments for why the moat should
+              exist? High-quality evidence is specific, quantified where possible,
+              and points unambiguously to competitive stickiness rather than
+              general product quality.
+              Strong: "Gross logo retention is 94% over 12 months. In the last
+              8 competitive situations logged in our CRM, we won 6 of them.
+              In 3 of those, the prospect had a trial with a named competitor
+              and switched to us mid-evaluation."
+              Weak: "Our customers are very satisfied and tell us they would not
+              switch. We believe our data advantage is significant and will grow
+              over time."
+          - name: present-tense-specificity
+            weight: 0.35
+            description: |
+              Are the signals observable today — current metrics, live contracts,
+              existing customer statements — rather than forward-looking claims
+              or logical arguments about why the moat will exist in future?
+              The question specifically asks for present-tense proof. A founder
+              who cites future compounding dynamics instead of current evidence
+              is substituting a business model argument for an evidence claim.
+              Both have value, but they are not the same thing and should not
+              be conflated.
+          - name: evidence-independence
+            weight: 0.25
+            description: |
+              Do the cited signals come from multiple independent sources, or
+              from a single data point or a single type of evidence? A single
+              retention number is a finding; a retention number corroborated by
+              named customer testimony and a head-to-head win rate is a pattern.
+              Patterns are materially more credible than individual data points
+              because they are harder to attribute to noise, luck, or a single
+              unusual customer situation.
+        score-bounds:
+          min: 15
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Moat compounding (q7.6)
+  # ─────────────────────────────────────────────────────────────────
+  - id: moat-compounding-rubric
+    applies-to-question: q7.6
+    description: |
+      AI-evaluated scoring for the clarity and specificity of moat compounding
+      dynamics. Rewards named mechanisms with a clear unit of growth and a
+      logical causal chain. Penalises assertions that the moat "gets stronger"
+      without explanation and generic technology-wave claims.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: mechanism-clarity
+            weight: 0.45
+            description: |
+              Is there a named mechanism explaining how the moat strengthens
+              with scale — not just an assertion that it does? A mechanism has
+              three components: the unit that compounds (each customer, each
+              transaction, each data point), what accumulates as that unit grows
+              (better predictions, deeper integrations, a larger network), and
+              why the accumulated asset creates an increasing barrier to entry.
+              "Each customer adds proprietary compliance case data. After 12
+              months, our model has seen 2x more edge cases than a new entrant
+              could acquire. After 36 months, the gap is structural and
+              uneconomical to close." is a mechanism.
+              "Our data advantage will compound over time" is an assertion.
+          - name: time-horizon-specificity
+            weight: 0.30
+            description: |
+              Is the compounding tied to specific milestones, customer counts,
+              or time horizons — or is it described in abstract terms? A
+              compounding moat argument with a timeline ("at 500 customers,
+              our dataset exceeds what a competitor could acquire in 3 years")
+              is far more credible than a directional claim without a reference
+              point. The specificity also signals that the founder has modelled
+              the dynamic, not merely asserted it.
+          - name: investor-value-creation
+            weight: 0.25
+            description: |
+              Does the compounding mechanism directly increase the exit value of
+              the company — creating pricing power, expanding addressable market,
+              increasing switching costs, or reducing churn in a way that improves
+              terminal multiples? Or is the compounding primarily operational
+              (making internal processes easier) without a direct link to
+              competitive defensibility? The strongest compounding arguments
+              connect to investor return logic, not just founder efficiency.
+        score-bounds:
+          min: 20
+          max: 85
+
+  # ─────────────────────────────────────────────────────────────────
+  # Switching costs (q7.7)
+  # ─────────────────────────────────────────────────────────────────
+  - id: switching-costs-rubric
+    applies-to-question: q7.7
+    description: |
+      AI-evaluated scoring for the specificity and quantification of customer
+      switching costs. Rewards operational descriptions with concrete time and
+      cost estimates. Penalises generic assertions of stickiness and answers
+      that conflate customer satisfaction with switching cost.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: operational-specificity
+            weight: 0.40
+            description: |
+              Are switching costs described in specific operational terms —
+              migration duration, data that would be lost, configuration that
+              cannot be exported, retraining burden, contract penalties —
+              rather than asserted in general terms? A switching cost argument
+              that names the specific operational steps required is far more
+              credible than "we are deeply embedded in their workflow."
+              Specific: "Migrating away requires re-keying 18 months of audit
+              trail data that is stored in our proprietary schema and not
+              exportable in a useful format. Our customers have told us this
+              would take 2-3 months of their team's time."
+              Vague: "Once customers are live, they don't want to go through
+              the hassle of switching."
+          - name: quantification
+            weight: 0.35
+            description: |
+              Are any switching costs expressed in quantitative terms — time to
+              migrate, financial cost, productivity loss, retraining cost — even
+              as rough estimates with stated assumptions? A rough estimate with
+              named assumptions is significantly more credible than a purely
+              qualitative description because it demonstrates the founder has
+              thought through the actual switching decision from the customer's
+              perspective.
+          - name: observed-evidence
+            weight: 0.25
+            description: |
+              Does the answer reference observed behaviour rather than hypothetical
+              switching scenarios? Evidence that a customer considered leaving
+              and stayed — particularly with a reason — is the strongest switching
+              cost signal available. Renewal data, contract length, and customer
+              tenure are supporting signals. Founders who have only hypothesised
+              switching costs rather than observed them score lower than those
+              with any real behavioural evidence.
+        score-bounds:
+          min: 20
+          max: 85
+
+  # ─────────────────────────────────────────────────────────────────
+  # Network effects and data dynamics (q7.8)
+  # ─────────────────────────────────────────────────────────────────
+  - id: network-effects-rubric
+    applies-to-question: q7.8
+    description: |
+      AI-evaluated scoring for the precision and realism of network effect or
+      data flywheel claims. Rewards accurate mechanism descriptions with a
+      critical mass analysis. Scores "this doesn't apply" answers on whether
+      the explanation is strategically self-aware. Penalises spurious network
+      effect claims that do not withstand basic structural analysis.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: mechanism-precision
+            weight: 0.45
+            description: |
+              Is the network effect or data flywheel mechanism described with
+              precision — naming the type, the unit of value creation, and how
+              it operates at a structural level? Or is it a general claim of
+              "virality" or "word of mouth" without a true network effect
+              mechanism? Same-side, cross-side, and data network effects each
+              have distinct structures. A founder who can name the type and
+              describe the mechanism demonstrates genuine understanding.
+              A founder who uses "network effects" as a rhetorical claim without
+              a structural backing will be exposed in any serious VC meeting.
+          - name: critical-mass-analysis
+            weight: 0.30
+            description: |
+              Does the founder demonstrate understanding of the critical mass
+              challenge — the minimum scale at which the network effect becomes
+              self-sustaining — and have a thesis for how to get there? Most
+              network effects are neutral or negative at very small scale and
+              only become positive above a threshold. A founder who has not
+              thought about this threshold has not yet thought through the
+              go-to-market implications of the network they are claiming to build.
+          - name: accuracy-over-aspiration
+            weight: 0.25
+            description: |
+              Is the claim accurate to the business model, or is it aspirational?
+              An answer that honestly says "network effects are not a primary moat
+              for us; our defensibility comes from data accumulation and switching
+              costs" scores higher than a strained claim of cross-side network
+              effects in a business that operates more like a traditional SaaS
+              product. Accuracy is a proxy for strategic self-awareness, which
+              investors value highly.
+        score-bounds:
+          min: 20
+          max: 85
+
+  # ─────────────────────────────────────────────────────────────────
+  # Competitive deal evidence (q7.9)
+  # ─────────────────────────────────────────────────────────────────
+  - id: competitive-deal-rubric
+    applies-to-question: q7.9
+    description: |
+      AI-evaluated scoring for the specificity and analytical depth of
+      competitive deal evidence. Rewards named situations with root cause
+      analysis and an extracted lesson. Penalises generic pattern claims
+      ("we usually win when...") and the absence of named competitors.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: named-competitive-context
+            weight: 0.40
+            description: |
+              Is a specific competitor named, the deal situation described
+              with enough detail to understand the stakes, and the outcome
+              stated clearly? A competitive situation described with "a mid-market
+              logistics company chose us over Vendor X, who had an existing
+              relationship and lower initial price" is specific. "We tend to win
+              in competitive situations when the customer cares about speed
+              of deployment" is a pattern claim that avoids the specificity
+              that makes competitive evidence credible.
+          - name: root-cause-analysis
+            weight: 0.35
+            description: |
+              Does the founder explain why the outcome happened — the specific
+              factor that drove the decision in their favour or against them?
+              The most valuable competitive intelligence is not the win or loss
+              itself but the identified cause. A root cause that reveals
+              something about buyer decision criteria — "they chose us because
+              the compliance officer required ISO 27001 and Vendor X didn't have
+              it" — is actionable. "They liked our product better" is not.
+          - name: applied-learning
+            weight: 0.25
+            description: |
+              Has the lesson from the win or loss been applied — in product
+              roadmap, sales motion, pricing, or positioning — or is it simply
+              documented? Founders who describe how a competitive loss changed
+              their approach demonstrate that they treat competitive intelligence
+              as operational input, not just anecdote. This is the signal of a
+              systematic competitive process rather than episodic deal review.
+        score-bounds:
+          min: 20
+          max: 85
+
+  # ─────────────────────────────────────────────────────────────────
+  # IP and regulatory barriers (q7.10)
+  # ─────────────────────────────────────────────────────────────────
+  - id: ip-regulatory-rubric
+    applies-to-question: q7.10
+    description: |
+      AI-evaluated scoring for the specificity of formal IP and regulatory
+      barrier claims. Rewards named patents, licences, and exclusive data
+      arrangements. Scores "not applicable" answers on strategic self-awareness.
+      Penalises vague IP claims without specificity and aspirational IP plans
+      presented as current barriers.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: barrier-specificity
+            weight: 0.45
+            description: |
+              Is the IP, data asset, or regulatory advantage named specifically —
+              a filed or granted patent with a claim number, a named regulatory
+              licence with a description of its scarcity, a specific data-sharing
+              agreement with a named institution? Or is the barrier asserted in
+              general terms ("we have strong IP" or "we operate in a regulated
+              space")?
+              Even an honest "we have no formal IP currently and here is why we
+              have not prioritised it" is more credible than a vague IP claim
+              that cannot withstand basic due diligence scrutiny.
+          - name: strategic-defensibility
+            weight: 0.35
+            description: |
+              Could a well-funded competitor acquire or circumvent the same
+              barrier within 12-24 months with sufficient capital investment?
+              The strongest IP barriers are structural — regulatory licences
+              in scarce supply, patents covering a fundamental method that
+              cannot be designed around, proprietary datasets with an exclusive
+              source that cannot be replicated. Barriers that are expensive but
+              not impossible to circumvent score lower than those that are
+              genuinely structural.
+          - name: business-model-integration
+            weight: 0.20
+            description: |
+              Is the IP or regulatory barrier integrated into how the company
+              makes money — directly creating pricing power, enabling market
+              access that competitors lack, or increasing the switching cost
+              for customers — or is it peripheral? A patent that protects a
+              core revenue-generating feature is worth more than a patent on
+              an experimental capability. A regulatory licence that is required
+              to sell in the target market is worth more than a voluntary
+              accreditation that improves credibility.
+        score-bounds:
+          min: 20
+          max: 80
+
+  # ─────────────────────────────────────────────────────────────────
+  # Category leadership path (q7.11)
+  # ─────────────────────────────────────────────────────────────────
+  - id: category-leadership-rubric
+    applies-to-question: q7.11
+    description: |
+      AI-evaluated scoring for the coherence and specificity of the long-horizon
+      competitive vision. Rewards sequenced strategies with named milestones
+      and logical progression. Penalises vague ambition statements without
+      a structural path.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: sequencing-logic
+            weight: 0.50
+            description: |
+              Is there a logical sequence from current competitive position to
+              category leadership — with named customer segments to win,
+              product milestones that expand the right to compete, and
+              competitive dynamics to resolve at each stage? Or is the vision
+              stated as a destination without a path? The difference between
+              ambition and strategy is the sequencing logic that connects where
+              the company is now to where it intends to be.
+          - name: realistic-grounding
+            weight: 0.30
+            description: |
+              Is the category leadership vision grounded in a realistic
+              assessment of what the company would need to build, acquire, or
+              partner for — or does it assume away the hard parts? A vision
+              that acknowledges the structural obstacles and explains how they
+              will be resolved demonstrates strategic maturity. A vision that
+              projects category leadership as the natural consequence of current
+              momentum, without addressing the competitive responses it would
+              provoke, is aspirational rather than strategic.
+          - name: exit-value-connection
+            weight: 0.20
+            description: |
+              Does the category leadership vision connect to a credible exit
+              narrative — a natural acquirer, a public market comparable, or a
+              strategic position that commands a premium multiple? Category
+              leadership is ultimately an investor return argument; the vision
+              should make that connection explicit rather than leaving it
+              implied.
+        score-bounds:
+          min: 20
+          max: 85
+
+  # ─────────────────────────────────────────────────────────────────
+  # Third-party competitive validation (q7.12)
+  # ─────────────────────────────────────────────────────────────────
+  - id: third-party-validation-rubric
+    applies-to-question: q7.12
+    description: |
+      AI-evaluated scoring for the credibility and relevance of third-party
+      competitive validation. Rewards named sources with specific competitive
+      claims. A blank answer scores at minimum — it is not penalised because
+      third-party validation is rare and not expected at pre-seed.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: source-credibility
+            weight: 0.50
+            description: |
+              Is the third-party source credible and independent of the company's
+              own marketing — a named analyst with domain expertise, a named
+              journalist at a relevant publication, a named VC partner who
+              declined to invest but validated the competitive position, or
+              a named industry body? An unnamed "industry expert" or a customer
+              reference (which is a product validation, not a competitive
+              positioning validation) scores lower than a named, verifiable,
+              independent source.
+          - name: specificity-of-claim
+            weight: 0.50
+            description: |
+              Does the third-party validation specifically address competitive
+              positioning — why this company is differentiated from alternatives —
+              or is it a general endorsement of the product or team? A quote
+              from a named analyst that says "this is the only purpose-built
+              solution for [specific use case], which is why the incumbents
+              have been unable to address it" is specific competitive validation.
+              A quote that says "this is a great team building an important
+              product" is a general endorsement with no competitive content.
+        score-bounds:
+          min: 20
+          max: 85

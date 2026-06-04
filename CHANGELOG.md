@@ -21,6 +21,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   it can be built. Deferring to a future framework schema revision.
 
 ### Added
+- Dimension 7 (Competition & Moat) fully populated: 12 questions across 3 tiers (5 required, 5 recommended, 2 optional), 11 scoring rules (all rubric-based), 11 recommendation templates covering competitive awareness, differentiation, incumbent threat, moat evidence, compounding mechanisms, switching costs, network effects, competitive deal evidence, and IP/regulatory barriers. q7.3 (moat type multi-select) is informational-only with weight 0.
+- Dimension 7 README updated from skeleton to full specification
 - CLAUDE.md with engineering standards, definition of done, pre-commit rule, spec-first discipline, git hygiene, and common task guides
 - Dimension 3 (Market) fully populated: 14 questions across 3 tiers (6 required, 6 recommended, 2 optional), 14 scoring rules, 17 recommendation templates, and global benchmarks for TAM/SAM/SOM/CAGR signals across pre-seed, seed, and Series A stages
 - Dimension 3 README updated from skeleton to full specification

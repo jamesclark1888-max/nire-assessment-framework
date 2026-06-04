@@ -72,7 +72,7 @@ See [`docs/00-overview.md`](docs/00-overview.md) for a full guided tour.
 | 4 | Product & Traction | 🟡 Skeleton |
 | 5 | Business Model & Unit Economics | 🟡 Skeleton |
 | 6 | Go-to-Market | 🟡 Skeleton |
-| 7 | Competition & Moat | 🟡 Skeleton |
+| 7 | Competition & Moat | ✅ Authored |
 | 8 | Round & Capital Strategy | 🟡 Skeleton |
 
 ---

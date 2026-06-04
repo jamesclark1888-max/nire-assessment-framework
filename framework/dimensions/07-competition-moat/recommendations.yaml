@@ -1,0 +1,615 @@
+# Dimension 7: Competition & Moat
+# Recommendation templates
+#
+# Validated against: schema/recommendation.schema.json
+#
+# Each template is triggered by specific scoring conditions and personalised
+# at runtime using the founder's specific data.
+#
+# Trigger map (must be consistent with questions.yaml):
+#   q7.1 low  → weak-competitive-awareness      (critical, free-tier)
+#   q7.2 low  → weak-differentiation            (critical, free-tier)
+#   q7.2 med  → improvable-differentiation      (high)
+#   q7.4 low  → weak-incumbent-response         (high)
+#   q7.5 low  → no-moat-evidence                (critical, free-tier)
+#   q7.5 med  → thin-moat-evidence              (high)
+#   q7.6 low  → no-moat-compounding             (high)
+#   q7.7 low  → undefined-switching-costs       (medium)
+#   q7.8 low  → network-effects-undefined       (medium)
+#   q7.9 low  → no-competitive-deal-evidence    (medium)
+#   q7.10 low → limited-ip-barriers             (medium)
+
+dimension: competition-moat
+version: 0.1.0
+templates:
+
+  # ─────────────────────────────────────────────────────────────────
+  # Weak competitive awareness — critical
+  # ─────────────────────────────────────────────────────────────────
+  - id: weak-competitive-awareness
+    trigger:
+      question-ids: [q7.1]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      Your competitive landscape mapping lacks the specificity investors expect.
+      The absence of named competitors, the claim that no competition exists, or
+      a map that covers only direct competitors without addressing indirect
+      substitutes signals incomplete market research. In VC meetings, "who are
+      your competitors?" is asked in the first five minutes. An answer that
+      names no specific companies, or that claims no competition exists, ends
+      the productive conversation before it starts.
+    gap: |
+      A credible competitive map names direct competitors with product
+      characterisation, acknowledges the indirect substitutes buyers consider
+      (manual processes, adjacent software, consultants), and addresses the
+      "do nothing" baseline — often the hardest to displace. Without all three
+      categories, the map is incomplete and the investor's next question is
+      "have you actually spoken to customers who evaluated alternatives?"
+    fix: |
+      Build a complete competitive map in three sections:
+
+      1. Direct competitors: Name 2-4 companies offering a similar product to
+         the same buyer. For each, characterise their approach in one sentence,
+         their primary strength from a buyer's perspective, and the type of
+         customer who chooses them over you.
+
+      2. Indirect substitutes: Name what a buyer does today if they don't buy
+         any purpose-built solution — a spreadsheet, a consultant, a manual
+         process, or an adjacent product they already own. This is often your
+         most important competitor because it represents the status quo.
+
+      3. Do nothing: Describe what a customer's situation looks like if they
+         defer the decision entirely. This reveals the urgency of the problem
+         and the cost of inaction, which directly affects sales cycle length.
+
+      Completing this exercise also requires direct customer conversations if
+      you haven't had them, which is its own high-value activity.
+    evidence: |
+      Founders who map their competitive landscape precisely demonstrate customer
+      knowledge, market intelligence, and strategic self-awareness — three of
+      the five qualities most commonly cited by VCs as differentiating seed-stage
+      founders. Conversely, "we have no competition" is one of the most
+      consistently cited warning signs in VC partner meeting notes.
+    stage-variants:
+      pre-seed:
+        diagnostic: |
+          At pre-seed, some competitive ambiguity is expected — the market may
+          not have fully formed. But even at this stage, investors expect named
+          alternatives: who does the problem today and why is it inadequate?
+          Founders who can articulate this clearly demonstrate enough customer
+          knowledge to build with conviction.
+      series-a:
+        diagnostic: |
+          At Series A, a partial competitive map is a significant diligence risk.
+          With 12-18 months of customer-facing activity, a founder should have
+          encountered direct competitors in sales processes and developed a
+          detailed view of the competitive dynamics. An incomplete map at this
+          stage signals a gap in market intelligence that will surface in
+          partner meetings.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Weak differentiation — critical
+  # ─────────────────────────────────────────────────────────────────
+  - id: weak-differentiation
+    trigger:
+      question-ids: [q7.2]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      Your differentiation claim is either not specific enough to test or is
+      not clearly distinct from what competitors already offer. "We are better"
+      and "we are more user-friendly" are not differentiation — they are
+      claims every founder makes about their own product. VCs have heard every
+      general quality claim; they discount them entirely and look for the
+      specific, verifiable, structural reason a customer chooses one product
+      over another.
+    gap: |
+      A differentiation that cannot be stated in specific, testable terms
+      cannot survive due diligence. Investors will ask existing and potential
+      customers exactly this question — "why would you choose this product over
+      the alternatives?" — and if the answer matches the general claims made
+      in the pitch, it reduces conviction rather than increasing it. The gap
+      is the absence of a specific, falsifiable claim.
+    fix: |
+      Develop a specific differentiation statement using this process:
+
+      1. Name the comparison: identify the one or two alternatives a buyer
+         most seriously considers before choosing you. Make the differentiation
+         relative to a named alternative, not to the market in general.
+
+      2. State the specific outcome difference: what does a customer achieve
+         with your product that they cannot reliably achieve with the named
+         alternative? Be as specific as possible — in time saved, cost reduced,
+         risk avoided, or outcome produced. "40% faster" or "£20k per year
+         cheaper" is specific. "More efficient" is not.
+
+      3. Find a reference: identify a customer who made this specific comparison
+         and chose you, and what they said about why. A paraphrase from a real
+         customer conversation — even one sentence — is worth more than any
+         amount of internal positioning work.
+
+      4. Test the claim: ask your last 3 customers "why did you ultimately
+         choose us over the alternatives you considered?" Their answers are
+         your real differentiation — not your internal positioning documents.
+    evidence: |
+      The differentiation question is a reliable proxy for discovery depth.
+      Founders who have had enough customer conversations to understand exactly
+      why customers choose them over specific alternatives can answer it
+      precisely. Founders who haven't cannot — and investors know the difference.
+    stage-variants:
+      pre-seed:
+        fix: |
+          At pre-seed, it is acceptable for differentiation to be partially
+          hypothesis — you may not have many customers yet to validate it.
+          State your hypothesis specifically, name the assumption behind it,
+          and describe the evidence you are collecting to test it. "We believe
+          our advantage is X, and we are testing this with our first 3 pilot
+          customers" is a credible pre-seed answer. "We are better" is not,
+          at any stage.
+      series-a:
+        fix: |
+          At Series A, your differentiation should be validated by customer
+          behaviour — renewal rates, win rates, customer quotes from competitive
+          evaluations. The hypothesis-stage framing is no longer credible; by
+          now you should have enough customer data to characterise differentiation
+          empirically. Reframe your answer around what customers have told you
+          and what your sales data shows.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Improvable differentiation — high
+  # ─────────────────────────────────────────────────────────────────
+  - id: improvable-differentiation
+    trigger:
+      question-ids: [q7.2]
+      score-band: medium
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      You have named a differentiation, but it either lacks a specific customer
+      outcome or is not clearly connected to a structural reason why competitors
+      cannot replicate it. The claim is a good starting point but would not
+      survive a detailed due diligence conversation without strengthening.
+    gap: |
+      The differentiation needs either more specificity (a quantified outcome
+      rather than a directional claim) or a structural backing (a reason why the
+      advantage persists over time rather than being a temporary lead).
+    fix: |
+      Add two elements to your current differentiation statement:
+
+      1. Quantification: can you express the customer outcome in a number?
+         Even a rough estimate with stated assumptions is stronger than a
+         qualitative direction. "Approximately 60% faster based on the average
+         time our first 6 customers reported" is quantified. "Much faster" is not.
+
+      2. Structural backing: why is the advantage durable? Is it a proprietary
+         process that would take 12 months to copy, a data asset that grows
+         with each customer, or a domain expertise embedded in the product
+         that a generalist competitor cannot quickly replicate? Adding one
+         sentence on why this advantage persists makes the claim structurally
+         credible rather than just currently true.
+    estimated-impact:
+      dimension-score-uplift: 8
+      confidence: medium
+
+  # ─────────────────────────────────────────────────────────────────
+  # Weak incumbent response — high
+  # ─────────────────────────────────────────────────────────────────
+  - id: weak-incumbent-response
+    trigger:
+      question-ids: [q7.4]
+      score-band: low
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your response to the incumbent threat relies primarily on execution speed
+      without a structural argument, does not name the specific incumbent most
+      likely to move, or does not articulate what you would do proactively if
+      the scenario occurred. VCs treat this question as a strategic thinking
+      test — the quality of the answer reveals whether the founder has a
+      realistic model of competitive dynamics or is depending on obscurity as
+      a strategy.
+    gap: |
+      "We would move faster" is a temporary advantage that incumbents with
+      significant resources can overcome by hiring and acquiring. A structural
+      argument identifies something about the incumbent's incentives, architecture,
+      or customer relationships that makes it genuinely difficult for them to
+      compete effectively — regardless of resource advantage.
+    fix: |
+      Work through the incumbent threat by answering three specific questions
+      about the most likely large-company mover:
+
+      1. Which specific company is the most likely to enter? Name them. Consider
+         their existing customer relationships in your market, their stated
+         strategic priorities, and their acquisition history. Naming the specific
+         company forces honest analysis of their actual capabilities and constraints.
+
+      2. What structural reason would limit their effectiveness? Consider:
+         channel conflict (would shipping a competing product damage their existing
+         partner or revenue relationships?), business model incompatibility (do they
+         make money in a way that conflicts with your model?), organisational
+         culture (can a large company build the specialised depth that defines your
+         niche?), or customer relationship gaps (do they lack the relationships
+         in the specific buyer role or segment you serve?).
+
+      3. What would you do in the first 90 days? Name the specific customers
+         you would lock in with longer contracts, the product features you would
+         accelerate, or the partnerships you would sign to deepen your position
+         before the incumbent gained traction.
+
+      The structural argument is the hardest part and the highest-value output
+      of this exercise.
+    stage-variants:
+      pre-seed:
+        diagnostic: |
+          At pre-seed, it is reasonable for the structural argument to be
+          partially hypothetical — you may not have proven your defensibility yet.
+          The quality signal at this stage is whether the founder has thought
+          through the structural constraints on potential incumbents, not whether
+          they have demonstrated them empirically.
+      series-a:
+        diagnostic: |
+          At Series A, a weak incumbent response is a significant diligence risk.
+          By now you should have faced pressure from larger players or have clear
+          visibility into who will move. The structural argument should be grounded
+          in observed market dynamics — channel conflicts you have already seen,
+          customers who compared you to incumbent solutions, or strategic
+          announcements from competitors that reveal their constraints.
+
+  # ─────────────────────────────────────────────────────────────────
+  # No moat evidence — critical
+  # ─────────────────────────────────────────────────────────────────
+  - id: no-moat-evidence
+    trigger:
+      question-ids: [q7.5]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      You have no observable present-tense evidence that your competitive moat
+      is real, or the evidence provided consists of logical arguments rather
+      than observable signals. The distinction matters: a well-reasoned
+      argument for why a moat should exist is a business model argument.
+      An observable signal that the moat already operates is evidence. VCs
+      fund the latter; they discount the former, particularly at seed and beyond.
+    gap: |
+      Without at least one concrete, present-tense signal — a retention rate
+      figure, a named customer who chose you after evaluating a competitor,
+      a data metric that is growing with usage — the moat claim is assertion.
+      Assertion is the lowest-value input in a VC due diligence process;
+      evidence is the highest. This gap weakens the entire D7 dimension.
+    fix: |
+      Identify and document at least one primary moat signal using one of
+      these approaches:
+
+      1. Retention data: pull your 12-month gross logo or gross revenue
+         retention rate. Even a small customer base produces a retention figure.
+         A rate above 85% is a meaningful signal; above 90% is strong. If you
+         have been operating for less than 12 months, use whatever period you
+         have and state the cohort explicitly.
+
+      2. Competitive win evidence: review your last 6 deals where you know
+         the prospect evaluated alternatives. What was your win rate? Can you
+         name the competitor you beat and what the customer said drove their
+         decision? A 5-of-6 win rate against a named competitor, with a customer
+         quote, is compelling evidence.
+
+      3. Customer testimony on switching cost: contact your 3 most embedded
+         customers and ask: "If you needed to move to a different solution, what
+         would the process look like?" Document their answers. A candid description
+         of migration complexity from a customer is the most credible switching
+         cost evidence available.
+
+      4. Data asymmetry proxy: if your moat is a growing data asset, measure
+         a proxy for its current state — the number of events, decisions, or
+         cases your model has processed, and how this compares to what a new
+         entrant would start with. Even a rough comparison is evidence.
+
+      Document whatever you find and use it in the next investor conversation.
+      A single specific, attributed signal changes the conversation from
+      assertion to evidence.
+    evidence: |
+      The absence of moat evidence is the single most common gap found in
+      seed-stage pitches by experienced VCs. Founders can argue that moats are
+      hard to demonstrate at early stage — but the founders who find a way to
+      show even one concrete signal are consistently rated as more investable
+      than those who rely on logical arguments alone.
+    stage-variants:
+      pre-seed:
+        diagnostic: |
+          At pre-seed, thin moat evidence is expected — you may have very few
+          customers and a short operating history. The minimum bar is one
+          concrete signal, even qualitative: a customer statement about switching
+          cost, a named prospect who evaluated three alternatives and chose you,
+          or a data metric that is growing with usage. The standard is low; the
+          bar is just above zero.
+      series-a:
+        diagnostic: |
+          At Series A, the absence of moat evidence is a significant problem.
+          With 12-18 months of customer-facing activity and a product that has
+          been in use, there should be observable signals of competitive stickiness.
+          Series A investors are explicitly underwriting defensibility at this
+          stage; an inability to cite current retention data, win rates, or
+          customer testimony about switching cost will generate hard questions
+          in partner meetings.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Thin moat evidence — high
+  # ─────────────────────────────────────────────────────────────────
+  - id: thin-moat-evidence
+    trigger:
+      question-ids: [q7.5]
+      score-band: medium
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      You have cited moat evidence, but it is concentrated in a single signal
+      type or is qualitative without quantification. A single signal is a
+      finding; multiple independent signals pointing to the same conclusion
+      are a pattern. Patterns are far more credible to investors because they
+      are harder to attribute to noise, a single unusual customer, or
+      selective presentation.
+    gap: |
+      A second independent moat signal — particularly of a different type from
+      your current strongest signal — would meaningfully strengthen the
+      competitive narrative. Investors perform a mental triangulation when
+      assessing moat claims; a second corroborating signal closes a significant
+      credibility gap.
+    fix: |
+      Add one additional moat signal of a different type from your current
+      strongest evidence. If your primary signal is qualitative (a customer
+      quote about switching cost), add a quantitative signal (retention rate
+      or win rate data). If your primary signal is product usage data, add
+      a direct competitive comparison (a named competitive evaluation you won).
+      The combination of a qualitative and a quantitative signal from two
+      different sources is significantly more credible than depth in one type.
+    estimated-impact:
+      dimension-score-uplift: 8
+      confidence: medium
+
+  # ─────────────────────────────────────────────────────────────────
+  # No moat compounding — high
+  # ─────────────────────────────────────────────────────────────────
+  - id: no-moat-compounding
+    trigger:
+      question-ids: [q7.6]
+      score-band: low
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      You either have not described how your competitive advantage strengthens
+      over time, or the description lacks a specific mechanism — it asserts
+      that the moat compounds without explaining how. Static moats can be
+      overcome by a well-capitalised competitor who is willing to pay the
+      entry cost. Only compounding moats become more expensive to replicate
+      over time. Without a named compounding mechanism, the long-run
+      defensibility argument is incomplete.
+    gap: |
+      A moat argument that peaks at your current competitive position and
+      does not improve with scale has a finite useful life. Investors model
+      the competitive position of a company at exit, not just at the time
+      of investment. A moat that is as strong in 5 years as it is today
+      is worth less than one that is significantly stronger.
+    fix: |
+      Identify the specific unit of growth in your business that drives
+      moat compounding and describe the three-part mechanism:
+
+      1. The growth unit: what accumulates as you scale — customers, transactions,
+         data points, integrations, regulatory certifications, partner relationships?
+         Name the specific unit.
+
+      2. The accumulation effect: what does the accumulated unit create — a better
+         model, deeper workflow lock-in, a larger network, a higher barrier to
+         regulatory entry? Name what builds up.
+
+      3. The barrier increase: why does the accumulation make you harder to replicate
+         — what would a competitor need to invest or wait for to achieve the same
+         accumulated position, and how does that cost or time increase with your scale?
+
+      A moat argument that passes this three-part test is a compounding moat
+      argument. One that fails it is a static advantage claim dressed in
+      compounding language.
+    stage-variants:
+      pre-seed:
+        fix: |
+          At pre-seed, the compounding mechanism can be described as a design
+          intention rather than a demonstrated dynamic. State what you are
+          building toward: "We are designing our data architecture so that each
+          customer's usage improves model performance for all customers. We are
+          at 8 customers now; we expect the effect to become material above 50."
+      series-a:
+        fix: |
+          At Series A, you should be able to demonstrate early evidence of
+          compounding, not just describe it as a design intention. How does
+          your product today compare to the product you shipped 12 months ago?
+          What does that difference mean for a new entrant who is starting
+          where you were 12 months ago?
+
+  # ─────────────────────────────────────────────────────────────────
+  # Undefined switching costs — medium
+  # ─────────────────────────────────────────────────────────────────
+  - id: undefined-switching-costs
+    trigger:
+      question-ids: [q7.7]
+      score-band: low
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      You have not articulated specific switching costs, or the switching costs
+      described are generic and unquantified. Customer stickiness that cannot
+      be described in operational terms — how long migration would take, what
+      data or configuration would be lost, what retraining is required, what
+      financial penalty is embedded in the contract — is difficult for investors
+      to underwrite as a genuine moat element.
+    gap: |
+      Switching cost arguments are most valuable to investors when they can
+      be described operationally and, ideally, quantified. An operational
+      description forces engagement with the actual customer experience of
+      leaving, rather than an abstract claim that customers don't want to.
+    fix: |
+      Work through the switching cost argument from the customer's perspective
+      by answering: what would actually happen if one of your largest customers
+      decided to switch to a competitor tomorrow?
+
+      1. Data migration: what data is in your system and in what format? Can it
+         be exported in a form the competitor's system can ingest? If not, what
+         is lost or what manual effort is required?
+
+      2. Configuration and customisation: what workflows, rules, templates, or
+         customisations has the customer built in your product? Can those be
+         replicated elsewhere or would they need to be rebuilt from scratch?
+
+      3. Retraining: how many of the customer's team members use your product?
+         What would it cost in time to retrain them on a new system?
+
+      4. Contract and financial: are there any contractual penalties for early
+         termination, minimum commitments, or prepaid licences that create a
+         financial switching cost?
+
+      Answering these four questions for one representative customer gives you
+      a concrete, defensible switching cost argument.
+    estimated-impact:
+      dimension-score-uplift: 5
+      confidence: medium
+
+  # ─────────────────────────────────────────────────────────────────
+  # Network effects undefined — medium
+  # ─────────────────────────────────────────────────────────────────
+  - id: network-effects-undefined
+    trigger:
+      question-ids: [q7.8]
+      score-band: low
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Either network effects or data dynamics do not apply to your business
+      model and you have not addressed that directly, or you have claimed them
+      without describing a mechanism that holds up to structural analysis.
+      Both outcomes are problematic: the former leaves a recommended question
+      unanswered; the latter creates credibility risk if the claim is examined
+      by an experienced investor.
+    gap: |
+      The two most common failure modes here are: a genuine network effect or
+      data flywheel that exists but has not been described precisely enough to
+      be credible, and a spurious claim of network effects in a business that
+      operates more like a traditional SaaS product. Both require different
+      responses.
+    fix: |
+      First, determine honestly which category applies:
+
+      1. If network effects or data dynamics genuinely apply: work through the
+         mechanism precisely. Name the type (same-side, cross-side, data network).
+         Describe the unit of value creation (each additional user, each
+         additional transaction, each additional data point). State what
+         accumulates and how it benefits existing users specifically — not users
+         generally. If you can describe a critical mass threshold above which
+         the effect becomes self-sustaining, include it.
+
+      2. If they do not genuinely apply: state this directly and describe what
+         alternative moat dynamics your business relies on instead. "Network
+         effects are not a primary moat for us — our defensibility comes from
+         switching costs embedded in workflow integration and proprietary customer
+         data that cannot be exported" is a credible, self-aware answer that
+         scores higher than an unconvincing claim of network effects.
+
+      Accuracy and self-awareness are valued more than aspirational moat claims
+      in this section.
+    estimated-impact:
+      dimension-score-uplift: 4
+      confidence: low
+
+  # ─────────────────────────────────────────────────────────────────
+  # No competitive deal evidence — medium
+  # ─────────────────────────────────────────────────────────────────
+  - id: no-competitive-deal-evidence
+    trigger:
+      question-ids: [q7.9]
+      score-band: low
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      You have not described a specific competitive situation with a named
+      competitor, or the situation described lacks either a root cause analysis
+      or an applied lesson. Competitive deal evidence is the most operationally
+      grounded signal of how your differentiation performs in practice. Without
+      a named situation, the competitive narrative remains at the level of
+      assertion rather than demonstrated reality.
+    gap: |
+      A single well-documented competitive situation — win or loss — with a
+      named competitor and an identified root cause is worth more than a
+      general statement about your competitive win rate. Specificity is the
+      signal here; the win rate itself is secondary to the depth of analysis.
+    fix: |
+      Document one competitive situation from memory using this structure:
+
+      1. The context: company size and type, use case, what stage of evaluation
+         you reached.
+
+      2. The named competitor: who else were they evaluating? Use the real name.
+
+      3. The outcome: did you win or lose? State it directly.
+
+      4. The root cause: what was the specific deciding factor? Not "we were
+         better overall" but "the compliance officer required ISO 27001 and the
+         competitor didn't have it" or "the CFO chose the incumbent because the
+         procurement team had an existing relationship and didn't want to take
+         the risk of a startup for a business-critical system."
+
+      5. The lesson applied: has anything changed in your product, sales motion,
+         pricing, or positioning as a result of this situation?
+
+      If you genuinely have not had a direct competitive situation yet, describe
+      the closest analogue: a prospect who compared your approach to an existing
+      solution, even informally.
+    estimated-impact:
+      dimension-score-uplift: 4
+      confidence: medium
+
+  # ─────────────────────────────────────────────────────────────────
+  # Limited IP barriers — medium
+  # ─────────────────────────────────────────────────────────────────
+  - id: limited-ip-barriers
+    trigger:
+      question-ids: [q7.10]
+      score-band: low
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your formal IP or regulatory barrier position is either not described
+      with sufficient specificity or you have not addressed whether formal IP
+      is relevant to your model. Many early-stage companies have no filed
+      patents or formal regulatory licences — this is not inherently a problem.
+      The issue is the absence of a clear-eyed assessment of whether formal IP
+      should be a priority and what protection your model relies on instead.
+    gap: |
+      Later-stage investors and acquirers assess formal IP as part of company
+      valuation. A company that has not considered its formal IP position at
+      all, or that describes informal advantages as if they were formal ones,
+      is less prepared for that conversation than one that has thought through
+      the question explicitly — even if the answer is "we do not yet have
+      formal IP and here is why."
+    fix: |
+      Work through three questions to clarify your formal IP position:
+
+      1. Does your core product or methodology contain anything that could be
+         filed as a patent? Ask a patent attorney for a 30-minute assessment
+         of whether your approach contains novel and non-obvious elements.
+         This costs little and provides a clear answer. If there is a
+         patentable element, decide deliberately whether to file.
+
+      2. Does your market require regulatory licences, accreditations, or
+         government approvals that create a structural access barrier? If so,
+         are you pursuing them, and what is the timeline? If you already hold
+         them, name them explicitly in your pitch materials.
+
+      3. If formal IP is not relevant to your model, state why explicitly
+         and identify the structural protection you rely on instead. "We have
+         no filed patents because the speed of iteration in our market means
+         a process patent would be obsolete before it was granted; our
+         defensibility comes from the proprietary dataset we have built from
+         4 years of customer integrations" is a complete and credible answer.
+    estimated-impact:
+      dimension-score-uplift: 3
+      confidence: low

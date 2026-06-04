@@ -1,0 +1,468 @@
+# Dimension 7: Competition & Moat
+# Questions
+#
+# Validated against: schema/question.schema.json
+#
+# Conventions:
+# - Required tier: 5 questions (4 scored rubrics + 1 informational multi-select);
+#   sufficient for a meaningful moat score
+# - Recommended tier: 5 questions; improve confidence and recommendation sharpness
+# - Optional tier: 2 questions; for founders seeking maximum precision
+# - No regional layers for this dimension; competitive dynamics are universal
+# - No benchmarks file; this dimension is entirely qualitative (rubric-based)
+# - Total weight: 1.05 (validator accepts 0.5–1.5)
+
+dimension: competition-moat
+version: 0.1.0
+questions:
+
+  # ─────────────────────────────────────────────────────────────────
+  # REQUIRED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q7.1
+    dimension: competition-moat
+    tier: required
+    type: long-text
+    question: "Map your competitive landscape. Who are your direct competitors, indirect substitutes, and what does a customer do if they choose to do nothing at all?"
+    helper-text: |
+      Direct competitors offer a similar product to the same buyer.
+      Indirect substitutes solve the same problem differently — a spreadsheet,
+      a consultant, a manual process, or an adjacent software product the
+      buyer already owns. "Do nothing" is always a choice and is often the
+      hardest to displace. Name actual companies wherever possible — "enterprise
+      CRM vendors" is too broad; "Salesforce and HubSpot" is specific.
+    why-it-matters: |
+      The competitive map tells a VC whether a founder has done their homework.
+      Founders who name specific competitors, characterise their strengths and
+      weaknesses, and explain why customers choose each one demonstrate market
+      intelligence. A claim of no competitors signals incomplete research —
+      investors read this as naivety, not differentiation.
+    validation:
+      min-chars: 150
+      max-chars: 1200
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.13
+      rubric-ref: competitive-landscape-rubric
+    recommendation-trigger:
+      low-score: weak-competitive-awareness
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q7.2
+    dimension: competition-moat
+    tier: required
+    type: long-text
+    question: "What is your primary differentiation from the alternatives a buyer considers? Be as specific as possible about what you do that they cannot or do not do."
+    helper-text: |
+      The strongest answers name a specific capability, outcome, or structural
+      advantage — not a general claim of quality or ease of use. "We deploy
+      in 4 days vs the incumbent's 6-month implementation" is specific and
+      testable. "We are more user-friendly" is not. If possible, reference an
+      outcome a customer has experienced that no competitor can reliably produce.
+    why-it-matters: |
+      Differentiation is the core of the investment thesis on competitive
+      terms. A claim that cannot be stated specifically cannot survive VC
+      due diligence — partners will ask exactly this question in the first
+      meeting, and the quality of the answer is a primary signal of whether
+      the founder has earned the right to win.
+    validation:
+      min-chars: 150
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.15
+      rubric-ref: primary-differentiation-rubric
+    recommendation-trigger:
+      low-score: weak-differentiation
+      medium-score: improvable-differentiation
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q7.3
+    dimension: competition-moat
+    tier: required
+    type: multi-select
+    question: "Which of the following structural moat types apply to your business? Select all that apply."
+    helper-text: |
+      Select every category where you have a genuine structural advantage today —
+      not aspirational. You will describe the mechanism for each in later
+      questions. If none of these apply yet, select "None of the above" and
+      explain your defensibility path in the differentiation question. This
+      is an informational framing question used to contextualise your rubric
+      answers; it is not scored on selection alone.
+    why-it-matters: |
+      Moat type is the framework VCs use to assess long-run defensibility.
+      The selection here contextualises all subsequent moat questions and
+      allows NIRE to weight the most relevant rubric criteria for each company.
+      This is a framing question; the scored content comes from the rubric
+      answers that follow.
+    options:
+      - value: network-effects
+        label: "Network effects — product becomes more valuable as more users join"
+      - value: proprietary-data
+        label: "Proprietary data — exclusive or unique dataset that grows with use"
+      - value: switching-costs
+        label: "Switching costs — high friction for customers to leave"
+      - value: regulatory-ip
+        label: "Regulatory or IP moat — licences, patents, or accreditations competitors cannot easily obtain"
+      - value: brand
+        label: "Brand — category-defining position that commands a price premium"
+      - value: none
+        label: "None of the above — differentiating on speed, focus, or execution at this stage"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.00
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q7.4
+    dimension: competition-moat
+    tier: required
+    type: long-text
+    question: "Hypothetical: a major incumbent — a well-funded competitor or a large platform such as Salesforce, Microsoft, or Google — ships a directly competing product in the next 12 months. Walk through what you would do and why you would survive."
+    helper-text: |
+      This is a stress-test of future resilience, not a prediction. The
+      strongest answers name the specific incumbent most likely to move, then
+      explain a structural reason why you would survive: the customer
+      relationships already embedded, the proprietary data the incumbent cannot
+      access, the workflow lock-in they would have to replicate, or the niche
+      depth they are architecturally unable to serve. "We would move faster"
+      is rarely a sufficient structural argument on its own.
+    why-it-matters: |
+      The incumbent threat question is asked in virtually every VC meeting.
+      A well-argued structural response signals the founder has a realistic
+      model of competitive dynamics and is actively building defensibility
+      rather than depending on obscurity. Obscurity is not a moat — it ends
+      the moment the company succeeds.
+    validation:
+      min-chars: 150
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.14
+      rubric-ref: incumbent-threat-rubric
+    recommendation-trigger:
+      low-score: weak-incumbent-response
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q7.5
+    dimension: competition-moat
+    tier: required
+    type: long-text
+    question: "What observable evidence — today, not projected — demonstrates that your competitive moat is real? Cite specific signals: retention rates, win rates against named competitors, customer testimony about switching cost, or data asymmetry metrics."
+    helper-text: |
+      This question asks for present-tense proof, not future projections.
+      Useful signals: gross revenue or logo retention rate over the past 12
+      months, head-to-head win rate against a named competitor in your sales
+      process, a customer statement about what switching away would involve,
+      or a measurable data advantage. Pre-seed companies with limited data
+      should cite their strongest proxy — even qualitative, as long as it is
+      specific, attributed, and observable today.
+    why-it-matters: |
+      Any founder can assert a moat; evidence distinguishes assertion from
+      reality. VCs fund evidence and discount assertions. The best moat evidence
+      is observable, independent of the founder's own claim, and points
+      unambiguously to competitive stickiness. An early-stage founder who cites
+      even one concrete signal — a named customer who evaluated three competitors
+      before signing — is materially more credible than one who relies on
+      logic alone.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.16
+      rubric-ref: moat-evidence-rubric
+    recommendation-trigger:
+      low-score: no-moat-evidence
+      medium-score: thin-moat-evidence
+      high-score: null
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # RECOMMENDED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q7.6
+    dimension: competition-moat
+    tier: recommended
+    type: long-text
+    question: "How does your competitive moat become harder to replicate as your company grows? Describe the specific mechanism — not just that it compounds, but exactly how."
+    helper-text: |
+      Compounding moats have a named mechanism: each customer adds data that
+      improves the model; each integration deepens workflow lock-in; each user
+      makes the network more valuable for the next. Name the specific unit of
+      growth that drives compounding and explain why it creates an increasing
+      barrier over time. If your moat is primarily static — a licence that
+      doesn't change in value with scale — state that and explain what
+      compounding dynamic you are building toward instead.
+    why-it-matters: |
+      Static moats can be overcome with capital; compounding moats become more
+      expensive to replicate over time. VCs price compounding dynamics into the
+      exit multiple — a company whose competitive position strengthens with
+      scale commands a higher terminal value than one that simply holds its
+      current position.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.10
+      rubric-ref: moat-compounding-rubric
+    recommendation-trigger:
+      low-score: no-moat-compounding
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q7.7
+    dimension: competition-moat
+    tier: recommended
+    type: long-text
+    question: "What makes it difficult for a customer to leave? Describe the operational, financial, or technical switching costs your customers face if they try to move to a competitor."
+    helper-text: |
+      The strongest answers describe switching costs in operational terms:
+      migration time, data or configuration that would be lost, retraining
+      required, or financial penalties embedded in the contract. Quantify
+      where possible — even roughly. "Migrating away requires 6 weeks of
+      retraining 3-5 staff and re-keying 18 months of audit history" is far
+      stronger than "our product is deeply embedded." If a customer has
+      considered leaving and stayed, describe what drove that decision.
+    why-it-matters: |
+      High switching costs are a direct predictor of net revenue retention
+      above 100% — a key SaaS valuation metric. Companies with embedded
+      switching costs attract better multiples because each customer is
+      effectively a long-duration annuity. Founders who have designed
+      switching costs into their product architecture signal commercial
+      sophistication that investors reward in valuation conversations.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.10
+      rubric-ref: switching-costs-rubric
+    recommendation-trigger:
+      low-score: undefined-switching-costs
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q7.8
+    dimension: competition-moat
+    tier: recommended
+    type: long-text
+    question: "If network effects or proprietary data dynamics apply to your business, describe the mechanism. How specifically does each additional user, customer, or data point make the product more valuable for existing users?"
+    helper-text: |
+      Network effects have a named mechanism: same-side (each additional user
+      benefits others of the same type), cross-side (each supplier benefits
+      from more buyers), or data network effect (more usage generates better
+      data for all users). If you have a data flywheel, describe how it
+      compounds with scale. If neither applies, say so directly — an accurate
+      "not applicable to our model, and here is what we have instead" scores
+      higher than a strained claim that doesn't hold up to structural analysis.
+    why-it-matters: |
+      Network effects and data flywheels are the moat types VCs price most
+      aggressively because they compound non-linearly. A genuine, well-articulated
+      network effect can justify a premium multiple on its own. Spurious claims
+      are spotted immediately and damage credibility across the rest of the
+      pitch. Accuracy matters more than aspiration.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.08
+      rubric-ref: network-effects-rubric
+    recommendation-trigger:
+      low-score: network-effects-undefined
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q7.9
+    dimension: competition-moat
+    tier: recommended
+    type: long-text
+    question: "Describe a specific competitive situation — a recent deal won or lost against a named competitor. What drove the outcome and what did you learn from it?"
+    helper-text: |
+      Name the competitor, describe the situation briefly (company size, use
+      case, how far through the evaluation you got), state the outcome, and
+      explain the root cause — what specific factor drove the decision? If you
+      have not yet had a direct head-to-head competitive situation, describe the
+      closest analogue: a prospect who evaluated you against an alternative
+      approach, or a customer who switched from a named incumbent solution.
+    why-it-matters: |
+      Real competitive situations are the most reliable signal of how a
+      company's differentiation performs in the market. A win reveals where
+      competitive advantage is actually valued by buyers; a loss reveals a
+      product gap, a pricing problem, or a sales motion issue. Founders who
+      diagnose both wins and losses clearly are running an evidence-based
+      competitive process — the kind that scales into a repeatable sales
+      motion investors can underwrite.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.08
+      rubric-ref: competitive-deal-rubric
+    recommendation-trigger:
+      low-score: no-competitive-deal-evidence
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q7.10
+    dimension: competition-moat
+    tier: recommended
+    type: long-text
+    question: "What proprietary IP, exclusive data assets, or regulatory barriers — filed patents, licences, accreditations, or government contracts — does your company hold or is actively pursuing?"
+    helper-text: |
+      Name any filed or granted patents, regulatory licences that are scarce
+      or hard to obtain, exclusive data-sharing agreements, or government
+      contracts that create a structural access advantage. If you have none
+      currently but have a specific plan to file or obtain one, describe the
+      timeline and the strategic importance. If formal IP is not material to
+      your model, explain why and identify what structural protection you
+      rely on instead.
+    why-it-matters: |
+      Formal IP and regulatory barriers are the most legible moat types to
+      later-stage acquirers and public market investors — they appear in M&A
+      due diligence and on balance sheets. Founders who can explain why formal
+      IP is or is not relevant to their model demonstrate a complete
+      understanding of their defensive architecture.
+    validation:
+      min-chars: 80
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.06
+      rubric-ref: ip-regulatory-rubric
+    recommendation-trigger:
+      low-score: limited-ip-barriers
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # OPTIONAL DEEP-DIVE
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q7.11
+    dimension: competition-moat
+    tier: optional
+    type: long-text
+    question: "Looking five years ahead, how does your company move from its current competitive position to defining or leading the category? What would category leadership look like and what would it take to get there?"
+    helper-text: |
+      Category leadership means being the default answer to the problem your
+      market segment has. Describe the steps from where you are now to that
+      position: the customer segments you need to win first, the product
+      capability milestones that expand your right to compete, and the
+      competitive dynamics you expect to encounter and resolve. If category
+      leadership is not the goal, explain what the long-term competitive
+      ambition is and why that scope is the right one.
+    why-it-matters: |
+      Long-horizon competitive vision is a Series A+ signal; pre-seed and seed
+      investors value the beachhead thesis more. But a founder who articulates
+      a clear path from beachhead to category demonstrates strategic range that
+      supports a higher exit multiple conversation, even at early stages.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.03
+      rubric-ref: category-leadership-rubric
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q7.12
+    dimension: competition-moat
+    tier: optional
+    type: short-text
+    question: "Has your competitive positioning been validated by any independent third party — an analyst, journalist, investor partner, or industry body? If so, describe what was said and by whom."
+    helper-text: |
+      Independent validation can include: a named analyst who identified you
+      as a notable player, a press article that described your differentiation,
+      a VC partner who passed but noted your competitive strength, or an
+      industry body that cited your approach as notable. If you have no
+      third-party validation yet, leave this blank — it will not penalise your
+      score and is not expected at pre-seed stage.
+    why-it-matters: |
+      Third-party competitive validation is the most portable form of
+      competitive positioning — shareable in decks, referenceable in meetings,
+      deployable in sales conversations. At pre-seed it is rare and not
+      expected; at Series A it is a meaningful differentiator that reduces
+      the credibility lift required in a VC meeting.
+    validation:
+      min-chars: 0
+      max-chars: 600
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.02
+      rubric-ref: third-party-validation-rubric
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
