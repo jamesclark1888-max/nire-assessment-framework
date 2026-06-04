@@ -1,0 +1,685 @@
+# Dimension 3: Market
+# Recommendation templates
+#
+# Validated against: schema/recommendation.schema.json
+#
+# Each template defines a recommendation triggered by specific scoring conditions
+# and personalised at runtime using the founder's specific data.
+#
+# free-tier-visible: true means the recommendation appears in the free report.
+# Others are paywalled.
+
+dimension: market
+version: 0.1.0
+templates:
+
+  # ─────────────────────────────────────────────────────────────────
+  # TAM too small — critical
+  # ─────────────────────────────────────────────────────────────────
+  - id: tam-too-small
+    trigger:
+      question-ids: [q3.1]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      Your total addressable market figure is below the threshold where most
+      institutional VCs will engage. At this market size, even at high
+      market share and strong margins, the revenue ceiling is insufficient
+      to generate a venture-scale return. This is a structural challenge
+      that pricing and go-to-market cannot fully solve.
+    gap: |
+      Most institutional venture funds require a credible TAM of at least
+      $500M-$1B to engage with a pre-seed or seed-stage company. The figure
+      you've provided falls significantly below this. This means the investment
+      thesis as currently framed cannot produce the returns investors need.
+    fix: |
+      Three paths forward:
+      1. Reframe the market — are you defining the market too narrowly?
+         If your initial product targets a niche, the underlying market it
+         unlocks is often larger. A legal compliance tool for UK accountants
+         is a niche; legal compliance tools for all UK regulated professions
+         is a market.
+      2. Bottom-up rebuild — recalculate TAM from first principles — total
+         number of potential customers globally (or in your target geography)
+         × their average annual spend on this problem. You may find you're
+         underestimating the addressable population.
+      3. Expand scope — are there adjacent customer types or geographies
+         that share the same underlying problem and would buy the same product?
+         Including them may grow the TAM without requiring a different product.
+    evidence: |
+      Institutional VCs apply an implicit returns filter before engaging with
+      any company. A fund targeting $50M returns per deal requires a company
+      capable of reaching $500M+ in exit value. That requires a market large
+      enough to sustain a company of that scale. TAM is the primary filter —
+      most conversations don't start if it doesn't pass.
+    stage-variants:
+      pre-seed:
+        diagnostic: |
+          At pre-seed, a small TAM is a structural problem because the entire
+          investment thesis rests on the market ceiling. Product and traction
+          haven't yet proved the case. Addressing this now — before pitching —
+          saves significant time.
+      series-a:
+        diagnostic: |
+          At Series A, a small TAM is doubly problematic: product and traction
+          now exist, but they can't overcome a structural market ceiling.
+          Series A investors are explicitly modelling exit value — they will
+          ask this question in the first meeting.
+
+  # ─────────────────────────────────────────────────────────────────
+  # TAM borderline
+  # ─────────────────────────────────────────────────────────────────
+  - id: tam-borderline
+    trigger:
+      question-ids: [q3.1]
+      score-band: medium
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your TAM is in the zone where some VCs will engage and others will
+      pass on market size alone. The investment thesis is viable but requires
+      a compelling articulation of either a path to a larger market over time,
+      or a reason why this niche is structurally high-margin and defensible.
+    gap: |
+      A borderline TAM requires supplementary narrative. Without it, market
+      size will be a recurring friction point in fundraising conversations.
+    fix: |
+      Add one of these elements to your market narrative:
+      1. Expansion map — show that the initial market is a wedge into a
+         larger territory — name the adjacencies that compound the TAM.
+      2. Long-term market growth — if the market is growing at >15% CAGR,
+         the forward TAM in 5 years is materially larger. Show the 2030 figure.
+      3. High-margin niche thesis — some VCs will back a company in a
+         smaller, highly concentrated market if the gross margin and
+         defensibility are exceptional. If this applies, make that case explicitly.
+    evidence: |
+      Borderline TAMs are common for vertical SaaS companies attacking a
+      specific regulated niche. The most successful of these — Veeva in
+      pharma, nCino in banking — led with the niche thesis and used market
+      share within the vertical as the proof point before expanding.
+    estimated-impact:
+      dimension-score-uplift: 10
+      confidence: medium
+
+  # ─────────────────────────────────────────────────────────────────
+  # TAM methodology — weak
+  # ─────────────────────────────────────────────────────────────────
+  - id: weak-tam-methodology
+    trigger:
+      question-ids: [q3.2]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      Your TAM methodology relies primarily on analyst reports without
+      interrogating the assumptions behind them, or does not show any
+      derivation at all. VCs will ask "how did you get to this number?"
+      in every meeting. A methodology that cannot survive that question
+      undermines the entire market narrative.
+    gap: |
+      You haven't demonstrated that you understand the building blocks of
+      your market well enough to derive the TAM from first principles. This
+      signals a gap in customer knowledge — the same conversations that
+      produce a bottom-up TAM also produce the customer understanding needed
+      for product and pricing decisions.
+    fix: |
+      Rebuild your TAM using this bottom-up structure:
+      1. Define your target customer precisely — role, company size, sector,
+         geography — the same customer definition as your ICP
+      2. Count the addressable population — how many of this customer type
+         exist? Use LinkedIn, industry directories, census data, or company
+         databases to get a defensible number
+      3. Estimate their annual spend on this problem — what does a customer
+         currently spend (in money, time × cost, or software) addressing this
+         problem? Derive this from customer conversations, not assumptions
+      4. Multiply and state your assumptions — population × spend =
+         TAM. State each assumption clearly so a VC can challenge specific
+         ones rather than the whole number
+      This process typically takes one full day. The customer conversations
+      it requires are the same ones that sharpen product and pricing decisions.
+    evidence: |
+      Founders who can defend every number in their TAM calculation from first
+      principles are materially more credible in VC meetings. The process of
+      building a bottom-up TAM forces the customer conversations that most
+      pre-seed founders haven't yet had — making it one of the highest-leverage
+      activities before a fundraise.
+    stage-variants:
+      pre-seed:
+        fix: |
+          At pre-seed, a rough bottom-up calculation with clearly stated
+          assumptions is far more credible than a polished analyst report
+          citation. Show your working even if the numbers are approximate.
+      series-a:
+        diagnostic: |
+          At Series A, an undefended TAM is a serious credibility risk. By
+          this stage, a founder should have refined the market view through
+          18-24 months of direct customer data. Investor diligence at Series A
+          will specifically probe whether the TAM is validated by actual pipeline.
+
+  # ─────────────────────────────────────────────────────────────────
+  # TAM methodology — improvable
+  # ─────────────────────────────────────────────────────────────────
+  - id: improvable-tam-methodology
+    trigger:
+      question-ids: [q3.2]
+      score-band: medium
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your TAM methodology shows some bottom-up reasoning, but is missing
+      either the source for a key assumption, a named customer count, or
+      a specific price point derived from customer conversations rather
+      than estimate.
+    gap: |
+      The methodology is directionally right but has one or more unanchored
+      assumptions — inputs that a sceptic could challenge without you having
+      a specific answer.
+    fix: |
+      Identify the weakest assumption in your current calculation — typically
+      the price point or the population count — and ground it in direct
+      evidence:
+      - Price point — do you have customer conversations where someone
+        named what they currently spend on this problem? That's your anchor.
+      - Population count — have you verified the count using a specific
+        data source (LinkedIn, company directory, regulatory register)?
+        Name the source in your methodology.
+      One stronger assumption makes the whole methodology more defensible.
+    evidence: |
+      VCs who push back on TAM are almost always pushing back on a specific
+      assumption, not the whole calculation. Knowing which assumption is
+      weakest — and having a prepared answer — is the difference between a
+      deflection and a conviction.
+    estimated-impact:
+      dimension-score-uplift: 8
+      confidence: medium
+
+  # ─────────────────────────────────────────────────────────────────
+  # SAM undefined or tiny
+  # ─────────────────────────────────────────────────────────────────
+  - id: sam-undefined-or-tiny
+    trigger:
+      question-ids: [q3.3]
+      score-band: low
+    priority: high
+    free-tier-visible: true
+    diagnostic: |
+      Your serviceable addressable market figure is either undefined or
+      very small relative to what your current product and go-to-market
+      could pursue. This means your near-term revenue opportunity is limited
+      regardless of TAM, and the path from current state to venture-scale
+      revenue is unclear.
+    gap: |
+      A tiny SAM means that even near-100% penetration of your addressable
+      market produces insufficient revenue to justify institutional investment
+      or the growth rate VCs expect. This is a product scoping or GTM
+      positioning issue as much as a market question.
+    fix: |
+      Reconsider what "serviceable" means for your current product:
+      1. Have you scoped the SAM too narrowly — excluding customer types
+         who could use the product with minimal adaptation?
+      2. Have you excluded adjacent geographies that your current GTM
+         can reach without significant additional investment?
+      3. Is your SAM a subset of TAM for reasons of product completeness —
+         features you're not yet building — that could be included in the
+         roadmap with a clear timeline?
+      The goal is a SAM that is both achievable with the current product
+      and large enough to justify the investment thesis on its own.
+
+  # ─────────────────────────────────────────────────────────────────
+  # SOM unrealistic
+  # ─────────────────────────────────────────────────────────────────
+  - id: som-unrealistic
+    trigger:
+      question-ids: [q3.4]
+      score-band: low
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your Year-3 revenue target is either far too low relative to the
+      market you've described and the investment you're raising, or it
+      implies an unrealistic market penetration rate without a structural
+      reason for it (regulatory mandate, exclusive distribution, network
+      effects, or similar). Either version creates a credibility problem.
+    gap: |
+      An SOM that is too low relative to investment asked signals that
+      the founders haven't modelled the business from the demand side.
+      An SOM that implies implausible market share signals wishful thinking
+      over rigorous bottom-up revenue modelling.
+    fix: |
+      Rebuild your Year-3 target from the bottom up:
+      1. Sales capacity — how many salespeople will you have by Year 3,
+         and how many deals can each close per year at your expected ACV?
+      2. Sales cycle — how long is your sales cycle, and what does that
+         imply for deals closed from now to Year 3?
+      3. Churn and expansion — what does your net revenue retention look
+         like, and how does expansion revenue compound your ARR?
+      The resulting number is your bottom-up SOM. It will almost always
+      be more defensible than a top-down percentage of TAM.
+    estimated-impact:
+      dimension-score-uplift: 7
+      confidence: medium
+
+  # ─────────────────────────────────────────────────────────────────
+  # Declining market
+  # ─────────────────────────────────────────────────────────────────
+  - id: declining-market
+    trigger:
+      question-ids: [q3.5]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      Your target market is flat or declining. This is not a disqualifier
+      in every case, but it requires a specific and compelling investment
+      thesis that most market-growth-oriented VCs will not accept without
+      explicit articulation. A declining market means you must grow by
+      taking share — not by riding tailwinds — which is harder and
+      more capital-intensive.
+    gap: |
+      In a declining or flat market, every revenue pound comes from taking
+      a competitor's customer, not from new market entrants. This increases
+      customer acquisition cost, extends sales cycles, and reduces pricing
+      power. Without a thesis for why this dynamic is acceptable or
+      surmountable, the investment case is structurally weak.
+    fix: |
+      If your market is declining but you're still building in it, make
+      the displacement thesis explicit:
+      1. Obsolescence play — a legacy incumbent is declining, but the
+         underlying need is not. Name the incumbent and explain why
+         you — not another challenger — will capture the switching cohort.
+      2. Regulatory reset — a regulation is forcing the market to
+         restructure. The incumbent cannot adapt; you are purpose-built
+         for the new requirement.
+      3. Segment growth within a declining market — name the specific
+         sub-segment that is growing (e.g. the enterprise tier within
+         a declining SMB market) and restrict your TAM to that.
+      If none of these apply, a declining market is a fundamental thesis
+      challenge worth addressing before raising.
+    evidence: |
+      Disruption plays in declining markets do produce exceptional returns —
+      the most cited examples (Netflix in declining DVD, Stripe in declining
+      payment processing margins) all required explicit market displacement
+      theses. Without one, declining-market plays are dismissed by most
+      growth-oriented VC funds.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Slow market growth
+  # ─────────────────────────────────────────────────────────────────
+  - id: slow-market-growth
+    trigger:
+      question-ids: [q3.5]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your market is growing, but below the rate that most growth-stage
+      VCs consider optimal for a venture-backed company. Slow-growth markets
+      produce lower multiple exits and require the company to grow faster
+      than the market — primarily through market share capture — rather
+      than riding a structural tailwind.
+    gap: |
+      In a slow-growth market, the company's growth rate depends more on
+      go-to-market effectiveness than on natural market expansion. This is
+      achievable but requires a stronger GTM thesis and more capital-efficient
+      customer acquisition than a high-growth market.
+    fix: |
+      Two ways to strengthen the market narrative:
+      1. Redefine the market — are you measuring the CAGR of the right
+         segment? Fast-growing sub-segments often exist within slow-growing
+         broad markets. Identify and quantify the specific cohort growing
+         fastest.
+      2. Macro tailwind — are there structural forces — regulation,
+         demographic change, technology shift — that will compress this
+         market's slow growth into a shorter period of faster acceleration?
+         If so, make this explicit.
+    estimated-impact:
+      dimension-score-uplift: 5
+      confidence: low
+
+  # ─────────────────────────────────────────────────────────────────
+  # Vague customer segment
+  # ─────────────────────────────────────────────────────────────────
+  - id: vague-customer-segment
+    trigger:
+      question-ids: [q3.6]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      Your primary customer segment is described at a level of generality
+      that makes it impossible to build a targeted go-to-market strategy
+      or a meaningful ICP. Descriptions like "SMBs", "enterprises in regulated
+      industries", or "B2B companies" describe hundreds of thousands of
+      companies, not a specific segment you can win.
+    gap: |
+      Without a precise customer segment, your marketing, sales, and product
+      decisions lack a shared target. Every dollar spent on customer
+      acquisition is split across too many potential buyers. This is one
+      of the most consistent predictors of slow go-to-market progress in
+      early-stage companies.
+    fix: |
+      Narrow your segment description using this structure:
+      1. Who (specific role or buyer persona): not "operations teams"
+         but "Head of Operations" or "VP of Supply Chain"
+      2. What company (size + sector + situation): not "mid-market"
+         but "50-500 employee UK manufacturing companies with multi-site
+         operations and no current ERP"
+      3. When (trigger event): not "when they have a problem" but
+         "when they win a new contract that requires supplier accreditation
+         they don't currently have"
+      A segment defined this precisely takes 30 minutes to write and
+      immediately makes your go-to-market 10x easier to execute.
+    evidence: |
+      The most common cause of slow sales in early-stage companies is
+      not the wrong product — it's the wrong ICP. Founders who have a
+      precise, specific segment description close faster, write better
+      outbound, produce clearer product roadmaps, and onboard customers
+      more predictably. It is arguably the single highest-leverage output
+      of customer discovery work.
+    stage-variants:
+      pre-seed:
+        fix: |
+          At pre-seed, you may not have enough data to fully validate your
+          segment. That is acceptable — but write your best hypothesis as
+          specifically as possible, and plan to test it with 10 customer
+          conversations in the next 30 days. A wrong-but-specific hypothesis
+          is easier to correct than a vague one.
+      series-a:
+        diagnostic: |
+          At Series A, a vague customer segment is a serious credibility risk.
+          You should have 12-18 months of customer data that has sharpened your
+          ICP considerably. If your segment description is still generic, it
+          suggests the team hasn't extracted the pattern from their customer base.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Customer segment improvable
+  # ─────────────────────────────────────────────────────────────────
+  - id: improvable-customer-segment
+    trigger:
+      question-ids: [q3.6]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your customer segment has good bones — a named role or industry —
+      but is missing either the situational qualifier (what company context
+      applies) or the trigger event (what causes this buyer to start looking
+      for a solution). These are the two details that most transform a segment
+      description from good to great.
+    gap: |
+      A segment without a trigger event describes a type of customer; a
+      segment with a trigger event describes a buying moment. The latter
+      is 5-10x more useful for go-to-market targeting.
+    fix: |
+      Add the missing element:
+      - If you have the role but not the context — add company size,
+        revenue stage, sector, or geographic qualifier that defines which
+        members of this role are actually your buyers.
+      - If you have the role and context but not the trigger — interview
+        your best existing customers and ask "what was happening inside your
+        company in the six weeks before you decided to look for a solution?"
+        The trigger event almost always surfaces in those conversations.
+    estimated-impact:
+      dimension-score-uplift: 7
+      confidence: medium
+
+  # ─────────────────────────────────────────────────────────────────
+  # Weak ICP
+  # ─────────────────────────────────────────────────────────────────
+  - id: weak-icp
+    trigger:
+      question-ids: [q3.7]
+      score-band: low
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your ideal customer profile describes firmographics — company size,
+      sector, geography — without capturing the buyer's internal motivations,
+      fears, or the specific trigger event that causes them to seek a
+      solution. A firmographic ICP is a starting point, not a finished one.
+    gap: |
+      Firmographic ICPs produce generic outbound that converts poorly. They
+      tell you who your customers are, but not why they buy or when they
+      are ready to buy — the two inputs that determine conversion rates.
+    fix: |
+      Interview your best 3-5 existing customers or most engaged prospects
+      and ask:
+      1. "What was happening inside your company in the 6 weeks before you
+         started looking for a solution to this problem?"
+      2. "What were you most afraid would happen if you didn't solve it?"
+      3. "What would success look like for you personally in 6 months?"
+      The patterns across these answers are your psychographic ICP. Write
+      them up and test them against your next outbound campaign — you will
+      see measurably better response rates.
+    evidence: |
+      Psychographic ICPs consistently produce higher outbound response rates,
+      shorter sales cycles, and lower churn than firmographic ones. They are
+      the foundation of every successful demand generation playbook in
+      B2B SaaS and the primary differentiator between early-stage companies
+      that grow quickly and those that plateau.
+    estimated-impact:
+      dimension-score-uplift: 6
+      confidence: medium
+
+  # ─────────────────────────────────────────────────────────────────
+  # Weak market timing
+  # ─────────────────────────────────────────────────────────────────
+  - id: weak-market-timing
+    trigger:
+      question-ids: [q3.8]
+      score-band: low
+    priority: high
+    free-tier-visible: true
+    diagnostic: |
+      Your market timing argument relies on general trend language —
+      references to AI, digital transformation, or broad market maturity —
+      rather than a named, specific catalyst. VCs hear these trend references
+      hundreds of times per year and treat them as a marker of generic
+      thinking rather than specific market intelligence.
+    gap: |
+      Without a named catalyst, your "why now" answer is indistinguishable
+      from the answers of dozens of other companies in the same space.
+      It doesn't explain why this specific company is being built at this
+      specific moment — which is ultimately what the question is asking.
+    fix: |
+      Look for your timing catalyst in one of these places:
+      1. Enabling technology — has a specific tool, API, capability, or
+         cost threshold become available recently that makes your product
+         possible or economically viable for the first time? Name it and
+         quantify the change.
+      2. Regulatory shift — has a law passed, a deadline arrived, or a
+         regulator issued guidance that creates a compliance need your
+         product addresses? Name the regulation and the effective date.
+      3. Incumbent failure or withdrawal — has a dominant player raised
+         prices dramatically, sunset a product, or failed in a way that
+         creates an addressable switching cohort? Name the company and
+         the event.
+      4. Behaviour shift — has a specific, large-scale behaviour change
+         (remote work, mobile-first adoption, a demographic transition)
+         created your customer segment in a way that didn't exist before?
+         Name and quantify the shift.
+    evidence: |
+      The "why now" question is asked in virtually every VC meeting. Founders
+      who can name a specific, verifiable catalyst signal market intelligence
+      that separates them from consensus-thinking competitors. It is the
+      fastest way to establish credibility on market timing in the first five
+      minutes of a meeting.
+    stage-variants:
+      pre-seed:
+        fix: |
+          At pre-seed, any named catalyst with basic evidence — a news article,
+          a regulation text, a public pricing change — is sufficient to establish
+          credible timing.
+      series-a:
+        fix: |
+          At Series A, your timing argument should have strengthened with 12-18
+          months of market data. What has happened since you founded that further
+          validates the moment? New competitive dynamics, new regulatory developments,
+          or measurable customer adoption curves all strengthen the case.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Market timing improvable
+  # ─────────────────────────────────────────────────────────────────
+  - id: improvable-market-timing
+    trigger:
+      question-ids: [q3.8]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your timing thesis names a catalyst but doesn't fully demonstrate
+      its impact, quantify the change, or explain why this catalyst specifically
+      advantages your approach over a general market response.
+    gap: |
+      A named catalyst is the floor. The ceiling is connecting the catalyst
+      explicitly to why it makes this company — not a competitor — the right
+      response at this moment.
+    fix: |
+      Sharpen with two additions:
+      1. Quantify the change — how large is the shift? "Inference costs
+         fell 40x" beats "inference costs fell". "The EU AI Act affects
+         12,000 companies" beats "a regulation was passed".
+      2. Connect it to your specific solution — why does this change
+         specifically advantage your approach? What would a competitor
+         need to do differently to respond that you don't?
+    estimated-impact:
+      dimension-score-uplift: 6
+      confidence: medium
+
+  # ─────────────────────────────────────────────────────────────────
+  # Weak market validation
+  # ─────────────────────────────────────────────────────────────────
+  - id: weak-market-validation
+    trigger:
+      question-ids: [q3.9]
+      score-band: low
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your market validation evidence is thin or relies entirely on secondary
+      sources — analyst reports, market research, or general trend data. At
+      this evidence level, you're asserting market demand rather than
+      demonstrating it. VCs fund demonstrated demand, not asserted demand,
+      and the gap between the two is a primary filter at every stage.
+    gap: |
+      The absence of direct market-level signals — conversations where
+      someone confirmed they are actively seeking a solution, pre-sales,
+      LOIs, or competitor traction data — means you are asking investors to
+      take a hypothesis on faith. Most will not.
+    fix: |
+      Acquire one primary market validation signal before your raise:
+      1. Fastest (1-2 weeks) — call 10 people who match your ICP and ask
+         "are you actively looking for a solution to [problem]? What have you
+         tried?" A pattern of yes answers with active search behaviour is a
+         primary market signal.
+      2. Most powerful (variable) — get one customer to commit to a pilot
+         with a nominal fee or a letter of intent. Payment of any amount is
+         the cleanest market validation signal available to pre-seed founders.
+      3. Proxy signal — document competitor traction — customer growth
+         data, press releases, LinkedIn job postings — as evidence that the
+         market is buying from someone, even if not yet from you.
+      Document everything and frame it as market evidence, not product
+      evidence. The distinction matters in VC meetings.
+
+  # ─────────────────────────────────────────────────────────────────
+  # Market validation improvable
+  # ─────────────────────────────────────────────────────────────────
+  - id: improvable-market-validation
+    trigger:
+      question-ids: [q3.9]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      You have market validation evidence, but it is concentrated in a single
+      type or source. Multiple independent signal types — especially when they
+      point to the same conclusion — are materially more credible than depth
+      in one source.
+    gap: |
+      A second independent validation signal, particularly one of a different
+      type than your current strongest signal, would meaningfully strengthen
+      the market narrative.
+    fix: |
+      If your strongest current signal is qualitative (customer interviews),
+      pursue a quantitative one: a pilot, a pre-sale, or competitor revenue
+      data. If your strongest signal is your own product traction, add a
+      market-level signal: evidence that customers are actively searching for
+      solutions (competitor growth, LinkedIn searches, community discussion).
+      One additional corroborating signal makes the validation story
+      materially stronger.
+    estimated-impact:
+      dimension-score-uplift: 6
+      confidence: medium
+
+  # ─────────────────────────────────────────────────────────────────
+  # No market analogues
+  # ─────────────────────────────────────────────────────────────────
+  - id: no-market-analogues
+    trigger:
+      question-ids: [q3.10]
+      score-band: low
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      You haven't provided credible structural market analogues, or the
+      analogues you've named are too large and generic to be informative
+      ("our market is like Amazon's"). Without specific structural analogues,
+      VCs cannot rapidly contextualise the opportunity, the likely competitive
+      dynamics, or the exit path.
+    gap: |
+      A well-chosen analogue does two things for a VC: it rapidly orients
+      them to the scale and dynamics of your market, and it provides a
+      reference point for return potential. Missing or poor analogues slow
+      down the orientation process in meetings and reduce conviction.
+    fix: |
+      Spend 30 minutes finding structural analogues using this process:
+      1. Who are the most successful companies in adjacent markets that
+         share your key structural characteristics — same buyer role,
+         similar deal size, same sales motion?
+      2. What specific structural feature makes them analogous — is it
+         the wedge strategy, the network effect, the regulatory angle,
+         the vertical SaaS model, the data flywheel?
+      3. What lesson does their trajectory teach about timing, go-to-market,
+         or competitive sequencing that applies to your company?
+      Two well-chosen analogues with explicit structural reasoning are
+      far more useful than five superficial ones.
+    estimated-impact:
+      dimension-score-uplift: 4
+      confidence: low
+
+  # ─────────────────────────────────────────────────────────────────
+  # Limited adjacent vision
+  # ─────────────────────────────────────────────────────────────────
+  - id: limited-adjacent-vision
+    trigger:
+      question-ids: [q3.12]
+      score-band: low
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your adjacent expansion narrative either doesn't exist or describes
+      expansions without a coherent structural logic connecting them to your
+      beachhead. This limits the venture-scale narrative, particularly if your
+      initial market is at the lower end of what most VCs would consider fundable.
+    gap: |
+      Without a clear expansion map, VCs model your company as constrained
+      to its initial market. If that market produces a $50-100M revenue
+      ceiling, most institutional investors cannot justify the investment
+      without a credible path to a larger opportunity.
+    fix: |
+      Work through this adjacency mapping process:
+      1. Who else has this problem? Which other customer types or
+         industries share the underlying problem your product solves —
+         even if it needs surface adaptation?
+      2. What adjacent problems does your customer have? Once you own
+         a workflow, what upstream or downstream problems in the same
+         customer journey become addressable?
+      3. What does your data or distribution enable? Does the data
+         your product generates, or the customer relationships it creates,
+         provide a unique position from which to serve adjacent needs?
+      Map the adjacencies in order of closeness to your beachhead and
+      state the structural logic for each connection.
+    estimated-impact:
+      dimension-score-uplift: 5
+      confidence: low

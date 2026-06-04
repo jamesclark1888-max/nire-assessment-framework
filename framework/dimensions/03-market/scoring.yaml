@@ -1,0 +1,584 @@
+# Dimension 3: Market
+# Scoring rules and rubrics
+#
+# Validated against: schema/scoring-rule.schema.json
+#
+# Each rule defines how a raw answer is converted into a 0-100 score.
+# Rule IDs match the rubric-ref or benchmark-ref values in questions.yaml.
+#
+# Default thresholds for quantitative questions are resolved at runtime
+# against the founder's stage using benchmarks/global.yaml.
+
+dimension: market
+version: 0.1.0
+rules:
+
+  # ─────────────────────────────────────────────────────────────────
+  # TAM size (q3.1)
+  # ─────────────────────────────────────────────────────────────────
+  - id: tam-size-by-stage
+    applies-to-question: q3.1
+    description: |
+      Maps TAM in USD millions to a score. Thresholds represent global defaults
+      for pre-seed; resolved at runtime against actual stage using
+      benchmarks/global.yaml. Markets below $500M rarely support venture-scale
+      returns and score in the 20-55 band as a result.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 100
+          score: 20
+        - min: 101
+          max: 500
+          score: 45
+        - min: 501
+          max: 1000
+          score: 65
+        - min: 1001
+          max: 5000
+          score: 82
+        - min: 5001
+          max: 20000
+          score: 93
+        - min: 20001
+          max: null
+          score: 100
+
+  # ─────────────────────────────────────────────────────────────────
+  # TAM methodology (q3.2)
+  # ─────────────────────────────────────────────────────────────────
+  - id: tam-methodology-rubric
+    applies-to-question: q3.2
+    description: |
+      AI-evaluated qualitative scoring for how the TAM was derived.
+      The highest-weight required question in this dimension. Rewards
+      bottom-up reasoning from customer-level unit economics; penalises
+      uncritical use of analyst-report figures.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: bottom-up-reasoning
+            weight: 0.35
+            description: |
+              Does the founder derive TAM from customer-level unit economics —
+              number of potential customers × average contract value or annual
+              spend — rather than citing an analyst report figure and multiplying?
+              Bottom-up methodology is the strongest signal of market rigour.
+              Strong: "We identified 45,000 mid-market logistics firms in the UK
+              and EU. Average annual spend on this workflow is £28,000 per firm,
+              giving a TAM of £1.26B for this geography alone."
+              Weak: "According to Gartner, the global logistics software market
+              is $18B by 2028, and we are targeting 3% of that."
+            examples-strong:
+              - "We count 120,000 independent accountancy practices in the UK. Each spends roughly £4,200 annually on compliance tooling. That gives a UK TAM of ~£500M for the addressable segment."
+              - "Our SAM is US mid-market HR teams at 200-2,000 person companies. There are ~18,000 such companies; our ACV would be $25,000; so the SAM is ~$450M."
+            examples-weak:
+              - "IDC reports the global HR tech market at $35B and growing at 11% CAGR. We are targeting a conservative 2% share."
+              - "The market is large and growing — Gartner estimates $12B by 2027."
+          - name: source-quality
+            weight: 0.25
+            description: |
+              Are the inputs grounded in primary research (the founder's own
+              customer conversations, pricing experiments, company counts from
+              databases) or secondary sources (analyst reports, web articles)?
+              Mixed sourcing (own research + named independent data) scores well.
+              Sole reliance on one analyst report without interrogation scores low.
+          - name: assumption-specificity
+            weight: 0.25
+            description: |
+              Are the assumptions in the calculation named explicitly — customer
+              count, price point, penetration rate, addressable geography?
+              Or are they left implicit? A methodology with named, challengeable
+              assumptions is far more credible in VC diligence than a black-box
+              number from a report. The founder should be able to defend each
+              assumption when challenged.
+          - name: falsifiability
+            weight: 0.15
+            description: |
+              Could a sceptic identify a specific assumption in the methodology
+              and challenge it with evidence? The strongest methodologies are
+              the most falsifiable — each assumption is stated clearly enough
+              that someone could prove it wrong. A methodology that is impossible
+              to challenge because its inputs are unverifiable is weaker than one
+              with challengeable, named assumptions.
+        score-bounds:
+          min: 20
+          max: 95
+
+  # ─────────────────────────────────────────────────────────────────
+  # SAM (q3.3)
+  # ─────────────────────────────────────────────────────────────────
+  - id: sam-size-global
+    applies-to-question: q3.3
+    description: |
+      Maps SAM in USD millions to a score. SAM represents the subset of
+      the TAM that is realistically addressable with the current product
+      and GTM motion. The runtime system also checks SAM/TAM ratio; a SAM
+      equal to the TAM is a scoring flag independent of absolute size.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 10
+          score: 20
+        - min: 11
+          max: 50
+          score: 42
+        - min: 51
+          max: 200
+          score: 63
+        - min: 201
+          max: 500
+          score: 78
+        - min: 501
+          max: null
+          score: 92
+
+  # ─────────────────────────────────────────────────────────────────
+  # SOM / Year-3 target (q3.4)
+  # ─────────────────────────────────────────────────────────────────
+  - id: som-target-by-stage
+    applies-to-question: q3.4
+    description: |
+      Maps Year-3 revenue target in USD millions to a score. Resolved at
+      runtime against stage; pre-seed expectations are lower than Series A.
+      A Year-3 target of $0 or near-zero is a critical gap. Very high targets
+      relative to stage are scored on plausibility, not ambition.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 0.5
+          score: 15
+        - min: 0.51
+          max: 2
+          score: 45
+        - min: 2.01
+          max: 10
+          score: 68
+        - min: 10.01
+          max: 50
+          score: 83
+        - min: 50.01
+          max: null
+          score: 93
+
+  # ─────────────────────────────────────────────────────────────────
+  # Market growth rate (q3.5)
+  # ─────────────────────────────────────────────────────────────────
+  - id: market-growth-rate-global
+    applies-to-question: q3.5
+    description: |
+      Maps market CAGR (%) to a score. Declining markets (≤0%) are a
+      significant risk flag — they require a compelling displacement thesis
+      to justify investment. Markets growing >20% CAGR are disproportionately
+      represented in successful venture portfolios.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 0
+          score: 20
+        - min: 1
+          max: 5
+          score: 38
+        - min: 6
+          max: 12
+          score: 60
+        - min: 13
+          max: 20
+          score: 78
+        - min: 21
+          max: 40
+          score: 90
+        - min: 41
+          max: null
+          score: 100
+
+  # ─────────────────────────────────────────────────────────────────
+  # Primary customer segment (q3.6)
+  # ─────────────────────────────────────────────────────────────────
+  - id: customer-segment-rubric
+    applies-to-question: q3.6
+    description: |
+      AI-evaluated scoring of segment precision. Rewards named, specific
+      buyer personas grounded in discovery. Penalises generic descriptions
+      that could apply to any company in the sector.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: precision
+            weight: 0.45
+            description: |
+              How specifically is the segment defined? The strongest answers
+              include at minimum: who (role), what company context (size,
+              sector, or situation), and ideally the trigger event that causes
+              them to seek a solution now.
+              Strong: "Head of Finance at UK SaaS companies between 50 and 200
+              headcount who are closing their Series A and need to migrate from
+              founder-managed spreadsheets to a finance system before their new
+              investors' first board pack is due."
+              Weak: "B2B companies looking to improve their financial operations."
+            examples-strong:
+              - "Head of People at US Series A-B tech companies (100-500 employees) who have just hired their first CHRO and need to build out their compensation benchmarking process."
+              - "Solo-founder accountants in the UK aged 35-55 who are growing beyond their own capacity and need practice management software, triggered when they hire their first employee."
+            examples-weak:
+              - "SMBs that need better data management."
+              - "Enterprise companies in regulated industries."
+          - name: evidence-grounding
+            weight: 0.35
+            description: |
+              Does the segment description read as derived from real customer
+              conversations — with specific language, a named trigger event,
+              or a verifiable characteristic — or is it an assumption? A
+              segment with a named trigger event ("when they raise a Series A")
+              almost always reflects direct discovery work. A purely demographic
+              description without a trigger event often reflects hypothesis.
+          - name: vc-repeatability
+            weight: 0.20
+            description: |
+              Could a VC repeat this segment description accurately and relay
+              it in a partner meeting — "They're going after X who Y in situation Z"?
+              If the description is too vague to repeat precisely, or too complex
+              to summarise in one sentence, it will not survive the relay from
+              deal partner to investment committee.
+        score-bounds:
+          min: 25
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # ICP depth (q3.7)
+  # ─────────────────────────────────────────────────────────────────
+  - id: icp-depth-rubric
+    applies-to-question: q3.7
+    description: |
+      AI-evaluated scoring for depth of ideal customer profile knowledge.
+      Rewards psychographic and situational depth over firmographic breadth.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: psychographic-depth
+            weight: 0.40
+            description: |
+              Does the answer describe the buyer's motivations, fears, and
+              what success looks like for them personally — not just their
+              company characteristics? The strongest answers include what the
+              buyer is trying to avoid (a risk, a failure mode, a political
+              consequence) as well as what they want to achieve.
+          - name: trigger-event-clarity
+            weight: 0.35
+            description: |
+              Is there a named trigger event that causes this customer to start
+              looking for a solution? The trigger event is the most specific
+              and actionable element of an ICP — it tells the company exactly
+              when and how to reach buyers. Founders who have one have almost
+              always found it through direct customer conversations.
+          - name: discovery-groundedness
+            weight: 0.25
+            description: |
+              Does the description reference specific customers, roles, or
+              situations that suggest it was derived from direct conversations?
+              Or does it read as a hypothesis about who the customer should be?
+              A strong ICP is specific enough to suggest real discovery work.
+        score-bounds:
+          min: 25
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Market timing thesis (q3.8)
+  # ─────────────────────────────────────────────────────────────────
+  - id: market-timing-rubric
+    applies-to-question: q3.8
+    description: |
+      AI-evaluated scoring for the market timing argument. Rewards named,
+      specific, quantified catalysts. Penalises generic trend language that
+      applies to hundreds of companies simultaneously.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: named-catalyst
+            weight: 0.40
+            description: |
+              Is there a named, specific catalyst — a regulation, a technology
+              threshold crossed, a demographic shift, a major incumbent failure —
+              rather than a reference to broad macro trends?
+              Strong: "The EU AI Act (effective August 2026) now mandates
+              explainability for automated credit decisions. No incumbent
+              is compliant. We are the only purpose-built solution for this
+              requirement."
+              Strong: "LLM inference costs have fallen 40x in 18 months. The
+              unit economics that made our product unviable in 2023 now
+              produce a 68% gross margin."
+              Weak: "AI is transforming the industry."
+              Weak: "Digital transformation is accelerating."
+            examples-strong:
+              - "Remote work normalised async-first workflows in 50,000 US companies. The tools built for synchronous offices are now actively failing them, and IT spend has shifted."
+              - "The UK FCA's Consumer Duty (live July 2023) requires financial advisers to evidence fair value outcomes. Advisers who can't demonstrate this face licence risk — and no existing software does it."
+            examples-weak:
+              - "The market is ready for a new solution in this space."
+              - "Technology has advanced to make this possible now."
+          - name: evidence-of-change
+            weight: 0.35
+            description: |
+              Is the change described with specific evidence — a regulatory
+              text, a data point, a named company failure, a measurable
+              behaviour shift? Or is it asserted without support? Quantified
+              evidence is the strongest form; named events are second; general
+              directional claims are weakest.
+          - name: competitive-window
+            weight: 0.25
+            description: |
+              Does the timing argument imply a window — a period in which the
+              opportunity exists before it closes or becomes crowded? Or is the
+              argument that the market exists regardless of timing? The former
+              creates urgency for the VC; the latter requires a different
+              investment thesis (size of opportunity, not timing of opportunity).
+        score-bounds:
+          min: 20
+          max: 95
+
+  # ─────────────────────────────────────────────────────────────────
+  # Market validation evidence (q3.9)
+  # ─────────────────────────────────────────────────────────────────
+  - id: market-validation-rubric
+    applies-to-question: q3.9
+    description: |
+      AI-evaluated scoring of market-level demand evidence. Distinguishes
+      market pull (customers seeking any solution) from product pull (customers
+      using this specific product). Both are valuable; the former is rarer
+      and more credible as a standalone thesis.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: evidence-quality
+            weight: 0.40
+            description: |
+              Are the strongest evidence signals high-quality (paying customers,
+              signed LOIs, competitor revenue/growth as market proxy, regulatory
+              mandates) or low-quality (surveys, secondary market reports, personal
+              experience)? High-quality market-level evidence is rare at pre-seed
+              and highly differentiating. Low-quality signals are expected and
+              not disqualifying, but they must be clearly identified as such.
+          - name: evidence-independence
+            weight: 0.35
+            description: |
+              Are multiple independent sources pointing to the same market demand?
+              A single source is a finding; two or more independent sources
+              pointing to the same conclusion are a pattern. Founders who have
+              corroborating signals from different evidence types — interviews
+              confirming willingness to pay AND competitor traction — are
+              significantly more credible than those with a single data point.
+          - name: market-vs-product-distinction
+            weight: 0.25
+            description: |
+              Does the founder correctly distinguish between evidence that the
+              MARKET has demand (people are actively seeking a solution) and
+              evidence that their PRODUCT has traction? Market-level evidence
+              is harder to acquire at pre-seed and more valuable as a standalone
+              argument. Conflating the two is a credibility risk in diligence.
+        score-bounds:
+          min: 20
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Market analogues (q3.10)
+  # ─────────────────────────────────────────────────────────────────
+  - id: market-analogues-rubric
+    applies-to-question: q3.10
+    description: |
+      AI-evaluated scoring for quality and specificity of market analogues.
+      Rewards structural analogies with explicit lessons drawn. Penalises
+      superficial naming of large companies without structural comparison.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: structural-relevance
+            weight: 0.40
+            description: |
+              Is each analogue structurally similar in a meaningful way —
+              same buying dynamic, similar competitive sequencing, same
+              regulatory context, same CAC/LTV profile? Or is the comparison
+              based on surface characteristics (same industry, similar
+              product description) without structural depth? The more precisely
+              the structural similarity is explained, the higher the score.
+          - name: applied-learning
+            weight: 0.40
+            description: |
+              Does the founder draw specific, actionable lessons from each
+              analogue — what the analogous company did right, what they got
+              wrong, and how those lessons inform this company's approach?
+              Naming Veeva Systems scores far higher than naming Veeva Systems
+              and explaining that vertical SaaS requires winning one sub-segment
+              deeply before attempting horizontal expansion.
+          - name: specificity
+            weight: 0.20
+            description: |
+              Are the analogues named and specific — named companies, named
+              markets — rather than category references? "Enterprise SaaS
+              companies" is a category; "Procore's construction-sector wedge
+              into adjacent ERP workflows" is a named, specific analogue that
+              signals genuine market intelligence.
+        score-bounds:
+          min: 25
+          max: 85
+
+  # ─────────────────────────────────────────────────────────────────
+  # Market structure (q3.11)
+  # ─────────────────────────────────────────────────────────────────
+  - id: market-structure-categorical
+    applies-to-question: q3.11
+    description: |
+      Maps stated market structure to a score. Fragmented markets score
+      highest because they present the best entry opportunity for new
+      entrants. Crowded-undifferentiated markets score lowest because
+      price-based competition compresses margins and makes differentiation
+      difficult. This is primarily informational; the score modifies
+      how the recommendation engine weights GTM readiness in D6.
+    logic:
+      type: mapping
+      mapping:
+        fragmented: 80
+        consolidating: 72
+        winner-take-all: 60
+        regulated-oligopoly: 58
+        two-or-three-player-market: 50
+        crowded-undifferentiated: 38
+
+  # ─────────────────────────────────────────────────────────────────
+  # Adjacent expansion (q3.12)
+  # ─────────────────────────────────────────────────────────────────
+  - id: adjacent-expansion-rubric
+    applies-to-question: q3.12
+    description: |
+      AI-evaluated scoring for the quality and coherence of the adjacent
+      expansion vision. Rewards logical expansion maps grounded in shared
+      customer relationships, data, or workflow adjacency. Penalises
+      opportunistic scope lists without structural logic.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: logical-coherence
+            weight: 0.50
+            description: |
+              Do the adjacent markets follow naturally from the beachhead — via
+              shared buyers, adjacent workflows, a data asset that grows with
+              use, or a distribution channel that extends to adjacent markets?
+              Or is the expansion list a collection of opportunistic ideas
+              without a unifying logic? The strongest answers explain the
+              mechanism of expansion, not just the destination.
+          - name: sequencing-rationale
+            weight: 0.30
+            description: |
+              Is there a defensible reason to expand in this specific sequence?
+              Sequence logic typically follows: start where you have the most
+              right to win, then expand where your beachhead advantage gives
+              you leverage. Founders who can explain why adjacency A comes
+              before adjacency B — rather than treating the list as
+              interchangeable — signal strategic maturity.
+          - name: focus-preservation
+            weight: 0.20
+            description: |
+              Does the answer maintain a clear focus on the beachhead while
+              showing the expansion map? Or does it suggest premature ambition —
+              planning for four markets before the first one is won? The
+              strongest answers acknowledge the beachhead as the required
+              foundation, with expansion as a conditional next stage.
+        score-bounds:
+          min: 25
+          max: 85
+
+  # ─────────────────────────────────────────────────────────────────
+  # Geographic sequencing (q3.13)
+  # ─────────────────────────────────────────────────────────────────
+  - id: geographic-sequencing-rubric
+    applies-to-question: q3.13
+    description: |
+      AI-evaluated scoring for the logic and specificity of international
+      market entry sequencing. Rewards founders who show awareness of the
+      localisation, regulatory, and GTM constraints that govern sequencing.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: constraint-awareness
+            weight: 0.50
+            description: |
+              Does the founder show awareness of the specific constraints —
+              regulatory, GTM, localisation, cultural — that govern entry into
+              each named market? Or is the sequencing based on market size
+              alone? Sequencing driven by constraint awareness ("Germany first
+              because our lead investor has a German portfolio company that will
+              be our first local reference customer; France only after we have
+              dedicated French language support") scores far higher than
+              "UK, then US, then Germany" without reasoning.
+          - name: sequencing-logic
+            weight: 0.30
+            description: |
+              Is the proposed sequence defensible on the basis of proximity,
+              regulatory similarity, customer density, partner availability,
+              or competitive dynamics? Or is it arbitrary? The strongest
+              sequences follow a logic of compounding advantage: each market
+              entry builds the relationships, data, or credibility needed
+              for the next.
+          - name: specificity
+            weight: 0.20
+            description: |
+              Are specific markets named with specific reasoning? Or is the
+              answer generic ("we'll expand internationally when the time
+              is right")? Named markets with specific entry triggers score
+              highest; vague internationalism scores near zero.
+        score-bounds:
+          min: 20
+          max: 85
+
+  # ─────────────────────────────────────────────────────────────────
+  # Macro tailwinds (q3.14)
+  # ─────────────────────────────────────────────────────────────────
+  - id: macro-tailwinds-rubric
+    applies-to-question: q3.14
+    description: |
+      AI-evaluated scoring for the quality and specificity of macro trend
+      identification. Rewards named, quantified, already-in-motion trends
+      with explicit connection to the business model. Penalises vague
+      technology-wave references with no specific connection.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: specificity
+            weight: 0.40
+            description: |
+              Is the trend named and quantified — with a data point, a
+              regulatory event, or a measurable behaviour shift — or is it
+              a vague directional assertion? "AI adoption" is too broad.
+              "LLM inference costs have fallen 40x in 18 months" is specific.
+              "The European population over 65 is projected to grow from 21%
+              to 29% by 2050 at current birth rates" is specific. The more
+              quantified, the higher the score.
+          - name: business-model-connection
+            weight: 0.35
+            description: |
+              Does the founder explicitly connect each trend to how their
+              specific business model or product benefits? A tailwind that
+              benefits the industry generally scores lower than one that
+              specifically increases demand for what this company does, reduces
+              the cost of delivering it, or expands the addressable customer base.
+          - name: timing-relevance
+            weight: 0.25
+            description: |
+              Is the trend already active and compounding — not a prediction
+              for a decade hence? A trend that is 10 years away provides weak
+              near-term investment support. Trends that are active now — and
+              that the founder can demonstrate with current data — provide
+              genuine underwriting value.
+        score-bounds:
+          min: 20
+          max: 85

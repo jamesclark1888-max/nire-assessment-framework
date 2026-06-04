@@ -1,0 +1,490 @@
+# Dimension 3: Market
+# Questions
+#
+# Validated against: schema/question.schema.json
+#
+# Conventions:
+# - Required tier: 6 questions, sufficient for a meaningful market score
+# - Recommended tier: 6 questions, improve confidence and sharpness
+# - Optional tier: 2 questions, for founders seeking maximum precision
+# - No regional layers for this dimension; market sizing is universal
+
+dimension: market
+version: 0.1.0
+questions:
+
+  # ─────────────────────────────────────────────────────────────────
+  # REQUIRED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q3.1
+    dimension: market
+    tier: required
+    type: number
+    question: "What is your total addressable market (TAM)? Enter your estimate in USD millions."
+    helper-text: |
+      Use the global or regional figure most relevant to your business. If
+      you have multiple estimates, enter the most defensible one. Enter 1000
+      for a $1 billion market, 500 for $500 million.
+    why-it-matters: |
+      TAM sets the ceiling for every valuation conversation. VCs apply a
+      rough heuristic: the company will capture 1-5% of TAM at maturity.
+      Markets below $500M rarely support a venture-scale return even at
+      high market share, so TAM is a primary inclusion filter.
+    validation:
+      min: 0
+      max: 10000000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.12
+      benchmark-ref: tam-size-by-stage
+    recommendation-trigger:
+      low-score: tam-too-small
+      medium-score: tam-borderline
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q3.2
+    dimension: market
+    tier: required
+    type: long-text
+    question: "Describe how you arrived at your TAM figure. Walk through the specific assumptions and calculations you used."
+    helper-text: |
+      The strongest answers show bottom-up calculations: number of potential
+      customers × average contract value or annual spend, derived from your
+      own research. Top-down figures lifted directly from analyst reports
+      score lower. Be specific about your assumptions.
+    why-it-matters: |
+      A founder who can derive TAM from first principles — customer count ×
+      price × frequency — demonstrates commercial rigour and real customer
+      understanding. Analyst-report citations are easy to assert and hard
+      to defend in diligence. The methodology is more revealing than the number.
+    validation:
+      min-chars: 200
+      max-chars: 1200
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.15
+      rubric-ref: tam-methodology-rubric
+    recommendation-trigger:
+      low-score: weak-tam-methodology
+      medium-score: improvable-tam-methodology
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q3.3
+    dimension: market
+    tier: required
+    type: number
+    question: "What is your serviceable addressable market (SAM)? Enter your estimate in USD millions."
+    helper-text: |
+      SAM is the portion of the TAM you can realistically reach with your
+      current product, business model, and go-to-market approach — not the
+      entire theoretical market. It should be smaller than your TAM.
+    why-it-matters: |
+      SAM is the underwriting number: it represents what you can actually
+      pursue with the current product and motion. A credible SAM/TAM ratio
+      (typically 5-30%) signals a grounded founder. A SAM that equals the
+      TAM signals market-sizing naivety and prompts hard diligence questions.
+    validation:
+      min: 0
+      max: 5000000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.08
+      benchmark-ref: sam-size-global
+    recommendation-trigger:
+      low-score: sam-undefined-or-tiny
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q3.4
+    dimension: market
+    tier: required
+    type: number
+    question: "What is your realistic Year 3 revenue target, expressed in USD millions?"
+    helper-text: |
+      Enter what you realistically expect to be generating in Year 3 of
+      operation — not a best-case scenario. This represents your SOM
+      (serviceable obtainable market capture) and is scored for commercial
+      rigour, not ambition alone.
+    why-it-matters: |
+      Year-3 revenue targets anchor early-stage valuation conversations and
+      reveal whether the founder has modelled the business from the bottom
+      up. A SOM implying >50% SAM penetration without a structural reason
+      (exclusive contract, regulatory mandate, network effect) is a diligence
+      risk that experienced VCs surface immediately.
+    validation:
+      min: 0
+      max: 500000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.08
+      benchmark-ref: som-target-by-stage
+    recommendation-trigger:
+      low-score: som-unrealistic
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q3.5
+    dimension: market
+    tier: required
+    type: number
+    question: "What is the annual compound growth rate (CAGR) of your target market? Enter as a percentage (e.g. 15 for 15% per year)."
+    helper-text: |
+      Use the CAGR of the most relevant market segment — your SAM, not
+      necessarily the broader TAM. If you are in a declining market, enter
+      a negative number. Note the source of your estimate in the TAM
+      methodology question above.
+    why-it-matters: |
+      Market growth rate is a primary input for timing and expansion runway.
+      Flat or declining markets require a compelling disruption thesis to
+      justify venture investment. Growing markets provide natural tailwind,
+      increase VC risk tolerance, and compress the time needed to prove the
+      thesis. Markets growing >20% CAGR are disproportionately represented
+      in successful venture portfolios.
+    validation:
+      min: -100
+      max: 500
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.08
+      benchmark-ref: market-growth-rate-global
+    recommendation-trigger:
+      low-score: declining-market
+      medium-score: slow-market-growth
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q3.6
+    dimension: market
+    tier: required
+    type: short-text
+    question: "In one or two sentences, describe your primary customer segment as precisely as possible."
+    helper-text: |
+      The most useful answers specify: who they are (role, company size,
+      sector), what triggers them to seek a solution, and why they are the
+      right segment to win first. "SMBs" is too broad. "Head of Finance at
+      50-200 person UK SaaS companies managing month-end close" is strong.
+    why-it-matters: |
+      Precise segment definition is a direct test of customer knowledge.
+      Founders who name a specific buyer persona with a trigger event have
+      done real discovery work. Vague segments ("enterprises" or "B2B
+      companies") signal hypothesis over evidence and imprecise GTM thinking.
+    validation:
+      min-chars: 30
+      max-chars: 400
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.15
+      rubric-ref: customer-segment-rubric
+    recommendation-trigger:
+      low-score: vague-customer-segment
+      medium-score: improvable-customer-segment
+      high-score: null
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # RECOMMENDED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q3.7
+    dimension: market
+    tier: recommended
+    type: long-text
+    question: "Describe your ideal customer profile (ICP) in depth. What are their key characteristics, motivations, trigger events, and specific pain points?"
+    helper-text: |
+      Go beyond firmographics (company size, sector). Describe the buyer's
+      internal situation: what decision they're trying to make, what fear
+      drives them, what success looks like for them personally and
+      professionally. Name the trigger event that causes them to search.
+    why-it-matters: |
+      ICP depth distinguishes founders who have had real discovery
+      conversations from those reasoning from assumption. A named trigger
+      event — "when a PE firm acquires a company and needs to consolidate
+      reporting across 6 subsidiaries in 90 days" — demonstrates discovery
+      rigour that survives VC due diligence better than any market size claim.
+    validation:
+      min-chars: 150
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.08
+      rubric-ref: icp-depth-rubric
+    recommendation-trigger:
+      low-score: weak-icp
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q3.8
+    dimension: market
+    tier: recommended
+    type: long-text
+    question: "Why is now the right moment to build in this market? What has changed — or is changing — that creates a window of opportunity that didn't clearly exist two or three years ago?"
+    helper-text: |
+      Name the specific enabling change: a new technology becoming viable,
+      a regulatory shift, a behavioural change at scale, or an incumbent
+      failing in a way that creates an opening. If you believe timing is
+      secondary to scale of the opportunity, state that explicitly and
+      explain why the problem is large enough regardless.
+    why-it-matters: |
+      Market timing is a primary underwriting question at pre-seed and seed.
+      A named, specific catalyst shifts a VC's prior from scepticism to
+      conviction. Generic trend references ("AI is transforming every
+      industry") score near zero — VCs have heard them thousands of times
+      and they carry no differentiating signal for this specific company.
+    validation:
+      min-chars: 150
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.08
+      rubric-ref: market-timing-rubric
+    recommendation-trigger:
+      low-score: weak-market-timing
+      medium-score: improvable-market-timing
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q3.9
+    dimension: market
+    tier: recommended
+    type: long-text
+    question: "What evidence do you have that the market demand you've described is real? Describe the strongest signals you've collected — distinct from your product's traction."
+    helper-text: |
+      Market-level signals include: customer interviews confirming
+      willingness to pay for a solution (not your product), LOIs or pre-sales,
+      evidence that competitors are growing, regulatory requirements creating
+      mandated demand, or unsolicited inbound interest before any outbound.
+    why-it-matters: |
+      VCs distinguish between market pull (customers actively seeking any
+      solution) and product pull (customers using yours). Market pull validates
+      the thesis independent of execution. Founders who conflate their
+      product's early traction with proof of market demand create a diligence
+      gap that surfaces badly in partner meetings.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.08
+      rubric-ref: market-validation-rubric
+    recommendation-trigger:
+      low-score: weak-market-validation
+      medium-score: improvable-market-validation
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q3.10
+    dimension: market
+    tier: recommended
+    type: long-text
+    question: "Name 1-3 companies or markets in adjacent spaces that provide a credible structural analogue for your opportunity. For each, explain why the analogy holds and what you can learn from their trajectory."
+    helper-text: |
+      Good analogues are structurally similar: same buying dynamic, similar
+      CAC/LTV profile, or same sequencing challenge. Pure "Uber for X" or
+      "Airbnb for Y" framings score low unless the structural similarity is
+      explained — why does this market behave like that one?
+    why-it-matters: |
+      Credible market analogues help VCs rapidly size the opportunity and
+      exit path. Founders who can cite category-defining analogues (Veeva
+      Systems for vertical SaaS, nCino for regulated-market wedge plays)
+      signal market intelligence. Founders who cite Amazon or Google as
+      analogues signal a lack of market-specific thinking.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.05
+      rubric-ref: market-analogues-rubric
+    recommendation-trigger:
+      low-score: no-market-analogues
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q3.11
+    dimension: market
+    tier: recommended
+    type: single-select
+    question: "How would you characterise the current competitive structure of your target market?"
+    helper-text: "Select the option that best describes the current state of the market you are entering, not your aspirational future state."
+    why-it-matters: |
+      Market structure determines viable entry and defensibility strategies.
+      Fragmented markets suit a wedge-and-consolidate motion; winner-take-all
+      dynamics require a land-grab playbook. Founders who misread the
+      structure — especially underestimating consolidation speed — frequently
+      build the wrong go-to-market and burn runway on the wrong motion.
+    options:
+      - value: fragmented
+        label: "Fragmented — many small players, no clear dominant player"
+      - value: consolidating
+        label: "Consolidating — two to four players are emerging as leaders"
+      - value: winner-take-all
+        label: "Winner-take-all — one player will dominate; others will be marginal"
+      - value: regulated-oligopoly
+        label: "Regulated oligopoly — a small number of licensed players with structural barriers to entry"
+      - value: two-or-three-player-market
+        label: "Established two or three-player market — mature competitors own most of the market"
+      - value: crowded-undifferentiated
+        label: "Crowded and undifferentiated — many similar products competing primarily on price"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: categorical
+      weight: 0.04
+      rubric-ref: market-structure-categorical
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q3.12
+    dimension: market
+    tier: recommended
+    type: long-text
+    question: "Beyond your initial beachhead, what adjacent market opportunities could this company expand into? Describe the expansion path and the logic connecting the markets."
+    helper-text: |
+      This is about whether your beachhead is a logical wedge into a larger
+      territory. The best answers show a map: "Win this segment first, then
+      expand into adjacent segment B because [structural reason — same buyer,
+      adjacent workflow, shared data asset, etc.]."
+    why-it-matters: |
+      Adjacent expansion potential is how VCs stress-test the venture-scale
+      argument. A $200M beachhead that gates a $2B adjacency changes the
+      investment thesis materially. Founders who can articulate a coherent
+      expansion map signal strategic maturity; those who can't often plateau
+      at first-market revenue and become too small to exit cleanly.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.05
+      rubric-ref: adjacent-expansion-rubric
+    recommendation-trigger:
+      low-score: limited-adjacent-vision
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # OPTIONAL DEEP-DIVE
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q3.13
+    dimension: market
+    tier: optional
+    type: long-text
+    question: "If you plan to operate across multiple geographic markets, describe the sequence in which you'll enter them and the rationale for that order."
+    helper-text: |
+      Include the "why here first" and "why not there yet" reasoning for each
+      market. If you plan to remain in a single geography, explain why that
+      market is large enough to sustain the business on its own.
+    why-it-matters: |
+      International sequencing reveals whether a founder understands the
+      localisation, regulatory, and GTM differences between markets. Founders
+      who articulate a defensible sequence — home market first, expand when
+      unit economics are proven — signal operational experience and discipline.
+      Those who plan simultaneous multi-market entry at early stage signal
+      over-ambition and capital misallocation risk.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.03
+      rubric-ref: geographic-sequencing-rubric
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q3.14
+    dimension: market
+    tier: optional
+    type: long-text
+    question: "What structural macro trends — technological, regulatory, demographic, or behavioural — does your business benefit from? Describe the most important one or two."
+    helper-text: |
+      Useful macro trends are specific and already in motion — not
+      hypothetical future developments. "AI adoption" is too broad.
+      "LLM inference costs falling 40x in 18 months, making our unit
+      economics viable for the first time" is specific and quantified.
+    why-it-matters: |
+      Macro tailwinds increase investor conviction that the problem and
+      market will grow without requiring the startup to create the growth
+      itself. Founders who cite vague trends add no underwriting signal;
+      founders who quantify a specific ongoing shift and connect it
+      explicitly to their business model add genuine conviction.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.02
+      rubric-ref: macro-tailwinds-rubric
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"

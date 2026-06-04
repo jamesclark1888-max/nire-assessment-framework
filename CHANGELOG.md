@@ -22,6 +22,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Added
 - CLAUDE.md with engineering standards, definition of done, pre-commit rule, spec-first discipline, git hygiene, and common task guides
+- Dimension 3 (Market) fully populated: 14 questions across 3 tiers (6 required, 6 recommended, 2 optional), 14 scoring rules, 17 recommendation templates, and global benchmarks for TAM/SAM/SOM/CAGR signals across pre-seed, seed, and Series A stages
+- Dimension 3 README updated from skeleton to full specification
 - Dimension 2 (Problem & Insight) fully populated: 13 questions across 3 tiers, 11 scoring rules and rubrics, 17 recommendation templates, and global benchmarks for customer discovery interview counts
 - Dimension 2 README updated from skeleton to full specification
 - `count-question` field added to `schema/question.schema.json` validation block — allows a repeating-block question to declare a sibling single-select question whose answer is parsed as the minimum required row count
