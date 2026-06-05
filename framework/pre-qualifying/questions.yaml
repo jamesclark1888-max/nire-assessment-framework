@@ -72,3 +72,36 @@ questions:
       type: informational-only
       weight: 0.00
     version-added: "0.1.0"
+
+  - id: preq.business_model
+    dimension: pre-qualifying
+    tier: required
+    type: single-select
+    question: "What is your primary business model?"
+    helper-text: "This affects how investors evaluate your unit economics, traction signals, and go-to-market — so different questions show up later based on your answer. Pick the closest match; you can describe nuances in dimension answers."
+    why-it-matters: |
+      Business model determines which scoring benchmarks and recommendations
+      apply. A marketplace founder with no ARR is expected; a SaaS founder
+      with the same profile is a gap. Questions about pricing, unit economics,
+      and go-to-market are calibrated against the declared business model.
+    options:
+      - value: saas
+        label: "SaaS (subscription software)"
+      - value: marketplace
+        label: "Marketplace"
+      - value: ecommerce
+        label: "E-commerce / D2C"
+      - value: hardware
+        label: "Hardware or deep tech"
+      - value: services
+        label: "Services or professional services"
+      - value: other
+        label: "Other"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.00
+    version-added: "0.1.0"
