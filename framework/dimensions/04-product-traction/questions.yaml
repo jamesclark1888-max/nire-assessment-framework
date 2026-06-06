@@ -1,0 +1,499 @@
+# Dimension 4: Product & Traction
+# Questions
+#
+# Validated against: schema/question.schema.json
+#
+# Conventions:
+# - Required tier: 5 questions (1 informational + 4 scored); sufficient for
+#   a meaningful traction score across pre-seed through Series A
+# - Recommended tier: 5 questions; improve confidence and recommendation sharpness
+# - Optional tier: 3 questions; for founders seeking maximum precision
+# - showIf conditions gate revenue and retention questions on product status
+#   so pre-revenue founders are not penalised for unanswerable metrics
+# - Benchmark refs resolve to stage-specific thresholds at runtime
+# - Total scored weight: 0.96 (informational q4.1 contributes 0.02)
+
+dimension: product-traction
+version: 0.1.0
+questions:
+
+  # ─────────────────────────────────────────────────────────────────
+  # REQUIRED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q4.1
+    dimension: product-traction
+    tier: required
+    type: single-select
+    question: "What best describes your product's current status?"
+    helper-text: |
+      Select the option that matches where your product is today — not where
+      you aim to be. This sets context for all subsequent questions. A prototype
+      with no users and a scaling product with 100+ customers require very
+      different evidence; this question ensures the right metrics are asked.
+    why-it-matters: |
+      Product stage sets the scoring baseline for the entire dimension. A
+      pre-seed team at prototype stage is assessed differently than a seed-stage
+      company with paying customers. The product status question routes the
+      assessment to the right benchmarks for each founder's actual situation.
+    options:
+      - value: idea
+        label: "Idea only — no prototype or working product built yet"
+      - value: prototype
+        label: "Prototype or technical demo — built but not yet used by external users"
+      - value: mvp
+        label: "MVP — in use by early users, no or minimal paid revenue"
+      - value: live
+        label: "Live product — paying customers, generating recurring revenue"
+      - value: scaling
+        label: "Scaling — product is live, revenue growing, expanding customer base"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.02
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q4.2
+    dimension: product-traction
+    tier: required
+    type: number
+    question: "How many paying customers, or active registered users if pre-revenue, does your product have today?"
+    helper-text: |
+      Enter the count of distinct companies or individuals actively using your
+      product. Paying customers take priority — if you have both, enter paying
+      customers only. Include customers on formal pilots with a signed agreement.
+      Do not include waitlist signups, trial accounts with no usage, or
+      pipeline prospects.
+    why-it-matters: |
+      Customer or user count is the most direct evidence that the product works
+      for people other than the founding team. Stage norms vary significantly —
+      8 paying B2B customers at seed is a meaningful signal; 8 users at a
+      consumer company at the same stage is not. Context is set by the product
+      status in q4.1.
+    validation:
+      min: 0
+      max: 1000000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.13
+      benchmark-ref: customer-count-by-stage
+    recommendation-trigger:
+      low-score: no-early-traction
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q4.3
+    dimension: product-traction
+    tier: required
+    type: number
+    question: "What is your current monthly recurring revenue (MRR)? Enter in GBP."
+    helper-text: |
+      Enter the annualised value of all active subscriptions or contracts divided
+      by 12. Do not include one-time project fees, pilots not yet contracted, or
+      pipeline value. If you invoice annually, divide the total contracted value
+      by 12. Enter 0 if you have no recurring revenue yet.
+    why-it-matters: |
+      MRR is the primary growth metric for revenue-generating companies. It
+      anchors the valuation conversation and determines whether the fundraising
+      ask is grounded in current commercial momentum. At seed, £10k-50k MRR
+      is the range where institutional investors begin to underwrite the
+      revenue trajectory seriously.
+    show-if:
+      conditions:
+        - field: q4.1
+          operator: in
+          values: [live, scaling]
+    validation:
+      min: 0
+      max: 100000000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.12
+      benchmark-ref: mrr-by-stage
+    recommendation-trigger:
+      low-score: low-mrr
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q4.4
+    dimension: product-traction
+    tier: required
+    type: number
+    question: "What has been your average month-over-month growth rate over the past 3 months? Enter as a number (e.g. 15 for 15% per month)."
+    helper-text: |
+      For revenue-generating companies, calculate MoM MRR growth. For
+      pre-revenue companies, use active user growth. Calculate the average of
+      the three most recent months. If growth has been inconsistent, provide
+      the three-month average and note any outlier month in the traction
+      evidence question.
+    why-it-matters: |
+      MoM growth is the key extrapolation input from current position to future
+      valuation. 10-15% monthly growth at seed implies 3-4x annual growth;
+      5% implies less than 2x. At Series A, the question shifts to annual
+      ARR growth rate, but the trajectory starts here.
+    show-if:
+      conditions:
+        - field: q4.1
+          operator: in
+          values: [mvp, live, scaling]
+    validation:
+      min: -100
+      max: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.11
+      benchmark-ref: mom-growth-rate
+    recommendation-trigger:
+      low-score: low-growth
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q4.5
+    dimension: product-traction
+    tier: required
+    type: long-text
+    question: "Describe your single strongest piece of evidence that your product is gaining traction. This could be a retention figure, a customer outcome, a growth rate, or a qualitative signal — whatever is most compelling."
+    helper-text: |
+      Lead with the most specific and verifiable signal you have. Name numbers,
+      dates, and customer types. A specific outcome — how much time a customer
+      saved, cost they avoided, or revenue they generated — is the strongest
+      signal. At pre-seed, a named pilot participant with a documented reaction
+      is more valuable than aggregate statistics.
+    why-it-matters: |
+      This is the core traction signal for the dimension. VCs look for evidence
+      that value is being created for users beyond the founding team. Specificity
+      and independent verifiability distinguish evidence from assertion. A single
+      named outcome outweighs several vague aggregate claims.
+    validation:
+      min-chars: 100
+      max-chars: 1200
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.17
+      rubric-ref: traction-evidence-rubric
+    recommendation-trigger:
+      low-score: weak-traction-evidence
+      medium-score: improvable-traction-evidence
+      high-score: null
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # RECOMMENDED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q4.6
+    dimension: product-traction
+    tier: recommended
+    type: long-text
+    question: "What is your primary retention metric? State the figure, the time period it covers, and how you measure it."
+    helper-text: |
+      Options include: gross revenue retention (revenue kept from the prior
+      year's cohort), logo retention (percentage of customers still active after
+      12 months), or daily/monthly active users as a fraction of total registered
+      users. State whichever is most meaningful for your business model and
+      describe any caveats or measurement limitations.
+    why-it-matters: |
+      Retention is the sharpest signal of whether the product delivers sustained
+      value. Acquisition growth on top of poor retention is a leaky bucket that
+      no fundraising round fixes. Early retention data predicts long-run unit
+      economics and LTV, both of which feed directly into valuation models.
+    show-if:
+      conditions:
+        - field: q4.1
+          operator: in
+          values: [live, scaling]
+    validation:
+      min-chars: 80
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.10
+      rubric-ref: retention-rubric
+    recommendation-trigger:
+      low-score: no-retention-data
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q4.7
+    dimension: product-traction
+    tier: recommended
+    type: long-text
+    question: "Describe your most compelling customer or pilot relationship. Name the organisation or role, describe the problem they came in with, what they experienced with your product, and what they said about the result."
+    helper-text: |
+      Name the customer or describe them precisely enough that they are
+      recognisable (e.g. "a 400-person logistics company in the UK"). Describe
+      the specific problem they had, what outcome your product produced, and
+      quote them directly if possible. Anonymised case studies with specific
+      outcomes are acceptable where confidentiality applies.
+    why-it-matters: |
+      A single well-documented customer story does more due diligence work than
+      any set of aggregate statistics. It establishes product fit, demonstrates
+      buyer profile clarity, and provides a reference anchor for investor
+      conversations. Named customers with documented outcomes are the highest-
+      value traction asset at early stage.
+    validation:
+      min-chars: 150
+      max-chars: 1200
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.09
+      rubric-ref: customer-story-rubric
+    recommendation-trigger:
+      low-score: no-customer-story
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q4.8
+    dimension: product-traction
+    tier: recommended
+    type: long-text
+    question: "What are the two or three most important things you plan to build or improve in the next 12 months, and what evidence or customer input led you to prioritise them?"
+    helper-text: |
+      Name specific product areas or capabilities, not broad themes. For each:
+      describe what you are building, why it matters to customers, and what
+      drove the decision to prioritise it — a customer conversation, a retention
+      signal, a sales loss, or a usage pattern. A roadmap driven by observable
+      signals is more credible than one driven by internal assumptions.
+    why-it-matters: |
+      Product roadmap clarity reveals whether the team has a principled view of
+      how the product creates value and where it needs to grow. Roadmaps traced
+      to customer evidence and retention data signal product discipline; feature
+      lists without rationale signal a team building on assumption rather than
+      feedback.
+    validation:
+      min-chars: 150
+      max-chars: 1200
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.07
+      rubric-ref: product-roadmap-rubric
+    recommendation-trigger:
+      low-score: unclear-roadmap
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q4.9
+    dimension: product-traction
+    tier: recommended
+    type: number
+    question: "What is your net revenue retention (NRR) over the past 12 months? Enter as a number (e.g. 110 for 110%)."
+    helper-text: |
+      NRR — also called net dollar retention — is the revenue from last year's
+      customer cohort today, including expansion from upsell or upgrades, minus
+      any churn or contraction, expressed as a percentage of the starting cohort
+      revenue. Above 100% means the cohort is growing without adding new
+      customers. If you have less than 12 months of data, use the period you have
+      and note it.
+    why-it-matters: |
+      NRR above 100% means existing customers fund growth without requiring
+      continuous new customer acquisition — the most capital-efficient growth
+      pattern in SaaS. It is one of the most closely watched metrics in Series A
+      due diligence for subscription businesses.
+    show-if:
+      conditions:
+        - field: q4.1
+          operator: in
+          values: [live, scaling]
+    validation:
+      min: 0
+      max: 300
+    applies-to:
+      stages: all
+      business-models: [saas, fintech, healthtech]
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.05
+      benchmark-ref: nrr-saas-global
+    recommendation-trigger:
+      low-score: weak-nrr
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q4.10
+    dimension: product-traction
+    tier: recommended
+    type: long-text
+    question: "Describe the most significant product change or launch in the last 6 months. What did you ship, what outcome did you expect, and what actually happened to user behaviour or revenue?"
+    helper-text: |
+      The strongest answers connect a specific product decision to a measurable
+      outcome: 'We shipped X expecting Y, and Z actually happened.' Include the
+      metric that changed, by how much, and over what time period. If the result
+      surprised you — either better or worse than expected — say what you learned
+      from it.
+    why-it-matters: |
+      Evidence of disciplined iteration — shipping measurable changes and
+      learning from them — distinguishes product teams that build systematically
+      from those that build by instinct. This is a direct predictor of capital
+      efficiency: teams that iterate on evidence waste less runway on features
+      users do not value.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.04
+      rubric-ref: product-iteration-rubric
+    recommendation-trigger:
+      low-score: no-product-iteration-signal
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # OPTIONAL DEEP-DIVE
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q4.11
+    dimension: product-traction
+    tier: optional
+    type: long-text
+    question: "Describe your cohort retention curve. What percentage of your earliest user or customer cohort is still active today, and at what intervals do you see natural drop-off or stabilisation?"
+    helper-text: |
+      A cohort is a group of users or customers who started in the same period —
+      say, everyone who signed up in Month 1. Describe what fraction of that
+      cohort is still active at Month 3, Month 6, and Month 12. If retention
+      stabilises at a floor, describe that floor and what you think drives it.
+      If you do not yet have cohort data at this granularity, describe whatever
+      longitudinal usage data you have.
+    why-it-matters: |
+      A retention floor — the percentage of a cohort that stabilises and stays
+      active long-term — is one of the strongest signals of product-market fit.
+      Sustained linear decline to near-zero suggests users do not find lasting
+      value. This is a Series A-level signal that dramatically changes the
+      growth model in investor conversations.
+    show-if:
+      conditions:
+        - field: q4.1
+          operator: in
+          values: [scaling]
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.04
+      rubric-ref: cohort-analysis-rubric
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q4.12
+    dimension: product-traction
+    tier: optional
+    type: long-text
+    question: "Name your three to five most significant customers by revenue or strategic importance. For each, describe their size, why they chose your product, and what outcome they have achieved."
+    helper-text: |
+      Include the company name (or a precise anonymised description where
+      confidentiality applies), approximate annual contract value, the specific
+      problem they hired your product to solve, and one measurable or directly
+      quoted outcome. Named customers with documented outcomes are the most
+      valuable investor reference material.
+    why-it-matters: |
+      Top customer detail reveals customer concentration risk, average contract
+      value ceiling, and reference quality. A flagship customer with a documented
+      outcome shifts investor conviction more than aggregate metrics alone —
+      and it reveals whether the customer relationships are deep enough to
+      produce references during due diligence.
+    validation:
+      min-chars: 150
+      max-chars: 1200
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.02
+      rubric-ref: customer-detail-rubric
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q4.13
+    dimension: product-traction
+    tier: optional
+    type: long-text
+    question: "What do your product analytics show about how users engage with your core feature? Describe the frequency, depth, and pattern of usage that tells you the product is genuinely solving the problem."
+    helper-text: |
+      Describe your most meaningful engagement metric — daily active users,
+      sessions per week per user, time spent on the core task, completion rate
+      for the key workflow, or any equivalent. Explain what the metric tells
+      you about value delivery. 'Users complete the primary workflow an average
+      of four times per week' is more useful than total page views.
+    why-it-matters: |
+      Engagement analytics distinguish products that create sustained habit from
+      those that attract sign-ups without meaningful usage. For pre-revenue
+      companies, engagement depth is the primary proxy for future retention and
+      the strongest evidence that the product is genuinely solving the problem
+      rather than satisfying initial curiosity.
+    validation:
+      min-chars: 80
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.02
+      rubric-ref: product-analytics-rubric
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"

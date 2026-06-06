@@ -69,7 +69,7 @@ See [`docs/00-overview.md`](docs/00-overview.md) for a full guided tour.
 | 1 | Founder & Team | ✅ Drafted |
 | 2 | Problem & Insight | ✅ Drafted |
 | 3 | Market | ✅ Drafted |
-| 4 | Product & Traction | 🟡 Skeleton |
+| 4 | Product & Traction | 🟢 Drafted |
 | 5 | Business Model & Unit Economics | 🟡 Skeleton |
 | 6 | Go-to-Market | 🟡 Skeleton |
 | 7 | Competition & Moat | ✅ Authored |

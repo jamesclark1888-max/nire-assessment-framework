@@ -1,0 +1,586 @@
+# Dimension 4: Product & Traction
+# Scoring rules and rubrics
+#
+# Validated against: schema/scoring-rule.schema.json
+#
+# Each rule converts a raw answer into a 0-100 score.
+# Rule IDs match the rubric-ref or benchmark-ref values in questions.yaml.
+#
+# q4.1 is informational-only (weight 0.02) and has no rule here.
+# Quantitative questions (q4.2, q4.3, q4.4, q4.9) use threshold scoring;
+# stage-specific overrides are in benchmarks/global.yaml.
+# All other scored questions use ai-qualitative rubric scoring.
+
+dimension: product-traction
+version: 0.1.0
+rules:
+
+  # ─────────────────────────────────────────────────────────────────
+  # Customer / user count (q4.2)
+  # Stage-appropriate defaults below; benchmarks/global.yaml contains
+  # per-stage thresholds used at runtime.
+  # ─────────────────────────────────────────────────────────────────
+  - id: customer-count-by-stage
+    applies-to-question: q4.2
+    description: |
+      Maps paying customer or active user count to a score. Defaults below are
+      calibrated to seed-stage B2B SaaS norms. Stage-specific overrides in
+      benchmarks/global.yaml are applied at runtime; pre-seed and Series A
+      founders are assessed against different absolute counts.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 0
+          score: 15
+        - min: 1
+          max: 4
+          score: 30
+        - min: 5
+          max: 15
+          score: 50
+        - min: 16
+          max: 30
+          score: 63
+        - min: 31
+          max: 75
+          score: 75
+        - min: 76
+          max: 200
+          score: 85
+        - min: 201
+          max: 500
+          score: 93
+        - min: 501
+          max: null
+          score: 100
+
+  # ─────────────────────────────────────────────────────────────────
+  # Monthly recurring revenue (q4.3)
+  # ─────────────────────────────────────────────────────────────────
+  - id: mrr-by-stage
+    applies-to-question: q4.3
+    description: |
+      Maps MRR in GBP to a score. Defaults calibrated to seed-stage norms.
+      Stage-specific overrides in benchmarks/global.yaml applied at runtime.
+      Pre-seed companies generating revenue above the median threshold score
+      exceptionally well; this question is only shown to live/scaling companies.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 0
+          score: 15
+        - min: 1
+          max: 4999
+          score: 28
+        - min: 5000
+          max: 19999
+          score: 45
+        - min: 20000
+          max: 59999
+          score: 62
+        - min: 60000
+          max: 150000
+          score: 75
+        - min: 150001
+          max: 400000
+          score: 87
+        - min: 400001
+          max: 1000000
+          score: 94
+        - min: 1000001
+          max: null
+          score: 100
+
+  # ─────────────────────────────────────────────────────────────────
+  # Month-over-month growth rate (q4.4)
+  # ─────────────────────────────────────────────────────────────────
+  - id: mom-growth-rate
+    applies-to-question: q4.4
+    description: |
+      Maps 3-month average MoM growth rate (percentage) to a score. Thresholds
+      reflect global seed-stage benchmarks. Negative growth scores at the floor.
+      At Series A, the scoring engine adjusts to ARR growth rate equivalents.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 0
+          score: 10
+        - min: 1
+          max: 4
+          score: 25
+        - min: 5
+          max: 9
+          score: 40
+        - min: 10
+          max: 14
+          score: 55
+        - min: 15
+          max: 20
+          score: 70
+        - min: 21
+          max: 30
+          score: 83
+        - min: 31
+          max: 50
+          score: 93
+        - min: 51
+          max: null
+          score: 100
+
+  # ─────────────────────────────────────────────────────────────────
+  # Traction evidence quality (q4.5) — highest weight in dimension
+  # ─────────────────────────────────────────────────────────────────
+  - id: traction-evidence-rubric
+    applies-to-question: q4.5
+    description: |
+      AI-evaluated scoring for the specificity, verifiability, and
+      evidential quality of the founder's strongest traction signal. This
+      is the highest-weight question in the dimension. Rewards founders who
+      lead with quantified, independently verifiable signals. Penalises
+      vague claims, internal assertions, and projection substituted for
+      current evidence.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: specificity
+            weight: 0.40
+            description: |
+              Is the traction signal specific — including named customers or
+              precise user types, actual numbers, dates, and measurable outcomes —
+              or is it stated in general terms that cannot be independently
+              assessed? The clearest signals name a customer or cohort, state
+              what changed in measurable terms, and give the time period over
+              which it occurred.
+              Strong: "Catherine Morris, Head of Compliance at a £3.4bn AUM firm,
+              reduced SDR reconciliation time from 3.5 hours to 22 minutes within
+              the first month. She became a paying customer within 10 days of
+              our first meeting and has introduced us to four peer firms."
+              Weak: "Our early customers are really happy with the product and
+              we have seen good engagement since launch."
+          - name: verifiability
+            weight: 0.35
+            description: |
+              Could the signal be independently verified by an investor doing
+              due diligence — through a customer reference call, a shared
+              analytics screenshot, a contract, or a documented outcome? Or
+              does it rely entirely on the founder's own characterisation of
+              what is happening? Independent verifiability is the sharpest
+              distinction between assertion and evidence. A named customer
+              who will take a reference call is worth more than any aggregate
+              statistic that exists only in internal tools.
+          - name: signal-type-strength
+            weight: 0.25
+            description: |
+              Is the signal type appropriate to the product stage and the VC
+              underwriting question? At pre-seed, a named pilot participant with
+              a documented outcome is strong; a waitlist signup count is weak.
+              At seed, paying customer count and retention data are expected; a
+              waitlist is no longer a primary signal. At Series A, cohort retention,
+              NRR, and growth rate are the expected signal types.
+              Strong signal types: retention figure, named competitive win, signed
+              contract, documented customer outcome with measurable change.
+              Weak signal types: inbound interest without a signed agreement,
+              social media engagement, general customer satisfaction.
+        score-bounds:
+          min: 15
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Retention metric quality (q4.6)
+  # ─────────────────────────────────────────────────────────────────
+  - id: retention-rubric
+    applies-to-question: q4.6
+    description: |
+      AI-evaluated scoring for the quality and completeness of the retention
+      metric described. Rewards founders who state a specific, measured figure
+      with a clear methodology and time window. Penalises vague retention
+      claims, conflation of satisfaction with retention, and absence of
+      a defined measurement approach.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: metric-precision
+            weight: 0.40
+            description: |
+              Is the retention metric specific — stating a percentage figure, the
+              time period it covers, the cohort definition, and the outcome being
+              measured — or is it described in general terms that cannot be
+              assessed? A retention figure without a denominator, a time period,
+              or a cohort definition cannot be compared to any benchmark or used
+              in a valuation model.
+              Strong: "94% gross logo retention over 12 months across 8 customers.
+              Measured as customers still active at month 12 divided by customers
+              active at month 1 of the same cohort. Two customers on annual
+              contracts that have both renewed."
+              Weak: "Most of our customers stay with us and we have very low
+              churn so far."
+          - name: methodology-transparency
+            weight: 0.35
+            description: |
+              Does the founder describe how they measure retention — the data
+              source, the definition of 'active', and whether the figure is gross
+              or net? Or is the figure asserted without explaining how it was
+              calculated? Transparency about measurement methodology is the signal
+              that the founder is running their business on data rather than
+              impression. Investors will ask exactly these questions in diligence.
+          - name: stage-appropriateness
+            weight: 0.25
+            description: |
+              Is the retention metric appropriate to the company's stage and
+              business model — logo retention for early B2B, cohort DAU/MAU
+              ratio for consumer, gross revenue retention for SaaS with expansion?
+              A founder who selects and defines the most relevant metric for
+              their specific situation demonstrates commercial sophistication;
+              one who applies a generic metric without explaining its relevance
+              leaves the interpretation work to the investor.
+        score-bounds:
+          min: 15
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Top customer / pilot story (q4.7)
+  # ─────────────────────────────────────────────────────────────────
+  - id: customer-story-rubric
+    applies-to-question: q4.7
+    description: |
+      AI-evaluated scoring for the depth and specificity of the top customer
+      or pilot relationship described. Rewards named customers with documented
+      outcomes and direct quotes. Penalises generic satisfaction claims, unnamed
+      customers with no contextual detail, and outcomes that cannot be verified
+      or connected to the product's core value proposition.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: customer-specificity
+            weight: 0.35
+            description: |
+              Is the customer named or precisely characterised — including
+              company size, the role of the buyer, and the context in which they
+              found and chose the product — or is the description generic? Named
+              customers with verifiable context are significantly more credible
+              than anonymised case studies without organisational context. If
+              confidentiality applies, the minimum bar is the buyer role, company
+              size, and sector: enough for an investor to assess fit and
+              reference quality.
+          - name: outcome-specificity
+            weight: 0.40
+            description: |
+              Is the outcome described in specific, measurable terms — time saved,
+              cost avoided, error rate reduced, revenue generated, or another
+              quantifiable change — or is it stated as general satisfaction?
+              "Reduced reconciliation time from 3.5 hours to 22 minutes" is
+              specific and verifiable. "Really happy with the product" is not.
+              The outcome must connect directly to the problem the product was
+              hired to solve, not to the product's general quality.
+          - name: reference-strength
+            weight: 0.25
+            description: |
+              Does the customer story include a direct quote, a signed agreement,
+              a documented reference, or another independently verifiable element —
+              or does it rely entirely on the founder's characterisation of the
+              outcome? A customer who made a public statement, a written case
+              study the customer co-authored, or a direct quote attributed to a
+              named person substantially increases credibility. Reference-quality
+              customer stories are the most valuable due diligence asset at
+              early stage.
+        score-bounds:
+          min: 15
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Product roadmap clarity (q4.8)
+  # ─────────────────────────────────────────────────────────────────
+  - id: product-roadmap-rubric
+    applies-to-question: q4.8
+    description: |
+      AI-evaluated scoring for the clarity, evidence-basis, and strategic logic
+      of the 12-month product roadmap. Rewards founders who connect roadmap
+      priorities to specific customer evidence, retention signals, or sales
+      patterns. Penalises generic feature lists and aspirational roadmaps not
+      grounded in current product learning.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: evidence-basis
+            weight: 0.40
+            description: |
+              Is each roadmap priority connected to a specific customer
+              conversation, a retention signal, a sales loss analysis, or a
+              usage pattern — or is the roadmap driven by internal assumptions
+              about what customers might want? A roadmap item that can be traced
+              to a named customer request or a measured usage gap is worth more
+              than one derived from founder intuition, because it signals that
+              the product development process is evidence-driven rather than
+              hypothesis-driven.
+              Strong: "We are building X because 4 of our 8 customers told us
+              in quarterly reviews that Y was their primary friction point, and
+              we saw usage data confirming that 60% of sessions end at the Y
+              step."
+              Weak: "We plan to add more integrations and improve the dashboard."
+          - name: priority-logic
+            weight: 0.35
+            description: |
+              Is there a clear explanation of why these specific items were
+              chosen over alternatives — what they unlock for growth, retention,
+              or expansion — or are they listed without a prioritisation rationale?
+              The most revealing roadmap conversations are not about what is on
+              the list but what was left off and why. Founders who can articulate
+              what they deliberately decided not to build next signal that they
+              have a product strategy, not just a backlog.
+          - name: specificity
+            weight: 0.25
+            description: |
+              Are the roadmap items named with enough precision to understand
+              what will actually be built — including the customer outcome they
+              are designed to improve — or are they described at such a high
+              level that any feature could qualify? "A dashboard redesign" is
+              vague. "A compliance officer view showing the status of all active
+              attestations with one-click escalation, driven by 5 customers
+              asking for a way to reduce their Monday morning triage time from
+              45 minutes" is specific and evidenced.
+        score-bounds:
+          min: 20
+          max: 88
+
+  # ─────────────────────────────────────────────────────────────────
+  # Net revenue retention (q4.9)
+  # ─────────────────────────────────────────────────────────────────
+  - id: nrr-saas-global
+    applies-to-question: q4.9
+    description: |
+      Maps net revenue retention (NRR) percentage to a score for SaaS and
+      similar subscription businesses. Thresholds reflect global B2B SaaS
+      benchmarks. NRR above 100% scores in the strong-to-exceptional range;
+      below 80% scores at the floor.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 60
+          score: 15
+        - min: 61
+          max: 80
+          score: 30
+        - min: 81
+          max: 95
+          score: 48
+        - min: 96
+          max: 104
+          score: 63
+        - min: 105
+          max: 115
+          score: 78
+        - min: 116
+          max: 130
+          score: 90
+        - min: 131
+          max: null
+          score: 100
+
+  # ─────────────────────────────────────────────────────────────────
+  # Product iteration evidence (q4.10)
+  # ─────────────────────────────────────────────────────────────────
+  - id: product-iteration-rubric
+    applies-to-question: q4.10
+    description: |
+      AI-evaluated scoring for the quality of evidence that the team builds
+      systematically from measurement rather than instinct. Rewards founders
+      who connect a specific product decision to a measurable outcome and
+      extract a clear lesson. Penalises generic feature announcements without
+      outcome measurement and absence of a learning loop.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: cause-effect-specificity
+            weight: 0.45
+            description: |
+              Does the founder describe a specific product change and a specific
+              measurable outcome — ideally with a before/after comparison and a
+              time period — or is the outcome described in general terms? The
+              signal here is not the success or failure of the change but whether
+              the founder measured it. A team that shipped something, measured
+              what happened, and updated their thinking accordingly has an
+              iteration process; one that ships and moves on without measurement
+              does not.
+              Strong: "We redesigned the attestation workflow, removing three
+              confirmation steps. Expected 20% reduction in completion time.
+              Actual result: 31% reduction in completion time and 12% improvement
+              in daily active usage in the first two weeks post-launch."
+              Weak: "We shipped several new features last quarter and customers
+              have responded well."
+          - name: learning-extracted
+            weight: 0.30
+            description: |
+              Did the founder extract a lesson — a change to their model of
+              what users need — from the outcome of the product change? A launch
+              that exceeded expectations is only half the story if there is no
+              hypothesis update. A launch that failed to deliver the expected
+              outcome and changed subsequent product decisions is more valuable
+              evidence of a learning organisation than an undiscussed success.
+          - name: decision-quality
+            weight: 0.25
+            description: |
+              Does the choice of product change itself reveal sound product
+              judgement — a decision to prioritise based on customer evidence,
+              retention data, or a specific commercial outcome — or does the
+              choice appear arbitrary or technology-driven without a clear user
+              need? The most revealing product decisions are those where the
+              founder can explain what they chose not to build in the same
+              period and why.
+        score-bounds:
+          min: 15
+          max: 88
+
+  # ─────────────────────────────────────────────────────────────────
+  # Cohort retention analysis (q4.11)
+  # ─────────────────────────────────────────────────────────────────
+  - id: cohort-analysis-rubric
+    applies-to-question: q4.11
+    description: |
+      AI-evaluated scoring for the depth and analytical quality of the cohort
+      retention analysis described. Rewards founders who identify a retention
+      floor, connect retention patterns to product behaviour, and draw a
+      product conclusion. Penalises generic retention claims without cohort
+      definition and descriptions that do not address what the shape of the
+      curve means for the business.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: cohort-definition-clarity
+            weight: 0.35
+            description: |
+              Is the cohort clearly defined — the start period, the unit of
+              measurement (user, customer, or cohort revenue), and the activity
+              definition — or does the founder describe retention without
+              clarifying what is being measured? A cohort analysis that does not
+              define its terms is not comparable to any benchmark and cannot be
+              used to model growth or churn at scale.
+          - name: curve-shape-analysis
+            weight: 0.40
+            description: |
+              Does the founder describe the shape of the retention curve — whether
+              it stabilises at a floor, continues declining, or shows a distinct
+              drop-off period — and connect that shape to a product insight? The
+              existence of a retention floor (e.g. "40% of Month-1 users are still
+              active at Month-12 with no further decline") is a key signal of
+              product-market fit. The absence of analysis of the curve shape, even
+              with data present, signals that the team is not yet using retention
+              data as a product management input.
+          - name: product-implication
+            weight: 0.25
+            description: |
+              Does the founder draw a product or business conclusion from the
+              cohort data — an insight about which customer types retain best,
+              a feature or onboarding change that moved the curve, or a
+              hypothesis about what the floor represents? Retention data that
+              exists but has not been interpreted for product decisions is less
+              valuable than retention data that is actively shaping what the
+              team builds next.
+        score-bounds:
+          min: 20
+          max: 88
+
+  # ─────────────────────────────────────────────────────────────────
+  # Top customer detail (q4.12)
+  # ─────────────────────────────────────────────────────────────────
+  - id: customer-detail-rubric
+    applies-to-question: q4.12
+    description: |
+      AI-evaluated scoring for the specificity and reference quality of the
+      top customer list. Rewards named customers with documented outcomes and
+      verifiable contract context. Penalises anonymised lists without enough
+      context to assess reference quality, and generic outcome descriptions.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: customer-specificity
+            weight: 0.40
+            description: |
+              Are customers named or described with enough precision — company
+              size, sector, buyer role, and contract value — to assess reference
+              quality and customer concentration risk? Named customers with annual
+              contract values disclosed are the most useful due diligence input;
+              "a large UK enterprise" with no further detail is the least useful.
+              Customer concentration matters too: a top-5 list where one customer
+              represents 80% of revenue requires disclosure and a plan.
+          - name: outcome-documentation
+            weight: 0.35
+            description: |
+              Is there a documented, measurable outcome for each customer — not
+              just a description of what the product does for them, but what
+              specifically changed for them after adopting it? Documented outcomes
+              provide reference talking points that investors can ask customers
+              to confirm, and they demonstrate that the product is being used in
+              the way the founder intends it to be used.
+          - name: portfolio-diversity
+            weight: 0.25
+            description: |
+              Does the top-5 customer list reveal healthy diversity — in company
+              size, sector, or use case — or does it show dangerous concentration?
+              A list dominated by a single customer type may indicate limited
+              market validation. Diversity across 2-3 distinct customer types
+              at early stage is a stronger signal of a repeatable sales motion
+              than 5 customers of identical profile — unless the beachhead
+              strategy is deliberately narrow for structural reasons.
+        score-bounds:
+          min: 15
+          max: 88
+
+  # ─────────────────────────────────────────────────────────────────
+  # Product analytics evidence (q4.13)
+  # ─────────────────────────────────────────────────────────────────
+  - id: product-analytics-rubric
+    applies-to-question: q4.13
+    description: |
+      AI-evaluated scoring for the quality of product analytics evidence
+      described. Rewards founders who cite specific engagement metrics with
+      a clear definition and connect them to the core value proposition.
+      Penalises vanity metrics (total page views, total sign-ups) and
+      absence of any engagement measurement.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: metric-relevance
+            weight: 0.45
+            description: |
+              Does the engagement metric cited — frequency, depth, completion
+              rate, return rate — directly measure engagement with the product's
+              core value-creating action, rather than peripheral activity? A
+              metric that measures how often users complete the core workflow
+              is more relevant than one that measures time spent anywhere in
+              the product. Relevant metrics are those that would change if the
+              product stopped creating value.
+          - name: measurement-discipline
+            weight: 0.35
+            description: |
+              Does the founder demonstrate that they have an instrumented
+              analytics setup — that they are measuring engagement
+              systematically rather than relying on impression? The signal is
+              not sophistication of the tooling but the existence of a defined
+              metric and a regular process for reviewing it. A founder who
+              can describe what their analytics show on a normal week is
+              running the product on data; one who cannot is running it on
+              intuition.
+          - name: insight-quality
+            weight: 0.20
+            description: |
+              Has the founder drawn a product or commercial insight from the
+              analytics data — a conclusion about which users engage most, which
+              features drive retention, or which usage patterns predict churn?
+              Analytics data that has informed a product or go-to-market decision
+              is more valuable than analytics data that is collected but not acted
+              upon.
+        score-bounds:
+          min: 15
+          max: 85

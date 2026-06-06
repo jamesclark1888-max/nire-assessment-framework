@@ -1,0 +1,197 @@
+# Dimension 4: Product & Traction
+# Global benchmarks (default when no regional file applies)
+#
+# Validated against: schema/benchmark.schema.json
+#
+# Covers stage-appropriate benchmarks for quantitative signals:
+# customer/user count, MRR, month-over-month growth, and NRR.
+# MRR figures in GBP. Growth rates in percent per month.
+
+region: global
+last-reviewed: "2026-06-06"
+expires: "2027-06-06"
+
+sources:
+  - name: "Bessemer Venture Partners State of the Cloud 2025"
+    url-or-citation: "https://www.bvp.com/atlas/state-of-the-cloud-2025"
+    year: 2025
+  - name: "SaaStr Annual Revenue Benchmarks Survey 2024"
+    url-or-citation: "https://www.saastr.com/saastr-annual-2024-survey-data"
+    year: 2024
+  - name: "Atomico State of European Tech 2025"
+    url-or-citation: "https://stateofeuropeantech.com"
+    year: 2025
+  - name: "NFX Fundraising Benchmarks 2024"
+    url-or-citation: "https://www.nfx.com/post/fundraising-benchmarks"
+    year: 2024
+  - name: "Point Nine Capital SaaS Metrics Benchmarks 2024"
+    url-or-citation: "https://medium.com/point-nine-news/saas-metrics-benchmarks-2024"
+    year: 2024
+
+benchmarks:
+
+  customer-count-pre-seed:
+    description: |
+      Paying customer or active user count for companies raising pre-seed.
+      Pre-seed companies are often pre-revenue; user count is the primary
+      signal that the product has external validation. At pre-seed, even a
+      small number of genuinely engaged users is meaningful.
+    unit: count of paying customers or active users
+    applies-to-stage: [pre-seed]
+    thresholds:
+      exceptional: ">=50"
+      strong: "15-49"
+      median: "5-14"
+      weak: "1-4"
+      concerning: "0"
+    notes: |
+      Pre-seed user counts of 5-15 are typical for B2B companies with a 3-6
+      month operating history. Consumer companies are expected to have higher
+      counts at the same stage due to lower sales friction. 0 users at pre-seed
+      is a borderline signal — acceptable only if the team is pre-product or
+      in a highly regulated market with a long procurement cycle.
+
+  customer-count-seed:
+    description: |
+      Paying customer or active user count for companies raising seed funding.
+      By seed stage, the product should have paying customers. B2B companies
+      typically have 5-30 paying customers; consumer companies may have
+      hundreds to thousands of active users.
+    unit: count of paying customers or active users
+    applies-to-stage: [seed]
+    thresholds:
+      exceptional: ">=200"
+      strong: "50-199"
+      median: "15-49"
+      weak: "5-14"
+      concerning: "<5"
+    notes: |
+      At seed, fewer than 5 paying customers is a significant signal that
+      go-to-market has not yet been validated. 15-50 paying customers for B2B
+      or 100-500 active users for B2C is the range where seed investors begin
+      to see a repeatable motion. Above 200 customers at seed is exceptional
+      for B2B; above 10,000 active users is exceptional for consumer.
+
+  customer-count-series-a:
+    description: |
+      Paying customer or active user count for companies raising Series A.
+      At Series A, the sales motion should be established and repeatable.
+      Customer count thresholds are substantially higher than at seed.
+    unit: count of paying customers or active users
+    applies-to-stage: [series-a]
+    thresholds:
+      exceptional: ">=1000"
+      strong: "200-999"
+      median: "50-199"
+      weak: "10-49"
+      concerning: "<10"
+    notes: |
+      Series A investors expect a repeatable sales motion evidenced by
+      consistent customer acquisition over 12-18 months. Fewer than 10 paying
+      customers at Series A is a structural gap that makes the round very
+      difficult to close at institutional fund standards, regardless of the
+      quality of individual customer relationships.
+
+  mrr-pre-seed:
+    description: |
+      Monthly recurring revenue (GBP) for pre-seed companies that are
+      generating revenue. Pre-seed companies with no revenue are not
+      penalised by this metric — it is gated by product status in q4.1.
+    unit: GBP per month
+    applies-to-stage: [pre-seed]
+    thresholds:
+      exceptional: ">=10000"
+      strong: "3000-9999"
+      median: "500-2999"
+      weak: "1-499"
+      concerning: "0"
+    notes: |
+      Pre-seed revenue is rare and, when present, is a strong differentiating
+      signal. Even £500/month from 1-2 paying customers demonstrates that
+      the product has cleared the willingness-to-pay threshold. Pre-seed
+      companies without revenue are not penalised — this metric applies only
+      to those who have elected to generate revenue before raising.
+
+  mrr-seed:
+    description: |
+      Monthly recurring revenue (GBP) for seed-stage companies. By seed,
+      MRR should reflect a small but growing customer base with validated
+      willingness to pay at the target price point.
+    unit: GBP per month
+    applies-to-stage: [seed]
+    thresholds:
+      exceptional: ">=150000"
+      strong: "50000-149999"
+      median: "15000-49999"
+      weak: "3000-14999"
+      concerning: "<3000"
+    notes: |
+      £15k-50k MRR is the range where institutional seed investors begin to
+      model a credible path to a venture-scale exit. Below £3k MRR at seed
+      the round is being structured primarily on potential and team quality
+      rather than revenue traction. Above £150k MRR at seed is exceptional
+      and typically enables pricing above typical seed valuations.
+
+  mrr-series-a:
+    description: |
+      Monthly recurring revenue (GBP) for Series A companies. At Series A,
+      MRR should reflect a proven revenue model with multiple quarters of
+      consistent growth.
+    unit: GBP per month
+    applies-to-stage: [series-a]
+    thresholds:
+      exceptional: ">=1000000"
+      strong: "300000-999999"
+      median: "80000-299999"
+      weak: "20000-79999"
+      concerning: "<20000"
+    notes: |
+      £80k-300k MRR (approximately £1M-£3.6M ARR) is the range most European
+      Series A investors see at the time of closing. Below £20k MRR at Series A
+      is a structural gap that makes the round very difficult to close at
+      institutional fund standards. Above £1M MRR is exceptional and typically
+      enables Series A pricing above median.
+
+  mom-growth-rate:
+    description: |
+      Average month-over-month growth rate (percentage) across all stages.
+      Growth rate benchmarks vary less by stage than by the maturity of the
+      go-to-market motion. Early-stage companies should be growing faster
+      than later-stage ones due to smaller absolute numbers.
+    unit: percent per month (3-month average)
+    applies-to-stage: [pre-seed, seed, series-a]
+    thresholds:
+      exceptional: ">=30"
+      strong: "15-29"
+      median: "8-14"
+      weak: "3-7"
+      concerning: "<=2"
+    notes: |
+      At seed, 15-20% monthly growth is considered strong for B2B; 20-30%
+      is exceptional. Consumer companies at seed are often expected to show
+      higher growth rates due to lower sales friction. At Series A, investors
+      shift to annual ARR growth rate framing, but 10-15% monthly growth
+      remains a positive signal. Negative growth at any stage triggers investor
+      concern and requires a specific operational explanation.
+
+  nrr-saas-global:
+    description: |
+      Net revenue retention (NRR) for subscription and SaaS businesses
+      across all stages. NRR above 100% means existing customers are
+      expanding their spend faster than others are churning. This is one
+      of the most closely watched metrics in SaaS due diligence.
+    unit: percent (100 = break-even retention)
+    applies-to-stage: [seed, series-a]
+    thresholds:
+      exceptional: ">=130"
+      strong: "115-129"
+      median: "100-114"
+      weak: "85-99"
+      concerning: "<85"
+    notes: |
+      NRR below 100% means the existing cohort is contracting — churn exceeds
+      expansion. At seed, NRR below 85% is a significant concern that requires
+      a root cause explanation. At Series A, investors typically expect NRR at
+      or above 100% as a baseline; top-quartile Series A companies often show
+      NRR of 115-130%. NRR above 130% is exceptional and typically limited to
+      usage-based or heavily upsell-driven models.
