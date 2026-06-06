@@ -111,11 +111,23 @@
     },
     "show-if": {
       "type": "object",
-      "description": "Conditional display: show this question only when the referenced question's answer is one of the listed values. Schema slot only — enforcement is in the rendering layer.",
-      "required": ["question", "values"],
+      "description": "Conditional display: show this question only when all listed conditions evaluate to true (AND logic). Enforcement is in the rendering layer.",
+      "required": ["conditions"],
       "properties": {
-        "question": { "type": "string", "description": "ID of the question whose answer controls visibility" },
-        "values": { "type": "array", "items": { "type": "string" }, "description": "Answer values that cause this question to be shown" }
+        "conditions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["field", "operator"],
+            "properties": {
+              "field": { "type": "string", "description": "ID of the question or preq field whose answer is tested" },
+              "operator": { "type": "string", "enum": ["equals", "in", "not-equals", "not-in"] },
+              "value": { "type": "string", "description": "Scalar value for equals / not-equals operators" },
+              "values": { "type": "array", "items": { "type": "string" }, "description": "Value list for in / not-in operators" }
+            }
+          }
+        }
       }
     },
     "applies-to": {

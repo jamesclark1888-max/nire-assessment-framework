@@ -209,6 +209,13 @@ questions:
     validation:
       min-chars: 200
       max-chars: 1000
+    show-if:
+      conditions:
+        - field: preq.stage
+          operator: in
+          values:
+            - pre-seed
+            - seed
     applies-to:
       stages: all
       business-models: all
