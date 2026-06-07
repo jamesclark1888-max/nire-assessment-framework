@@ -31,29 +31,69 @@ rules:
       type: threshold
       thresholds:
         - min: null
-          max: 0
-          score: 15
-        - min: 1
           max: 4
-          score: 30
+          score: 15
         - min: 5
-          max: 15
-          score: 50
-        - min: 16
-          max: 30
-          score: 63
-        - min: 31
-          max: 75
-          score: 75
-        - min: 76
-          max: 200
-          score: 85
-        - min: 201
-          max: 500
-          score: 93
-        - min: 501
+          max: 14
+          score: 30
+        - min: 15
+          max: 49
+          score: 55
+        - min: 50
+          max: 199
+          score: 78
+        - min: 200
           max: null
-          score: 100
+          score: 95
+      stage-thresholds:
+        pre-seed:
+          - min: null
+            max: 0
+            score: 15
+          - min: 1
+            max: 4
+            score: 30
+          - min: 5
+            max: 14
+            score: 55
+          - min: 15
+            max: 49
+            score: 78
+          - min: 50
+            max: null
+            score: 95
+        seed:
+          - min: null
+            max: 4
+            score: 15
+          - min: 5
+            max: 14
+            score: 30
+          - min: 15
+            max: 49
+            score: 55
+          - min: 50
+            max: 199
+            score: 78
+          - min: 200
+            max: null
+            score: 95
+        series-a:
+          - min: null
+            max: 9
+            score: 15
+          - min: 10
+            max: 49
+            score: 30
+          - min: 50
+            max: 199
+            score: 55
+          - min: 200
+            max: 999
+            score: 78
+          - min: 1000
+            max: null
+            score: 95
 
   # ─────────────────────────────────────────────────────────────────
   # Monthly recurring revenue (q4.3)
@@ -69,29 +109,69 @@ rules:
       type: threshold
       thresholds:
         - min: null
-          max: 0
+          max: 2999
           score: 15
-        - min: 1
-          max: 4999
-          score: 28
-        - min: 5000
-          max: 19999
-          score: 45
-        - min: 20000
-          max: 59999
-          score: 62
-        - min: 60000
-          max: 150000
-          score: 75
-        - min: 150001
-          max: 400000
-          score: 87
-        - min: 400001
-          max: 1000000
-          score: 94
-        - min: 1000001
+        - min: 3000
+          max: 14999
+          score: 30
+        - min: 15000
+          max: 49999
+          score: 55
+        - min: 50000
+          max: 149999
+          score: 78
+        - min: 150000
           max: null
-          score: 100
+          score: 95
+      stage-thresholds:
+        pre-seed:
+          - min: null
+            max: 0
+            score: 15
+          - min: 1
+            max: 499
+            score: 30
+          - min: 500
+            max: 2999
+            score: 55
+          - min: 3000
+            max: 9999
+            score: 78
+          - min: 10000
+            max: null
+            score: 95
+        seed:
+          - min: null
+            max: 2999
+            score: 15
+          - min: 3000
+            max: 14999
+            score: 30
+          - min: 15000
+            max: 49999
+            score: 55
+          - min: 50000
+            max: 149999
+            score: 78
+          - min: 150000
+            max: null
+            score: 95
+        series-a:
+          - min: null
+            max: 19999
+            score: 15
+          - min: 20000
+            max: 79999
+            score: 30
+          - min: 80000
+            max: 299999
+            score: 55
+          - min: 300000
+            max: 999999
+            score: 78
+          - min: 1000000
+            max: null
+            score: 95
 
   # ─────────────────────────────────────────────────────────────────
   # Month-over-month growth rate (q4.4)
@@ -106,29 +186,20 @@ rules:
       type: threshold
       thresholds:
         - min: null
-          max: 0
-          score: 10
-        - min: 1
-          max: 4
-          score: 25
-        - min: 5
-          max: 9
-          score: 40
-        - min: 10
+          max: 2
+          score: 15
+        - min: 3
+          max: 7
+          score: 30
+        - min: 8
           max: 14
           score: 55
         - min: 15
-          max: 20
-          score: 70
-        - min: 21
-          max: 30
-          score: 83
-        - min: 31
-          max: 50
-          score: 93
-        - min: 51
+          max: 29
+          score: 78
+        - min: 30
           max: null
-          score: 100
+          score: 95
 
   # ─────────────────────────────────────────────────────────────────
   # Traction evidence quality (q4.5) — highest weight in dimension
@@ -363,26 +434,66 @@ rules:
       type: threshold
       thresholds:
         - min: null
-          max: 60
+          max: 84
           score: 15
-        - min: 61
-          max: 80
-          score: 30
-        - min: 81
-          max: 95
-          score: 48
-        - min: 96
-          max: 104
+        - min: 85
+          max: 99
+          score: 40
+        - min: 100
+          max: 114
           score: 63
-        - min: 105
-          max: 115
-          score: 78
-        - min: 116
-          max: 130
-          score: 90
-        - min: 131
+        - min: 115
+          max: 129
+          score: 85
+        - min: 130
           max: null
           score: 100
+      stage-thresholds:
+        pre-seed:
+          - min: null
+            max: 79
+            score: 45
+          - min: 80
+            max: 99
+            score: 60
+          - min: 100
+            max: 119
+            score: 80
+          - min: 120
+            max: null
+            score: 90
+        seed:
+          - min: null
+            max: 84
+            score: 15
+          - min: 85
+            max: 99
+            score: 40
+          - min: 100
+            max: 114
+            score: 63
+          - min: 115
+            max: 129
+            score: 85
+          - min: 130
+            max: null
+            score: 100
+        series-a:
+          - min: null
+            max: 84
+            score: 15
+          - min: 85
+            max: 99
+            score: 40
+          - min: 100
+            max: 114
+            score: 63
+          - min: 115
+            max: 129
+            score: 85
+          - min: 130
+            max: null
+            score: 100
 
   # ─────────────────────────────────────────────────────────────────
   # Product iteration evidence (q4.10)

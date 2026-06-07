@@ -20,6 +20,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   hardcoded mapping. Either approach needs schema design and validator support before
   it can be built. Deferring to a future framework schema revision.
 
+### Changed
+- D4 quantitative scoring rules (q4.2 customer count, q4.3 MRR, q4.9 NRR) now carry per-stage threshold tables under a `stage-thresholds` block alongside the fallback `thresholds` table. The scoring engine selects the table matching `profile_stage` at runtime; unknown stages fall back to the flat table. q4.4 (MoM growth rate) uses a single flat table across all stages — bands revised to `≤2%→15, 3-7%→30, 8-14%→55, 15-29%→78, ≥30%→95` to align with the global benchmark band scores used by all other threshold questions.
+- `schema/scoring-rule.schema.json`: `stage-thresholds` added to `logic.properties` as an optional object whose keys are stage names and values are threshold arrays matching the existing threshold item schema.
+
 ### Added
 - Dimension 4 (Product & Traction) fully drafted: 13 questions across 3 tiers (5 required, 5 recommended, 3 optional), 12 scoring rules (4 threshold-based for quantitative signals, 8 rubric-based for qualitative), 10 recommendation templates, and global benchmarks for customer count, MRR, month-over-month growth, and NRR across pre-seed, seed, and Series A. showIf conditions gate revenue and retention questions on product status (q4.1), so pre-revenue founders are not penalised for metrics they cannot provide. D4 README updated from skeleton to full specification.
 - `show-if` conditional display: q1.5 (founder-market-fit narrative) now gates on `preq.stage in [pre-seed, seed]`; Series-A+ founders skip the open-text narrative because their track record substitutes it. Schema updated: `show-if` now requires a `conditions` array with `field`, `operator`, and `value`/`values` fields, replacing the earlier placeholder `{question, values}` format. Validator updated accordingly.

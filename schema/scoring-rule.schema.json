@@ -56,6 +56,22 @@
                   }
                 }
               },
+              "stage-thresholds": {
+                "type": "object",
+                "description": "Per-stage threshold override tables. Keys are stage names (pre-seed, seed, series-a). Engine selects the matching table at runtime; falls back to 'thresholds' for undefined stages.",
+                "additionalProperties": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "required": ["min", "max", "score"],
+                    "properties": {
+                      "min": { "type": ["number", "null"] },
+                      "max": { "type": ["number", "null"] },
+                      "score": { "type": "number", "minimum": 0, "maximum": 100 }
+                    }
+                  }
+                }
+              },
               "mapping": {
                 "type": "object",
                 "additionalProperties": {
