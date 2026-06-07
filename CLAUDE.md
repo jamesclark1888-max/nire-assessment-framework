@@ -180,7 +180,43 @@ Follow these steps in order. Do not skip steps.
 
 ## Critical operational rules
 
-None recorded yet. When an incident occurs that requires a standing rule, document it here in the same format as the Portfolio Tracker: what must never happen, what the symptom looks like, and how to fix it.
+### Verify numbers from session summaries before acting on them
+
+**Never use a number from a session summary as the direct basis for a decision
+without reading the source file.**
+
+Session summaries can miscount word lengths, calibration scores, file counts,
+test results, and similar quantities. Before trimming a fix section because "the
+summary said 205 words", read the file and count from source.
+
+Session example (2026-06-07): The `weak-unit-economics` fix section was
+summarised as ~205 words. The actual file counted at ~145 words — a 60-word
+delta that would have triggered an unnecessary rewrite had the summary count been
+accepted at face value.
+
+---
+
+### Verify citations before writing, not after
+
+**Never write a source citation into a benchmark file, documentation, or any
+founder/investor-facing content without first web-searching to confirm it exists.**
+
+Citations carry an implied guarantee: "this number is backed by this source."
+Unverified citations damage credibility when discovered. Verification takes 2–5
+minutes per citation; finding fabricated citations after publication is
+significantly more expensive.
+
+Session example (2026-06-07): 5 source citations were generated for the D5
+`benchmarks/global.yaml` file. On post-write verification: (1) BVP "State of
+the Cloud 2025" does not exist — the 2024 edition exists; (2) SaaStr "Annual
+Revenue Benchmarks Survey 2024" is not a real publication; (3) OpenView "SaaS
+Benchmarks Report 2024" is an outright fabrication — OpenView Partners wound
+down in December 2023. 4 of 5 citations had material issues.
+
+Required process: Before writing any source citation, run a web search
+confirming: (1) the source exists, (2) the specific year or edition cited exists,
+(3) the URL or title is accurate. If a source cannot be verified, find a real
+one or omit the citation.
 
 ---
 
