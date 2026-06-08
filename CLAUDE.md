@@ -220,6 +220,69 @@ one or omit the citation.
 
 ---
 
+### Verify human references to past content within a conversation
+
+**Never act on a participant's memory of past content without verifying against the current source.**
+
+If anyone in the conversation says "the PDF showed X" or "the file contained Y"
+and that claim is being used as the basis for a decision, verify the current file
+or database state before acting. Memory of past content — including the human's —
+can be wrong even when expressed confidently.
+
+Session example (2026-06-08): pushed back on a "Marcus the co-founder" prose
+addition based on remembered PDF content claiming "solo founder." Verification of
+the current seed file showed Sarah Chen has been a two-co-founder profile (with
+Marcus Webb) throughout, making the prose internally consistent. The pushback
+wasted a verification cycle that source-checking would have prevented.
+
+---
+
+### New dimensions trigger explicit calibration profile audit
+
+**When a new dimension is wired in, audit all non-primary calibration profiles against their stated intent.**
+
+The non-primary profiles (MIN_EFFORT, SKIP_REQUIRED, SKIP_WITH_WEAK_RECOMMENDED)
+drift away from their stated test premises as new dimensions land. They continue
+to "pass" calibration via penalty scores rather than testing what their names
+suggest. Silent acceptance of penalty-based passes does not maintain the
+integrity of these profiles.
+
+Session example (2026-06-08): MIN_EFFORT's stated premise is "required only,
+plausible defaults" but it lacks required answers for D4 and D5. It passes its
+30–42 target via penalty scores for those dimensions, not by testing minimum
+effort across all active dimensions.
+
+---
+
+### COMING_SOON_LABELS must be updated when a dimension moves from skeleton to drafted
+
+**When a dimension is wired into the scoring engine and framework.json, remove it
+from `COMING_SOON_LABELS` in `DimensionAccordion.tsx` and any other "coming soon"
+or "v0.2" lists.**
+
+This is the same class of drift as the `isFounderRoute` proxy rule. The dimension
+will appear twice in the web report — once as a scored accordion item and once in
+the greyed "Available in v0.2" section.
+
+Session example (2026-06-08): D5 appeared as a duplicate in the dimension
+overview after wiring because `COMING_SOON_LABELS` still listed "Business Model
+& Unit Economics." The bug was invisible in the PDF renders and only surfaced
+when the web report was visually inspected.
+
+---
+
+### Visual verification requires both PDF and web report views
+
+**PDF can pass visual verification cleanly while bugs hide in web-only sections.
+A new dimension is not verified until both the PDF and the live web report have
+been inspected.**
+
+Session example (2026-06-08): the D5 duplicate-dimension bug was invisible in the
+report PDF but obvious in the web report dimension overview. PDF-only verification
+would have shipped the bug.
+
+---
+
 ## Repository structure
 
 ```
