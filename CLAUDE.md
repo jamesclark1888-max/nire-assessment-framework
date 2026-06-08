@@ -283,6 +283,70 @@ would have shipped the bug.
 
 ---
 
+### Verify external pricing/specs against current source, not memory
+
+**When hardcoding pricing constants, API behaviour, or third-party service limits,
+web-search the current documentation before writing. Memory of pricing tables, rate
+limits, and cache thresholds drifts as services evolve. Trust the live source.**
+
+Session example (2026-06-08): twice during AI scoring integration hardcoded values
+were wrong from memory. First, Haiku 3.5 pricing ($0.80/$4.00 per MTok) was confused
+with Haiku 4.5 pricing ($1.00/$5.00 per MTok). Second, the prompt cache minimum
+threshold was assumed to be 2048 tokens (Sonnet/Opus value) when Haiku 4.5 actually
+requires 4096+ tokens. Both errors would have shipped if not caught by the live
+validation cycle. Web search against anthropic.com/pricing and the docs would have
+prevented both.
+
+---
+
+### Live test before commit on novel integrations
+
+**For new integrations with external services, run an end-to-end live test before
+commit, not just unit/integration tests with mocks. Test-passing means the code is
+internally consistent. Live-test-passing means the actual external behaviour matches
+expectations.**
+
+Session example (2026-06-08): three iterations on AnthropicScorer caught real issues
+each time:
+- V1 → V2: discovered budget/cost tracking needed
+- V2 → V3: discovered 429 rate-limit storms causing silent heuristic fallback
+  (25+ of 35 calls falling back)
+- V3 → V4 (shipped): discovered prompt caching never activated and TPM limits hit
+
+Without live tests between each iteration, all three classes of bug would have shipped.
+Live tests at ~$0.10 per cycle are cheap insurance vs shipping broken integration.
+
+---
+
+### External rate limits have multiple dimensions
+
+**When working against rate-limited external services, identify ALL rate limit
+dimensions before designing concurrency strategy. Fixing one limit (e.g., requests
+per minute) often surfaces another (e.g., tokens per minute). The full envelope is
+the intersection.**
+
+Session example (2026-06-08): Anthropic tier 1 has both 50 RPM AND 50k TPM limits.
+Initial concurrency fix addressed RPM via semaphore. Expanded prompt then hit TPM
+ceiling because more tokens per call. Both ceilings constrain design space.
+
+---
+
+### Cache behaviour requires external verification
+
+**When implementing caching against an external service, "cache configured correctly
+in code" is not sufficient evidence the cache is active. Verify against the service's
+external observability (dashboard, usage API, response metadata) before treating
+caching as working.**
+
+Session example (2026-06-08): AnthropicScorer's `cache_control` directive was
+correctly applied to the system prompt block, SDK accepted it without error, and the
+integration was assumed to be caching. The Anthropic console showed 0 tokens reused
+across all calls. The actual cause: prompt below the 4096-token Haiku 4.5 cache
+minimum. Anthropic silently ignores `cache_control` on undersized blocks; the SDK
+gives no error.
+
+---
+
 ## Repository structure
 
 ```
