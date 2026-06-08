@@ -1,0 +1,434 @@
+# Dimension 5: Business Model & Unit Economics
+# Questions
+#
+# Validated against: schema/question.schema.json
+#
+# Conventions:
+# - Required tier: 5 questions (1 informational + 4 scored); anchors the unit
+#   economics conversation across all stages. Gross margin and the narrative
+#   questions are shown to pre-revenue founders as estimates or projections.
+# - Recommended tier: 4 questions; LTV:CAC and payback are gated on live/
+#   scaling product status (show-if: q4.1); pricing power and scalability
+#   are open-text rubrics shown to all.
+# - Optional tier: 2 questions; deep-dive for founders seeking maximum precision.
+# - Quantitative questions (q5.3, q5.6, q5.7) use stage-specific thresholds
+#   defined in benchmarks/global.yaml and applied at runtime.
+# - Total scored weight: 1.11 (informational q5.1 contributes 0.02).
+
+dimension: business-model
+version: 0.1.0
+questions:
+
+  # ─────────────────────────────────────────────────────────────────
+  # REQUIRED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q5.1
+    dimension: business-model
+    tier: required
+    type: single-select
+    question: "Which of these best describes how your business primarily makes money?"
+    helper-text: |
+      Select the model that generates most of your revenue today, or that you
+      are building toward if pre-revenue. This context shapes how the rest of
+      the unit economics questions are interpreted — a software subscription
+      business at £50k MRR is assessed against different benchmarks than a
+      marketplace at the same revenue level.
+    why-it-matters: |
+      Revenue model type determines the benchmark set applied to gross margin,
+      LTV:CAC, and payback period. VCs underwrite each model against different
+      thresholds; this question routes the assessment to the correct comparisons
+      and contextualises all rubric scoring in the dimension.
+    options:
+      - value: saas
+        label: "Software subscription (SaaS) — recurring monthly or annual fee for software access"
+      - value: marketplace
+        label: "Marketplace — commission or take rate on transactions between parties"
+      - value: transaction
+        label: "Transaction / usage-based — fees per transaction, API call, or unit consumed"
+      - value: hardware
+        label: "Hardware — one-time or recurring revenue from physical product sales"
+      - value: services
+        label: "Services — revenue from professional services, consulting, or implementation"
+      - value: consumer
+        label: "Consumer — direct-to-consumer product, subscription, or in-app purchase"
+      - value: hybrid
+        label: "Hybrid — two or more of the above in roughly equal proportion"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.02
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q5.2
+    dimension: business-model
+    tier: required
+    type: long-text
+    question: "What do you charge, how did you arrive at that pricing, and what evidence supports it?"
+    helper-text: |
+      State your current pricing — the actual number. Then explain the logic:
+      how you landed on it, what you tested before committing, and what
+      customers have shown you about their willingness to pay. An answer that
+      includes a price change you made and how customers responded carries more
+      weight than one that only describes the current number.
+    why-it-matters: |
+      Pricing reveals commercial judgement. Founders who arrived at pricing
+      through deliberate testing have a more defensible thesis than those who
+      copied a competitor or assumed. Evidence of pricing power — customers who
+      accepted a price increase, or who chose the product at a premium over
+      alternatives — is one of the highest-quality signals in this dimension.
+    validation:
+      min-chars: 100
+      max-chars: 1200
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.16
+      rubric-ref: pricing-rationale-rubric
+    recommendation-trigger:
+      low-score: weak-pricing-rationale
+      medium-score: improvable-pricing-rationale
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q5.3
+    dimension: business-model
+    tier: required
+    type: number
+    question: "What is your gross margin percentage? If pre-revenue, enter your target or modelled estimate."
+    helper-text: |
+      This figure feeds into every unit economics calculation in this section —
+      it is the share of revenue left after direct delivery costs. Calculate as:
+      (revenue minus direct delivery costs) divided by revenue. Direct costs
+      include hosting, licences, fulfilment, and customer-specific service hours.
+      Exclude salaries and overheads. Enter as a number (e.g. 72 for 72%).
+    why-it-matters: |
+      Gross margin sets the ceiling on long-run profitability and is the primary
+      driver of LTV. SaaS businesses target 70-80%+ because high gross margin
+      funds sales and R&D from revenue. Hardware and services businesses with
+      margins below 30% require fundamentally different scale economics. Investors
+      benchmark gross margin against model-appropriate thresholds before modelling
+      any growth trajectory.
+    validation:
+      min: -100
+      max: 100
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.15
+      benchmark-ref: gross-margin-by-stage
+    recommendation-trigger:
+      low-score: low-gross-margin
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q5.4
+    dimension: business-model
+    tier: required
+    type: long-text
+    question: "Walk through the unit economics for a single customer: what it costs to acquire and serve them, and what they generate over the relationship."
+    helper-text: |
+      Work through the numbers as precisely as you can. Include what a customer
+      pays (monthly, annually, or per transaction), the direct cost of serving
+      them, how long they typically stay, and any expansion or upsell revenue
+      over time. If pre-revenue, use your best modelled estimates and name the
+      assumptions you are most uncertain about. Investors will probe every
+      number here — grounded estimates score higher than vague ranges.
+    why-it-matters: |
+      Unit economics is the most important structural question in this dimension.
+      A growing business with negative per-customer contribution compounds its
+      losses as it scales. This is the full-picture question that lets investors
+      evaluate whether acquisition, service, and retention costs form a viable
+      economic structure — and whether the founder has genuinely stress-tested
+      the model rather than projected optimistic cases.
+    validation:
+      min-chars: 150
+      max-chars: 1500
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.19
+      rubric-ref: unit-economics-rubric
+    recommendation-trigger:
+      low-score: weak-unit-economics
+      medium-score: improvable-unit-economics
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q5.5
+    dimension: business-model
+    tier: required
+    type: long-text
+    question: "At what scale do the unit economics become clearly viable? Describe the inflection point and what has to be true to reach it."
+    helper-text: |
+      Describe the conditions under which the business generates sustainable
+      contribution margin per customer — where acquisition costs, service costs,
+      and churn balance in a way that funds growth from revenue rather than
+      entirely from capital. This could be a revenue level, a customer count,
+      a specific product change, or a cost reduction. Name the two or three
+      assumptions your model depends on most.
+    why-it-matters: |
+      The path to viable unit economics is the bridge between current state and
+      investable thesis. Pre-seed and seed investors are not funding present
+      profitability — they are funding the journey to the point where economics
+      become self-sustaining. A founder who can describe that journey with
+      specific milestones and named assumptions demonstrates commercial maturity
+      that maps directly to how efficiently the raised capital will be used.
+    validation:
+      min-chars: 100
+      max-chars: 1200
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.14
+      rubric-ref: profitability-path-rubric
+    recommendation-trigger:
+      low-score: unclear-profitability-path
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # RECOMMENDED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q5.6
+    dimension: business-model
+    tier: recommended
+    type: number
+    question: "What is your LTV:CAC ratio? Enter as a decimal (e.g. 3.5 for a ratio of 3.5 to 1)."
+    helper-text: |
+      LTV:CAC is the ratio of lifetime customer value to the cost of acquiring
+      that customer. LTV = (average annual revenue per customer × gross margin
+      %) ÷ annual churn rate. CAC = total sales and marketing spend in a period
+      ÷ new customers won in that period. Enter 0 if you have not yet modelled
+      this.
+    why-it-matters: |
+      LTV:CAC above 3× is the threshold at which a sales and marketing
+      investment is considered economically justified. Below 1× the business
+      destroys value with each customer acquired. This ratio is dimensionless
+      and comparable across all business models, making it the most universal
+      single unit economics benchmark in the dimension.
+    show-if:
+      conditions:
+        - field: q4.1
+          operator: in
+          values: [live, scaling]
+    validation:
+      min: 0
+      max: 50
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.12
+      benchmark-ref: ltv-cac-ratio-by-stage
+    recommendation-trigger:
+      low-score: low-ltv-cac
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q5.7
+    dimension: business-model
+    tier: recommended
+    type: number
+    question: "What is your CAC payback period in months — how long until a customer's gross margin contribution has covered the cost of acquiring them?"
+    helper-text: |
+      Calculate as: CAC ÷ (average monthly revenue per customer × gross margin
+      %). For example: CAC £1,200, monthly revenue £100, gross margin 80% gives
+      payback of 1,200 ÷ (100 × 0.80) = 15 months. Enter 0 if you have not
+      yet calculated this.
+    why-it-matters: |
+      Payback period is the sharpest measure of capital efficiency at the
+      acquisition level. Seed-stage businesses with payback above 24 months
+      require substantial external capital to grow; those below 12 months can
+      fund growth primarily from customer revenue. It is one of the most
+      commonly cited benchmarks in Series A diligence conversations.
+    show-if:
+      conditions:
+        - field: q4.1
+          operator: in
+          values: [live, scaling]
+    validation:
+      min: 0
+      max: 120
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.11
+      benchmark-ref: cac-payback-by-stage
+    recommendation-trigger:
+      low-score: long-cac-payback
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q5.8
+    dimension: business-model
+    tier: recommended
+    type: long-text
+    question: "What evidence do you have that customers would pay more than they do today?"
+    helper-text: |
+      The strongest answers describe something that actually happened: a price
+      increase that customers accepted without churn, a customer who said the
+      product was priced below its value, or a pricing test that revealed
+      higher willingness to pay. If you have not yet tested pricing power,
+      describe the strongest indirect signal you have — and the specific step
+      you would take this month to test it.
+    why-it-matters: |
+      Pricing power separates defensible businesses from commodity ones. A
+      company that cannot raise prices is structurally capped on gross margin
+      improvement. Evidence of pricing power — customer acceptance of price
+      increases, high retention after price changes, competitor pricing far
+      above current levels — gives investors confidence that margins can improve
+      as the business grows without requiring technology reinvention.
+    validation:
+      min-chars: 80
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.08
+      rubric-ref: pricing-power-rubric
+    recommendation-trigger:
+      low-score: no-pricing-power-evidence
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q5.9
+    dimension: business-model
+    tier: recommended
+    type: long-text
+    question: "How do the economics change as the business scales? Describe what improves, what stays roughly the same, and what gets harder at 5 to 10 times your current revenue."
+    helper-text: |
+      Think through each major cost driver: does the cost to acquire a customer
+      fall as brand grows? Does gross margin improve as infrastructure is spread
+      across more customers? Does churn rise as you sell beyond your initial
+      ideal customer? The most useful answers are honest about what scales well
+      and what doesn't — and name the plan for the parts that don't.
+    why-it-matters: |
+      Scalability of the business model determines whether growth produces
+      expanding or compressing margins. A business whose acquisition costs rise
+      faster than lifetime value at scale is structurally constrained regardless
+      of current momentum. Investors build terminal value assumptions on scale
+      margin; a founder who has mapped the scale dynamics shapes that model from
+      the first conversation.
+    validation:
+      min-chars: 100
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.07
+      rubric-ref: model-scalability-rubric
+    recommendation-trigger:
+      low-score: unclear-model-scalability
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # OPTIONAL DEEP-DIVE
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q5.10
+    dimension: business-model
+    tier: optional
+    type: long-text
+    question: "Which two or three assumptions is your unit economics model most sensitive to? What would it take for each to break, and how confident are you in them?"
+    helper-text: |
+      For each assumption: state the current value, describe how far it would
+      need to shift to materially damage the economics, and note your confidence
+      level. The most revealing answers name the assumptions the founder is
+      least certain about and describe the data being collected to confirm or
+      disprove them.
+    why-it-matters: |
+      Sensitivity analysis reveals whether the founder has stress-tested the
+      model. A business whose economics fail if CAC rises 30% or churn doubles
+      is fragile; one that remains viable under a range of adverse conditions
+      is resilient. Founders who have run this analysis reduce friction in
+      financial diligence and signal that the model is built to withstand
+      challenge, not just to pass a first glance.
+    validation:
+      min-chars: 100
+      max-chars: 1200
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.04
+      rubric-ref: unit-economics-sensitivity-rubric
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q5.11
+    dimension: business-model
+    tier: optional
+    type: long-text
+    question: "Break down your three to five largest cost categories. For each, describe whether it scales in line with revenue, grows more slowly (economies of scale), or grows faster than revenue."
+    helper-text: |
+      Include: the cost category, its approximate share of total operating cost
+      today, and how it behaves at 3× and 10× current revenue. If a cost is
+      largely fixed today but will require a step-change at a certain scale —
+      infrastructure, compliance, or a new leadership layer — describe that
+      inflection point.
+    why-it-matters: |
+      Cost structure reveals the operating leverage in the business. A company
+      where most costs scale sub-linearly with revenue improves margin as it
+      grows; one where costs scale super-linearly compresses. This directly
+      affects terminal value assumptions and the credibility of the founder's
+      financial projections in a Series A or growth-stage conversation.
+    validation:
+      min-chars: 100
+      max-chars: 1200
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.03
+      rubric-ref: cost-structure-rubric
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"

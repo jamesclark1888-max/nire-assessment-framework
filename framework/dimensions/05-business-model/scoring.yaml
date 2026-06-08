@@ -1,0 +1,633 @@
+# Dimension 5: Business Model & Unit Economics
+# Scoring rules and rubrics
+#
+# Validated against: schema/scoring-rule.schema.json
+#
+# Each rule converts a raw answer into a 0-100 score.
+# Rule IDs match the rubric-ref or benchmark-ref values in questions.yaml.
+#
+# q5.1 is informational-only (weight 0.02) and has no rule here.
+# Quantitative questions (q5.3, q5.6, q5.7) use threshold scoring;
+# stage-specific overrides are in benchmarks/global.yaml.
+# All other scored questions use ai-qualitative rubric scoring.
+#
+# Note on gross margin (q5.3): no stage-thresholds block. Gross margin is a
+# structural property of the business model, not an execution metric that varies
+# by stage maturity. The flat thresholds apply at all stages; the engine falls
+# back to the default table. Reserve stage-thresholds for questions where scoring
+# genuinely differs by stage (q5.6, q5.7).
+#
+# Note on CAC payback (q5.7): thresholds are inverted (lower value = higher
+# score). The scoring engine maps each value to the range it falls in and
+# returns the associated score, regardless of direction.
+
+dimension: business-model
+version: 0.1.0
+rules:
+
+  # ─────────────────────────────────────────────────────────────────
+  # Pricing structure and rationale (q5.2)
+  # ─────────────────────────────────────────────────────────────────
+  - id: pricing-rationale-rubric
+    applies-to-question: q5.2
+    description: |
+      AI-evaluated scoring for the quality, evidence basis, and commercial
+      rigour of the pricing structure described. Rewards founders who arrived
+      at pricing through testing and can describe how customer behaviour
+      validated or challenged their initial assumptions. Penalises founders
+      who state a price without evidence of how it was derived or what market
+      signals support it.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: pricing-evidence
+            weight: 0.40
+            description: |
+              Is the pricing supported by actual market evidence — customer
+              discovery conversations, willingness-to-pay tests, observed
+              behaviour, or competitive benchmarking — or was it set without
+              deliberate testing? The clearest answers describe a specific event:
+              a test that confirmed the price point, a customer who accepted a
+              price increase, or a discovery conversation that revealed what
+              buyers were already paying for the alternatives they use.
+              Strong: "We launched at £99/month. In six discovery calls customers
+              consistently said cost wasn't a concern, so we raised to £249 in
+              month 3. One of twelve customers cancelled; two said they'd expected
+              us to cost more."
+              Weak: "We charge £149/month which covers our costs and is competitive
+              with alternatives in the market."
+          - name: pricing-logic
+            weight: 0.35
+            description: |
+              Is there a clear explanation of the economics behind the pricing —
+              how the price maps to value delivered for the customer, how it
+              compares to what buyers currently spend on the alternatives they
+              use, and why this price is right at this stage of the business?
+              The strongest answers connect price to customer value in concrete
+              terms: hours saved per week, cost avoided per month, or revenue
+              unlocked per year. Generic competitive comparisons without customer
+              value anchoring score lower.
+          - name: pricing-iteration
+            weight: 0.25
+            description: |
+              Has the founder updated pricing based on evidence — testing
+              different price points, running deliberate experiments, or making
+              changes based on customer feedback — or has pricing remained
+              untested since the initial decision? Even one deliberate pricing
+              test or change, with a described outcome, demonstrates that pricing
+              is treated as an active lever rather than a fixed assumption.
+              A founder who has never changed or tested pricing is not necessarily
+              wrong, but they carry more uncertainty than one who has observed
+              market response.
+        score-bounds:
+          min: 15
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Gross margin percentage (q5.3)
+  # Flat thresholds — no stage-thresholds block. Scoring does not vary
+  # by stage: gross margin is a structural property of the business model,
+  # meaningful at any stage whether measured or estimated.
+  # Thresholds are calibrated to a software/SaaS baseline. Hardware,
+  # services, and marketplace businesses will receive model-specific
+  # benchmark overlays from q5.1 context in the v0.2 routing layer.
+  # ─────────────────────────────────────────────────────────────────
+  - id: gross-margin-by-stage
+    applies-to-question: q5.3
+    description: |
+      Maps gross margin percentage to a score. Flat thresholds apply at all
+      stages — gross margin is a structural property of the business model,
+      not an execution metric that matures over time. Thresholds are calibrated
+      to a software/SaaS baseline where 70-80%+ is the investor target. Hardware
+      and services businesses with structurally lower margins will score in the
+      median band even with excellent model-appropriate margins; narrative
+      questions q5.4 and q5.5 capture model-specific context qualitatively.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 19
+          score: 15
+        - min: 20
+          max: 39
+          score: 30
+        - min: 40
+          max: 64
+          score: 55
+        - min: 65
+          max: 79
+          score: 78
+        - min: 80
+          max: null
+          score: 95
+
+  # ─────────────────────────────────────────────────────────────────
+  # Unit economics narrative (q5.4)
+  # ─────────────────────────────────────────────────────────────────
+  - id: unit-economics-rubric
+    applies-to-question: q5.4
+    description: |
+      AI-evaluated scoring for the completeness, internal consistency, and
+      evidence basis of the unit economics described. This is the highest-weight
+      question in the dimension. Rewards founders who provide specific numbers
+      with sourced methodology for all three components — acquisition, service,
+      and lifetime value. Penalises missing components, vague ranges, and models
+      that do not internally cohere.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: numerical-completeness
+            weight: 0.40
+            description: |
+              Does the answer provide specific numbers for all three key unit
+              economics components — customer acquisition cost, direct service
+              cost per customer, and expected lifetime revenue — or are material
+              parts missing, vague, or replaced with qualitative descriptions?
+              The minimum for a complete answer at seed stage is: an actual or
+              modelled CAC, a stated average contract or transaction value, a
+              gross margin figure or direct service cost, and some indication
+              of expected customer lifetime. Pre-revenue founders using modelled
+              estimates with named assumptions score higher than those who
+              acknowledge uncertainty without providing numbers at all.
+              Strong: "CAC via inbound is approximately £800 (total marketing
+              spend £4k, 5 customers won last quarter). Average annual contract
+              value is £3,600. Direct hosting and support cost is approximately
+              £200/customer/year giving 94% gross margin on subscription. Average
+              customer lifetime so far is 18 months; we model conservatively at
+              24 months giving LTV of approximately £7,200."
+              Weak: "Our CAC is low because we primarily acquire through word of
+              mouth and our customers are sticky so the lifetime value is high."
+          - name: internal-consistency
+            weight: 0.35
+            description: |
+              Do the stated numbers cohere internally — does the arithmetic
+              between CAC, gross margin, customer lifetime, and LTV produce a
+              self-consistent economic picture? Or are there gaps between the
+              components that indicate the model has not been worked through
+              end to end? Common inconsistencies: an LTV that implies a churn
+              rate dramatically different from the stated churn; a CAC that is
+              lower than the stated cost of a single sales meeting; a gross
+              margin that is inconsistent with the described cost structure.
+              Pre-revenue founders should at minimum show that their estimated
+              numbers are mutually consistent with their cost structure and
+              pricing assumptions.
+          - name: evidence-basis
+            weight: 0.25
+            description: |
+              Are the numbers grounded in actual observed data — measured costs,
+              real contract values, tracked churn — or derived from assumptions
+              without a stated basis? A founder with pre-revenue estimates who
+              names the specific source of each assumption (a vendor quote, a
+              competitive benchmark, a customer conversation) is more credible
+              than one who asserts estimates as approximate facts. The weakest
+              answers provide specific-looking numbers with no indication of
+              how they were derived, making them indistinguishable from guesses.
+        score-bounds:
+          min: 15
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # Path to viable economics (q5.5)
+  # ─────────────────────────────────────────────────────────────────
+  - id: profitability-path-rubric
+    applies-to-question: q5.5
+    description: |
+      AI-evaluated scoring for the clarity, specificity, and commercial realism
+      of the described path from current economics to a point where the unit
+      economics become self-sustaining. Rewards founders who name a specific
+      inflection point and the key assumptions it depends on. Penalises vague
+      trajectories, unfounded scale assumptions, and paths that are inconsistent
+      with the raise amount.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: inflection-specificity
+            weight: 0.40
+            description: |
+              Does the answer describe a specific, identifiable inflection point —
+              a defined revenue level, customer count, product change, or cost
+              reduction — at which the unit economics become clearly viable, or
+              does it describe a vague upward trajectory without naming the
+              mechanism or milestone that creates the change? The clearest answers
+              name the specific thing that has to happen: "At 150 customers our
+              infrastructure cost per customer drops from £420 to £85 and we
+              move from negative contribution to approximately 60% gross margin."
+              Vaguer answers describe direction rather than destination.
+          - name: assumption-transparency
+            weight: 0.40
+            description: |
+              Does the founder name the most critical assumptions the described
+              path depends on — and acknowledge which are most uncertain? Founders
+              who surface their own unknowns and describe how they will validate
+              them are more credible than those who project a clean path without
+              flagging risks. The strongest answers identify two or three
+              assumptions by name (churn rate at scale, CAC compression at volume,
+              expansion revenue per customer) and describe what evidence they have
+              or are collecting to underpin each one.
+          - name: capital-coherence
+            weight: 0.20
+            description: |
+              Is the described path to viable economics consistent with the raise
+              amount being sought and the runway it provides? A path that requires
+              3× more capital than the round implies, or that assumes unit
+              economics improve through product development not yet funded, is a
+              structural inconsistency. At pre-seed and seed, perfect capital
+              coherence is not expected, but obvious mismatches between the
+              described path and the implied raise size are a signal of
+              incomplete financial planning.
+        score-bounds:
+          min: 15
+          max: 88
+
+  # ─────────────────────────────────────────────────────────────────
+  # LTV:CAC ratio (q5.6)
+  # Stage-appropriate defaults below; benchmarks/global.yaml contains
+  # per-stage thresholds used at runtime.
+  # Series A table is stricter: a mature business should have measurably
+  # superior acquisition economics.
+  # ─────────────────────────────────────────────────────────────────
+  - id: ltv-cac-ratio-by-stage
+    applies-to-question: q5.6
+    description: |
+      Maps LTV:CAC ratio to a score. The 3× threshold is the widely cited VC
+      baseline for a justifiable sales and marketing investment. Thresholds
+      reflect this: 3× maps to the strong band, not the median. Series A
+      thresholds are slightly stricter, as a mature business should demonstrate
+      acquisition economics clearly above the baseline. Pre-seed thresholds are
+      marginally more permissive given limited data at early revenue stage.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 0.9
+          score: 15
+        - min: 1.0
+          max: 2.9
+          score: 30
+        - min: 3.0
+          max: 4.9
+          score: 55
+        - min: 5.0
+          max: 7.9
+          score: 78
+        - min: 8.0
+          max: null
+          score: 95
+      stage-thresholds:
+        pre-seed:
+          - min: null
+            max: 0.4
+            score: 15
+          - min: 0.5
+            max: 1.9
+            score: 30
+          - min: 2.0
+            max: 3.9
+            score: 55
+          - min: 4.0
+            max: 6.9
+            score: 78
+          - min: 7.0
+            max: null
+            score: 95
+        seed:
+          - min: null
+            max: 0.9
+            score: 15
+          - min: 1.0
+            max: 2.9
+            score: 30
+          - min: 3.0
+            max: 4.9
+            score: 55
+          - min: 5.0
+            max: 7.9
+            score: 78
+          - min: 8.0
+            max: null
+            score: 95
+        series-a:
+          - min: null
+            max: 1.4
+            score: 15
+          - min: 1.5
+            max: 2.9
+            score: 30
+          - min: 3.0
+            max: 4.9
+            score: 55
+          - min: 5.0
+            max: 8.9
+            score: 78
+          - min: 9.0
+            max: null
+            score: 95
+
+  # ─────────────────────────────────────────────────────────────────
+  # CAC payback period (q5.7)
+  # Inverted metric: lower value (fewer months) = higher score.
+  # Stage-appropriate defaults below; benchmarks/global.yaml contains
+  # per-stage thresholds used at runtime.
+  # Series A table is stricter; pre-seed marginally more permissive.
+  # ─────────────────────────────────────────────────────────────────
+  - id: cac-payback-by-stage
+    applies-to-question: q5.7
+    description: |
+      Maps CAC payback period (months) to a score. Inverted metric: shorter
+      payback scores higher. Thresholds reflect seed-stage SaaS norms where
+      12-24 months is typical and below 6 months is exceptional. Series A
+      thresholds are stricter: a scaled business should have compressed payback
+      through brand, referral, or improved conversion. Pre-seed thresholds allow
+      slightly longer payback given limited acquisition data.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 6
+          score: 95
+        - min: 7
+          max: 12
+          score: 78
+        - min: 13
+          max: 24
+          score: 55
+        - min: 25
+          max: 36
+          score: 30
+        - min: 37
+          max: null
+          score: 15
+      stage-thresholds:
+        pre-seed:
+          - min: null
+            max: 6
+            score: 95
+          - min: 7
+            max: 12
+            score: 78
+          - min: 13
+            max: 24
+            score: 55
+          - min: 25
+            max: 48
+            score: 30
+          - min: 49
+            max: null
+            score: 15
+        seed:
+          - min: null
+            max: 6
+            score: 95
+          - min: 7
+            max: 12
+            score: 78
+          - min: 13
+            max: 24
+            score: 55
+          - min: 25
+            max: 36
+            score: 30
+          - min: 37
+            max: null
+            score: 15
+        series-a:
+          - min: null
+            max: 6
+            score: 95
+          - min: 7
+            max: 12
+            score: 78
+          - min: 13
+            max: 18
+            score: 55
+          - min: 19
+            max: 24
+            score: 30
+          - min: 25
+            max: null
+            score: 15
+
+  # ─────────────────────────────────────────────────────────────────
+  # Pricing power evidence (q5.8)
+  # ─────────────────────────────────────────────────────────────────
+  - id: pricing-power-rubric
+    applies-to-question: q5.8
+    description: |
+      AI-evaluated scoring for the quality and directness of evidence that
+      customers would pay more than they currently do. Rewards observed, specific
+      evidence over theoretical arguments. Penalises the absence of any test
+      or indirect signal, and answers that conflate customer satisfaction with
+      pricing power.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: evidence-type
+            weight: 0.50
+            description: |
+              Is the evidence of pricing power observed and verifiable — an
+              actual price increase that customers accepted without material
+              churn, a customer who directly stated the product was priced below
+              its value, or a competitive situation where the founder won at a
+              price premium over alternatives — or is the evidence theoretical
+              and inferred? The clearest signal is a price increase that was
+              accepted: it directly demonstrates what the market will bear.
+              Secondary signals — high NPS, low churn, customers describing the
+              product as a small cost relative to the value — are credible but
+              indirect.
+              Strong: "We raised price from £200 to £350 per seat in January.
+              Four of seventeen customers asked questions; zero cancelled. Two
+              customers on annual contracts renewed at the new rate without
+              negotiation."
+              Weak: "Our NPS is high and customers frequently tell us they love
+              the product, so we believe there is room to raise prices."
+          - name: specificity
+            weight: 0.30
+            description: |
+              Is the evidence described precisely enough to be independently
+              assessed — the before price, the after price, how many customers
+              were affected, what the churn or retention outcome was — or is it
+              asserted at a high level of generality? A price increase described
+              with numbers and outcomes is independently assessable; one described
+              only as "we raised prices and it went fine" is not. Precision is
+              the signal that the evidence is real rather than constructed.
+          - name: actionability
+            weight: 0.20
+            description: |
+              If pricing power has not yet been tested, does the founder describe
+              a specific, executable test they will run in the near term — a
+              defined experiment with a measurable outcome — rather than a
+              general intention to test pricing eventually? The difference between
+              "we plan to test pricing" and "we will offer £X to the next three
+              inbound leads and measure conversion at that price" is the difference
+              between an intention and a plan.
+        score-bounds:
+          min: 15
+          max: 88
+
+  # ─────────────────────────────────────────────────────────────────
+  # Revenue model scalability (q5.9)
+  # ─────────────────────────────────────────────────────────────────
+  - id: model-scalability-rubric
+    applies-to-question: q5.9
+    description: |
+      AI-evaluated scoring for the depth, structural clarity, and honesty of
+      the analysis of how the business model economics change at scale. Rewards
+      founders who identify specific cost curves and mechanisms rather than
+      generic optimism, and who acknowledge what gets harder alongside what
+      improves. Penalises uniformly positive narratives and analysis that applies
+      generically to any software business.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: structural-mechanism
+            weight: 0.40
+            description: |
+              Does the founder identify the specific structural reasons why the
+              economics will improve at scale — named cost categories that are
+              largely fixed and spread across more customers, a CAC reduction
+              mechanism tied to a specific channel or referral flywheel, or a
+              margin improvement driven by infrastructure efficiency at a named
+              volume threshold — rather than a general assertion that scale
+              brings improvement? The strongest answers describe the mechanism
+              precisely enough that an investor could model it: "Our per-customer
+              hosting cost is £420 today because we run dedicated instances;
+              at 200 customers we move to multi-tenancy and that drops to
+              approximately £35, shifting gross margin from 65% to 93%."
+          - name: honest-tradeoffs
+            weight: 0.35
+            description: |
+              Does the answer name what becomes harder as well as what improves?
+              A uniformly optimistic scalability narrative is less credible than
+              one that identifies specific challenges — a sales motion that
+              requires geographic expansion investment, a compliance cost that
+              rises step-wise with revenue thresholds, a customer success cost
+              that does not compress because of product complexity — alongside
+              structural improvements. Founders who acknowledge tradeoffs
+              demonstrate that they have modelled the business honestly rather
+              than described an ideal scenario.
+          - name: model-specificity
+            weight: 0.25
+            description: |
+              Is the analysis grounded in the specific economics of this company
+              at its current stage — citing actual numbers, named cost categories,
+              and specific customer dynamics — or does it apply generically to
+              any software or marketplace business? Generic answers ("software
+              businesses have great unit economics at scale because marginal cost
+              of serving an additional customer approaches zero") score lower
+              than answers that connect scale dynamics to the company's actual
+              current cost structure and customer behaviour.
+        score-bounds:
+          min: 15
+          max: 88
+
+  # ─────────────────────────────────────────────────────────────────
+  # Unit economics sensitivity (q5.10)
+  # ─────────────────────────────────────────────────────────────────
+  - id: unit-economics-sensitivity-rubric
+    applies-to-question: q5.10
+    description: |
+      AI-evaluated scoring for the quality of the unit economics sensitivity
+      analysis. Rewards founders who correctly identify the most economically
+      consequential assumptions and quantify the impact of their variation.
+      Penalises identification of peripheral assumptions, directional descriptions
+      without quantification, and overconfident framing of uncertain inputs.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: assumption-identification
+            weight: 0.40
+            description: |
+              Does the founder identify the assumptions that actually matter most
+              — those whose change would most damage the unit economics — rather
+              than peripheral inputs whose variation has little economic effect?
+              The most consequential assumptions in most business models are
+              churn rate, CAC, and gross margin. A founder who identifies that
+              a 10% increase in annual churn halves their LTV has identified
+              the right assumption; one who focuses on the cost of a SaaS tool
+              their team uses has identified a peripheral one.
+          - name: quantified-impact
+            weight: 0.35
+            description: |
+              Is the impact of each assumption's variation stated in specific
+              economic terms — what happens to LTV:CAC, contribution margin, or
+              payback period if the assumption shifts by a defined amount — or
+              is the impact described in directional terms only ("churn rising
+              would hurt the model")? Quantification is the signal that the
+              sensitivity analysis has actually been run rather than described
+              in principle.
+          - name: confidence-calibration
+            weight: 0.25
+            description: |
+              Is the founder's stated confidence in each assumption realistic —
+              calibrated to the actual evidence they have for it? Overconfidence
+              ("our churn will remain below 5% because customers love the product")
+              on uncertain assumptions and excessive uncertainty on well-established
+              inputs are both signals of poor calibration. A founder who says
+              "our hosting cost assumption is solid because we have quotes from
+              three vendors; our CAC assumption is uncertain because we have
+              only won 8 customers" is calibrating correctly.
+        score-bounds:
+          min: 20
+          max: 85
+
+  # ─────────────────────────────────────────────────────────────────
+  # Cost structure breakdown (q5.11)
+  # ─────────────────────────────────────────────────────────────────
+  - id: cost-structure-rubric
+    applies-to-question: q5.11
+    description: |
+      AI-evaluated scoring for the completeness, analytical precision, and
+      self-awareness of the cost structure described. Rewards founders who
+      characterise how each major cost scales relative to revenue and who
+      identify step-change points. Penalises high-level category lists without
+      scaling analysis and missing major cost categories.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: coverage-and-precision
+            weight: 0.35
+            description: |
+              Does the answer identify and characterise the major cost categories
+              at a level of precision that allows an investor to understand the
+              cost structure — names of categories, approximate proportions of
+              total operating cost, and whether they are people, infrastructure,
+              or third-party costs — or does it remain at a level too general
+              to be analytically useful? A complete answer covers at least three
+              meaningful cost categories with approximate proportions; a weak
+              answer lists category names without any quantitative indication of
+              their relative importance.
+          - name: scaling-dynamics
+            weight: 0.45
+            description: |
+              For each cost, does the founder correctly characterise whether it
+              scales sub-linearly, linearly, or super-linearly with revenue —
+              and does that characterisation reflect genuine understanding of the
+              cost driver, not just optimistic default assumptions? Software
+              infrastructure often scales sub-linearly; headcount-based costs
+              typically scale linearly; sales and marketing can scale either way
+              depending on channel mix. Founders who can explain the mechanism
+              behind each scaling characterisation — why engineering headcount
+              doesn't double when the customer base doubles — score higher than
+              those who assert a favourable scaling property without explaining
+              why.
+          - name: step-change-awareness
+            weight: 0.20
+            description: |
+              Does the founder identify any costs that are currently fixed or
+              manageable but will require a discrete, disproportionate investment
+              at a certain scale — a new infrastructure layer, a compliance
+              function triggered by a revenue or headcount threshold, a sales
+              leadership tier that becomes necessary at a certain customer count?
+              Step-changes are the most common source of margin surprises at
+              growth stage; founders who anticipate them signal that the financial
+              model is built on genuine operational understanding.
+        score-bounds:
+          min: 15
+          max: 85

@@ -1,0 +1,214 @@
+# Dimension 5: Business Model & Unit Economics
+# Global benchmarks (default when no regional file applies)
+#
+# Validated against: schema/benchmark.schema.json
+#
+# Covers stage-appropriate benchmarks for quantitative signals:
+# gross margin percentage, LTV:CAC ratio, and CAC payback period.
+#
+# gross-margin-global: flat thresholds — all stages identical. Gross margin
+# is a structural property of the business model, not an execution metric
+# that matures over time.
+#
+# ltv-cac and cac-payback use stage-specific thresholds; each stage has a
+# separate benchmark entry matching the stage-thresholds tables in scoring.yaml.
+#
+# cac-payback is an inverted metric: lower months = higher score. The
+# thresholds read as "this value or better" for each tier (e.g. exceptional
+# = <=6 months, not >=6).
+
+region: global
+last-reviewed: "2026-06-07"
+expires: "2027-06-07"
+
+sources:
+  - name: "Bessemer Venture Partners State of the Cloud 2024"
+    url-or-citation: "https://www.bvp.com/atlas/state-of-the-cloud-2024"
+    year: 2024
+  - name: "KeyBanc Capital Markets & Sapphire Ventures Private SaaS Company Survey, 15th Annual"
+    url-or-citation: "https://info.sapphireventures.com/2024-keybanc-capital-markets-and-sapphire-ventures-saas-survey"
+    year: 2024
+  - name: "High Alpha SaaS Benchmarks Report 2024"
+    url-or-citation: "https://www.highalpha.com/saas-benchmarks/2024"
+    year: 2024
+  - name: "David Skok — SaaS Metrics 2.0 (canonical reference, periodically updated)"
+    url-or-citation: "https://www.forentrepreneurs.com/saas-metrics-2/"
+  - name: "SaaS Capital Research — Private SaaS Benchmarks"
+    url-or-citation: "https://www.saas-capital.com/research/"
+    year: 2024
+
+benchmarks:
+
+  gross-margin-global:
+    description: |
+      Gross margin percentage across all stages. Thresholds are flat — gross
+      margin is a structural property of the business model, not an execution
+      metric that matures over time. Calibrated to a software/SaaS baseline
+      where 70-80%+ is the investor target. Hardware, marketplace, and
+      services businesses with structurally lower gross margins will score in
+      the median band even with excellent model-appropriate margins; the
+      narrative questions q5.4 and q5.5 capture model-specific context
+      qualitatively. Pre-revenue founders entering target or modelled estimates
+      are compared against the same thresholds.
+    unit: percentage
+    applies-to-stage: [pre-seed, seed, series-a]
+    thresholds:
+      exceptional: ">=80"
+      strong: "65-79"
+      median: "40-64"
+      weak: "20-39"
+      concerning: "<20"
+    notes: |
+      SaaS businesses target 70-80%+ gross margin because high gross margin
+      funds sales, R&D, and operating leverage from revenue. Marketplaces
+      typically operate at 15-30% gross margin on take rate; hardware at
+      30-50%. These model types will score in the median or weak band at
+      current thresholds — this is expected and documented. v0.2 routing
+      will apply model-type overlays from q5.1 context. A modelled gross
+      margin below 20% is a structural concern regardless of stage because
+      it implies negative contribution margin at typical sales and service
+      cost levels.
+
+  ltv-cac-ratio-pre-seed:
+    description: |
+      LTV:CAC ratio for pre-seed companies. Thresholds are marginally more
+      permissive than seed — many pre-seed companies have limited acquisition
+      history and early CAC figures are unrepresentative of steady-state.
+      The median band starts at 2.0x rather than the seed 3.0x baseline,
+      reflecting that a model showing a path to 3x is sufficient at this
+      stage. Companies that have not yet calculated this ratio should enter 0
+      and address the components in q5.4.
+    unit: ratio (dimensionless)
+    applies-to-stage: [pre-seed]
+    thresholds:
+      exceptional: ">=7.0"
+      strong: "4.0-6.9"
+      median: "2.0-3.9"
+      weak: "0.5-1.9"
+      concerning: "<0.5"
+    notes: |
+      At pre-seed, an LTV:CAC below 3x is not disqualifying — the business
+      may not yet have the data to calculate it accurately. The concerning
+      threshold sits at <0.5x rather than the seed <1.0x to reflect data
+      immaturity. The ratio is dimensionless and comparable across all
+      business models, making it the most universal unit economics benchmark
+      once reliable data exists.
+
+  ltv-cac-ratio-seed:
+    description: |
+      LTV:CAC ratio for seed-stage companies. The 3x threshold is the widely
+      cited VC baseline for a justifiable sales and marketing investment; at
+      seed it maps to the median band, not the strong band, because a ratio
+      at the institutional minimum is not a differentiator. Below 1x the
+      business destroys value on each customer acquired.
+    unit: ratio (dimensionless)
+    applies-to-stage: [seed]
+    thresholds:
+      exceptional: ">=8.0"
+      strong: "5.0-7.9"
+      median: "3.0-4.9"
+      weak: "1.0-2.9"
+      concerning: "<1.0"
+    notes: |
+      Seed investors begin using LTV:CAC as a primary input for modelling
+      capital deployment efficiency. A ratio below 1x means the acquisition
+      motion is value-destructive; between 1-3x the business is spending more
+      on acquisition than the customer will return in the near term. Above 5x
+      is strong and supports an argument for increasing sales and marketing
+      investment. Above 8x is exceptional and typically indicates an
+      underinvested acquisition function rather than a permanently superior ratio.
+
+  ltv-cac-ratio-series-a:
+    description: |
+      LTV:CAC ratio for Series A companies. Thresholds are stricter than seed —
+      a business with established acquisition channels and 12-18 months of
+      customer data should demonstrate economics clearly above the 3x baseline.
+      The concerning threshold lifts to <1.5x and the exceptional threshold
+      to >=9.0x to reflect the expectation of acquisition maturity.
+    unit: ratio (dimensionless)
+    applies-to-stage: [series-a]
+    thresholds:
+      exceptional: ">=9.0"
+      strong: "5.0-8.9"
+      median: "3.0-4.9"
+      weak: "1.5-2.9"
+      concerning: "<1.5"
+    notes: |
+      At Series A, LTV:CAC below 3x on measured cohort data is a direct concern
+      for investors building growth models. A ratio below 1.5x suggests the
+      acquisition motion is structurally inefficient at the current contract
+      value and retention profile — either CAC is too high, gross margin is too
+      low, or customer lifetime is too short to produce an investable return on
+      acquisition spend.
+
+  cac-payback-pre-seed:
+    description: |
+      CAC payback period in months for pre-seed companies. Inverted metric:
+      lower values (shorter payback) score higher. Pre-seed thresholds extend
+      the weak band to 48 months (vs. 36 at seed) given that early acquisition
+      data is often unrepresentative. Companies that have not yet calculated
+      payback should enter 0 and address it in q5.4.
+    unit: months
+    applies-to-stage: [pre-seed]
+    thresholds:
+      exceptional: "<=6"
+      strong: "7-12"
+      median: "13-24"
+      weak: "25-48"
+      concerning: ">48"
+    notes: |
+      Shorter payback enables growth from customer revenue rather than
+      exclusively from external capital. At pre-seed, payback above 24 months
+      is not disqualifying if the model projects improvement at scale, but it
+      increases the capital required to reach a sustainable acquisition motion.
+      The weak band extends to 48 months to accommodate the immaturity of
+      early acquisition data — a single early enterprise deal can produce a
+      distorted CAC figure.
+
+  cac-payback-seed:
+    description: |
+      CAC payback period in months for seed-stage companies. Inverted metric:
+      lower values score higher. Seed-stage SaaS norms: <=12 months is strong,
+      13-24 months is the median range where most institutional seed investments
+      are made, and above 36 months requires explanation of the path to
+      compression.
+    unit: months
+    applies-to-stage: [seed]
+    thresholds:
+      exceptional: "<=6"
+      strong: "7-12"
+      median: "13-24"
+      weak: "25-36"
+      concerning: ">36"
+    notes: |
+      Businesses with payback below 12 months can fund growth primarily from
+      customer revenue; those above 24 months require substantial external
+      capital to grow at venture scale. The 12-24 month range is where most
+      institutional seed investors are comfortable — it signals a functioning
+      acquisition motion without requiring capital efficiency at scale already.
+      Above 36 months at seed, investors will probe whether the raise provides
+      enough runway to reach payback compression.
+
+  cac-payback-series-a:
+    description: |
+      CAC payback period in months for Series A companies. Thresholds are
+      stricter than seed — the median band tightens to 13-18 months and the
+      concerning threshold moves to >24 months, reflecting the expectation that
+      a scaled business has compressed payback through brand, referral, or
+      improved conversion efficiency.
+    unit: months
+    applies-to-stage: [series-a]
+    thresholds:
+      exceptional: "<=6"
+      strong: "7-12"
+      median: "13-18"
+      weak: "19-24"
+      concerning: ">24"
+    notes: |
+      At Series A, payback above 18 months is a direct constraint on the
+      capital efficiency story. Investors modelling the use of proceeds will
+      flag payback above 18 months as a structural concern — a material
+      fraction of the raise funds the payback gap rather than compounding
+      growth beyond it. Payback below 12 months at Series A supports a
+      near-self-funding growth argument and materially reduces the capital
+      required per unit of ARR added.
