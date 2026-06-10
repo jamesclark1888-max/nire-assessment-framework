@@ -23,50 +23,50 @@ templates:
     priority: critical
     free-tier-visible: true
     diagnostic: |
-      The problem description is written from the product's perspective,
-      not the customer's. Phrases like "our platform solves", "we enable",
-      or "we help companies do X" describe a solution. Investors need to
-      hear the customer's problem before they can assess whether the
-      product addresses something real.
+      Your problem description reads from the product's perspective, not
+      the customer's. Phrases like "our platform solves", "we enable", or
+      "we help companies do X" describe a solution. Investors need to hear
+      the customer's problem before they can assess whether the product
+      addresses something real.
     gap: |
-      The problem has not been stated in customer language. A credible
-      problem statement names the customer, the specific pain, how often
-      it occurs, and what it costs. Without those four elements, the
-      problem-market fit question remains unanswered.
+      Your problem statement isn't written in customer language yet. A
+      credible problem statement names the customer, the specific pain,
+      how often it occurs, and what it costs. Without those four elements,
+      the problem-market fit question stays open.
     fix: |
       Rewrite the problem statement using this structure:
-      1. **Who**: name the specific customer (e.g. "Head of Finance at a
+      1. Who: name the specific customer (e.g. "Head of Finance at a
          50-200 person SaaS company")
-      2. **What**: name the specific task or situation that causes pain
-      3. **Frequency**: how often this happens
-      4. **Cost**: what it costs in time, money, errors, or risk
-      5. **Why current alternatives fail**: one sentence
+      2. What: name the specific task or situation that causes pain
+      3. Frequency: how often this happens
+      4. Cost: what it costs in time, money, errors, or risk
+      5. Why current alternatives fail: one sentence
 
       Test it by reading it aloud to someone outside the industry. If they
       understand the pain immediately, the framing is working.
     evidence: |
       The problem statement is typically the first paragraph of a pitch.
-      Investors filter on it before they read the rest. A clear,
-      customer-centric problem description is the fastest way to earn the
-      next 30 seconds of attention in a first meeting.
+      Investors filter on it before they read anything else. A clear,
+      customer-centric problem description earns the next 30 seconds of
+      attention in a first meeting.
     stage-variants:
       pre-seed:
         diagnostic: |
           At pre-seed, the problem statement is often the only concrete
           thing available. A vague one is a difficult starting point.
         fix: |
-          For pre-seed, the test is: can the problem be described to
-          someone who has never heard of this space and have them
-          immediately say "yes, that sounds like a real and annoying
-          problem"? If not, keep iterating.
+          For pre-seed, the test is: can you describe the problem to someone
+          who has never heard of this space and have them immediately say
+          "yes, that sounds like a real and annoying problem"? If not, keep
+          iterating.
       series-a:
         diagnostic: |
-          At Series A, a solution-first problem statement is a more
-          serious concern. It suggests the problem has not been revisited
-          since founding, despite 12 or more months of customer feedback.
+          At Series A, a solution-first problem statement is a more serious
+          concern. It suggests the problem hasn't been revisited since
+          founding, despite 12 or more months of customer feedback.
         fix: |
-          Revisit the problem statement with the latest customer data.
-          What has been learned in the last 12 months that sharpens it?
+          Revisit the problem statement with your latest customer data. What
+          have you learned in the last 12 months that sharpens it?
 
   # -----------------------------------------------------------------
   # Problem articulation -- improvable
@@ -78,22 +78,22 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      The problem description has the right shape. It is customer-focused
-      and reasonably specific. But it is missing either a quantified cost,
-      a named customer segment, or enough specificity to feel distinct from
-      a generic market description.
+      Your problem description has the right shape. It's customer-focused
+      and reasonably specific. But it's missing either a quantified cost, a
+      named customer segment, or enough specificity to feel distinct from a
+      generic market description.
     gap: |
-      Specifically: [dynamic: missing element from rubric, e.g. no
-      quantified cost, no named segment, too broad to be actionable].
+      Specifically: [dynamic: missing element from rubric, e.g. no quantified
+      cost, no named segment, too broad to be actionable].
     fix: |
-      Add the missing element. The upgrade that moves most descriptions
-      from medium to high is quantification. "This takes 8 hours a week"
-      or "This costs approximately £30k per FTE per year in wasted time"
-      transforms a narrative into a buying trigger.
+      Add the missing element. The upgrade that moves most descriptions from
+      medium to high is quantification. "This takes 8 hours a week" or "This
+      costs approximately £30k per FTE per year in wasted time" transforms a
+      narrative into a buying trigger.
     evidence: |
-      Quantified problem statements are more memorable and easier for
-      investors to relay when making the case internally. Every number
-      that sticks is a word-of-mouth lever.
+      Quantified problem statements are more memorable. Investors relay them
+      more easily when making the case internally. Every number that sticks
+      is a word-of-mouth lever.
     estimated-impact:
       dimension-score-uplift: 8
       confidence: medium
@@ -108,23 +108,22 @@ templates:
     priority: critical
     free-tier-visible: true
     diagnostic: |
-      Very few potential customers have been spoken to about this problem.
-      At this level of discovery, the business is built primarily on
-      hypothesis rather than evidence. Most top-tier investors will not
-      commit at this discovery stage.
+      You've spoken to very few potential customers about this problem. At
+      this level of discovery, your business rests on hypothesis more than
+      evidence. Most top-tier investors will not commit at this discovery
+      stage.
     gap: |
-      The number of substantive customer conversations is below what
-      investors expect for this stage. For pre-seed, 15-30 is the
-      minimum. For seed, 50 or more is strong. This gap needs closing
-      before raising.
+      Your customer conversation count is below what investors expect for
+      this stage. For pre-seed, 15-30 is the minimum. For seed, 50 or more
+      is strong. This gap needs closing before you raise.
     fix: |
       Run a structured customer discovery sprint:
-      1. Identify 50 specific people who match the ideal customer persona
-      2. Get warm introductions to at least 20 of them via LinkedIn,
-         mutual connections, or community groups
+      1. Identify 50 specific people who match your ideal customer persona
+      2. Get warm introductions to at least 20 via LinkedIn, mutual
+         connections, or community groups
       3. Run 30-45 minute problem-focused interviews, not product demos
       4. Use the Mom Test framework: ask about their life, their existing
-         tools, their biggest frustrations, not about the solution
+         tools, their biggest frustrations, not about your solution
       5. Document every interview with notes. The documentation itself
          becomes an asset in investor conversations.
     evidence: |
@@ -140,10 +139,10 @@ templates:
           matters more than quantity, but you need both.
       seed:
         fix: |
-          By seed, a founder raising on customer discovery alone (without
-          product traction) needs 50-100 or more interviews and rich
-          documented learnings to compensate. More practically, use this
-          gap as a reason to get product in front of customers faster.
+          By seed, raising on customer discovery alone (without product
+          traction) needs 50-100 or more interviews and rich documented
+          learnings to compensate. More practically, use this gap as a
+          reason to get product in front of customers faster.
 
   # -----------------------------------------------------------------
   # Customer discovery -- deepen
@@ -155,15 +154,15 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      The customer discovery count is reasonable but below the top
-      quartile for this stage. The evidence base is there, but there is
-      room to strengthen it by diversifying who has been spoken to.
+      Your discovery count is reasonable but below the top quartile for
+      this stage. The evidence base is there, but you can strengthen it
+      by diversifying who you've spoken to.
     gap: |
-      More conversations with different customer profiles (different
-      company sizes, geographies, or roles) would increase the credibility
-      of the evidence base.
+      More conversations with different customer profiles (different company
+      sizes, geographies, or roles) would increase the credibility of your
+      evidence base.
     fix: |
-      Target 10-20 more interviews in segments not yet covered: a
+      Target 10-20 more interviews in segments you haven't yet covered: a
       different geography, a different company size band, or a different
       buying persona. Cross-segment consistency strengthens the thesis.
       Divergence is equally valuable.
@@ -186,44 +185,43 @@ templates:
     priority: critical
     free-tier-visible: true
     diagnostic: |
-      The core insight answer restates the problem, or makes a broad
+      Your core insight answer restates the problem, or makes a broad
       market observation ("the market is large and fragmented") rather
       than naming a specific non-obvious truth. This is the most common
       failure mode on this question.
     gap: |
-      The answer does not yet identify what this business knows about
-      the problem that competitors do not. Without a non-obvious insight,
-      the company is executing on an idea that competitors are also
-      pursuing, which makes winning customers harder and gives investors
-      less reason to believe the business will dominate its market.
+      Your answer doesn't identify what your business knows about the
+      problem that competitors don't. Without a non-obvious insight, your
+      company is executing on an idea that competitors are also pursuing.
+      That makes winning customers harder and gives investors less reason
+      to believe this business will dominate its market.
     fix: |
       Work backwards to find the insight:
-      1. What was learned from customer conversations that was surprising?
+      1. What did you learn from customer conversations that was surprising?
       2. What does every competitor get wrong about this market?
-      3. What would a smart person push back on if told it?
-      4. What domain knowledge did the founding team have before starting
-         that others in the market do not have access to?
+      3. What would a smart person push back on if you told them?
+      4. What domain knowledge did your founding team have before starting
+         that others in the market don't have access to?
 
-      The insight does not need to be world-changing. "Every prior
-      solution was built for the CTO; we discovered the CFO has the
-      actual pain and the budget" is a strong, specific, non-obvious
-      insight.
+      The insight doesn't need to be world-changing. "Every prior solution
+      was built for the CTO; we discovered the CFO has the actual pain and
+      the budget" is a strong, specific, non-obvious insight.
     evidence: |
-      The "why us, why now" question in investor meetings is ultimately
-      a question about insight. Founders who can state a specific
-      non-consensus belief and back it with evidence convert more
-      scepticism than any traction number at pre-seed.
+      The "why us, why now" question in investor meetings is ultimately a
+      question about insight. Founders who can state a specific non-consensus
+      belief and back it with evidence convert more scepticism than any
+      traction number at pre-seed.
     stage-variants:
       pre-seed:
         diagnostic: |
           At pre-seed, a non-obvious insight is often the primary thing
-          an investor is backing. The absence of one is a significant
-          filter at this stage.
+          an investor is backing. Its absence is a significant filter
+          at this stage.
       seed:
         diagnostic: |
-          At seed, insight is still highly weighted. If the problem
-          definition has narrowed since founding, the insight may have
-          sharpened too. Make sure the answer reflects the current version.
+          At seed, insight is still highly weighted. If your problem
+          definition has narrowed since founding, your insight may have
+          sharpened too. Make sure your answer reflects the current version.
 
   # -----------------------------------------------------------------
   # Core insight -- improvable
@@ -235,24 +233,24 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      The core insight has the right shape. It diverges from conventional
-      wisdom. But it lacks either the specificity or the evidential
-      grounding to be fully convincing.
+      Your core insight has the right shape. It diverges from conventional
+      wisdom. But it lacks either the specificity or the evidential grounding
+      to be fully convincing.
     gap: |
-      Specifically: [dynamic: missing element, e.g. the claim is too
-      broad to be falsifiable, no source for why you know this, or the
-      insight does not connect to why this approach is the right one].
+      Specifically: [dynamic: missing element, e.g. the claim is too broad
+      to be falsifiable, no source for why you know this, or the insight
+      doesn't connect to why your approach is the right one].
     fix: |
       Tighten the insight in two steps:
-      1. Make it falsifiable: state it as a claim someone could prove
-         wrong with specific counter-evidence
-      2. Add your evidence: why do you know this and others do not?
-      The strongest insights are both non-obvious and grounded in
-      specific evidence the founder has that competitors do not.
+      1. Make it falsifiable: state it as a claim someone could disprove
+         with specific counter-evidence
+      2. Add your evidence: why do you know this and others don't?
+      The strongest insights are both non-obvious and grounded in specific
+      evidence the founder has that competitors don't.
     evidence: |
-      Insights that are stated precisely and backed by evidence are the
-      ones that travel well through investor networks. Specificity is
-      what makes them retellable.
+      Insights stated precisely and backed by evidence are the ones that
+      travel well through investor networks. Specificity is what makes
+      them retellable.
     estimated-impact:
       dimension-score-uplift: 10
       confidence: medium
@@ -267,46 +265,45 @@ templates:
     priority: high
     free-tier-visible: true
     diagnostic: |
-      The timing thesis relies on general trend statements: AI, digital
-      transformation, market readiness. Investors have heard these
-      references many times and discount them. What is missing is a
-      named, specific catalyst that makes this moment different from
-      two years ago or two years from now.
+      Your timing thesis relies on general trend statements: AI, digital
+      transformation, market readiness. Investors have heard these references
+      many times and discount them. What's missing is a named, specific
+      catalyst that makes this moment different from two years ago or two
+      years from now.
     gap: |
-      No specific change has been identified that makes this moment
-      distinctly better for building this company than an earlier or
-      later start would have been.
+      Your answer hasn't identified a specific change that makes this moment
+      distinctly better for building this company than an earlier or later
+      start would have been.
     fix: |
       Look for the timing answer in one of these places:
-      1. **Enabling technology**: has a specific new capability, cheaper
-         compute, a new API, or a new model become available that makes
-         this product possible or economically viable for the first time?
-      2. **Regulation**: has a law passed or a deadline arrived that
-         creates a compliance requirement this product solves?
-      3. **Behaviour shift**: has a specific behaviour changed at scale
-         (remote work, e-commerce acceleration) that creates the
-         customer segment?
-      4. **Incumbent withdrawal**: has a dominant player exited a segment
-         or raised prices dramatically, creating an opening?
-      If none of these apply, the argument may be that the problem is
-      large enough and enduring enough to build on regardless. That is a
-      valid answer, but it needs to be stated explicitly.
+      1. Enabling technology: has a specific new capability, cheaper compute,
+         a new API, or a new model become available that makes this product
+         possible or economically viable for the first time?
+      2. Regulation: has a law passed or a deadline arrived that creates a
+         compliance requirement your product solves?
+      3. Behaviour shift: has a specific behaviour changed at scale that
+         creates your customer segment?
+      4. Incumbent withdrawal: has a dominant player exited a segment or
+         raised prices dramatically, creating an opening?
+      If none of these apply, the argument may be that the problem is large
+      and enduring enough to build on regardless. That's a valid answer, but
+      it needs to be stated explicitly.
     evidence: |
       The "why now" question is asked in virtually every investor meeting.
-      It is not a polite opener. Founders who answer it specifically
-      signal market intelligence. Founders who give a trend-based answer
-      signal generic thinking.
+      It's not a polite opener. Founders who answer it specifically signal
+      market intelligence. Founders who give a trend-based answer signal
+      generic thinking.
     stage-variants:
       pre-seed:
         fix: |
-          For pre-seed, any named catalyst with basic evidence is
-          sufficient to establish a credible timing argument.
+          For pre-seed, any named catalyst with basic evidence is sufficient
+          to establish a credible timing argument.
       series-a:
         fix: |
-          At Series A, the timing argument typically needs updating.
-          What has changed in the market since founding that further
-          validates the moment? New regulations, new data points, or
-          new competitive dynamics all strengthen the case.
+          At Series A, the timing argument typically needs updating. What has
+          changed in the market since founding that further validates the
+          moment? New regulations, new data points, or new competitive dynamics
+          all strengthen the case.
 
   # -----------------------------------------------------------------
   # Timing thesis -- improvable
@@ -318,22 +315,21 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      The timing thesis names a catalyst but does not fully demonstrate
-      its impact or show why it specifically advantages this approach
+      Your timing thesis names a catalyst but doesn't fully demonstrate
+      its impact or show why it specifically advantages your approach
       over others.
     gap: |
-      A named catalyst is the floor. The ceiling is quantifying its
-      impact and connecting it to why this specific solution is the right
-      response.
+      A named catalyst is the floor. The ceiling is quantifying its impact
+      and connecting it to why your specific solution is the right response.
     fix: |
-      Add two elements to the timing answer:
+      Add two elements to your timing answer:
       1. How significant is the change in numerical terms?
-      2. Why does this specific change make this approach the right one,
+      2. Why does this specific change make your approach the right one,
          rather than a competitor's?
     evidence: |
-      A quantified timing thesis ("inference costs are down 40x, making
-      our unit economics viable for the first time") is far more memorable
-      than a directional one ("AI has become cheaper").
+      A quantified timing thesis ("inference costs are down 40x, making our
+      unit economics viable for the first time") is far more memorable than
+      a directional one ("AI has become cheaper").
     estimated-impact:
       dimension-score-uplift: 7
       confidence: medium
@@ -348,28 +344,28 @@ templates:
     priority: high
     free-tier-visible: true
     diagnostic: |
-      There is very limited external validation of the problem. At this
-      evidence level, investors will treat the problem as an unvalidated
-      hypothesis. This is the most common reason early-stage pitches do
-      not progress.
+      Your external validation of the problem is very limited. At this
+      evidence level, investors treat the problem as an unvalidated
+      hypothesis. This is the most common reason early-stage pitches
+      don't progress.
     gap: |
-      The evidence signals are too few or too weak to establish that the
+      Your evidence signals are too few or too weak to establish that the
       problem is real, urgent, and large enough to build on.
     fix: |
-      Prioritise acquiring one high-quality evidence signal before the raise:
-      1. **Fastest**: get 5 or more documented customer interviews where
+      Prioritise acquiring one high-quality evidence signal before you raise:
+      1. Fastest: get 5 or more documented customer interviews where
          respondents describe the problem in their own words, unprompted
-      2. **Most powerful**: get one paying customer, even at a nominal
-         amount. Payment is the clearest signal of a real problem.
-      3. **Most scalable**: run a targeted outbound campaign offering free
-         use in exchange for feedback. Unsolicited inbounds from that
-         campaign count as validation.
+      2. Most powerful: get one paying customer, even at a nominal amount.
+         Payment is the clearest signal of a real problem.
+      3. Most scalable: run a targeted outbound campaign offering free use
+         in exchange for feedback. Unsolicited inbounds from that campaign
+         count as validation.
       Document everything. The documentation is itself a useful asset in
       investor conversations.
     evidence: |
       The gap between "I believe this is a problem" and "customers are
-      paying to solve this" is the gap between a hypothesis and a
-      business. Investors price this gap into valuation directly.
+      paying to solve this" is the gap between a hypothesis and a business.
+      Investors price this gap into valuation directly.
 
   # -----------------------------------------------------------------
   # Problem evidence -- strengthen
@@ -381,12 +377,12 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Some evidence signals are present, but they are concentrated in a
-      single type. Multiple independent signal types are more credible
-      than depth in a single source.
+      You have some evidence signals, but they're concentrated in a single
+      type. Multiple independent signal types are more credible than depth
+      in a single source.
     gap: |
-      Adding a second independent evidence type would materially
-      strengthen the problem validation story.
+      Adding a second independent evidence type would materially strengthen
+      your problem validation story.
     fix: |
       Identify the easiest additional signal to acquire and pursue it:
       - If you have documented interviews, pursue a pilot or letter of intent
@@ -410,24 +406,24 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      The customer story is either too abstract or told entirely in the
-      founder's voice rather than the customer's. It describes a problem
-      category rather than a specific moment with a specific person.
+      Your customer story is either too abstract or told entirely in your
+      voice rather than the customer's. It describes a problem category
+      rather than a specific moment with a specific person.
     gap: |
-      A good customer story needs three elements: a named role, a
-      specific moment or situation, and what it cost them. All three
-      are missing or underspecified.
+      A good customer story needs three elements: a named role, a specific
+      moment or situation, and what it cost them. All three are missing or
+      underspecified.
     fix: |
-      Go back to your best customer interview. Find the moment where
-      someone described their pain most vividly. Then write:
+      Go back to your best customer interview. Find the moment where someone
+      described their pain most vividly. Then write:
       "A [role] at a [company type] told me: '[direct quote or close
-      paraphrase]'. They were spending [cost] on this problem and their
-      best existing solution was [what they were using] which failed
-      because [specific failure mode]."
+      paraphrase]'. They were spending [cost] on this problem and their best
+      existing solution was [what they were using] which failed because
+      [specific failure mode]."
     evidence: |
-      The best pitch decks and fundraising emails open with a customer
-      story. Stories create emotional engagement. Statistics create
-      intellectual engagement. You need both, but stories open doors.
+      The best pitch decks and fundraising emails open with a customer story.
+      Stories create emotional engagement. Statistics create intellectual
+      engagement. You need both, but stories open doors.
     estimated-impact:
       dimension-score-uplift: 5
       confidence: medium
@@ -442,17 +438,16 @@ templates:
     priority: low
     free-tier-visible: false
     diagnostic: |
-      The customer story has good bones: a named role and some
-      specificity. But it is missing either a direct quote or a clear
-      cost signal.
+      Your customer story has good bones: a named role and some specificity.
+      But it's missing either a direct quote or a clear cost signal.
     gap: |
-      Adding one of: a direct quote from the customer, or a quantified
-      cost of the problem for them, would sharpen this materially.
+      Adding one of: a direct quote from the customer, or a quantified cost
+      of the problem for them, would sharpen this materially.
     fix: |
       Go back to the notes from that interview. Find the exact words the
-      customer used, even a short phrase. "She said, 'I spend every
-      Sunday doing this before Monday's board call'" is more powerful
-      than "She said the problem takes too much time."
+      customer used, even a short phrase. "She said, 'I spend every Sunday
+      doing this before Monday's board call'" is more powerful than "She said
+      the problem takes too much time."
 
   # -----------------------------------------------------------------
   # Problem severity -- low
@@ -464,30 +459,29 @@ templates:
     priority: high
     free-tier-visible: true
     diagnostic: |
-      The customers spoken to characterise this problem as low severity.
-      It is an inefficiency they would address if convenient, not an
+      The customers you've spoken to characterise this problem as low
+      severity. It's an inefficiency they'd address if convenient, not an
       urgent pain. This is a significant signal about product-market fit
       risk and how much customers will pay.
     gap: |
       Low-severity problems produce products that are nice-to-have rather
       than must-have. This directly limits willingness to pay, sales
-      velocity, and the ability to build a fundable business.
+      velocity, and your ability to build a fundable business.
     fix: |
       Three possible paths:
-      1. **Refine the problem statement**: often, a low-severity version
-         of a problem exists alongside a high-severity version in the
-         same market. Find the customer for whom this is mission-critical,
-         not just useful.
-      2. **Reframe the consequence**: is there a downstream consequence
-         of this problem (a risk, a regulatory exposure, a lost deal)
-         that elevates severity for a subset of customers?
-      3. **Pivot the segment**: the same functional problem can be
-         low-severity for SMEs and mission-critical for enterprise. Move
-         up or down market and test whether severity changes.
+      1. Refine the problem statement: a low-severity version of a problem
+         often exists alongside a high-severity version in the same market.
+         Find the customer for whom this is mission-critical, not just useful.
+      2. Reframe the consequence: is there a downstream consequence of this
+         problem (a risk, a regulatory exposure, a lost deal) that elevates
+         severity for a subset of customers?
+      3. Pivot the segment: the same functional problem can be low-severity
+         for SMEs and mission-critical for enterprise. Move up or down market
+         and test whether severity changes.
     evidence: |
-      Low-severity problems produce long sales cycles, high churn at
-      renewal, and compressed pricing. Finding the "hair on fire"
-      segment, even if it is smaller, is almost always worth the search.
+      Low-severity problems produce long sales cycles, high churn at renewal,
+      and compressed pricing. Finding the "hair on fire" segment, even if it's
+      smaller, is almost always worth the search.
 
   # -----------------------------------------------------------------
   # Problem severity -- medium
@@ -499,23 +493,21 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Customers see this as meaningful pain, but workarounds exist and
-      are used. This is a buildable foundation, but it requires clear
-      thinking about pricing and sales motion to avoid being positioned
-      as a nice-to-have.
+      Your customers see this as meaningful pain, but workarounds exist and
+      are used. This is a buildable foundation, but it requires clear thinking
+      about pricing and sales motion to avoid being positioned as a nice-to-have.
     gap: |
-      Medium-severity problems often require more customer evangelism,
-      longer sales cycles, and more conservative initial pricing than
-      high-severity ones.
+      Medium-severity problems often require more customer evangelism, longer
+      sales cycles, and more conservative initial pricing than high-severity ones.
     fix: |
-      Find the sub-segment where severity is higher. Ask: for which 10%
-      of current customer interviews was the problem clearly the most
-      severe? That cohort is your beachhead segment. Build your initial
-      go-to-market around them, not the average.
+      Find the sub-segment where severity is higher. Ask: for which 10% of your
+      current customer interviews was the problem clearly the most severe? That
+      cohort is your beachhead segment. Build your initial go-to-market around
+      them, not the average.
     evidence: |
-      The beachhead strategy (starting with customers for whom the
-      product is mission-critical and expanding out) is the most
-      reliable path to early revenue for mid-severity problems.
+      The beachhead strategy (starting with customers for whom the product is
+      mission-critical and expanding out) is the most reliable path to early
+      revenue for mid-severity problems.
 
   # -----------------------------------------------------------------
   # Alternatives analysis -- weak
@@ -527,29 +519,26 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      The alternatives analysis is generic. Naming "Excel" or "legacy
-      systems" without explaining the specific mechanism of failure
-      signals that the discovery conversations did not go deep enough
-      on this topic.
+      Your alternatives analysis is generic. Naming "Excel" or "legacy systems"
+      without explaining the specific mechanism of failure signals that your
+      discovery conversations didn't go deep enough on this topic.
     gap: |
-      Investors will ask "why can't they just use [specific competitor]?"
-      in every meeting. Without a specific, structural answer, credibility
+      Investors will ask "why can't they just use [specific competitor]?" in
+      every meeting. Without a specific, structural answer, your credibility
       falls apart quickly.
     fix: |
       For each of your top 2-3 competitor categories, document:
       1. The product name or process description
-      2. The specific failure mode (not "it's slow" but "it requires a
-         full-time analyst to maintain and breaks when the dataset exceeds
-         100k rows")
+      2. The specific failure mode (not "it's slow" but "it requires a full-time
+         analyst to maintain and breaks when the dataset exceeds 100k rows")
       3. The customer quote that captures the frustration best
       4. What the customer has to do as a workaround
       This takes 2 hours to produce and handles the most common investor
       questions on this topic reliably.
     evidence: |
-      "Why won't [big company] just build this?" is the second-most
-      common investor question after "why hasn't anyone done this before?"
-      Both require structural answers, not vague claims about competitive
-      advantage.
+      "Why won't [big company] just build this?" is the second-most common
+      investor question after "why hasn't anyone done this before?" Both require
+      structural answers, not vague claims about competitive advantage.
     estimated-impact:
       dimension-score-uplift: 7
       confidence: high
@@ -564,17 +553,17 @@ templates:
     priority: low
     free-tier-visible: false
     diagnostic: |
-      Specific alternatives have been named, but the failure-mode
-      analysis is surface level for one or more of them.
+      You've named specific alternatives, but your failure-mode analysis is
+      surface level for one or more of them.
     gap: |
       "It doesn't scale" or "it's too expensive" are conclusions, not
       explanations. The specific mechanism of failure is what makes the
       answer stick in investor conversations.
     fix: |
-      For the weakest failure-mode explanation, dig one level deeper.
-      Why specifically does it not scale? At what threshold does it
-      break? What happens to the customer when it does? One concrete
-      example beats three abstract assertions.
+      For the weakest failure-mode explanation, dig one level deeper. Why
+      specifically does it not scale? At what threshold does it break? What
+      happens to the customer when it does? One concrete example beats three
+      abstract assertions.
 
   # -----------------------------------------------------------------
   # Prior attempts -- weak
@@ -586,28 +575,28 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Knowledge of prior attempts to solve this problem is either absent
-      or superficial. This creates a vulnerability: investors will name
-      prior failures and test whether the founding team knows them.
+      Your knowledge of prior attempts to solve this problem is either absent
+      or superficial. This creates a vulnerability: investors will name prior
+      failures and test whether your team knows them.
     gap: |
-      "Why hasn't anyone done this before?" is one of the most common
-      investor questions. Without a specific, structural answer,
-      credibility falls quickly.
+      "Why hasn't anyone done this before?" is one of the most common investor
+      questions. Without a specific, structural answer, your credibility falls
+      quickly.
     fix: |
       Spend 2-3 hours on prior-attempt research:
       1. Search Crunchbase and LinkedIn for companies that tried this and
          failed, or pivoted away from this exact problem
-      2. Search for relevant Y Combinator companies from 2012-2020 that
-         no longer exist
-      3. Ask your earliest customers: "What did you try before accepting
-         the current workaround?"
-      Then for each prior attempt, ask: what was their thesis? What did
-      they build? What specifically went wrong? Was it the wrong buyer,
-      wrong pricing model, wrong technology, or wrong timing?
+      2. Search for relevant Y Combinator companies from 2012-2020 that no
+         longer exist
+      3. Ask your earliest customers: "What did you try before accepting the
+         current workaround?"
+      For each prior attempt: what was their thesis? What did they build? What
+      specifically went wrong? Was it the wrong buyer, wrong pricing model,
+      wrong technology, or wrong timing?
     evidence: |
       Founders who name specific prior failures and explain the structural
-      reason they failed signal deep market intelligence. It is one of
-      the fastest ways to establish credibility in a first meeting.
+      reason they failed signal deep market intelligence. It's one of the
+      fastest ways to establish credibility in a first meeting.
 
   # -----------------------------------------------------------------
   # Contrarian insight -- weak
@@ -619,41 +608,36 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      The contrarian belief is either a broad market observation ("AI is
-      transforming this industry") that no informed person would contest,
-      or a restatement of the product thesis. Neither qualifies as a
-      non-consensus insight that differentiates this company
-      intellectually from others building in the same space.
+      Your contrarian belief is either a broad market observation ("AI is
+      transforming this industry") that no informed person would contest, or a
+      restatement of your product thesis. Neither qualifies as a non-consensus
+      insight that differentiates your company intellectually from others
+      building in the same space.
     gap: |
-      Without a specific, falsifiable belief that diverges from
-      conventional wisdom, the company is building on an idea that
-      competitors are probably pursuing in parallel. That makes winning
-      customers harder and gives investors less reason to believe this
-      company will dominate its market.
+      Without a specific, falsifiable belief that diverges from conventional
+      wisdom, your company is building on an idea that competitors are probably
+      pursuing in parallel. That makes winning customers harder and gives
+      investors less reason to believe your company will dominate its market.
     fix: |
       The best way to find the contrarian insight:
-      1. Write down the five things that everyone in the industry
-         believes to be true
-      2. For each one, ask: do you actually believe it? What is your
-         evidence?
-      3. Find the one where you have direct evidence (from customer
-         discovery, from your prior role, from data) that it is wrong
-         or incomplete
-      That tension between what "everyone knows" and what you have
-      observed is the contrarian insight.
+      1. Write down the five things that everyone in the industry believes
+         to be true
+      2. For each one, ask: do you actually believe it? What's your evidence?
+      3. Find the one where you have direct evidence (from customer discovery,
+         from your prior role, from data) that it's wrong or incomplete
+      That tension between what "everyone knows" and what you've observed is
+      the contrarian insight.
 
       Examples of strong ones:
-      - "The market believes X is the bottleneck. We have found it is
-        actually Y."
-      - "Everyone assumes the buyer is [role]. We discovered the real
-        decision is made by [different role]."
-      - "The consensus view is that customers will not pay more than £X.
-        We have 5 customers paying 3x that."
+      - "The market believes X is the bottleneck. We found it's actually Y."
+      - "Everyone assumes the buyer is [role]. We discovered the real decision
+        is made by [different role]."
+      - "The consensus view is that customers won't pay more than £X. We have
+        5 customers paying 3x that."
     evidence: |
-      The most successful venture-backed companies tend to have been
-      built on a non-consensus insight that was vindicated by the market.
-      It is also one of the primary intellectual filters used by
-      top-tier investors.
+      The most successful venture-backed companies tend to have been built on a
+      non-consensus insight that was vindicated by the market. It's also one of
+      the primary intellectual filters used by top-tier investors.
 
   # -----------------------------------------------------------------
   # Contrarian insight -- improvable
@@ -665,22 +649,22 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      The contrarian belief is directionally non-consensus but too broad
-      or poorly evidenced to be fully persuasive.
+      Your contrarian belief is directionally non-consensus but too broad or
+      poorly evidenced to be fully persuasive.
     gap: |
-      A vague contrarian claim is easy to dismiss. A specific, evidenced
-      one is hard to argue with.
+      A vague contrarian claim is easy to dismiss. A specific, evidenced one
+      is hard to argue with.
     fix: |
       Sharpen with two steps:
-      1. Make it specific enough that a smart person could argue against
-         it with specific counter-evidence
+      1. Make it specific enough that a smart person could argue against it
+         with specific counter-evidence
       2. Add your source: "We know this because [specific evidence]"
-      A two-sentence contrarian insight with these elements beats a
-      paragraph of vague conviction.
+      A two-sentence contrarian insight with these elements beats a paragraph
+      of vague conviction.
     evidence: |
-      The ability to state and defend a non-consensus belief is a proxy
-      for intellectual courage and market depth. Investors use it as a
-      signal for both.
+      The ability to state and defend a non-consensus belief is a proxy for
+      intellectual courage and market depth. Investors use it as a signal for
+      both.
     estimated-impact:
       dimension-score-uplift: 8
       confidence: medium

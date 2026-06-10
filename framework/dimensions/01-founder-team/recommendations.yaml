@@ -28,9 +28,9 @@ templates:
       founders, particularly at seed and beyond, because the workload
       and risk are concentrated in one person.
     gap: |
-      No plan is stated for addressing the single-person leadership risk.
-      This is the most common gap investors raise with solo-founder companies
-      before committing to a first meeting.
+      Your solo-founder risk needs a named plan. Investors raise this
+      concern with solo founders before committing to a first meeting.
+      A stated plan changes the conversation from risk to awareness.
     fix: |
       Decide on one of three paths and communicate it clearly:
       1. Bring on a co-founder (most powerful, hardest to execute).
@@ -98,8 +98,8 @@ templates:
       concerns. Part-time founders at seed stage or beyond, or heavily
       skewed equity splits, are red flags for institutional investors.
     gap: |
-      There is no structure in place that signals full founder commitment
-      and aligned incentives to investors.
+      Your equity structure doesn't signal full commitment or aligned
+      incentives to investors. That's what they're assessing here.
     fix: |
       Two priority actions:
       1. Any founder still part-time should commit to a clear transition
@@ -152,9 +152,9 @@ templates:
       strongest predictor of co-founder conflict, which is the leading
       cause of early-stage company failure.
     gap: |
-      The working patterns, decision frameworks, and trust that come from
-      shared history are not yet in place. This is fixable, but it requires
-      deliberate action rather than hoping things work out under pressure.
+      Your co-founder relationship doesn't yet have the working patterns
+      and decision frameworks that come from shared history. That's fixable.
+      But it requires deliberate action, not hoping things work out.
     fix: |
       Three concrete actions:
       1. Run a structured "founder agreement" exercise: roles, decision
@@ -277,8 +277,8 @@ templates:
       replicate inside 18 months."
     evidence: |
       Founder-market fit is among the most closely examined factors in
-      early investor conversations. A weak narrative here loses interest
-      before the conversation has started.
+      early investor conversations. A weak answer loses the meeting
+      before it starts.
 
   # ─────────────────────────────────────────────────────────────────
   # Improvable founder-market fit
@@ -339,8 +339,8 @@ templates:
     priority: medium
     free-tier-visible: true
     diagnostic: |
-      You don't currently have a meaningful advisor or board structure.
-      This is acceptable at pre-seed but starts to matter at seed and beyond.
+      Your advisor and board structure isn't yet meaningful. This is
+      acceptable at pre-seed but starts to matter at seed and beyond.
     gap: |
       Strong advisors give you access to expertise, networks, and credibility
       you don't yet have. Their absence is noticeable to sophisticated VCs.
@@ -444,8 +444,8 @@ templates:
     priority: critical
     free-tier-visible: false
     diagnostic: |
-      Founder vesting is not yet in place. This is a near-certain
-      investor requirement at the first priced round.
+      Your founder vesting isn't in place yet. Every priced round will
+      require it before the deal closes.
     gap: |
       Without vesting, a founder departure leaves significant equity
       stranded with someone no longer contributing. VCs require this
@@ -553,8 +553,8 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      An EMI option scheme is not yet in place. EMI is the UK's
-      standard tax-advantaged employee share scheme.
+      Your team doesn't have an EMI option scheme yet. EMI is the UK's
+      standard tax-advantaged employee share structure.
     gap: |
       Without EMI, equity grants to employees face less favourable tax
       treatment, making them less valuable for recruiting and retention.
@@ -642,7 +642,7 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      A BSPCE plan is not yet in place for employees.
+      Your team doesn't have a BSPCE plan yet.
     gap: |
       Without BSPCE, employee equity grants in France face less favourable
       tax treatment.
@@ -679,7 +679,7 @@ templates:
     priority: medium
     free-tier-visible: true
     diagnostic: |
-      JEI status has not yet been applied for. If eligible, this
+      Your company hasn't applied for JEI status yet. If eligible, this
       represents substantial tax and social charge savings.
     gap: |
       Eligible French startups that don't claim JEI are leaving meaningful
@@ -743,7 +743,7 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      A VSOP (Virtual Stock Option Plan) is not yet in place.
+      Your team doesn't have a VSOP (Virtual Stock Option Plan) yet.
     gap: |
       VSOPs are the German standard for employee equity. Without one,
       you're at a disadvantage hiring against startups that have proper
