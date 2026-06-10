@@ -561,8 +561,8 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your formal IP or regulatory barrier position isn't described with sufficient
-      specificity, or you haven't addressed whether formal IP is relevant to your
-      model. Many early-stage companies have no filed patents or formal regulatory
+      specificity. The assessment doesn't address whether formal IP is relevant to
+      your model. Many early-stage companies have no filed patents or formal regulatory
       licences; this isn't inherently a problem. The issue is the absence of a
       clear-eyed assessment of whether formal IP should be a priority and what
       protection your model relies on instead.

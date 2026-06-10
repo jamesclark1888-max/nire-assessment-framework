@@ -59,8 +59,8 @@ questions:
       own research. Top-down figures lifted directly from analyst reports
       score lower. Be specific about your assumptions.
     why-it-matters: |
-      A founder who can derive TAM from first principles — customer count ×
-      price × frequency — demonstrates commercial rigour and real customer
+      A founder who can derive TAM from first principles (customer count ×
+      price × frequency) demonstrates commercial rigour and real customer
       understanding. Analyst-report citations are easy to assert and hard
       to defend in diligence. The methodology is more revealing than the number.
     validation:
@@ -87,8 +87,8 @@ questions:
     question: "What is your serviceable addressable market (SAM)? Enter your estimate in USD millions."
     helper-text: |
       SAM is the portion of the TAM you can realistically reach with your
-      current product, business model, and go-to-market approach — not the
-      entire theoretical market. It should be smaller than your TAM.
+      current product, business model, and go-to-market approach. It is not
+      the entire theoretical market. It should be smaller than your TAM.
     why-it-matters: |
       SAM is the underwriting number: it represents what you can actually
       pursue with the current product and motion. A credible SAM/TAM ratio
@@ -118,7 +118,7 @@ questions:
     question: "What is your realistic Year 3 revenue target, expressed in USD millions?"
     helper-text: |
       Enter what you realistically expect to be generating in Year 3 of
-      operation — not a best-case scenario. This represents your SOM
+      operation, not a best-case scenario. This represents your SOM
       (serviceable obtainable market capture) and is scored for commercial
       rigour, not ambition alone.
     why-it-matters: |
@@ -150,7 +150,7 @@ questions:
     type: number
     question: "What is the annual compound growth rate (CAGR) of your target market? Enter as a percentage (e.g. 15 for 15% per year)."
     helper-text: |
-      Use the CAGR of the most relevant market segment — your SAM, not
+      Use the CAGR of the most relevant market segment: your SAM, not
       necessarily the broader TAM. If you are in a declining market, enter
       a negative number. Note the source of your estimate in the TAM
       methodology question above.
@@ -227,9 +227,10 @@ questions:
     why-it-matters: |
       ICP depth distinguishes founders who have had real discovery
       conversations from those reasoning from assumption. A named trigger
-      event — "when a PE firm acquires a company and needs to consolidate
-      reporting across 6 subsidiaries in 90 days" — demonstrates discovery
-      rigour that survives VC due diligence better than any market size claim.
+      event (for example: "when a PE firm acquires a company and needs to
+      consolidate reporting across 6 subsidiaries in 90 days") demonstrates
+      discovery rigour that survives VC due diligence better than any market
+      size claim.
     validation:
       min-chars: 150
       max-chars: 1000
@@ -262,7 +263,7 @@ questions:
       Market timing is a primary underwriting question at pre-seed and seed.
       A named, specific catalyst shifts a VC's prior from scepticism to
       conviction. Generic trend references ("AI is transforming every
-      industry") score near zero — VCs have heard them thousands of times
+      industry") score near zero. VCs have heard them thousands of times
       and they carry no differentiating signal for this specific company.
     validation:
       min-chars: 150
@@ -323,7 +324,7 @@ questions:
       Good analogues are structurally similar: same buying dynamic, similar
       CAC/LTV profile, or same sequencing challenge. Pure "Uber for X" or
       "Airbnb for Y" framings score low unless the structural similarity is
-      explained — why does this market behave like that one?
+      explained: why does this market behave like that one?
     why-it-matters: |
       Credible market analogues help VCs rapidly size the opportunity and
       exit path. Founders who can cite category-defining analogues (Veeva
@@ -357,7 +358,7 @@ questions:
       Market structure determines viable entry and defensibility strategies.
       Fragmented markets suit a wedge-and-consolidate motion; winner-take-all
       dynamics require a land-grab playbook. Founders who misread the
-      structure — especially underestimating consolidation speed — frequently
+      structure (especially by underestimating consolidation speed) frequently
       build the wrong go-to-market and burn runway on the wrong motion.
     options:
       - value: fragmented
@@ -394,7 +395,7 @@ questions:
     helper-text: |
       This is about whether your beachhead is a logical wedge into a larger
       territory. The best answers show a map: "Win this segment first, then
-      expand into adjacent segment B because [structural reason — same buyer,
+      expand into adjacent segment B because [structural reason: same buyer,
       adjacent workflow, shared data asset, etc.]."
     why-it-matters: |
       Adjacent expansion potential is how VCs stress-test the venture-scale
@@ -435,8 +436,8 @@ questions:
     why-it-matters: |
       International sequencing reveals whether a founder understands the
       localisation, regulatory, and GTM differences between markets. Founders
-      who articulate a defensible sequence — home market first, expand when
-      unit economics are proven — signal operational experience and discipline.
+      who articulate a defensible sequence (home market first, expand when
+      unit economics are proven) signal operational experience and discipline.
       Those who plan simultaneous multi-market entry at early stage signal
       over-ambition and capital misallocation risk.
     validation:
@@ -462,7 +463,7 @@ questions:
     type: long-text
     question: "What structural macro trends — technological, regulatory, demographic, or behavioural — does your business benefit from? Describe the most important one or two."
     helper-text: |
-      Useful macro trends are specific and already in motion — not
+      Useful macro trends are specific and already in motion, not
       hypothetical future developments. "AI adoption" is too broad.
       "LLM inference costs falling 40x in 18 months, making our unit
       economics viable for the first time" is specific and quantified.

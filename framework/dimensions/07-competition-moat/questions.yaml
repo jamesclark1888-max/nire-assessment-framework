@@ -27,17 +27,16 @@ questions:
     question: "Map your competitive landscape. Who are your direct competitors, indirect substitutes, and what does a customer do if they choose to do nothing at all?"
     helper-text: |
       Direct competitors offer a similar product to the same buyer.
-      Indirect substitutes solve the same problem differently — a spreadsheet,
+      Indirect substitutes solve the same problem differently: a spreadsheet,
       a consultant, a manual process, or an adjacent software product the
       buyer already owns. "Do nothing" is always a choice and is often the
-      hardest to displace. Name actual companies wherever possible — "enterprise
+      hardest to displace. Name actual companies wherever possible: "enterprise
       CRM vendors" is too broad; "Salesforce and HubSpot" is specific.
     why-it-matters: |
       The competitive map tells a VC whether a founder has done their homework.
       Founders who name specific competitors, characterise their strengths and
       weaknesses, and explain why customers choose each one demonstrate market
-      intelligence. A claim of no competitors signals incomplete research —
-      investors read this as naivety, not differentiation.
+      intelligence. A claim of no competitors signals incomplete research. Investors read this as naivety, not differentiation.
     validation:
       min-chars: 150
       max-chars: 1200
@@ -62,14 +61,14 @@ questions:
     question: "What is your primary differentiation from the alternatives a buyer considers? Be as specific as possible about what you do that they cannot or do not do."
     helper-text: |
       The strongest answers name a specific capability, outcome, or structural
-      advantage — not a general claim of quality or ease of use. "We deploy
+      advantage, not a general claim of quality or ease of use. "We deploy
       in 4 days vs the incumbent's 6-month implementation" is specific and
       testable. "We are more user-friendly" is not. If possible, reference an
       outcome a customer has experienced that no competitor can reliably produce.
     why-it-matters: |
       Differentiation is the core of the investment thesis on competitive
       terms. A claim that cannot be stated specifically cannot survive VC
-      due diligence — partners will ask exactly this question in the first
+      due diligence. Partners will ask exactly this question in the first
       meeting, and the quality of the answer is a primary signal of whether
       the founder has earned the right to win.
     validation:
@@ -95,7 +94,7 @@ questions:
     type: multi-select
     question: "Which of the following structural moat types apply to your business? Select all that apply."
     helper-text: |
-      Select every category where you have a genuine structural advantage today —
+      Select every category where you have a genuine structural advantage today,
       not aspirational. You will describe the mechanism for each in later
       questions. If none of these apply yet, select "None of the above" and
       explain your defensibility path in the differentiation question. This
@@ -150,7 +149,7 @@ questions:
       The incumbent threat question is asked in virtually every VC meeting.
       A well-argued structural response signals the founder has a realistic
       model of competitive dynamics and is actively building defensibility
-      rather than depending on obscurity. Obscurity is not a moat — it ends
+      rather than depending on obscurity. Obscurity is not a moat. It ends
       the moment the company succeeds.
     validation:
       min-chars: 150
@@ -180,15 +179,15 @@ questions:
       months, head-to-head win rate against a named competitor in your sales
       process, a customer statement about what switching away would involve,
       or a measurable data advantage. Pre-seed companies with limited data
-      should cite their strongest proxy — even qualitative, as long as it is
+      should cite their strongest proxy, even qualitative, as long as it is
       specific, attributed, and observable today.
     why-it-matters: |
       Any founder can assert a moat; evidence distinguishes assertion from
       reality. VCs fund evidence and discount assertions. The best moat evidence
       is observable, independent of the founder's own claim, and points
       unambiguously to competitive stickiness. An early-stage founder who cites
-      even one concrete signal — a named customer who evaluated three competitors
-      before signing — is materially more credible than one who relies on
+      even one concrete signal (a named customer who evaluated three competitors
+      before signing) is materially more credible than one who relies on
       logic alone.
     validation:
       min-chars: 100
@@ -221,15 +220,14 @@ questions:
       improves the model; each integration deepens workflow lock-in; each user
       makes the network more valuable for the next. Name the specific unit of
       growth that drives compounding and explain why it creates an increasing
-      barrier over time. If your moat is primarily static — a licence that
-      doesn't change in value with scale — state that and explain what
+      barrier over time. If your moat is primarily static (a licence that
+      doesn't change in value with scale), state that and explain what
       compounding dynamic you are building toward instead.
     why-it-matters: |
       Static moats can be overcome with capital; compounding moats become more
-      expensive to replicate over time. VCs price compounding dynamics into the
-      exit multiple — a company whose competitive position strengthens with
-      scale commands a higher terminal value than one that simply holds its
-      current position.
+      expensive to replicate over time. Companies whose competitive position
+      strengthens with scale command a higher terminal value than those that
+      simply hold their current position.
     validation:
       min-chars: 100
       max-chars: 1000
@@ -256,13 +254,13 @@ questions:
       The strongest answers describe switching costs in operational terms:
       migration time, data or configuration that would be lost, retraining
       required, or financial penalties embedded in the contract. Quantify
-      where possible — even roughly. "Migrating away requires 6 weeks of
+      where possible, even roughly. "Migrating away requires 6 weeks of
       retraining 3-5 staff and re-keying 18 months of audit history" is far
       stronger than "our product is deeply embedded." If a customer has
       considered leaving and stayed, describe what drove that decision.
     why-it-matters: |
       High switching costs are a direct predictor of net revenue retention
-      above 100% — a key SaaS valuation metric. Companies with embedded
+      above 100%, which investors use as a primary valuation benchmark. Companies with embedded
       switching costs attract better multiples because each customer is
       effectively a long-duration annuity. Founders who have designed
       switching costs into their product architecture signal commercial
@@ -294,7 +292,7 @@ questions:
       benefits others of the same type), cross-side (each supplier benefits
       from more buyers), or data network effect (more usage generates better
       data for all users). If you have a data flywheel, describe how it
-      compounds with scale. If neither applies, say so directly — an accurate
+      compounds with scale. If neither applies, say so directly. An accurate
       "not applicable to our model, and here is what we have instead" scores
       higher than a strained claim that doesn't hold up to structural analysis.
     why-it-matters: |
@@ -328,7 +326,7 @@ questions:
     helper-text: |
       Name the competitor, describe the situation briefly (company size, use
       case, how far through the evaluation you got), state the outcome, and
-      explain the root cause — what specific factor drove the decision? If you
+      explain the root cause: what specific factor drove the decision? If you
       have not yet had a direct head-to-head competitive situation, describe the
       closest analogue: a prospect who evaluated you against an alternative
       approach, or a customer who switched from a named incumbent solution.
@@ -338,7 +336,7 @@ questions:
       competitive advantage is actually valued by buyers; a loss reveals a
       product gap, a pricing problem, or a sales motion issue. Founders who
       diagnose both wins and losses clearly are running an evidence-based
-      competitive process — the kind that scales into a repeatable sales
+      competitive process, the kind that scales into a repeatable sales
       motion investors can underwrite.
     validation:
       min-chars: 100
@@ -372,7 +370,7 @@ questions:
       rely on instead.
     why-it-matters: |
       Formal IP and regulatory barriers are the most legible moat types to
-      later-stage acquirers and public market investors — they appear in M&A
+      later-stage acquirers and public market investors. They appear in M&A
       due diligence and on balance sheets. Founders who can explain why formal
       IP is or is not relevant to their model demonstrate a complete
       understanding of their defensive architecture.
@@ -414,7 +412,7 @@ questions:
       Long-horizon competitive vision is a Series A+ signal; pre-seed and seed
       investors value the beachhead thesis more. But a founder who articulates
       a clear path from beachhead to category demonstrates strategic range that
-      supports a higher exit multiple conversation, even at early stages.
+      supports a stronger valuation conversation, even at early stages.
     validation:
       min-chars: 100
       max-chars: 1000
@@ -442,11 +440,11 @@ questions:
       as a notable player, a press article that described your differentiation,
       a VC partner who passed but noted your competitive strength, or an
       industry body that cited your approach as notable. If you have no
-      third-party validation yet, leave this blank — it will not penalise your
+      third-party validation yet, leave this blank: it will not penalise your
       score and is not expected at pre-seed stage.
     why-it-matters: |
       Third-party competitive validation is the most portable form of
-      competitive positioning — shareable in decks, referenceable in meetings,
+      competitive positioning: shareable in decks, referenceable in meetings,
       deployable in sales conversations. At pre-seed it is rare and not
       expected; at Series A it is a meaningful differentiator that reduces
       the credibility lift required in a VC meeting.

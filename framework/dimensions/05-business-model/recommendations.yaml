@@ -402,8 +402,8 @@ templates:
 
       1. Add one direct market signal. The strongest version is a price increase
          that customers accepted: state the old price, the new price, how many
-         customers were affected, and what happened to churn. If you haven't
-         raised prices, describe the closest proxy: a prospect who compared your
+         customers were affected, and what happened to churn. If no price increase
+         has been tested yet, describe the closest proxy: a prospect who compared your
          price to a named alternative and chose you anyway.
 
       2. Connect price to customer value in concrete terms. The question investors

@@ -31,7 +31,7 @@ questions:
     helper-text: |
       Select the model that generates most of your revenue today, or that you
       are building toward if pre-revenue. This context shapes how the rest of
-      the unit economics questions are interpreted — a software subscription
+      the unit economics questions are interpreted. A software subscription
       business at £50k MRR is assessed against different benchmarks than a
       marketplace at the same revenue level.
     why-it-matters: |
@@ -73,7 +73,7 @@ questions:
     type: long-text
     question: "What do you charge, how did you arrive at that pricing, and what evidence supports it?"
     helper-text: |
-      State your current pricing — the actual number. Then explain the logic:
+      State your current pricing (the actual number). Then explain the logic:
       how you landed on it, what you tested before committing, and what
       customers have shown you about their willingness to pay. An answer that
       includes a price change you made and how customers responded carries more
@@ -81,9 +81,9 @@ questions:
     why-it-matters: |
       Pricing reveals commercial judgement. Founders who arrived at pricing
       through deliberate testing have a more defensible thesis than those who
-      copied a competitor or assumed. Evidence of pricing power — customers who
+      copied a competitor or assumed. Evidence of pricing power (customers who
       accepted a price increase, or who chose the product at a premium over
-      alternatives — is one of the highest-quality signals in this dimension.
+      alternatives) is one of the highest-quality signals in this dimension.
     validation:
       min-chars: 100
       max-chars: 1200
@@ -107,8 +107,8 @@ questions:
     type: number
     question: "What is your gross margin percentage? If pre-revenue, enter your target or modelled estimate."
     helper-text: |
-      This figure feeds into every unit economics calculation in this section —
-      it is the share of revenue left after direct delivery costs. Calculate as:
+      This figure feeds into every unit economics calculation in this section.
+      It is the share of revenue left after direct delivery costs. Calculate as:
       (revenue minus direct delivery costs) divided by revenue. Direct costs
       include hosting, licences, fulfilment, and customer-specific service hours.
       Exclude salaries and overheads. Enter as a number (e.g. 72 for 72%).
@@ -147,13 +147,13 @@ questions:
       them, how long they typically stay, and any expansion or upsell revenue
       over time. If pre-revenue, use your best modelled estimates and name the
       assumptions you are most uncertain about. Investors will probe every
-      number here — grounded estimates score higher than vague ranges.
+      number here. Grounded estimates score higher than vague ranges.
     why-it-matters: |
       Unit economics is the most important structural question in this dimension.
       A growing business with negative per-customer contribution compounds its
       losses as it scales. This is the full-picture question that lets investors
       evaluate whether acquisition, service, and retention costs form a viable
-      economic structure — and whether the founder has genuinely stress-tested
+      economic structure, and whether the founder has genuinely stress-tested
       the model rather than projected optimistic cases.
     validation:
       min-chars: 150
@@ -179,7 +179,7 @@ questions:
     question: "At what scale do the unit economics become clearly viable? Describe the inflection point and what has to be true to reach it."
     helper-text: |
       Describe the conditions under which the business generates sustainable
-      contribution margin per customer — where acquisition costs, service costs,
+      contribution margin per customer: where acquisition costs, service costs,
       and churn balance in a way that funds growth from revenue rather than
       entirely from capital. This could be a revenue level, a customer count,
       a specific product change, or a cost reduction. Name the two or three
@@ -187,7 +187,7 @@ questions:
     why-it-matters: |
       The path to viable unit economics is the bridge between current state and
       investable thesis. Pre-seed and seed investors are not funding present
-      profitability — they are funding the journey to the point where economics
+      profitability. They are funding the journey to the point where economics
       become self-sustaining. A founder who can describe that journey with
       specific milestones and named assumptions demonstrates commercial maturity
       that maps directly to how efficiently the raised capital will be used.
@@ -299,14 +299,14 @@ questions:
       increase that customers accepted without churn, a customer who said the
       product was priced below its value, or a pricing test that revealed
       higher willingness to pay. If you have not yet tested pricing power,
-      describe the strongest indirect signal you have — and the specific step
+      describe the strongest indirect signal you have, and the specific step
       you would take this month to test it.
     why-it-matters: |
       Pricing power separates defensible businesses from commodity ones. A
       company that cannot raise prices is structurally capped on gross margin
-      improvement. Evidence of pricing power — customer acceptance of price
+      improvement. Evidence of pricing power (customer acceptance of price
       increases, high retention after price changes, competitor pricing far
-      above current levels — gives investors confidence that margins can improve
+      above current levels) gives investors confidence that margins can improve
       as the business grows without requiring technology reinvention.
     validation:
       min-chars: 80
@@ -335,7 +335,7 @@ questions:
       fall as brand grows? Does gross margin improve as infrastructure is spread
       across more customers? Does churn rise as you sell beyond your initial
       ideal customer? The most useful answers are honest about what scales well
-      and what doesn't — and name the plan for the parts that don't.
+      and what doesn't. Name the plan for the parts that don't.
     why-it-matters: |
       Scalability of the business model determines whether growth produces
       expanding or compressing margins. A business whose acquisition costs rise
@@ -407,8 +407,8 @@ questions:
     helper-text: |
       Include: the cost category, its approximate share of total operating cost
       today, and how it behaves at 3× and 10× current revenue. If a cost is
-      largely fixed today but will require a step-change at a certain scale —
-      infrastructure, compliance, or a new leadership layer — describe that
+      largely fixed today but will require a step-change at a certain scale
+      (infrastructure, compliance, or a new leadership layer), describe that
       inflection point.
     why-it-matters: |
       Cost structure reveals the operating leverage in the business. A company
