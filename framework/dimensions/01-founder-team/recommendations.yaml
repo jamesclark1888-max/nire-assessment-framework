@@ -28,9 +28,9 @@ templates:
       founders, particularly at seed and beyond, because the workload
       and risk are concentrated in one person.
     gap: |
-      You haven't articulated a clear plan to address the solo-founder risk.
-      This is the most common reason solo-founder companies struggle to
-      raise institutional funding.
+      No plan is stated for addressing the single-person leadership risk.
+      This is the most common gap investors raise with solo-founder companies
+      before committing to a first meeting.
     fix: |
       Decide on one of three paths and communicate it clearly:
       1. Bring on a co-founder (most powerful, hardest to execute).
@@ -80,8 +80,9 @@ templates:
       strategic). Model your cap table through to Series A to ensure no
       founder ends up under-incentivised.
     evidence: |
-      VCs raise this in IC. A clear founder framework defuses the concern
-      before it becomes an issue.
+      Investors raise governance concerns early with large founding teams.
+      A clear decision-rights framework addresses the question before it
+      surfaces in a first meeting.
 
   # ─────────────────────────────────────────────────────────────────
   # Founder equity or commitment issue
@@ -97,8 +98,8 @@ templates:
       concerns. Part-time founders at seed stage or beyond, or heavily
       skewed equity splits, are red flags for institutional investors.
     gap: |
-      You haven't established a structure that signals full founder
-      commitment and aligned incentives.
+      There is no structure in place that signals full founder commitment
+      and aligned incentives to investors.
     fix: |
       Two priority actions:
       1. Any founder still part-time should commit to a clear transition
@@ -151,9 +152,9 @@ templates:
       strongest predictor of co-founder conflict, which is the leading
       cause of early-stage company failure.
     gap: |
-      You haven't yet established the working patterns, decision frameworks,
-      and trust that come from prior collaboration. This is fixable but
-      requires deliberate action.
+      The working patterns, decision frameworks, and trust that come from
+      shared history are not yet in place. This is fixable, but it requires
+      deliberate action rather than hoping things work out under pressure.
     fix: |
       Three concrete actions:
       1. Run a structured "founder agreement" exercise: roles, decision
@@ -275,9 +276,9 @@ templates:
       operators we can sell to, and proprietary insight no outsider could
       replicate inside 18 months."
     evidence: |
-      Founder-market fit is the single most-discussed factor in early-
-      stage IC meetings. A weak narrative here loses deals before the
-      first call.
+      Founder-market fit is among the most closely examined factors in
+      early investor conversations. A weak narrative here loses interest
+      before the conversation has started.
 
   # ─────────────────────────────────────────────────────────────────
   # Improvable founder-market fit
@@ -388,12 +389,14 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      Your reflection on team risks reads as deflective. Phrases like
-      "we have no significant risks" or "we work well together always"
-      signal a lack of self-awareness that VCs pattern-match negatively.
+      The team risk answer describes a team with no meaningful tensions.
+      Phrases like "we have no significant risks" or "we always work well
+      together" tell investors the question has not been examined carefully,
+      rather than that everything is genuinely fine.
     gap: |
-      You haven't articulated real, plausible risks specific to your team,
-      or a framework for managing them.
+      No specific, plausible team risks have been named, and no framework
+      for managing them has been described. Every team has real tensions.
+      Naming them is a sign of maturity, not a weakness.
     fix: |
       Honest founders identify 2-3 real risks. Common ones:
       - Difference in operating tempo between co-founders
@@ -441,8 +444,8 @@ templates:
     priority: critical
     free-tier-visible: false
     diagnostic: |
-      You don't have founder vesting in place. This will be a near-
-      certain investor requirement at your first priced round.
+      Founder vesting is not yet in place. This is a near-certain
+      investor requirement at the first priced round.
     gap: |
       Without vesting, a founder departure leaves significant equity
       stranded with someone no longer contributing. VCs require this
@@ -550,7 +553,7 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      You don't have an EMI option scheme set up. This is the UK's
+      An EMI option scheme is not yet in place. EMI is the UK's
       standard tax-advantaged employee share scheme.
     gap: |
       Without EMI, equity grants to employees face less favourable tax
@@ -592,9 +595,9 @@ templates:
     priority: critical
     free-tier-visible: true
     diagnostic: |
-      You haven't obtained SEIS or EIS Advance Assurance. This is a
-      near-universal expectation from UK angel investors and many
-      institutional seed funds.
+      SEIS or EIS Advance Assurance is not yet in place. This is expected
+      by most UK angel investors and many seed funds before they will
+      commit to an investment.
     gap: |
       Without Advance Assurance, you're effectively asking UK angels to
       invest without their 50% (SEIS) or 30% (EIS) income tax relief.
@@ -639,7 +642,7 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      You don't have BSPCE set up for employees.
+      A BSPCE plan is not yet in place for employees.
     gap: |
       Without BSPCE, employee equity grants in France face less favourable
       tax treatment.
@@ -676,8 +679,8 @@ templates:
     priority: medium
     free-tier-visible: true
     diagnostic: |
-      You haven't applied for JEI status. If eligible, this represents
-      substantial tax and social charge savings.
+      JEI status has not yet been applied for. If eligible, this
+      represents substantial tax and social charge savings.
     gap: |
       Eligible French startups that don't claim JEI are leaving meaningful
       money on the table, which signals an operational gap.
@@ -740,7 +743,7 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      You don't have a VSOP (Virtual Stock Option Plan) set up.
+      A VSOP (Virtual Stock Option Plan) is not yet in place.
     gap: |
       VSOPs are the German standard for employee equity. Without one,
       you're at a disadvantage hiring against startups that have proper

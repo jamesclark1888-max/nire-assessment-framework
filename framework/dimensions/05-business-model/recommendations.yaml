@@ -7,24 +7,24 @@
 # at runtime using the founder's specific data.
 #
 # Trigger map (must be consistent with questions.yaml):
-#   q5.2 low  → weak-pricing-rationale         (high)
-#   q5.2 med  → improvable-pricing-rationale    (medium)
-#   q5.3 low  → low-gross-margin               (critical, free-tier)
-#   q5.4 low  → weak-unit-economics            (critical, free-tier)
-#   q5.4 med  → improvable-unit-economics      (high)
-#   q5.5 low  → unclear-profitability-path     (high)
-#   q5.6 low  → low-ltv-cac                   (high)
-#   q5.7 low  → long-cac-payback              (high)
-#   q5.8 low  → no-pricing-power-evidence     (medium)
-#   q5.9 low  → unclear-model-scalability     (medium)
+#   q5.2 low  -> weak-pricing-rationale         (high)
+#   q5.2 med  -> improvable-pricing-rationale    (medium)
+#   q5.3 low  -> low-gross-margin               (critical, free-tier)
+#   q5.4 low  -> weak-unit-economics            (critical, free-tier)
+#   q5.4 med  -> improvable-unit-economics      (high)
+#   q5.5 low  -> unclear-profitability-path     (high)
+#   q5.6 low  -> low-ltv-cac                   (high)
+#   q5.7 low  -> long-cac-payback              (high)
+#   q5.8 low  -> no-pricing-power-evidence     (medium)
+#   q5.9 low  -> unclear-model-scalability     (medium)
 
 dimension: business-model
 version: 0.1.0
 templates:
 
-  # ─────────────────────────────────────────────────────────────────
-  # Weak unit economics — critical
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Weak unit economics -- critical
+  # -----------------------------------------------------------------
   - id: weak-unit-economics
     trigger:
       question-ids: [q5.4]
@@ -33,32 +33,32 @@ templates:
     free-tier-visible: true
     diagnostic: |
       The unit economics described do not yet form a complete picture of customer
-      value. Key components — acquisition cost, delivery cost, or lifetime revenue —
+      value. Key components (acquisition cost, delivery cost, and lifetime revenue)
       are missing, vague, or not connected to specific numbers. Investors examining
       unit economics are checking whether each customer generates more value than
       it costs to acquire and serve them. Without numbers that answer that question,
       the investment case cannot be modelled.
     gap: |
-      All three components need specific numbers: what it costs to acquire a customer,
-      what it costs to serve them each year, and what revenue they generate over the
-      relationship. Even rough estimates with named assumptions are more useful than
-      directional claims without figures.
+      All three components need specific numbers: what it costs to acquire a
+      customer, what it costs to serve them each year, and what revenue they
+      generate over the relationship. Even rough estimates with named assumptions
+      are more useful than directional claims without figures.
     fix: |
       Four steps to complete the unit economics picture:
 
-      1. Estimate your customer acquisition cost, even approximately. Divide total
-         sales and marketing spend in the last three months by customers won in the
-         same period. An approximate CAC grounded in real spend is more useful than
-         none at all.
+      1. Estimate customer acquisition cost, even approximately. Divide total
+         sales and marketing spend in the last three months by customers won in
+         the same period. An approximate CAC grounded in real spend is more
+         useful than none at all.
 
-      2. Pull your direct service costs for last month — hosting, third-party
-         fees, support hours billed specifically to customer delivery — and divide
-         by your current customer count. That gives your approximate monthly
-         delivery cost per customer.
+      2. Pull direct service costs for last month (hosting, third-party fees,
+         support hours billed specifically to customer delivery) and divide by
+         current customer count. That gives the approximate monthly delivery
+         cost per customer.
 
       3. Calculate a simple LTV: average annual revenue per customer multiplied
-         by your best estimate of how long a customer stays. If you have churn
-         data, use it. If not, model conservatively at 2 years.
+         by the best estimate of how long a customer stays. If churn data is
+         available, use it. If not, model conservatively at 2 years.
 
       4. Assemble these three numbers into one paragraph. If the result shows
          negative contribution today, name the customer count or revenue level
@@ -66,13 +66,13 @@ templates:
     evidence: |
       The unit economics describe whether each customer is worth more than the
       cost of acquiring and serving them. Without this picture, investors cannot
-      build a return estimate — they cannot know whether growth compounds value
+      build a return estimate; they cannot know whether growth compounds value
       or compounds losses.
     stage-variants:
       pre-seed:
         diagnostic: |
           At pre-seed, unit economics are necessarily estimated rather than
-          measured. The concern is not accuracy — it is whether the founder has
+          measured. The concern is not accuracy; it is whether the founder has
           worked through the model at all. Investors back founders who have
           stress-tested their assumptions, even with incomplete data, not those
           who have stated a price and assumed the costs will work out.
@@ -81,12 +81,12 @@ templates:
           At Series A, incomplete unit economics is a significant problem. By this
           stage, CAC, gross margin, and LTV should be derived from actual customer
           cohort data, not projections. Investors at Series A use unit economics
-          as the primary input for growth model validation — estimates alone will
+          as the primary input for growth model validation; estimates alone will
           not survive financial due diligence.
 
-  # ─────────────────────────────────────────────────────────────────
-  # Low gross margin — critical
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Low gross margin -- critical
+  # -----------------------------------------------------------------
   - id: low-gross-margin
     trigger:
       question-ids: [q5.3]
@@ -96,10 +96,10 @@ templates:
     diagnostic: |
       The gross margin is below what investors typically expect for a business
       at this stage and model type. Low gross margin limits the share of each
-      pound of revenue that is available to fund growth, which means each
-      additional customer requires more external capital. Investors building a
-      growth model from this starting point will flag whether the margin is
-      structural or temporary.
+      pound of revenue available to fund growth, which means each additional
+      customer requires more external capital. Investors building a growth model
+      from this starting point will flag whether the margin is structural or
+      temporary.
     gap: |
       A specific explanation is needed for why the margin is structurally low:
       whether this reflects a model with inherently lower margins, a temporary
@@ -108,48 +108,48 @@ templates:
     fix: |
       Three steps to address the gross margin gap:
 
-      1. Identify your two largest direct delivery costs. For each, determine
-         whether it is variable — scales proportionally with every customer — or
-         fixed, diluted as the customer base grows. Variable costs that cannot be
-         compressed are structural margin constraints that must be explained to
-         investors.
+      1. Identify the two largest direct delivery costs. For each, determine
+         whether it is variable (scales proportionally with every customer) or
+         fixed (diluted as the customer base grows). Variable costs that cannot
+         be compressed are structural margin constraints that must be explained
+         to investors.
 
-      2. Model gross margin at 5× current revenue, assuming the variable costs
+      2. Model gross margin at 5x current revenue, assuming the variable costs
          hold. If it is still below 50%, the business model may need restructuring
          before raising at a growth-stage valuation. If it improves significantly,
-         that improvement story belongs in your fundraising narrative.
+         that improvement story belongs in the fundraising narrative.
 
       3. Build a one-paragraph cost bridge: gross margin today, gross margin at
-         scale, and the specific change — infrastructure efficiency, a pricing
-         tier change, reduced services dependency — that drives the improvement.
-         Investors who understand the bridge will model the business differently
-         from those who only see the current number.
+         scale, and the specific change (infrastructure efficiency, a pricing tier
+         change, reduced services dependency) that drives the improvement. Investors
+         who understand the bridge will model the business differently from those
+         who only see the current number.
     evidence: |
-      Gross margin sets the ceiling for every unit economics metric — LTV,
-      CAC payback period, and long-run operating leverage. A business at 25%
-      gross margin requires roughly three times more revenue than one at 75%
-      to reach the same operating cash flow, which means raising more capital
-      to reach the same scale.
+      Gross margin sets the ceiling for every unit economics metric: LTV, CAC
+      payback period, and long-run operating leverage. A business at 25% gross
+      margin requires roughly three times more revenue than one at 75% to reach
+      the same operating cash flow, which means raising more capital to reach
+      the same scale.
     stage-variants:
       pre-seed:
         diagnostic: |
           At pre-seed with a modelled gross margin below 40%, the question is
-          whether this is a deliberate model choice — hardware, marketplace, or
-          services-led businesses can be venture-scalable with lower margins —
+          whether this is a deliberate model choice (hardware, marketplace, or
+          services-led businesses can be venture-scalable with lower margins)
           or whether the cost structure has not yet been designed for scale.
           Some low-margin models are intentional and defensible; the concern is
-          whether the founder has designed this outcome deliberately.
+          whether the founder designed this outcome deliberately.
       series-a:
         diagnostic: |
           At Series A, a gross margin below 40% on measured revenue requires a
-          detailed explanation and a specific improvement plan. Institutional
-          investors modelling this round need to see a clear path to 60%+ gross
-          margin before the next raise, or a deliberate explanation of why a
-          lower-margin model is structurally superior in this specific market.
+          detailed explanation and a specific improvement plan. Investors modelling
+          this round need to see a clear path to 60%+ gross margin before the
+          next raise, or a deliberate explanation of why a lower-margin model is
+          structurally superior in this specific market.
 
-  # ─────────────────────────────────────────────────────────────────
-  # Weak pricing rationale — high
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Weak pricing rationale -- high
+  # -----------------------------------------------------------------
   - id: weak-pricing-rationale
     trigger:
       question-ids: [q5.2]
@@ -160,40 +160,41 @@ templates:
       The pricing described is not yet connected to evidence of what the market
       will pay. No test, customer conversation, or competitive benchmark is cited
       to explain why this number is right. Investors read unvalidated pricing as
-      an assumption — one that may prove structurally wrong as the business
+      an assumption, one that may prove structurally wrong as the business
       encounters a broader range of buyers.
     gap: |
-      A specific market signal is needed to explain the pricing — even one
+      A specific market signal is needed to explain the pricing: even one
       customer conversation that tested or confirmed the number, or one
-      comparison to what buyers already pay for the alternative they currently use.
+      comparison to what buyers already pay for the alternative they currently
+      use.
     fix: |
       Three steps to establish a pricing rationale before the next investor
       conversation:
 
-      1. Ask your three most engaged customers what they were paying before your
-         product for the alternative they used instead. That figure establishes
-         the market's existing tolerance for solving this problem and gives you
-         a reference point to defend your price against.
+      1. Ask the three most engaged customers what they were paying before for
+         the alternative they used instead. That figure establishes the market's
+         existing tolerance for solving this problem and gives a reference point
+         to defend the price against.
 
-      2. Offer the next two inbound prospects a price 20–30% above your current
+      2. Offer the next two inbound prospects a price 20-30% above the current
          level. One of three outcomes follows: they accept (the market will bear
-         more), they negotiate (you learn the ceiling), or they decline citing
-         cost (you have a data point). Record which.
+         more), they negotiate (revealing the ceiling), or they decline citing
+         cost (a data point either way). Record which.
 
-      3. Write one sentence that captures your pricing evidence: "We charge £X
+      3. Write one sentence that captures the pricing evidence: "We charge £X
          because Y customers confirmed they were paying £Z on the alternative."
-         That sentence, said in a first meeting, changes how investors assess the
-         commercial judgement behind the model.
+         That sentence, said in a first meeting, changes how investors assess
+         the commercial judgement behind the model.
     evidence: |
       Investors treat unvalidated pricing as a live risk because it affects every
-      unit economics projection in the model. Founders who have tested their price
-      — even once — are operating from a validated data point; those who have not
-      are operating on an assumption that could require a fundamental model change
+      unit economics projection in the model. Founders who have tested their price,
+      even once, are operating from a validated data point; those who have not are
+      operating on an assumption that could require a fundamental model change
       if wrong.
 
-  # ─────────────────────────────────────────────────────────────────
-  # Unclear profitability path — high
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Unclear profitability path -- high
+  # -----------------------------------------------------------------
   - id: unclear-profitability-path
     trigger:
       question-ids: [q5.5]
@@ -201,33 +202,33 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      The path to viable unit economics is described in general terms — margins
-      will improve at scale, costs will fall with volume — without a specific
+      The path to viable unit economics is described in general terms (margins
+      will improve at scale, costs will fall with volume) without a specific
       milestone or inflection point. Investors funding a company before it
       reaches viable economics are backing a journey; without a defined
       destination, the journey has no measurable endpoint they can underwrite.
     gap: |
       A specific, identifiable milestone is needed: a customer count, a revenue
       level, or a named structural change at which the economics become
-      self-sustaining. Directional statements are not sufficient — investors
-      need to know when the business no longer requires external capital for
-      each incremental unit of growth.
+      self-sustaining. Directional statements are not sufficient; investors need
+      to know when the business no longer requires external capital for each
+      incremental unit of growth.
     fix: |
       Three steps to define and communicate a viable economics milestone:
 
-      1. Name the single most important economic lever in your model — the
-         variable whose improvement most changes the overall economics. For most
-         businesses this is: CAC declining with brand, churn improving with
-         product maturity, or gross margin improving with infrastructure scale.
+      1. Name the single most important economic lever in the model: the variable
+         whose improvement most changes the overall economics. For most businesses
+         this is CAC declining with brand, churn improving with product maturity,
+         or gross margin improving with infrastructure scale.
 
       2. State the specific level at which that lever produces viable contribution
          margin. "At 200 customers our infrastructure cost per customer drops from
          £380 to £60 and we reach 72% gross margin" is a milestone. "Costs will
          fall as we grow" is a direction. One is fundable; the other is not.
 
-      3. Attach the milestone to the raise you are seeking. Does the capital
-         from this round take you to that milestone, beyond it, or is it still
-         a round away? That question has a specific answer — naming it shows
+      3. Attach the milestone to the raise being sought. Does the capital from
+         this round take the business to that milestone, beyond it, or is it still
+         a round away? That question has a specific answer; naming it shows
          investors that the capital deployment is coherent with the unit economics
          journey.
     evidence: |
@@ -237,9 +238,9 @@ templates:
       unanswerable, which makes the investment case harder to model and defend
       internally.
 
-  # ─────────────────────────────────────────────────────────────────
-  # Low LTV:CAC — high
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Low LTV:CAC -- high
+  # -----------------------------------------------------------------
   - id: low-ltv-cac
     trigger:
       question-ids: [q5.6]
@@ -247,12 +248,11 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      The LTV:CAC ratio is below the 3× threshold investors use to assess whether
+      The LTV:CAC ratio is below the 3x threshold investors use to assess whether
       sales and marketing investment is economically justified. Below that threshold,
       less than three pounds of lifetime gross profit is generated for every pound
       spent acquiring a customer. The question this raises is whether the constraint
-      is in acquisition cost, customer lifetime, or the gross margin applied to
-      each.
+      is in acquisition cost, customer lifetime, or the gross margin applied to each.
     gap: |
       The gap is usually in one of two places: acquisition cost is high relative
       to contract value, or customer lifetime is too short to generate adequate
@@ -266,34 +266,34 @@ templates:
          contract value. If LTV is low, the problem is either short customer
          lifetime or insufficient expansion revenue per customer over time.
 
-      2. For a CAC problem: identify the channel with the lowest CAC in your
+      2. For a CAC problem: identify the channel with the lowest CAC in the
          current mix and examine whether it can be scaled. Referral from existing
-         customers is typically the cheapest acquisition channel — if it is not
+         customers is typically the cheapest acquisition channel; if it is not
          yet formalised with a specific process, that is the first step.
 
-      3. For an LTV problem: review your top five customers for expansion
-         opportunity — more seats, an annual upgrade, an additional module. An
+      3. For an LTV problem: review the top five customers for expansion
+         opportunity (more seats, an annual upgrade, an additional module). An
          expansion motion directly increases LTV without changing acquisition
          costs, which is the fastest path to improving the ratio.
     stage-variants:
       pre-seed:
         diagnostic: |
-          At pre-seed, an LTV:CAC below 3× is expected — the business typically
+          At pre-seed, an LTV:CAC below 3x is expected; the business typically
           does not yet have the data to calculate it accurately, and early
           acquisition tactics are more expensive than at scale. The concern is
           less the current number and more whether the founder understands the
           levers that will improve it and has a specific plan for doing so.
       series-a:
         diagnostic: |
-          At Series A, an LTV:CAC below 3× on measured cohort data is a
+          At Series A, an LTV:CAC below 3x on measured cohort data is a
           significant problem. Investors building growth models use this ratio
           as the primary input for sales and marketing investment decisions. A
           ratio below the threshold indicates the current go-to-market motion
           does not justify continued capital deployment at the same mix.
 
-  # ─────────────────────────────────────────────────────────────────
-  # Long CAC payback — high
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Long CAC payback -- high
+  # -----------------------------------------------------------------
   - id: long-cac-payback
     trigger:
       question-ids: [q5.7]
@@ -303,22 +303,22 @@ templates:
     diagnostic: |
       The CAC payback period is longer than investors expect for a capital-efficient
       business. A payback period above 24 months means each new customer requires
-      external capital to fund their own acquisition — the company cannot yet
+      external capital to fund their own acquisition; the company cannot yet
       recycle customer revenue to fund the next customer. This compresses how
       far each pound of raised capital goes.
     gap: |
-      The gap is either in acquisition cost — CAC is high relative to the monthly
-      gross margin contribution each customer produces — or in monthly revenue per
-      customer, where the contract value is too low relative to what it costs to
-      win the customer. Identifying which is binding determines the response.
+      The gap is either in acquisition cost (CAC is high relative to the monthly
+      gross margin contribution each customer produces) or in monthly revenue per
+      customer (where the contract value is too low relative to what it costs to
+      win the customer). Identifying which is binding determines the response.
     fix: |
       Three actions that move payback period, in order of speed:
 
       1. Identify whether annual prepayment is possible for existing customers.
          Customers who pay a full year in advance effectively eliminate most of
-         the payback period — the acquisition cost is recovered in the first
-         month. Offer a modest discount (5–10%) or a feature unlock to customers
-         due for renewal in exchange for switching to annual billing.
+         the payback period; the acquisition cost is recovered in the first month.
+         Offer a modest discount (5-10%) or a feature unlock to customers due for
+         renewal in exchange for switching to annual billing.
 
       2. Calculate the payback period by acquisition channel in isolation. If one
          channel produces customers with a 9-month payback while another produces
@@ -326,21 +326,21 @@ templates:
          than any product or pricing change.
 
       3. Identify one product change that increases average monthly revenue per
-         customer without increasing CAC — a new pricing tier, a usage-based
-         component, or an expansion module. State the specific one you would
-         implement first and your estimate of the impact on payback.
+         customer without increasing CAC: a new pricing tier, a usage-based
+         component, or an expansion module. State the specific one to implement
+         first and the estimate of the impact on payback.
     stage-variants:
       series-a:
         diagnostic: |
           At Series A, a CAC payback period above 18 months is a direct constraint
           on the capital efficiency story. Investors modelling the use of proceeds
-          from a Series A will flag payback above 18 months as a structural issue —
+          from a Series A will flag payback above 18 months as a structural issue;
           a material fraction of the raise is consumed funding the payback gap
           rather than compounding growth beyond it.
 
-  # ─────────────────────────────────────────────────────────────────
-  # Improvable unit economics — high
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Improvable unit economics -- high
+  # -----------------------------------------------------------------
   - id: improvable-unit-economics
     trigger:
       question-ids: [q5.4]
@@ -351,7 +351,8 @@ templates:
       The unit economics are partially described but contain either an internal
       inconsistency, a component stated without a clear basis, or a gap in one
       of the three key elements. The picture is incomplete enough that an investor
-      would need clarifying questions before building a growth model from the numbers.
+      would need clarifying questions before building a growth model from the
+      numbers.
     gap: |
       The most common shortfall is one of: a CAC stated without reference to
       actual spend and customers won; a lifetime value asserted without a churn
@@ -360,23 +361,23 @@ templates:
     fix: |
       Two steps close most unit economics gaps:
 
-      1. State the basis for every number. For each component — CAC, delivery
-         cost, LTV — add one sentence explaining how you arrived at it: actual
+      1. State the basis for every number. For each component (CAC, delivery
+         cost, LTV) add one sentence explaining how it was arrived at: actual
          spend divided by customers won, an invoice total divided by customer
          count, or an estimate based on a named assumption. Transparency about
          methodology is more useful than precision in the number itself.
 
       2. Run a consistency check: does the stated gross margin match the implied
          ratio of delivery cost to revenue? Does the LTV imply a churn rate
-         consistent with what you observe in your customer base? Fixing the
+         consistent with what is observed in the customer base? Fixing the
          inconsistencies strengthens the model more than adding new components.
     estimated-impact:
       dimension-score-uplift: 8
       confidence: medium
 
-  # ─────────────────────────────────────────────────────────────────
-  # Improvable pricing rationale — medium
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Improvable pricing rationale -- medium
+  # -----------------------------------------------------------------
   - id: improvable-pricing-rationale
     trigger:
       question-ids: [q5.2]
@@ -390,18 +391,18 @@ templates:
       enough to anchor the commercial confidence investors are looking for at
       this stage.
     gap: |
-      One direct market signal — a customer who accepted a price increase, a
-      prospect who compared your price favourably to a named alternative, or a
-      test that found demand above the current level — would materially
-      strengthen the pricing case.
+      One direct market signal (a customer who accepted a price increase, a
+      prospect who compared the price favourably to a named alternative, or a
+      test that found demand above the current level) would materially strengthen
+      the pricing case.
     fix: |
       Two actions will sharpen the pricing rationale:
 
       1. Add one direct market signal. The strongest version is a price increase
          that customers accepted: state the old price, the new price, how many
-         customers were affected, and what happened to churn. If you have not
-         raised prices, describe the closest proxy — a prospect who compared your
-         price to a named alternative and chose you anyway.
+         customers were affected, and what happened to churn. If prices have not
+         been raised, describe the closest proxy: a prospect who compared this
+         price to a named alternative and chose this product anyway.
 
       2. Connect price to customer value in concrete terms. The question investors
          ask is: what does the customer save, earn, or avoid by using this product
@@ -412,9 +413,9 @@ templates:
       dimension-score-uplift: 5
       confidence: medium
 
-  # ─────────────────────────────────────────────────────────────────
-  # No pricing power evidence — medium
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # No pricing power evidence -- medium
+  # -----------------------------------------------------------------
   - id: no-pricing-power-evidence
     trigger:
       question-ids: [q5.8]
@@ -423,43 +424,42 @@ templates:
     free-tier-visible: false
     diagnostic: |
       There is no observed evidence that customers would pay more than the current
-      price — no pricing test, no accepted increase, no direct customer statement
+      price: no pricing test, no accepted increase, no direct customer statement
       that the price is below what the product is worth. Without this signal,
       pricing power is an assumption rather than a measured fact, and assumptions
       about price ceilings are among the most common sources of margin surprise
       in growth-stage businesses.
     gap: |
       One direct market signal is needed: a customer who accepted a price increase
-      without churning, a prospect who compared your price favourably to a more
+      without churning, a prospect who compared this price favourably to a more
       expensive alternative, or a test that found demand at a price above the
       current level.
     fix: |
       Three steps to generate pricing power evidence in the next 30 days:
 
-      1. Identify the customer most likely to accept a price increase — high
-         usage, strong outcomes, a renewal coming up. Before the renewal, offer
-         a 15–20% increase framed as a standard annual adjustment. Record the
-         response: acceptance, negotiation, or decline. Each is informative.
+      1. Identify the customer most likely to accept a price increase (high usage,
+         strong outcomes, a renewal coming up). Before the renewal, offer a 15-20%
+         increase framed as a standard annual adjustment. Record the response:
+         acceptance, negotiation, or decline. Each is informative.
 
       2. For the next two new customers, trial a price 20% above the current
          level. If both accept, the market bears more than the current price.
-         If both decline and cite cost, you have confirmed the current level is
-         near the ceiling. Either way, you have data.
+         If both decline citing cost, the current level is near the ceiling.
+         Either way, there is data.
 
       3. Whether the test succeeds or fails, document the outcome in one sentence
-         you can use in investor conversations: "We tested a 20% increase with
-         two prospects; one accepted, one declined citing a budget constraint."
-         That is a specific evidence statement. "We believe there is pricing
-         power" is not.
+         for investor conversations: "We tested a 20% increase with two prospects;
+         one accepted, one declined citing a budget constraint." That is a specific
+         evidence statement. "We believe there is pricing power" is not.
     evidence: |
       Pricing power evidence directly affects how investors model gross margin
-      expansion. A company at or near its pricing ceiling will see margins
-      compress as costs rise. One with confirmed room above the current price
-      can expand margin at scale without a product change.
+      expansion. A company at or near its pricing ceiling will see margins compress
+      as costs rise. One with confirmed room above the current price can expand
+      margin at scale without a product change.
 
-  # ─────────────────────────────────────────────────────────────────
-  # Unclear model scalability — medium
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Unclear model scalability -- medium
+  # -----------------------------------------------------------------
   - id: unclear-model-scalability
     trigger:
       question-ids: [q5.9]
@@ -468,33 +468,32 @@ templates:
     free-tier-visible: false
     diagnostic: |
       How the economics change at scale is not described with enough specificity
-      to model the business at 5–10× current revenue. General statements that
-      margins improve at scale, or that costs decrease with growth, are not wrong —
-      but without a named mechanism and a named cost category, they cannot be used
-      to build a credible long-run financial model.
+      to model the business at 5-10x current revenue. General statements that
+      margins improve at scale or that costs decrease with growth are not wrong,
+      but without a named mechanism and a named cost category, they cannot be
+      used to build a credible long-run financial model.
     gap: |
       The specific mechanism that drives margin improvement at scale needs to be
-      named — which cost categories are largely fixed and will be diluted, at what
+      named: which cost categories are largely fixed and will be diluted, at what
       revenue level a step-change in infrastructure or pricing occurs, or what
       specific acquisition channel improves in efficiency at volume.
     fix: |
       Three steps to build a credible scalability narrative:
 
-      1. List your three largest cost categories as a percentage of current
-         revenue. For each, characterise whether it grows at the same rate as
-         revenue, more slowly, or faster. An approximate characterisation —
-         "hosting is mostly fixed and will drop from 12% to under 2% of revenue
-         at 10× scale" — is more useful to investors than no characterisation.
+      1. List the three largest cost categories as a percentage of current revenue.
+         For each, characterise whether it grows at the same rate as revenue, more
+         slowly, or faster. An approximate characterisation ("hosting is mostly
+         fixed and will drop from 12% to under 2% of revenue at 10x scale") is
+         more useful to investors than no characterisation.
 
       2. Name the one structural improvement that most changes the economics at
-         scale, and identify the mechanism: what specifically causes the
-         improvement and at what customer count or revenue level it occurs.
+         scale, and identify the mechanism: what specifically causes the improvement
+         and at what customer count or revenue level it occurs.
 
-      3. Name one cost that gets harder at scale — a customer success function
-         that does not compress, a compliance cost that rises with revenue
-         thresholds, or a leadership hire triggered at a certain headcount.
-         Acknowledging a specific challenge makes the overall analysis more
-         credible, not less.
+      3. Name one cost that gets harder at scale (a customer success function that
+         does not compress, a compliance cost that rises with revenue thresholds,
+         or a leadership hire triggered at a certain headcount). Acknowledging a
+         specific challenge makes the overall analysis more credible, not less.
     estimated-impact:
       dimension-score-uplift: 4
       confidence: medium

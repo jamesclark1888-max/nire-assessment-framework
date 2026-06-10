@@ -7,24 +7,24 @@
 # at runtime using the founder's specific data.
 #
 # Trigger map (must be consistent with questions.yaml):
-#   q4.2 low  → no-early-traction          (critical)
-#   q4.3 low  → low-mrr                    (high)
-#   q4.4 low  → low-growth                 (high)
-#   q4.5 low  → weak-traction-evidence     (critical, free-tier)
-#   q4.5 med  → improvable-traction-evidence (high)
-#   q4.6 low  → no-retention-data          (critical)
-#   q4.7 low  → no-customer-story          (high)
-#   q4.8 low  → unclear-roadmap            (medium)
-#   q4.9 low  → weak-nrr                   (medium)
-#   q4.10 low → no-product-iteration-signal (medium)
+#   q4.2 low  -> no-early-traction          (critical)
+#   q4.3 low  -> low-mrr                    (high)
+#   q4.4 low  -> low-growth                 (high)
+#   q4.5 low  -> weak-traction-evidence     (critical, free-tier)
+#   q4.5 med  -> improvable-traction-evidence (high)
+#   q4.6 low  -> no-retention-data          (critical)
+#   q4.7 low  -> no-customer-story          (high)
+#   q4.8 low  -> unclear-roadmap            (medium)
+#   q4.9 low  -> weak-nrr                   (medium)
+#   q4.10 low -> no-product-iteration-signal (medium)
 
 dimension: product-traction
 version: 0.1.0
 templates:
 
-  # ─────────────────────────────────────────────────────────────────
-  # Weak traction evidence — critical
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Weak traction evidence -- critical
+  # -----------------------------------------------------------------
   - id: weak-traction-evidence
     trigger:
       question-ids: [q4.5]
@@ -32,12 +32,12 @@ templates:
     priority: critical
     free-tier-visible: true
     diagnostic: |
-      The traction evidence you've described does not yet establish that your
-      product is creating measurable value for users or customers beyond the
-      founding team. General satisfaction claims, early sign-ups without
-      active usage, or internal assertions substitute for observable signals.
-      Investors check traction before almost any other dimension — it is the
-      primary signal that the product works.
+      The traction evidence described does not establish that the product
+      is creating measurable value for users or customers beyond the founding
+      team. General satisfaction claims, early sign-ups without active usage,
+      or internal assertions substitute for observable signals. Investors
+      check traction before almost any other dimension; it is the primary
+      signal that the product works.
     gap: |
       At least one specific, independently verifiable signal is needed: a
       named customer with a documented outcome, a retention figure with a
@@ -45,38 +45,38 @@ templates:
       followed product adoption. Without it, the product-market fit question
       remains unanswered.
     fix: |
-      Identify and document at least one primary traction signal before your
+      Identify and document at least one primary traction signal before the
       next investor meeting:
 
-      1. Talk to your most engaged customer or user. Ask: what specifically
-         changed for them after using your product? Get a number — time saved,
-         cost avoided, error rate reduced. One specific measurable change from
-         a named customer changes the investor conversation.
+      1. Talk to the most engaged customer or user. Ask: what specifically
+         changed for them after using the product? Get a number (time saved,
+         cost avoided, error rate reduced). One specific measurable change
+         from a named customer changes the investor conversation.
 
-      2. Calculate a retention figure, however small the cohort. If you have
-         10 users who signed up in Month 1, how many are still active? Even
-         a 6-week retention figure from 10 users is a data point. State the
-         cohort explicitly.
+      2. Calculate a retention figure, however small the cohort. If 10 users
+         signed up in Month 1, how many are still active? Even a 6-week
+         retention figure from 10 users is a data point. State the cohort
+         explicitly.
 
-      3. Ask your most engaged user if they would take a reference call with
-         an investor. A single willing reference is worth more than any
+      3. Ask the most engaged user whether they would take a reference call
+         with an investor. A single willing reference is worth more than any
          aggregate statistic at early stage.
 
-      4. If you are truly pre-usage, focus on making one person successful
-         before the next investor meeting. One real success story, documented
-         and attributable, is better evidence than 50 sign-ups.
+      4. If truly pre-usage, focus on making one person successful before the
+         next investor meeting. One real success story, documented and
+         attributable, is better evidence than 50 sign-ups.
     evidence: |
-      Traction evidence is the most frequently cited gap in early-stage VC
-      due diligence. Founders who can show one specific, verifiable signal —
-      however early — are consistently rated as more credible than those with
-      larger but unverifiable claims.
+      Traction evidence is the most frequently cited gap in early-stage due
+      diligence. Founders who can show one specific, verifiable signal, however
+      early, are consistently rated as more credible than those with larger
+      but unverifiable claims.
     stage-variants:
       pre-seed:
         diagnostic: |
-          At pre-seed, weak traction evidence is expected but should still include
-          at least one named person — a pilot participant, a customer interview
-          subject, or a design partner — who has experienced the product and
-          can speak to its value. Waitlist size, social media following, or
+          At pre-seed, weak traction evidence is expected but should still
+          include at least one named person (a pilot participant, a customer
+          interview subject, or a design partner) who has experienced the product
+          and can speak to its value. Waitlist size, social media following, or
           expressed interest without engagement is not traction at any stage.
       series-a:
         diagnostic: |
@@ -86,9 +86,9 @@ templates:
           that would be acceptable at pre-seed will fail due diligence at
           Series A.
 
-  # ─────────────────────────────────────────────────────────────────
-  # Improvable traction evidence — high
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Improvable traction evidence -- high
+  # -----------------------------------------------------------------
   - id: improvable-traction-evidence
     trigger:
       question-ids: [q4.5]
@@ -96,35 +96,35 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      You have described a traction signal, but it either lacks independent
+      A traction signal has been described, but it either lacks independent
       verifiability, is not yet connected to a measurable customer outcome,
-      or is the right type of signal for your stage but not documented with
+      or is the right type of signal for this stage but not documented with
       enough specificity to use in investor conversations.
     gap: |
-      The signal you have is real but not yet as portable as it needs to be
-      for due diligence. Investors need to be able to ask a customer to confirm
-      what you're describing — or see the underlying data — to rely on it in
-      a partner meeting or investment committee.
+      The signal is real but not yet as portable as it needs to be for due
+      diligence. Investors need to be able to ask a customer to confirm what
+      is being described, or see the underlying data, to rely on it in a
+      partner meeting.
     fix: |
-      Two steps will make your current traction signal materially stronger:
+      Two steps will make the current traction signal materially stronger:
 
-      1. Add verifiability: can you get permission to name the customer or share
-         a screenshot of the usage data? A signal the investor can independently
-         confirm is worth significantly more than one they can only take on trust.
-         Ask your most engaged customer whether they are comfortable being named
-         in investor conversations.
+      1. Add verifiability. Can the customer be named, or can a screenshot of
+         the usage data be shared? A signal an investor can independently
+         confirm is worth significantly more than one they can only take on
+         trust. Ask the most engaged customer whether they are comfortable
+         being named in investor conversations.
 
-      2. Add a number: even if you already have a qualitative traction story,
-         adding one quantified outcome — time saved, error rate reduced, revenue
-         generated — makes the story significantly more portable. Ask the customer
+      2. Add a number. Even if there is already a qualitative traction story,
+         adding one quantified outcome (time saved, error rate reduced, revenue
+         generated) makes the story significantly more portable. Ask the customer
          what changed for them in measurable terms.
     estimated-impact:
       dimension-score-uplift: 9
       confidence: medium
 
-  # ─────────────────────────────────────────────────────────────────
-  # No early traction — critical
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # No early traction -- critical
+  # -----------------------------------------------------------------
   - id: no-early-traction
     trigger:
       question-ids: [q4.2]
@@ -132,48 +132,48 @@ templates:
     priority: critical
     free-tier-visible: true
     diagnostic: |
-      Your product has no paying customers, or fewer active users than expected
-      for your stage. This is the most direct signal investors assess when
-      deciding whether the product is working. Without external users or customers,
-      the hypothesis that the product creates value for people other than the
-      founding team remains untested.
+      The product has no paying customers, or fewer active users than expected
+      for this stage. This is the most direct signal investors assess when
+      deciding whether the product is working. Without external users or
+      customers, the hypothesis that the product creates value for people other
+      than the founding team remains untested.
     gap: |
       Getting even one person outside the founding team to use the product and
       experience value from it is the most important near-term milestone. The
-      first external user is more valuable than a year of internal development —
+      first external user is more valuable than a year of internal development:
       they reveal which assumptions are right and which are wrong.
     fix: |
-      Identify and make one external person successful with your product before
-      your next investor conversation:
+      Identify and make one external person successful with the product before
+      the next investor conversation:
 
-      1. List 3-5 specific people — by name, not by category — who have the
-         problem your product solves and who you have a relationship with or
-         could reach this week. Warm introductions work; cold outreach to
-         strangers rarely produces first users quickly.
+      1. List 3-5 specific people by name (not by category) who have the problem
+         the product solves and who there is a relationship with, or who can
+         be reached this week. Warm introductions work; cold outreach to strangers
+         rarely produces first users quickly.
 
       2. Offer them the product for free in exchange for a structured onboarding
-         session and weekly feedback for 4 weeks. The goal is not a sale — it
-         is a documented, specific experience of value creation.
+         session and weekly feedback for 4 weeks. The goal is not a sale. It is
+         a documented, specific experience of value creation.
 
-      3. At the end of the 4 weeks, ask: what specifically changed for them?
-         If nothing changed, you have learned something critical about the
-         product that must be addressed before the next external deployment.
+      3. At the end of the 4 weeks, ask: what specifically changed for them? If
+         nothing changed, something critical about the product has been learned
+         that must be addressed before the next external deployment.
 
-      One real user with a documented outcome is the minimum signal required
-      to make the traction section of any investor conversation credible.
+      One real user with a documented outcome is the minimum signal required to
+      make the traction section of any investor conversation credible.
     evidence: |
-      A company that cannot demonstrate external users at the stage they are
+      A company that cannot demonstrate external users at the stage it is
       fundraising for is asking investors to underwrite a hypothesis rather than
-      a business. Even a single named user with a documented experience
-      materially changes how investors assess founding team execution.
+      a business. Even a single named user with a documented experience materially
+      changes how investors assess founding team execution.
     stage-variants:
       pre-seed:
         diagnostic: |
-          At pre-seed, having no users is a borderline signal — some pre-seed
-          companies are genuinely pre-product. But most investors expect at
-          least one external person to have experienced the product, even
-          informally. 'We haven't shown it to anyone yet' is more concerning
-          than 'we have 5 beta users with mixed reactions.'
+          At pre-seed, having no users is a borderline signal; some pre-seed
+          companies are genuinely pre-product. But most investors expect at least
+          one external person to have experienced the product, even informally.
+          'We haven't shown it to anyone yet' is more concerning than 'we have
+          5 beta users with mixed reactions.'
       seed:
         diagnostic: |
           At seed, no paying customers or very few active users is a significant
@@ -181,9 +181,9 @@ templates:
           a small number of real customers. Without this, the seed round is
           funding a hypothesis, not a business.
 
-  # ─────────────────────────────────────────────────────────────────
-  # Low growth — high
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Low growth -- high
+  # -----------------------------------------------------------------
   - id: low-growth
     trigger:
       question-ids: [q4.4]
@@ -191,52 +191,53 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      Your month-over-month growth rate is below what institutional investors
-      expect at your stage. Low growth is not a death sentence, but it does
-      require an explanation: whether the low rate reflects a deliberate pause
-      to fix retention before scaling acquisition, a market timing issue, or
-      a product problem that hasn't been resolved yet.
+      The month-over-month growth rate is below what investors expect at this
+      stage. Low growth is not a death sentence, but it requires an explanation:
+      whether the low rate reflects a deliberate pause to fix retention before
+      scaling acquisition, a market timing issue, or a product problem that
+      has not been resolved yet.
     gap: |
-      The growth rate is the key input investors use to extrapolate from current
-      position to exit position. A rate below 10% monthly at seed implies roughly
-      3x annual growth; most institutional seed investors target companies with
+      Growth rate is the key input investors use to extrapolate from current
+      position to exit position. A rate below 10% monthly at seed implies
+      roughly 3x annual growth; most seed investors target companies with
       the potential for 5-10x annual growth from current position.
     fix: |
-      Before your next investor conversation, develop a specific explanation for
+      Before the next investor conversation, develop a specific explanation for
       the current growth rate and a thesis for how it will change:
 
-      1. Diagnose the constraint: is growth limited by the size of the addressable
-         pool you can reach with current channels? By conversion rate from lead to
-         customer? By customer success capacity that limits how many new customers
-         can be onboarded? The fix depends entirely on which constraint is binding.
+      1. Diagnose the constraint. Is growth limited by the size of the
+         addressable pool reachable with current channels? By conversion rate
+         from lead to customer? By customer success capacity that limits how
+         many new customers can be onboarded? The fix depends entirely on
+         which constraint is binding.
 
-      2. State the growth experiment you are running now: what specific action is
-         underway to increase the rate, what are you measuring, and when will you
-         know if it is working?
+      2. State the growth experiment running now: what specific action is
+         underway to increase the rate, what is being measured, and when will
+         results be visible?
 
-      3. If growth is intentionally low because you are prioritising retention
+      3. If growth is intentionally low because retention is being prioritised
          over acquisition, say this explicitly in investor conversations. A
          deliberate pause to improve product quality before scaling is credible;
          unexplained slow growth is not.
     stage-variants:
       pre-seed:
         diagnostic: |
-          At pre-seed, slow growth is often expected — the product may be in very
-          early testing. The key question is whether the growth rate from the first
-          few users to the current number reflects an improving trajectory or a
-          plateau. Even a small cohort growing consistently is a stronger signal
-          than a larger but static cohort.
+          At pre-seed, slow growth is often expected; the product may be in
+          very early testing. The key question is whether the growth rate from
+          the first few users to the current number reflects an improving
+          trajectory or a plateau. Even a small cohort growing consistently
+          is a stronger signal than a larger but static cohort.
       series-a:
         diagnostic: |
           At Series A, growth rate is the primary underwriting metric. A rate
-          below 10% monthly (roughly 2-3x annually) makes it hard to model an
-          exit multiple that works for a typical institutional fund. Series A
+          below 10% monthly (roughly 2-3x annually) makes it hard to build
+          a credible model to the return a fund needs at exit. Series A
           investors will ask for monthly growth data going back 12-18 months
           and will analyse the trend, not just the current rate.
 
-  # ─────────────────────────────────────────────────────────────────
-  # No retention data — critical
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # No retention data -- critical
+  # -----------------------------------------------------------------
   - id: no-retention-data
     trigger:
       question-ids: [q4.6]
@@ -244,45 +245,46 @@ templates:
     priority: critical
     free-tier-visible: false
     diagnostic: |
-      You have a live product with paying customers but no defined retention
+      There is a live product with paying customers but no defined retention
       metric, or the retention metric described is too vague to use in a
       valuation conversation. For a company with revenue, the absence of
       retention data is the single most important gap to close before raising.
-      Growth without a retention figure is an incomplete picture — it is the
+      Growth without a retention figure is an incomplete picture; it is the
       denominator that gives any growth rate meaning.
     gap: |
       Without a retention figure, investors cannot model the revenue trajectory
       at scale. Every growth story is conditional on retention: 20% monthly
       growth with 90% annual retention builds a fundamentally different business
-      than 20% monthly growth with 50% annual retention. Investors know this and
-      will ask about it.
+      than 20% monthly growth with 50% annual retention. Investors know this
+      and will ask about it.
     fix: |
-      Calculate your gross logo retention rate this week. It is a straightforward
+      Calculate the gross logo retention rate this week. It is a straightforward
       calculation:
 
-      1. List every customer who was active 12 months ago (or at any earlier date
-         if 12 months of data is not available — use the longest period you have).
+      1. List every customer who was active 12 months ago (or at any earlier
+         date if 12 months of data is not available; use the longest period
+         available).
 
       2. Count how many of those customers are still active today. Divide that
-         number by the total from step 1. That is your gross logo retention rate.
+         number by the total from step 1. That is the gross logo retention rate.
 
       3. If the rate is below 80%, identify the 1-2 customers who churned and
          find out why. A root cause for churn is more valuable than the number
-         itself — it reveals whether the problem is product quality, customer
+         itself; it reveals whether the problem is product quality, customer
          fit, or something else.
 
-      4. Once you have the figure, calculate it monthly and include it as a
-         standard metric in your board and investor updates.
+      4. Once the figure is calculated, track it monthly and include it as a
+         standard metric in board and investor updates.
 
-      You already have this data — it is in your customer list and your CRM.
-      The only barrier is running the calculation.
+      This data already exists; it is in the customer list and CRM. The only
+      barrier is running the calculation.
     estimated-impact:
       dimension-score-uplift: 10
       confidence: high
 
-  # ─────────────────────────────────────────────────────────────────
-  # No customer story — high
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # No customer story -- high
+  # -----------------------------------------------------------------
   - id: no-customer-story
     trigger:
       question-ids: [q4.7]
@@ -290,44 +292,44 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      You have not described a specific customer or pilot relationship with
-      enough detail to use as investor reference material. A vague customer
-      story — a company that "liked the product" without a named person, a
-      documented outcome, or a specific before-and-after — does not give
-      investors anything to verify or follow up on during due diligence.
+      No specific customer or pilot relationship has been described with enough
+      detail to use as investor reference material. A vague customer story (a
+      company that "liked the product" without a named person, a documented
+      outcome, or a specific before-and-after) does not give investors anything
+      to verify or follow up on during due diligence.
     gap: |
       The strongest due diligence asset at early stage is a single customer who
       will take a reference call and describe a specific outcome they experienced.
       Without one, the investor's view of the product's value is filtered entirely
-      through the founder — a single source that cannot be independently verified.
+      through the founder, a single source that cannot be independently verified.
     fix: |
-      Identify your most successful customer or user and document their story
+      Identify the most successful customer or user and document their story
       in three steps:
 
-      1. Schedule a 30-minute call with them and ask: what were you doing
-         before you started using this product, what specifically changed,
-         and what would you say to someone deciding whether to use it? Take
-         notes or record with permission.
+      1. Schedule a 30-minute call with them and ask: what were you doing before
+         using this product, what specifically changed, and what would you say
+         to someone deciding whether to use it? Take notes or record with
+         permission.
 
-      2. Extract the three key elements of the story: their context (who they
-         are and what problem they had), the outcome (what specifically changed
-         in measurable terms), and their conclusion (what they would say to a
-         peer). Write it in one paragraph.
+      2. Extract the three key elements of the story: context (who they are and
+         what problem they had), outcome (what specifically changed in measurable
+         terms), and conclusion (what they would say to a peer). Write it in one
+         paragraph.
 
       3. Ask whether they are comfortable being named in investor conversations
          and being contacted by investors who want to follow up. A customer who
-         agrees to this is a reference — the most valuable due diligence asset
-         you can provide before raising.
+         agrees to this is a reference: the most valuable due diligence asset
+         available before raising.
 
-      This takes one phone call and one hour of writing. It is the highest-
+      This takes one phone call and one hour of writing. It is the highest
       value-per-hour preparation work available before a fundraise.
     estimated-impact:
       dimension-score-uplift: 8
       confidence: medium
 
-  # ─────────────────────────────────────────────────────────────────
-  # Low MRR — high
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Low MRR -- high
+  # -----------------------------------------------------------------
   - id: low-mrr
     trigger:
       question-ids: [q4.3]
@@ -335,42 +337,41 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      Your monthly recurring revenue is below what institutional investors
-      typically expect at your stated stage and for the size of raise you
-      are contemplating. This does not make the round impossible, but it
-      requires a stronger narrative on the path to the MRR level that makes
-      the round defensible.
+      Monthly recurring revenue is below what investors typically expect at
+      the stated stage and for the size of raise being contemplated. This does
+      not make the round impossible, but it requires a stronger narrative on
+      the path to the MRR level that makes the round defensible.
     gap: |
       Investors model from current MRR to exit ARR. A low starting MRR makes
-      the implied growth trajectory steeper and the exit timeline longer —
-      both of which increase perceived risk and reduce valuation. A specific,
-      credible path to 3x or 5x current MRR in 12 months is the minimum
-      required to make the round fundable at a typical seed valuation.
+      the implied growth trajectory steeper and the exit timeline longer, both
+      of which increase perceived risk and reduce valuation. A specific, credible
+      path to 3x or 5x current MRR in 12 months is the minimum required to make
+      the round fundable at a typical seed valuation.
     fix: |
-      Build a bottom-up revenue plan for the next 12 months that you can
-      defend in detail:
+      Build a bottom-up revenue plan for the next 12 months that can be
+      defended in detail:
 
-      1. Start from your current customer list and identify which customers
-         could expand their contract — through more seats, new modules, or
-         a move to annual billing. Expansion revenue from existing customers
+      1. Start from the current customer list and identify which customers
+         could expand their contract: through more seats, new modules, or a
+         move to annual billing. Expansion revenue from existing customers
          is the fastest and cheapest revenue to add.
 
-      2. Identify 5-10 specific prospects by name — not by segment — that
-         you believe are reachable in the next 90 days. Attach a specific
-         contact, a next action, and a realistic close date to each.
+      2. Identify 5-10 specific prospects by name (not by segment) that are
+         reachable in the next 90 days. Attach a specific contact, a next
+         action, and a realistic close date to each.
 
       3. Calculate what MRR would look like if both expansion and the named
          pipeline came through. If the result is 3x or more of current MRR
          within 12 months at a realistic conversion rate, that is the plan
-         to present to investors. If it is not, the question is what
-         product or go-to-market change would unlock that trajectory.
+         to present to investors. If it is not, the question is what product
+         or go-to-market change would unlock that trajectory.
     estimated-impact:
       dimension-score-uplift: 0
       confidence: low
 
-  # ─────────────────────────────────────────────────────────────────
-  # Unclear roadmap — medium
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Unclear roadmap -- medium
+  # -----------------------------------------------------------------
   - id: unclear-roadmap
     trigger:
       question-ids: [q4.8]
@@ -378,40 +379,40 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Your product roadmap either lacks specific priorities or is not connected
+      The product roadmap either lacks specific priorities or is not connected
       to observable customer evidence. A list of features to build is not a
-      product strategy — it is a backlog. The distinction that matters to
-      investors is whether the team builds what customers need or what the
-      founders think customers might want.
+      product strategy; it is a backlog. The distinction that matters to investors
+      is whether the team builds what customers need or what the founders think
+      customers might want.
     gap: |
       A roadmap that cannot be traced to specific customer conversations, usage
       data, or sales patterns does not demonstrate that the product development
       process is evidence-driven. This becomes more important as the company
-      grows — teams that build on evidence waste less capital than teams that
+      grows: teams that build on evidence waste less capital than teams that
       build on assumption.
     fix: |
-      Reframe your roadmap around three specific questions for each item:
+      Reframe the roadmap around three specific questions for each item:
 
-      1. Which customers asked for this, or which data point showed it was needed?
-         If you cannot answer this for a roadmap item, either find the evidence or
-         remove the item from the 12-month plan.
+      1. Which customers asked for this, or which data point showed it was
+         needed? If this cannot be answered for a roadmap item, either find the
+         evidence or remove the item from the 12-month plan.
 
       2. What will change for those customers when it ships? State the outcome,
-         not the feature: 'they will be able to complete the monthly report in
-         one day instead of three' is an outcome; 'we will add a new report
-         type' is a feature description.
+         not the feature: "they will be able to complete the monthly report in
+         one day instead of three" is an outcome; "we will add a new report
+         type" is a feature description.
 
-      3. What will you NOT build in the next 12 months because you are doing
-         this instead? Articulating the trade-off demonstrates prioritisation
-         discipline that investors find credible — it shows the team is resource-
-         constrained and has made a deliberate choice.
+      3. What will NOT be built in the next 12 months because of this? Articulating
+         the trade-off demonstrates prioritisation discipline that investors find
+         credible. It shows the team is resource-constrained and has made a
+         deliberate choice.
     estimated-impact:
       dimension-score-uplift: 5
       confidence: medium
 
-  # ─────────────────────────────────────────────────────────────────
-  # Weak NRR — medium
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # Weak NRR -- medium
+  # -----------------------------------------------------------------
   - id: weak-nrr
     trigger:
       question-ids: [q4.9]
@@ -419,33 +420,32 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Your net revenue retention is below 100%, which means your existing
-      customer cohort is contracting. This happens either because customers
-      are churning faster than they are expanding, or because there is no
-      expansion motion at all. For subscription businesses, NRR below 100%
-      is one of the most important signals investors track because it
-      determines how much growth must come from new customers simply to
-      stay flat.
+      Net revenue retention is below 100%, which means the existing customer
+      cohort is contracting. This happens either because customers are churning
+      faster than they are expanding, or because there is no expansion motion at
+      all. For subscription businesses, NRR below 100% is one of the most
+      important signals investors track because it determines how much growth
+      must come from new customers simply to stay flat.
     gap: |
       NRR below 100% means new customer acquisition must outpace cohort
       contraction just to maintain revenue. This structurally increases the
       capital intensity of growth and the risk that slowing acquisition causes
       revenue to decline. The fix is either reducing churn or adding an
-      expansion motion — ideally both.
+      expansion motion, ideally both.
     fix: |
       Two parallel efforts will move NRR toward 100%:
 
-      1. Understand churn: for each customer who has churned or reduced their
+      1. Understand churn. For each customer who has churned or reduced their
          contract in the past 12 months, identify the reason. Was it budget,
          product fit, competitive displacement, or something else? One hour of
          exit interviews with churned customers is worth more than any
          quantitative analysis for identifying the root cause.
 
-      2. Identify an expansion motion: do your current customers have a natural
-         path to spend more? More users, more modules, usage-based pricing as
-         they scale, or an annual contract at a premium to monthly? If no
-         expansion path exists in the current pricing model, that is a structural
-         problem that should be addressed before the next raise.
+      2. Identify an expansion motion. Do current customers have a natural path
+         to spend more? More users, more modules, usage-based pricing as they
+         scale, or an annual contract at a premium to monthly? If no expansion
+         path exists in the current pricing model, that is a structural problem
+         that should be addressed before the next raise.
 
       If churn root cause and expansion path both have answers, combine them
       into a specific NRR improvement plan with a 12-month target.
@@ -453,9 +453,9 @@ templates:
       dimension-score-uplift: 7
       confidence: medium
 
-  # ─────────────────────────────────────────────────────────────────
-  # No product iteration signal — medium
-  # ─────────────────────────────────────────────────────────────────
+  # -----------------------------------------------------------------
+  # No product iteration signal -- medium
+  # -----------------------------------------------------------------
   - id: no-product-iteration-signal
     trigger:
       question-ids: [q4.10]
@@ -463,31 +463,30 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      There is no evidence of a disciplined product iteration loop — shipping
-      a change, measuring what happened, and updating the team's understanding
-      of what users need. Without this, the product development process is
-      hard for investors to distinguish from one that builds features on
-      intuition and declares success without measurement.
+      There is no evidence of a disciplined product iteration loop: shipping a
+      change, measuring what happened, and updating the team's understanding of
+      what users need. Without this, the product development process is hard for
+      investors to distinguish from one that builds features on intuition and
+      declares success without measurement.
     gap: |
       Investors backing a software company are also backing the team's ability
       to improve the product efficiently over time. A team that builds, measures,
       and learns compounds its capital faster than one that builds and ships
-      without measurement. The absence of any described iteration loop is the
-      gap.
+      without measurement. The absence of any described iteration loop is the gap.
     fix: |
-      Pick your last significant product change and reconstruct the measurement
+      Pick the last significant product change and reconstruct the measurement
       story around it:
 
-      1. What metric were you trying to move with that change? Name it — a
-         specific number like daily active users, session completion rate, or
-         a specific customer workflow completion rate.
+      1. What metric was being targeted with that change? Name it specifically:
+         daily active users, session completion rate, or a specific customer
+         workflow completion rate.
 
       2. What actually happened to that metric in the 4 weeks after the change
          shipped? Pull the data and compare it to the 4 weeks before.
 
-      3. What did you do differently in the next product cycle based on what
-         you found? The learning loop — hypothesis, measurement, update — is
-         the iteration signal investors look for.
+      3. What was done differently in the next product cycle based on what was
+         found? The learning loop (hypothesis, measurement, update) is the
+         iteration signal investors look for.
 
       Going forward, commit to one metric per product sprint that the change
       is intended to move, and review it 4 weeks after launch. That practice,
