@@ -1,0 +1,671 @@
+# Dimension 8: Round & Capital Strategy
+# Recommendation templates
+#
+# All prose follows docs/voice-guide.md:
+# - Describe the signal, not the founder
+# - Specific beats abstract
+# - Every fix ends with one step a founder can start this week
+# - No judgment language ("you lack", "you haven't")
+# - Translate VC reasoning into plain English
+# - Fix sections use 3 numbered steps for strategic dimensions
+#
+# Templates (14 total):
+#  small-round-size              q8.2 low
+#  valuation-outside-expected-range  q8.3 low
+#  valuation-at-boundary         q8.3 medium
+#  short-runway                  q8.4 low
+#  limited-runway                q8.4 medium
+#  weak-capital-plan             q8.5 low   (highest-weight question)
+#  improvable-capital-plan       q8.5 medium
+#  no-funding-commitment         q8.6 low
+#  partial-commitment-only       q8.6 medium
+#  complex-cap-table             q8.7 low
+#  unclear-next-round            q8.8 low
+#  improvable-next-round-path    q8.8 medium
+#  opaque-dilution-terms         q8.10 low  (showIf-gated)
+#  weak-valuation-comps          q8.12 low  (optional question)
+
+dimension: round-capital
+version: 0.1.0
+templates:
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.2 — Round size
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: small-round-size
+    trigger:
+      question-ids: [q8.2]
+      score-band: low
+    priority: high
+    free-tier-visible: true
+    diagnostic: |
+      The raise target is below the level that typically generates the
+      milestones institutions need to make a follow-on decision. Rounds
+      under £150k at pre-seed cover 3–6 months of costs at most — rarely
+      enough time to produce referenceable results.
+    gap: |
+      Small rounds shift the investor's question from "can this business
+      reach institutional-quality milestones?" to "can this business
+      survive long enough to raise again?" Investors who see a short
+      runway built into the structure often wait rather than participate.
+    fix: |
+      1. Audit the spend plan against the milestone the raise is supposed
+         to reach. If the current target cannot fund that milestone,
+         the raise size and the milestone are misaligned. Identify which
+         spend items can be deferred without compromising the milestone,
+         or narrow the milestone to one achievable on the current budget.
+      2. Model a revised target that provides 18 months of runway at your
+         projected burn rate. If that number is substantially larger than
+         current commitments, explore whether co-investors, a lead anchor,
+         or a staged tranche structure could get the round to close at the
+         higher figure.
+      3. This week: write out the milestone this capital is supposed to
+         fund and the exact spend items required to reach it. If the
+         spend sum falls short of the milestone, that gap is the evidence
+         you need to either raise more or redefine the milestone before
+         the round launches.
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.3 — Pre-money valuation
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: valuation-outside-expected-range
+    trigger:
+      question-ids: [q8.3]
+      score-band: low
+    priority: high
+    free-tier-visible: true
+    diagnostic: |
+      The target valuation is above the top of the expected range for
+      the stage. A pre-seed valuation above £15m creates a milestone
+      gap: the business needs to justify a substantially higher valuation
+      at the next raise, which requires results that are difficult to
+      reach on a pre-seed budget.
+    gap: |
+      Excessive valuations at early stages create a structural problem
+      for follow-on fundraising. Investors who pay a high price at
+      pre-seed need to see a step-change in results before the next
+      round — the gap between the current price and a reasonable seed
+      valuation is the "anti-dilution trap" that discourages
+      institutional participation.
+    fix: |
+      1. Map the current valuation to a concrete milestone. At £15m+
+         pre-money pre-seed, a reasonable seed raise will be at £20–35m
+         — meaning the business needs to demonstrate results that justify
+         a 33–133% step-up between now and seed close. Write down what
+         those results are and whether they are achievable on the
+         current raise budget.
+      2. Research 3–5 comparable UK pre-seed rounds from the past 18
+         months in your sector — round size, valuation, and traction at
+         time of close. If the comparables cluster below £10m pre-money
+         with similar traction, the valuation needs rationalising with
+         a specific differentiator (proprietary tech, signed LOIs,
+         provable IP moat) that the comparables do not have.
+      3. This week: talk to two institutional investors who are active
+         at your stage and ask them directly what pre-money range they
+         expect to see for a company at your traction level. Investor
+         feedback is the fastest way to test whether the current number
+         is credible in the market.
+
+  - id: valuation-at-boundary
+    trigger:
+      question-ids: [q8.3]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      The target valuation is in a range where investors are likely
+      to probe the justification before agreeing to the price. Valuations
+      at the lower boundary create over-dilution concerns; valuations
+      approaching the upper boundary invite scrutiny of whether the
+      milestones ahead are achievable at this price.
+    gap: |
+      Valuations at the boundary of the stage range require a stronger
+      narrative to close without friction. Investors expect to see
+      comparable transactions, a specific justification tied to traction
+      or IP, or a clear calculation of the post-raise milestone that
+      makes the price credible.
+    fix: |
+      1. Build a valuation narrative with three components: (a) 2–3
+         named comparable transactions from the past 18 months with
+         approximate valuations and traction levels; (b) one specific
+         differentiator that justifies your position within the range —
+         proprietary data, signed LOIs, measurable IP advantage, or
+         a referenceable customer at the target buyer profile; and
+         (c) the post-raise milestone that investors are effectively
+         paying for.
+      2. If the valuation is at the lower end of the range, calculate
+         the founder ownership percentage at close. Below 65% combined
+         for a two-person founding team after this round is a signal
+         that institutional investors will flag — both for founder
+         incentive alignment and for subsequent rounds where option
+         pools and further dilution are expected. Consider whether a
+         higher raise at the same valuation (increasing the denominator)
+         gives you better options.
+      3. This week: write a single paragraph that answers the investor
+         question "why is this priced here?" with specific evidence.
+         If you cannot write that paragraph in concrete terms, that is
+         the gap to close before the round launches.
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.4 — Runway
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: short-runway
+    trigger:
+      question-ids: [q8.4]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      The raise provides less than 9 months of runway at the projected
+      post-raise burn rate. At this level, fundraising for the next
+      round must begin before the current capital has had time to
+      generate the results that would justify the raise.
+    gap: |
+      Rounds providing under 9 months of runway put founders in
+      permanent fundraising mode. The business cannot operate a normal
+      sale, hiring, or product cycle when the next raise is always
+      6–8 weeks away. Investors who see a sub-9-month runway often
+      delay participation, waiting to see whether the company survives
+      long enough to form a real picture.
+    fix: |
+      1. Identify the primary driver of the short runway. There are
+         three scenarios: (a) the raise target is too small; (b) the
+         projected burn rate is too high; or (c) the milestone being
+         targeted is too expensive for the current round. Each has
+         a different fix — raising more, cutting burn, or narrowing
+         scope. Diagnose which scenario applies before choosing a
+         solution.
+      2. Rebuild the financial model with a 12-month runway as the
+         minimum constraint. Either increase the raise target until
+         12 months is achievable, or identify spend items to defer
+         until after a milestone is reached. For most pre-seed
+         companies, the cut list is hiring (defer the non-critical
+         hire by 6 months) or tooling/infrastructure (run leaner
+         until £50k ARR).
+      3. This week: produce a revised spend plan that gives 12 months
+         of runway. Present it to a co-founder or trusted advisor
+         before any investor conversations, as sub-12-month runway
+         is one of the most common deal-breakers at the pre-screening
+         stage.
+    stage-variants:
+      pre-seed:
+        fix: |
+          1. Identify the primary driver of the short runway: raise too
+             small, burn too high, or milestone too expensive. Each has
+             a different fix — raising more, cutting burn, or narrowing
+             scope. At pre-seed, cutting burn is usually faster than
+             raising more, because the round is not yet closed.
+          2. Rebuild the spend plan with 12 months as the minimum
+             runway. For most pre-seed companies the fastest cut is
+             deferring one hire by 6 months. The second fastest is
+             deferring non-critical tooling and infrastructure spend
+             until the first milestone is reached.
+          3. This week: produce a revised spend plan that gives 12
+             months of runway. Review it with a co-founder or advisor
+             before any investor conversations — sub-12-month runway
+             is one of the most common pre-screening deal-breakers.
+      series-a:
+        fix: |
+          1. Identify which cost centres are driving the short runway
+             post-raise: headcount growth, S&M spend, or R&D investment.
+             Series A burn rates are typically £300–600k/month, meaning
+             the raise must cover 18 months to the next round at that
+             rate. If the raise doesn't reach that, scope down the
+             headcount plan or split the round into tranches.
+          2. Model two scenarios: (a) raise the full target and operate
+             at full burn; (b) raise a minimum first tranche with a
+             milestone trigger for the second. Scenario B reduces
+             dilution if the milestone is reached and forces capital
+             discipline. Present both scenarios to the board before
+             the round launches.
+          3. This week: confirm the projected Series B raise timing
+             from the runway endpoint. If the endpoint puts Series B
+             close in a market downturn window or a thin calendar
+             period (Q4), the current raise timing may need to shift.
+
+  - id: limited-runway
+    trigger:
+      question-ids: [q8.4]
+      score-band: medium
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      The raise provides 9–11 months of runway — enough to begin
+      operating, but insufficient to generate the milestones that
+      justify the next raise before fundraising must restart.
+    gap: |
+      With 9–11 months of runway, the next fundraising process must
+      begin within 3–5 months of close. That compresses the milestone-
+      generation window to around 6 months — not enough time for most
+      product or sales cycles to produce institutional-quality evidence.
+    fix: |
+      1. Calculate how long fundraising typically takes at your stage.
+         Pre-seed to seed raises in the UK typically take 3–6 months
+         from first pitch to close. Subtract that from your runway
+         endpoint — that is the last date by which you need to have
+         reached your key milestone. If that date is less than 6 months
+         from close, the runway does not create enough operational time.
+      2. Identify the fastest path to 18 months of runway. Options:
+         (a) increase the raise target; (b) reduce projected burn by
+         deferring a hire or cutting a cost category; (c) apply for
+         a non-dilutive grant (SEIS/EIS advance assurance, Innovate UK)
+         that extends effective runway without dilution. For most
+         pre-seed companies, option (c) is the most overlooked.
+      3. This week: model what 18 months of runway requires in terms of
+         raise size at your projected burn rate. If that number is
+         achievable by adjusting the current round target, adjust it
+         before the next investor conversation.
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.5 — Capital deployment plan
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: weak-capital-plan
+    trigger:
+      question-ids: [q8.5]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      The capital deployment plan describes investment areas in functional
+      categories without naming the specific milestones that the capital
+      is supposed to reach. Plans structured as "invest in product and
+      sales" do not allow investors to evaluate whether the raise is
+      sized correctly for the intended outcome.
+    gap: |
+      A deployment plan without named outcomes cannot be stress-tested
+      by an investor or evaluated against milestones after close. The
+      absence of specific milestones also signals that the connection
+      between this raise and the next one has not been thought through —
+      which raises the question of what investors are funding toward.
+    fix: |
+      1. Rebuild the deployment plan around 2–3 investment areas, each
+         with a named outcome. The format is: "£X into [specific
+         activity] → [measurable result] by [specific month]." For
+         example: "£350k into sales (1 AE hire + SDR) → £180k ARR from
+         5 paying enterprise customers by month 12." The milestone
+         must be specific enough that an independent observer can
+         evaluate whether it was reached.
+      2. Add a bridge paragraph that describes the state of the business
+         at the end of this runway in terms a next-round investor would
+         use: which metric you will have hit, which customer profile
+         you will have proven, and what that justifies for the next
+         raise. This paragraph is the most investor-legible part of a
+         pre-seed raise narrative — it tells investors what they are
+         actually buying.
+      3. This week: write one sentence per investment area in the format
+         above. If you cannot write the outcome sentence — because the
+         milestone is genuinely uncertain — that uncertainty is the
+         thing to surface in investor conversations, not the deployment
+         plan. Naming the assumption you are most uncertain about
+         scores higher than presenting a plan that conceals the
+         uncertainty.
+    stage-variants:
+      pre-seed:
+        fix: |
+          1. Rebuild the deployment plan around 2–3 investment areas,
+             each with a named outcome: "£X into [activity] → [result]
+             by [month]." At pre-seed, the most credible outcomes are
+             product milestones (launched, first paying customer) and
+             early revenue figures (£20–50k ARR). Hiring outcomes
+             ("we will have hired a CTO") are acceptable as a milestone
+             but weaker than product or revenue results.
+          2. Add one paragraph that describes the state of the business
+             at the end of the runway in terms a seed investor would
+             use. The strongest bridge narrative names the metric you
+             will have reached and states the seed raise size that
+             metric justifies: "£40k MRR from 8 B2B customers
+             justifies a £2.5m seed at a £6m pre-money valuation."
+          3. This week: write the outcome sentence for each investment
+             area and share it with an investor or advisor before the
+             next pitch. The response to the draft is real-time
+             calibration data: if the outcomes are not compelling to
+             a reader who knows the space, they will not be compelling
+             in a pitch.
+      series-a:
+        fix: |
+          1. At Series A, capital deployment plans should describe
+             expansion of a proven motion, not initial validation.
+             Each investment area should reference a unit economic that
+             has already been proven at smaller scale: "£1.2m into
+             outbound sales (3 enterprise AEs + 2 SDRs) → £1.8m ARR
+             added, consistent with our current £120k ACV and 6-month
+             sales cycle." Without the proven unit, the plan is
+             projecting rather than scaling.
+          2. Add a paragraph describing the Series B milestone. Series A
+             investors are buying into a business that will need to
+             raise Series B within 18–24 months at a 2–4× step-up.
+             The deployment plan should make that step-up credible:
+             what will £X in Series A spending produce, and why does
+             that result justify a £Y Series B?
+          3. This week: present the deployment plan to your CFO or
+             a board member using only the outcome sentences —
+             no additional context. If they cannot reconstruct the
+             business logic from the sentences alone, the plan needs
+             more specificity.
+
+  - id: improvable-capital-plan
+    trigger:
+      question-ids: [q8.5]
+      score-band: medium
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      The capital deployment plan names investment areas and some
+      milestones, but the connection between the spend items and the
+      specific outcomes is not fully drawn. There is a partial plan here
+      that a closer reading does not fully validate.
+    gap: |
+      Investors who see a partially-specified deployment plan probe it
+      in diligence. The weaker sections create follow-up questions that
+      extend the diligence cycle. Sharpening the plan before pitching
+      reduces friction and signals operational clarity.
+    fix: |
+      1. For each investment area, add a specific, evaluable outcome.
+         If the plan says "invest in product development," add the
+         specific feature, milestone, or capability that will be
+         delivered — and by when. "Complete the enterprise billing
+         module and SSO integration by month 8" is evaluable.
+         "Improve the product" is not.
+      2. Check the capital efficiency logic. Take the total spend
+         allocated to each area and ask: is this spend sufficient to
+         reach the stated milestone, or is it a contribution toward
+         a milestone that requires more? Plans that show insufficient
+         spend-to-milestone ratios signal that the deployment is
+         optimistic. The strongest plans acknowledge the most
+         uncertain assumption explicitly.
+      3. This week: share the deployment plan with a trusted investor
+         or advisor and ask them to identify the section they would
+         probe first in diligence. The answer tells you which part
+         needs the most sharpening before the round launches.
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.6 — Funding commitment
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: no-funding-commitment
+    trigger:
+      question-ids: [q8.6]
+      score-band: low
+    priority: high
+    free-tier-visible: true
+    diagnostic: |
+      No capital is committed or soft-circled at the start of the round.
+      A round with zero commitment requires every investor to be the
+      first to commit — which creates a coordination problem that
+      slows the close and reduces the effective pool of investors
+      willing to participate.
+    gap: |
+      The first 20–30% of a round is the hardest to close because it
+      requires an investor to commit without the signal that others
+      have already done so. Rounds that remain at zero commitment
+      through multiple investor conversations signal to the market
+      that the round is forming slowly, which can deter subsequent
+      participants.
+    fix: |
+      1. Identify 2–3 high-conviction angels or early-stage investors
+         who can commit small initial amounts (£10–25k each) to create
+         the initial signal. These do not need to be institutional
+         investors — a credible angel with relevant domain experience
+         provides a stronger early signal than the amount implies.
+         The goal is to move from 0% to 10–20% committed before
+         approaching institutional investors.
+      2. Consider whether an accelerator programme with an associated
+         investment (Entrepreneur First, Antler, Seedcamp Pre-seed
+         Bursary) could provide the first committed capital. These
+         programmes offer smaller cheques (£10–50k typically) but
+         provide both the initial commitment and a credential that
+         signals institutional-quality screening.
+      3. This week: identify three people in your existing network who
+         are qualified investors (UK HMRC SEIS/EIS investor or high-net-
+         worth individual) and have expressed interest in your work.
+         A direct conversation asking for a specific commitment amount
+         (not a general "are you interested?") is the fastest path
+         to the first committed capital.
+
+  - id: partial-commitment-only
+    trigger:
+      question-ids: [q8.6]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Some capital is committed or soft-circled, but the round is not
+      yet majority committed. The partial commitment creates a positive
+      signal without fully solving the coordination problem for the
+      remaining allocation.
+    gap: |
+      A round with 25–49% committed is at the stage where the remaining
+      capital requires investors to assess whether the round will close —
+      not just whether the business is interesting. Reaching 50%+
+      committed changes that dynamic: the question shifts to whether
+      they want to be part of a round that is already forming.
+    fix: |
+      1. Use the existing committed investors as warm references for
+         the next conversations. Ask each committed investor if they
+         know 1–2 investors who write similar cheques and would be a
+         good fit for the round. A warm introduction from a committed
+         investor carries significantly more weight than a cold outreach
+         at this stage.
+      2. Set a closing deadline in your investor update communications.
+         Rounds without a timeline create optionality for investors to
+         wait — both for better terms and for additional social proof.
+         A credible, specific close date ("we are targeting a close
+         by [month]") creates a reason for interested investors to
+         make a decision rather than waiting.
+      3. This week: create a short update for your committed investors
+         summarising current progress and the remaining allocation.
+         Asking committed investors to actively refer is the highest-
+         ROI use of their support before the round closes.
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.7 — Cap table structure
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: complex-cap-table
+    trigger:
+      question-ids: [q8.7]
+      score-band: low
+    priority: high
+    free-tier-visible: true
+    diagnostic: |
+      The cap table structure has complexity that creates friction
+      in institutional fundraising. Complex structures — founder
+      ownership below 60%, significant outstanding convertibles,
+      or multiple share classes — require additional legal work
+      and negotiation before a round can close.
+    gap: |
+      Institutional investors at pre-seed and seed conduct legal
+      diligence as part of the close process. A complex cap table
+      extends legal timelines, can require restructuring, and in
+      some cases prompts investors to walk away from a deal they
+      would otherwise take because the perceived legal complexity
+      exceeds the deal size.
+    fix: |
+      1. Get a clear picture of the current cap table and the expected
+         post-close structure. Use a tool such as Carta, Capdesk, or
+         a simple spreadsheet showing: current shareholders, percentage
+         ownership, any outstanding warrants or convertibles, and the
+         expected post-round ownership after the current raise.
+         Share this with your legal adviser before approaching
+         institutional investors.
+      2. Identify which elements of the complexity are deal-blocking
+         and which are merely procedural. Founder ownership below 60%
+         can be explained by a prior round; outstanding convertibles
+         can be resolved by specifying the conversion path; multiple
+         share classes require a legal restructuring that takes 4–8
+         weeks. Know which category each element falls in before
+         an investor asks.
+      3. This week: brief a startup-specialist solicitor on your
+         current cap table and ask them to identify the 1–2 items
+         that would most concern an institutional investor in the
+         UK at your stage. Their answer is the priority list for
+         the cleanup or explanation work before the round launches.
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.8 — Next round path
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: unclear-next-round
+    trigger:
+      question-ids: [q8.8]
+      score-band: low
+    priority: high
+    free-tier-visible: true
+    diagnostic: |
+      The next fundraising milestone is described in timeline terms
+      ("raise in 18 months") rather than condition terms ("raise when
+      we reach £400k ARR"). Time-based triggers signal that the current
+      raise is not connected to a specific result — which makes the
+      size of the current raise difficult to justify.
+    gap: |
+      Investors who see a time-based next-round trigger ask the
+      follow-up question that has no good answer: "what if you haven't
+      hit a meaningful milestone in 18 months — do you raise anyway?"
+      The implicit answer is yes, which means the current round does
+      not have a defined purpose beyond survival.
+    fix: |
+      1. Define the next-round trigger as a binary condition: either
+         it is true or it is false. Revenue conditions are the most
+         common — "we will raise when MRR crosses £X" — because they
+         are independently verifiable and connect directly to the
+         business model. Product milestones are second best ("when we
+         have launched to paying enterprise customers"); time-based
+         milestones are the weakest because they are not outcome-linked.
+      2. Derive the next round size from the milestone. If the seed
+         trigger is £400k ARR from 10 enterprise customers, the
+         seed raise should fund the headcount and infrastructure to
+         reach the Series A milestone — typically 18–24 months of
+         spend for the team required to 3× that revenue. Working
+         backward from the milestone produces a more defensible
+         round size than working forward from an assumed cheque size.
+      3. This week: write one sentence in the format "We will raise
+         [round type] of [£X] when we have reached [specific
+         condition]." Share it with one investor or advisor and ask
+         whether the condition is specific enough that they would
+         know immediately when it had been reached.
+
+  - id: improvable-next-round-path
+    trigger:
+      question-ids: [q8.8]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      A next-round milestone exists but is not fully connected to
+      the current raise. The condition is named but the round size
+      and timing are not derived from the milestone in a way that
+      makes the capital efficiency logic visible.
+    gap: |
+      Investors evaluate the current raise partly through the lens of
+      the next one. A next-round narrative that does not fully flow
+      from the current milestone leaves the investors to construct
+      the logic themselves — which introduces doubt rather than
+      confidence.
+    fix: |
+      1. Tighten the milestone condition. If the trigger is currently
+         described as "once we have significant traction," replace it
+         with a specific number: ARR, customer count, or a named
+         product milestone. The number does not need to be precise —
+         a range ("£300–500k ARR") is more useful than no number.
+      2. Connect the milestone to the next round size with a formula.
+         The formula does not need to be exact, but it should be
+         explicit: "At £400k ARR with a 6-month sales cycle, we will
+         need a team of 8 to reach £1.2m ARR — which is why we expect
+         a £3.5m seed." Showing the derivation is more credible than
+         citing a round size without a basis.
+      3. This week: revise the next-round section of the pitch deck to
+         include the specific milestone condition and the derivation of
+         the round size. Ask one investor to challenge the derivation —
+         the objections you hear are the weak points to address before
+         the round launches.
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.10 — Dilution and conversion terms (showIf-gated: q8.1 in
+  # [safe, convertible-note, bridge-note])
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: opaque-dilution-terms
+    trigger:
+      question-ids: [q8.10]
+      score-band: low
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      The convertible instrument terms are described without specific
+      numbers — no named cap, discount, or MFN clause — and the
+      dilution arithmetic at conversion has not been shown. Investors
+      who see vague convertible terms assume the worst-case scenario
+      when building their model.
+    gap: |
+      When a founder cannot state the post-conversion ownership with
+      specific numbers, investors fill the gap themselves. The default
+      assumption is a low cap and a high discount — a combination
+      that produces significant dilution and reduces the attractiveness
+      of participating in the priced round that the convertible converts
+      into.
+    fix: |
+      1. State the terms with specific numbers: the cap in £, the
+         discount as a percentage, and the MFN clause if present.
+         If terms are not yet negotiated, describe the target terms
+         and the range you would accept. "We are targeting an £8m cap
+         with a 20% discount" is a specific, investor-legible description.
+         "Standard SAFE terms" is not.
+      2. Calculate the post-conversion ownership under two scenarios:
+         (a) the note converts at the cap (the worst case for the
+         next-round lead investor) and (b) the note converts at 1.5×
+         the cap (a step-up valuation). Show the resulting founder and
+         investor ownership percentages for both scenarios. This
+         calculation takes 10–15 minutes with a spreadsheet and
+         prevents hours of diligence back-and-forth later.
+      3. This week: build a simple cap table in a spreadsheet that
+         shows the current ownership, the convertible allocation, and
+         the post-conversion ownership under each scenario. Share it
+         with your legal adviser to confirm the dilution arithmetic
+         is correct before including it in investor materials.
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.12 — Valuation comparables (optional question)
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: weak-valuation-comps
+    trigger:
+      question-ids: [q8.12]
+      score-band: low
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      The valuation comparables cited are generic, unnamed, or too
+      old to reflect current market conditions. Generic market
+      references ("the market supports pre-seed valuations of £5–10m")
+      carry less weight than named recent transactions because they
+      cannot be independently verified.
+    gap: |
+      Investors conducting diligence on the valuation will do their
+      own comparable research. Founders who present vague or unnamed
+      comps leave the investor to construct the comparison from
+      scratch — and may inadvertently surface comparables that
+      undercut the valuation rather than supporting it.
+    fix: |
+      1. Research 3 comparable transactions from the past 18 months
+         in your sector. For each, note: the company name (or at
+         minimum the stage, sector, and country), the approximate
+         round size, and the pre-money valuation if publicly available.
+         UK sources: Beauhurst, Tracxn, or direct announcements on
+         Companies House and Crunchbase. If exact valuations are not
+         public, round size at a known stage implies a valuation range.
+      2. For each comp, write one sentence explaining why it is
+         comparable to your situation — same stage, same customer
+         profile, similar ARR at time of raise, or similar technology
+         type. This forces an honest assessment of whether the comp
+         actually supports the valuation or is being cited because it
+         is the most favourable result you found.
+      3. This week: run a Beauhurst search for UK companies in your
+         sector that raised in the past 12 months. Download the results
+         and filter for your stage and funding band. The output is
+         your comp set — even if the valuations are not available,
+         the round sizes tell you whether your raise and valuation
+         are in the right range.

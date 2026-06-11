@@ -1,0 +1,470 @@
+# Dimension 8: Round & Capital Strategy
+# Scoring rules
+#
+# Conventions:
+# - q8.1, q8.9, q8.11 are informational-only; no rules needed here.
+# - Quantitative rules (round-size, valuation, runway, commitment) use GBP bands
+#   in `stage-thresholds`. The top-level `thresholds` block holds the pre-seed
+#   default, consistent with the Day 1 generator profile.
+# - q8.3 (pre-money valuation) is non-monotonic: both very-low and excessive
+#   valuations score below the normal range. The engine maps each value to the
+#   range it falls in without caring about direction (same precedent as D5
+#   inverted CAC payback).
+# - q8.10 (dilution terms) is showIf-gated on q8.1. The scoring engine still
+#   applies a 15-point unanswered-recommended penalty when the question is
+#   hidden (P7 showIf-penalty bug — known, not new debt from D8).
+# - benchmarks/uk.yaml documents these thresholds for human readers.
+#   The generator does not read benchmarks/ files.
+
+dimension: round-capital
+version: 0.1.0
+rules:
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.2 — Round size (£k): ascending, stage-specific GBP bands
+  # ─────────────────────────────────────────────────────────────────
+  - id: round-size-by-stage
+    applies-to-question: q8.2
+    description: |
+      Maps round size (£k) to a score. Ascending thresholds: larger rounds
+      indicate more capacity to reach milestones that justify the next raise.
+      The top band (≥£1.5m at pre-seed) provides runway and firepower for
+      institutional-quality evidence. Bands are stage-specific to reflect
+      UK market norms.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 149
+          score: 15
+        - min: 150
+          max: 299
+          score: 35
+        - min: 300
+          max: 749
+          score: 60
+        - min: 750
+          max: 1499
+          score: 80
+        - min: 1500
+          max: null
+          score: 88
+      stage-thresholds:
+        pre-seed:
+          - min: null
+            max: 149
+            score: 15
+          - min: 150
+            max: 299
+            score: 35
+          - min: 300
+            max: 749
+            score: 60
+          - min: 750
+            max: 1499
+            score: 80
+          - min: 1500
+            max: null
+            score: 88
+        seed:
+          - min: null
+            max: 499
+            score: 15
+          - min: 500
+            max: 999
+            score: 35
+          - min: 1000
+            max: 1999
+            score: 60
+          - min: 2000
+            max: 3500
+            score: 82
+          - min: 3501
+            max: null
+            score: 88
+        series-a:
+          - min: null
+            max: 1499
+            score: 15
+          - min: 1500
+            max: 2999
+            score: 35
+          - min: 3000
+            max: 5999
+            score: 60
+          - min: 6000
+            max: 10000
+            score: 82
+          - min: 10001
+            max: null
+            score: 88
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.3 — Pre-money valuation (£m): band-optimal, non-monotonic
+  # Both very-low (over-dilution risk) and excessive (milestone
+  # credibility gap) bands score below the centre range.
+  # Entering 0 (uncapped SAFE) maps to the ≤1.49 band (score: 40).
+  # ─────────────────────────────────────────────────────────────────
+  - id: pre-money-valuation-by-stage
+    applies-to-question: q8.3
+    description: |
+      Maps pre-money valuation (£m) to a score. Band-optimal: peak score is at
+      the centre of the typical UK stage range. Very-low valuations risk founder
+      over-dilution; excessive valuations create a milestone credibility gap to
+      the next raise. Non-monotonic curve — uses the same scoring-engine
+      precedent as D5 inverted CAC payback.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 1.49
+          score: 40
+        - min: 1.5
+          max: 3.4
+          score: 65
+        - min: 3.5
+          max: 7.0
+          score: 82
+        - min: 7.01
+          max: 10.0
+          score: 70
+        - min: 10.01
+          max: 15.0
+          score: 55
+        - min: 15.01
+          max: null
+          score: 30
+      stage-thresholds:
+        pre-seed:
+          - min: null
+            max: 1.49
+            score: 40
+          - min: 1.5
+            max: 3.4
+            score: 65
+          - min: 3.5
+            max: 7.0
+            score: 82
+          - min: 7.01
+            max: 10.0
+            score: 70
+          - min: 10.01
+            max: 15.0
+            score: 55
+          - min: 15.01
+            max: null
+            score: 30
+        seed:
+          - min: null
+            max: 2.99
+            score: 40
+          - min: 3.0
+            max: 5.9
+            score: 65
+          - min: 6.0
+            max: 12.0
+            score: 82
+          - min: 12.01
+            max: 18.0
+            score: 70
+          - min: 18.01
+            max: 25.0
+            score: 55
+          - min: 25.01
+            max: null
+            score: 30
+        series-a:
+          - min: null
+            max: 7.99
+            score: 40
+          - min: 8.0
+            max: 14.9
+            score: 65
+          - min: 15.0
+            max: 30.0
+            score: 82
+          - min: 30.01
+            max: 45.0
+            score: 70
+          - min: 45.01
+            max: 65.0
+            score: 55
+          - min: 65.01
+            max: null
+            score: 30
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.4 — Runway months: ascending, flat across stages
+  # ─────────────────────────────────────────────────────────────────
+  - id: runway-months-by-stage
+    applies-to-question: q8.4
+    description: |
+      Maps months of runway to a score. Ascending thresholds: more runway is
+      better. The 18-month threshold is the institutional baseline; below 12
+      months is a structural concern at any stage. Thresholds are flat across
+      stages — runway adequacy does not vary by stage maturity.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 8
+          score: 15
+        - min: 9
+          max: 11
+          score: 35
+        - min: 12
+          max: 17
+          score: 60
+        - min: 18
+          max: 24
+          score: 82
+        - min: 25
+          max: null
+          score: 88
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.5 — Capital deployment quality: prose anchor, highest weight
+  # ─────────────────────────────────────────────────────────────────
+  - id: capital-deployment-rubric
+    applies-to-question: q8.5
+    description: |
+      AI-evaluated scoring for the specificity, coherence, and investor clarity
+      of the capital deployment plan. Rewards founders who name specific
+      milestones and describe a clear bridge to the next raise. Penalises
+      functional-category plans without named outcomes and plans inconsistent
+      with the raise size.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: milestone-specificity
+            weight: 0.40
+            description: |
+              Are the planned investment areas tied to specific, measurable
+              milestones — a revenue figure, a customer count, a product
+              capability — or described in functional terms without a named
+              success condition? "Hire 2 enterprise AEs and reach £200k ARR by
+              month 18" is a milestone. "Invest in sales and go-to-market" is a
+              functional description. Milestones are evaluable by investors;
+              functional descriptions leave success entirely open.
+          - name: bridge-to-next-raise
+            weight: 0.35
+            description: |
+              Does the plan describe the state the business will be in at the
+              end of this runway in terms a next-round investor would use to
+              make a decision — specific metrics reached, enterprise logos won,
+              a product milestone that unlocks a new market? The clearest
+              answers name the milestone and then state what type of round it
+              justifies: "Reaching £400k ARR with 3 enterprise customers
+              positions us for a £4m seed at a 5× valuation step-up."
+          - name: capital-efficiency-logic
+            weight: 0.25
+            description: |
+              Are the investment areas proportional to the milestones they are
+              supposed to unlock, and has the founder stress-tested whether the
+              raise is sufficient to reach that milestone? Plans that require
+              materially more capital than the raise implies score lower.
+              The strongest answers acknowledge the assumption they are most
+              uncertain about and describe what they would adjust if it broke.
+        score-bounds:
+          min: 15
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.6 — Funding commitment (%): ascending, flat across stages
+  # ─────────────────────────────────────────────────────────────────
+  - id: funding-commitment-by-stage
+    applies-to-question: q8.6
+    description: |
+      Maps committed/soft-circled percentage to a score. Ascending: more
+      commitment reduces perceived round risk. Flat across stages — the
+      de-risking effect of commitment applies equally at all funding stages.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 0
+          score: 20
+        - min: 1
+          max: 24
+          score: 45
+        - min: 25
+          max: 49
+          score: 65
+        - min: 50
+          max: 74
+          score: 80
+        - min: 75
+          max: null
+          score: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.7 — Cap table structure: categorical mapping
+  # ─────────────────────────────────────────────────────────────────
+  - id: cap-table-health-categorical
+    applies-to-question: q8.7
+    description: |
+      Maps cap table structure category to a score. Clean tables with high
+      founder ownership score highest. Complex structures with heavy dilution
+      or outstanding instruments score lowest. Not-yet-formed companies score
+      in the median band (pre-incorporation is neutral, not negative).
+    logic:
+      type: mapping
+      mapping:
+        clean: 80
+        standard: 60
+        not-yet-formed: 55
+        complex: 25
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.8 — Next round path: ai-qualitative rubric
+  # ─────────────────────────────────────────────────────────────────
+  - id: next-round-path-rubric
+    applies-to-question: q8.8
+    description: |
+      AI-evaluated scoring for the specificity and realism of the next
+      fundraising milestone and expected round parameters. Rewards founders
+      who name a specific, binary condition that signals readiness to raise
+      again. Penalises time-based triggers without conditions and generic
+      growth language without a reference point.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: milestone-trigger-specificity
+            weight: 0.55
+            description: |
+              Does the answer name a specific, identifiable condition that will
+              trigger the next raise — a revenue figure, a customer count, a
+              product state, or a combination — or does it describe a timeline
+              without a condition? Specific conditions score higher because they
+              connect the current raise to a defined outcome. Strong: "We will
+              raise a £4m seed once we reach £400k ARR with three referenceable
+              enterprise customers." Weak: "We plan to raise a seed round in
+              18 months once we have more traction."
+          - name: round-sizing-logic
+            weight: 0.45
+            description: |
+              Does the expected next round size follow logically from the
+              milestones described — does the amount reflect what the next stage
+              of the business actually needs — or is it an arbitrary size the
+              founder has seen cited as typical? Strong answers explain why a
+              specific check size is appropriate: it funds 18–24 months of a
+              team capable of reaching the following milestone set.
+        score-bounds:
+          min: 20
+          max: 85
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.10 — Dilution and conversion terms: ai-qualitative rubric
+  # showIf-gated on q8.1 (only shown for SAFE, convertible, bridge)
+  # ─────────────────────────────────────────────────────────────────
+  - id: dilution-terms-rubric
+    applies-to-question: q8.10
+    description: |
+      AI-evaluated scoring for the specificity and arithmetic accuracy of the
+      described convertible instrument terms. Rewards founders who state the
+      cap, discount, and MFN clause with specific numbers and show the
+      post-conversion dilution calculation. Penalises vague references to
+      "standard SAFE terms" and descriptions that omit the dilution arithmetic.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: term-specificity
+            weight: 0.50
+            description: |
+              Are the convertible instrument terms stated with specific numbers —
+              a named cap in £, a percentage discount, and any MFN clause
+              described explicitly — or are they described vaguely? Specific
+              numbers allow investors to model the post-close cap table without
+              additional information; vague descriptions require follow-up that
+              slows diligence and signals the founder may not have worked through
+              the dilution implications.
+          - name: dilution-calculation
+            weight: 0.50
+            description: |
+              Does the founder show the dilution arithmetic — the ownership
+              percentage implied by conversion at the cap, the resulting
+              post-close founder ownership, and the effect of multiple
+              instruments converting simultaneously? Founders who walk through
+              the calculation demonstrate they understand what the instrument
+              actually means for the cap table. The strongest answers calculate
+              two scenarios (at-cap and above-cap) to show the range of outcomes.
+        score-bounds:
+          min: 15
+          max: 85
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.12 — Valuation comparables: optional, ai-qualitative rubric
+  # ─────────────────────────────────────────────────────────────────
+  - id: valuation-comps-rubric
+    applies-to-question: q8.12
+    description: |
+      AI-evaluated scoring for the quality and relevance of comparable
+      transaction data presented. Rewards named, recent transactions with
+      specific valuations and a clear explanation of comparability. Penalises
+      generic market references and unnamed comparable rounds.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: named-specificity
+            weight: 0.50
+            description: |
+              Are specific comparable companies or transactions named with
+              approximate round sizes and valuations, or does the answer refer
+              to "comparable raises" without naming examples? Named transactions
+              are verifiable and carry more weight than generic market references
+              because they demonstrate that the founder has actually researched
+              the comparables rather than asserting that they exist.
+          - name: recency-and-comparability
+            weight: 0.50
+            description: |
+              Are the named transactions from the past 18 months and genuinely
+              comparable in stage, sector, and traction profile? Transactions
+              older than 24 months may not reflect current market conditions;
+              transactions from different stages or dramatically different revenue
+              profiles may not support the valuation being sought. The clearest
+              answers explain explicitly why each comp is relevant.
+        score-bounds:
+          min: 20
+          max: 80
+
+  # ─────────────────────────────────────────────────────────────────
+  # q8.13 — Investor targeting: optional, ai-qualitative rubric
+  # ─────────────────────────────────────────────────────────────────
+  - id: investor-targeting-rubric
+    applies-to-question: q8.13
+    description: |
+      AI-evaluated scoring for the specificity and fit-analysis quality of
+      the described investor targeting strategy. Rewards founders who name
+      specific fund types or funds with thesis alignment and articulate
+      value-add beyond capital. Penalises generic descriptions without a
+      thesis or fit hypothesis.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: named-fund-fit
+            weight: 0.50
+            description: |
+              Are specific fund types, named funds, or named investors mentioned
+              with a clear explanation of why they are a fit — thesis alignment,
+              stage focus, sector expertise, typical cheque size — or does the
+              answer describe the ideal investor in abstract terms? Naming
+              specific funds and explaining why each is a fit demonstrates
+              targeted investor research, which correlates with fundraising
+              efficiency.
+          - name: value-add-specificity
+            weight: 0.50
+            description: |
+              Is the "beyond capital" value-add described in specific terms —
+              a named portfolio company where an introduction would be valuable,
+              a specific network relevant to the target market, domain expertise
+              that would accelerate a specific problem — or is it generic?
+              Specific value-add criteria signal the founder has thought through
+              which investors would genuinely help the business.
+        score-bounds:
+          min: 20
+          max: 80

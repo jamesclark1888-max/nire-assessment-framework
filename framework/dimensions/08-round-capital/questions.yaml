@@ -1,0 +1,463 @@
+# Dimension 8: Round & Capital Strategy
+# Questions
+#
+# Validated against: schema/question.schema.json
+#
+# Conventions:
+# - Required tier: 5 questions (1 informational + 3 quantitative + 1 prose anchor)
+# - Recommended tier: 5 questions; q8.10 gated on instrument type (show-if: q8.1)
+# - Optional tier: 3 questions; deep-dive for maximum precision
+# - Quantitative questions (q8.2, q8.3, q8.4, q8.6) use GBP thresholds defined in
+#   scoring.yaml stage-thresholds blocks and documented in benchmarks/uk.yaml.
+# - US benchmarks and region-conditional rendering are a v0.2 workstream.
+# - q8.10 show-if gate expands the P7 showIf-penalty bug set from 4 to 5 questions
+#   (known, not new debt introduced by D8).
+# - Total scored weight: 1.13
+
+dimension: round-capital
+version: 0.1.0
+questions:
+
+  # ─────────────────────────────────────────────────────────────────
+  # REQUIRED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q8.1
+    dimension: round-capital
+    tier: required
+    type: single-select
+    question: "Which instrument is this round being raised on?"
+    helper-text: |
+      Select the primary instrument for this round. If you are raising on a mix
+      of instruments, select the one that represents the majority of the capital.
+      Your answer to this question determines whether a later question about
+      convertible terms appears.
+    why-it-matters: |
+      The instrument determines how the round is priced and what dilution
+      mechanics apply. SAFEs and convertible notes introduce caps and discounts
+      that can significantly affect founder ownership at close; priced equity
+      sets the valuation directly.
+    options:
+      - value: priced-equity
+        label: "Priced equity — shares issued at a fixed pre-money valuation"
+      - value: safe
+        label: "SAFE (Simple Agreement for Future Equity) — converts into equity in a future priced round"
+      - value: convertible-note
+        label: "Convertible note — debt that converts to equity at a discount or cap in a future round"
+      - value: bridge-note
+        label: "Bridge note — short-term debt intended to bridge to a larger priced round"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.02
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q8.2
+    dimension: round-capital
+    tier: required
+    type: number
+    question: "How much are you raising in this round? Enter in thousands (e.g. 1500 for £1.5m)."
+    helper-text: |
+      Enter the total target raise for this specific round — not cumulative
+      including any prior funding. If you have a hard cap and a soft target,
+      use the target. Enter in whole thousands of pounds.
+    why-it-matters: |
+      Round size tells investors whether the raise is large enough to reach the
+      milestones that justify the next round. Very small raises rarely generate
+      institutional-quality evidence; the size also signals how much of each
+      investor's cheque is needed to complete the round.
+    validation:
+      min: 0
+      max: 100000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.18
+      benchmark-ref: round-size-by-stage
+    recommendation-trigger:
+      low-score: small-round-size
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q8.3
+    dimension: round-capital
+    tier: required
+    type: number
+    question: "What pre-money valuation are you seeking? Enter in millions (e.g. 7.5 for £7.5m). Enter 0 if this round uses an uncapped SAFE with no valuation cap."
+    helper-text: |
+      For priced equity, use the negotiated or target pre-money valuation. For
+      a capped SAFE or convertible note, use the cap as the reference valuation.
+      Enter 0 only for fully uncapped instruments where no cap has been agreed
+      or is intended.
+    why-it-matters: |
+      Pre-money valuation sets the price investors pay for their ownership and
+      determines the milestone gap to the next raise. Valuations outside the
+      typical range for the stage — either too low or too high — create friction
+      that slows rounds and reduces the quality of investors who will participate.
+    validation:
+      min: 0
+      max: 500
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.15
+      benchmark-ref: pre-money-valuation-by-stage
+    recommendation-trigger:
+      low-score: valuation-outside-expected-range
+      medium-score: valuation-at-boundary
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q8.4
+    dimension: round-capital
+    tier: required
+    type: number
+    question: "How many months of runway will this round provide at your post-raise burn rate?"
+    helper-text: |
+      Divide the raise amount by your expected monthly spend after the round
+      closes, including any new hires this capital will fund. If pre-revenue and
+      pre-expenditure, project your expected burn rate once the capital is
+      deployed. Round to the nearest whole month.
+    why-it-matters: |
+      Runway determines how long the business has to reach the milestones that
+      unlock the next raise. Rounds providing less than 12 months of runway mean
+      founders must start fundraising again within 6 months of close — before
+      the current capital has had time to generate meaningful results.
+    validation:
+      min: 0
+      max: 120
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.13
+      benchmark-ref: runway-months-by-stage
+    recommendation-trigger:
+      low-score: short-runway
+      medium-score: limited-runway
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q8.5
+    dimension: round-capital
+    tier: required
+    type: long-text
+    question: "Walk through how you will deploy this capital: name the 2–3 major investment areas, what each will specifically fund, and what success looks like at the end of this runway."
+    helper-text: |
+      Describe where the money goes and what it buys. The strongest answers name
+      specific hires or outcomes ("hire 2 enterprise AEs, reach £200k ARR by
+      month 18") rather than functional categories ("invest in sales and
+      marketing"). Finish by describing the state the business will be in when
+      this runway ends — that is the bridge to your next round.
+    why-it-matters: |
+      Capital deployment quality reveals whether the current raise is connected
+      to a specific, achievable outcome. A plan describing functional categories
+      without named outcomes cannot be evaluated against milestones. Specific
+      investment areas with named results let investors assess whether the
+      capital will be used efficiently.
+    validation:
+      min-chars: 120
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.22
+      rubric-ref: capital-deployment-rubric
+    recommendation-trigger:
+      low-score: weak-capital-plan
+      medium-score: improvable-capital-plan
+      high-score: null
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # RECOMMENDED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q8.6
+    dimension: round-capital
+    tier: recommended
+    type: number
+    question: "What proportion of this round is already committed or soft-circled? Enter as a percentage (e.g. 50 for 50%). Enter 0 if nothing is committed."
+    helper-text: |
+      Count written commitments, signed SAFEs or notes, and verbal soft-circles
+      from investors you consider highly likely to convert. Exclude exploratory
+      conversations. If you have a lead investor who has signed a term sheet,
+      count their share as a percentage of the total raise.
+    why-it-matters: |
+      Partial commitment changes every subsequent investor conversation from
+      "will this round form?" to "should I join a round already in progress?"
+      Even a meaningful early commitment from one investor shifts the dynamic
+      for everyone who comes after.
+    validation:
+      min: 0
+      max: 100
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.10
+      benchmark-ref: funding-commitment-by-stage
+    recommendation-trigger:
+      low-score: no-funding-commitment
+      medium-score: partial-commitment-only
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q8.7
+    dimension: round-capital
+    tier: recommended
+    type: single-select
+    question: "Which best describes your current cap table structure?"
+    helper-text: |
+      Select the option that most accurately reflects the current state. Focus
+      on the overall structure, not the precise percentage. A company
+      post-incorporation with a clean equity split and no outstanding instruments
+      is "clean" even if founders hold slightly below 80%.
+    why-it-matters: |
+      Cap table clarity reduces legal friction during fundraising. Complex
+      structures — heavy prior dilution, outstanding convertibles, multiple share
+      classes — can delay a round close, require restructuring, or make
+      institutional investors less likely to participate.
+    options:
+      - value: clean
+        label: "Clean — founders hold ≥80% and the cap table has no complications"
+      - value: standard
+        label: "Standard — founders hold 60–79%, with some angels or a prior round"
+      - value: complex
+        label: "Complex — founders hold below 60%, or outstanding instruments will materially affect the post-close structure"
+      - value: not-yet-formed
+        label: "Not yet formed — company not yet incorporated"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: categorical
+      weight: 0.07
+      rubric-ref: cap-table-health-categorical
+    recommendation-trigger:
+      low-score: complex-cap-table
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q8.8
+    dimension: round-capital
+    tier: recommended
+    type: long-text
+    question: "What specific milestone or set of conditions will trigger your next fundraise, and what type of round and check size do you expect?"
+    helper-text: |
+      Describe the concrete thing that needs to happen before you raise again:
+      a revenue figure, a customer count, a product capability, or a combination.
+      Then state what you expect the next round to look like — approximate size,
+      round type, and timeframe if you have a view. Specific conditions score
+      higher than timeframes alone.
+    why-it-matters: |
+      A defined milestone trigger shows that the current raise is sized to
+      produce a specific result. Without a named condition, investors cannot
+      assess whether the round is capitalised correctly for the journey to the
+      next one.
+    validation:
+      min-chars: 80
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.09
+      rubric-ref: next-round-path-rubric
+    recommendation-trigger:
+      low-score: unclear-next-round
+      medium-score: improvable-next-round-path
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q8.9
+    dimension: round-capital
+    tier: recommended
+    type: single-select
+    question: "Has this company raised external funding before this round?"
+    helper-text: |
+      Include any prior equity investment, SAFEs, convertible notes, or
+      significant grants (£50k+). Exclude accelerator programmes that do not
+      include an equity investment.
+    why-it-matters: |
+      Prior funding history provides context for the current valuation and cap
+      table structure. This question is informational — it provides context for
+      the report narrative, not for scoring.
+    options:
+      - value: no-prior-funding
+        label: "No — this is our first external raise"
+      - value: yes-angel-faf
+        label: "Yes — angel or friends-and-family investment only"
+      - value: yes-institutional-preseed
+        label: "Yes — one prior institutional pre-seed or seed round"
+      - value: yes-multiple
+        label: "Yes — two or more institutional rounds"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.02
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q8.10
+    dimension: round-capital
+    tier: recommended
+    type: long-text
+    question: "Describe the terms of the convertible instruments in this round: the valuation cap, discount rate, and any most-favoured-nation clause. What is the estimated dilutive effect on founder ownership at conversion?"
+    helper-text: |
+      State the specific numbers: cap (e.g. £8m), discount (e.g. 20%), MFN if
+      applicable. Then walk through the dilution arithmetic at the assumed
+      conversion valuation. For example: "At the £8m cap with £1.5m raised, this
+      round converts into approximately 15.8% ownership. Post-conversion founder
+      ownership is approximately 67%."
+    why-it-matters: |
+      SAFE and convertible note mechanics determine what equity each investor
+      receives at conversion. Caps, discounts, and MFN clauses can produce
+      materially different post-close ownership from what the headline raise
+      amount implies — which is why investors examine these terms carefully.
+    show-if:
+      conditions:
+        - field: q8.1
+          operator: in
+          values: [safe, convertible-note, bridge-note]
+    validation:
+      min-chars: 80
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.08
+      rubric-ref: dilution-terms-rubric
+    recommendation-trigger:
+      low-score: opaque-dilution-terms
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # OPTIONAL DEEP-DIVE
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q8.11
+    dimension: round-capital
+    tier: optional
+    type: file-upload
+    question: "Optional: upload your cap table, term sheet, financial model, or investor deck."
+    helper-text: |
+      Any format accepted. Useful uploads: a cap table spreadsheet showing
+      current and post-round ownership, a signed or draft term sheet, or a
+      financial model showing how the spend plan connects to projected results.
+      Files are reviewed by the NIRE team when assessing report depth.
+    why-it-matters: |
+      Uploaded documents allow independent verification of round structure
+      claims. A cap table upload resolves ambiguity about dilution; a term sheet
+      provides the most direct evidence of round credibility.
+    validation:
+      pattern: "\\.(pdf|xlsx|csv|docx|pptx|png|jpg|jpeg|txt)$"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.00
+    version-added: "0.1.0"
+
+  - id: q8.12
+    dimension: round-capital
+    tier: optional
+    type: long-text
+    question: "How does your target valuation compare to recent comparable raises at your stage? Name specific recent rounds that support your ask."
+    helper-text: |
+      Describe 2–3 comparable companies or deals from the past 18 months —
+      similar stage, similar sector, or similar traction profile. Include the
+      approximate round size and valuation if known. If you cannot find strong
+      comps, explain what makes your valuation defensible on fundamentals.
+    why-it-matters: |
+      Comparable transaction data is the most direct validation of valuation
+      credibility. Founders who present relevant recent comps unprompted signal
+      that their valuation is grounded in market evidence, reducing negotiation
+      friction and accelerating diligence conversations.
+    validation:
+      min-chars: 80
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.04
+      rubric-ref: valuation-comps-rubric
+    recommendation-trigger:
+      low-score: weak-valuation-comps
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"
+
+  - id: q8.13
+    dimension: round-capital
+    tier: optional
+    type: long-text
+    question: "Describe the type of investor you are targeting for this round and why they are the right fit: thesis alignment, typical cheque size, sector expertise, and what they could contribute beyond capital."
+    helper-text: |
+      Be specific: name fund types, investment theses, or portfolio companies if
+      you know them. "We are targeting pre-seed funds with B2B SaaS focus and a
+      median cheque of £200–400k" is more useful than "we are looking for smart
+      investors." The most useful answers name 2–3 specific funds and explain
+      why each is a strong fit.
+    why-it-matters: |
+      Targeted investor selection improves conversion rates and shortens
+      fundraising timelines. Founders who approach investors with a clear thesis
+      and fit hypothesis raise faster and on better terms than those running
+      broad outreach without a fit rationale.
+    validation:
+      min-chars: 80
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.03
+      rubric-ref: investor-targeting-rubric
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+      high-score: null
+    version-added: "0.1.0"

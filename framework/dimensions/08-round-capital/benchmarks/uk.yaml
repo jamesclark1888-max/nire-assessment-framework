@@ -1,0 +1,125 @@
+# Dimension 8: Round & Capital Strategy — UK Benchmarks
+#
+# DOCUMENTATION FILE — NOT MACHINE-READ BY THE GENERATOR.
+# The scoring engine uses the thresholds in scoring.yaml stage-thresholds blocks.
+# This file is the human-readable reference for those threshold decisions and
+# serves as the regional context layer for analyst review.
+#
+# Currency: GBP (£) throughout. All values are for UK-based companies.
+# US benchmarks and region-conditional scoring are a v0.2 workstream.
+# Source citations use placeholder references until third-party data licences
+# are confirmed in v0.2.
+
+region: uk
+last-reviewed: "2026-06-11"
+expires: "2027-06-11"
+sources:
+  - name: "NIRE internal calibration"
+    url-or-citation: "Internal review of anonymised UK pre-seed/seed deal data (2023–2025)"
+    year: 2025
+
+benchmarks:
+
+  round-size-pre-seed:
+    description: |
+      Target raise size for a UK pre-seed round (GBP). Calibrated against
+      UK angel syndicate and institutional pre-seed activity 2023–2025.
+      The scoring curve in scoring.yaml uses ascending thresholds; larger
+      rounds at pre-seed are better because they provide more runway and
+      more capital to generate institutional-quality milestones.
+    applies-to-stage: ["pre-seed"]
+    unit: "GBP thousands (£k)"
+    thresholds:
+      exceptional: "≥ £1,500k — institutional pre-seed top band"
+      strong: "£750k – £1,499k — institutional pre-seed standard range"
+      median: "£300k – £749k — typical angel syndicate / SEIS raise"
+      weak: "£150k – £299k — limited milestone generation window"
+      concerning: "< £150k — 3–6 months of runway at typical burn; rarely generates referenceable results"
+    notes: |
+      The £1.5m+ top band reflects the growing prevalence of larger pre-seed
+      rounds from institutional pre-seed funds active in the UK market.
+      SEIS/EIS-structured raises are common in the £150k–£500k range and
+      carry tax benefits that partially compensate for smaller round size.
+
+  pre-money-valuation-pre-seed:
+    description: |
+      Pre-money valuation range for a UK pre-seed round (GBP). Scoring is
+      non-monotonic: both very-low (over-dilution risk) and excessive
+      (milestone credibility gap to next raise) valuations score below the
+      peak range. The peak (3.5–7.0m) reflects the typical institutional
+      pre-seed target for UK companies 2023–2025.
+    applies-to-stage: ["pre-seed"]
+    unit: "GBP millions (£m)"
+    thresholds:
+      exceptional: "£3.5m – £7.0m — peak range for UK institutional pre-seed"
+      strong: "£7.01m – £10.0m — boundary high; achievable for strong IP/traction but requires justification"
+      median: "£1.5m – £3.4m — below-optimal but achievable at angel and early institutional level"
+      weak: "£10.01m – £15.0m — creates a meaningful milestone gap to a credible seed raise"
+      concerning: "> £15.0m or ≤ £1.49m — excessive (milestone credibility gap) or very-low (over-dilution risk)"
+    notes: |
+      Entering 0 (uncapped SAFE) maps to the ≤£1.49m band. An uncapped
+      SAFE is a valid instrument but carries dilution risk at conversion
+      because the cap is undefined until the priced round. Scoring reflects
+      market norms following recalibration in the UK market in 2023–2024
+      after the 2021–2022 funding peak.
+
+  runway-months:
+    description: |
+      Months of operational runway funded by the raise. Flat across stages —
+      runway adequacy does not vary by stage maturity. The 18-month threshold
+      reflects the institutional expectation that a raise should fund to a
+      meaningful milestone with 6+ months remaining to run a follow-on
+      fundraising process.
+    applies-to-stage: ["pre-seed", "seed", "series-a"]
+    unit: "months"
+    thresholds:
+      exceptional: "≥ 25 months — extended runway; materially reduces fundraising pressure"
+      strong: "18 – 24 months — institutional baseline; 12+ months of operations before next raise must start"
+      median: "12 – 17 months — adequate; enough to reach one clear milestone with limited buffer"
+      weak: "9 – 11 months — operational window of 3–5 months before fundraising must restart"
+      concerning: "< 9 months — fundraising must restart within weeks of close; permanent fundraising mode"
+    notes: |
+      The 12-month practical minimum reflects the 3–6 month typical UK
+      fundraising cycle for pre-seed/seed. At 12 months runway, the
+      milestone window is 6–9 months. At 18 months, the window is 8–12
+      months — sufficient for a full enterprise sales cycle.
+
+  funding-commitment-pct:
+    description: |
+      Percentage of the round already committed or soft-circled at the
+      start of fundraising. More commitment reduces the coordination
+      problem for remaining investors. The 50% threshold is the point
+      at which the investor conversation typically shifts from "will
+      this round form?" to "should I join a round already in progress?"
+    applies-to-stage: ["pre-seed", "seed", "series-a"]
+    unit: "% of total raise target"
+    thresholds:
+      exceptional: "≥ 75% — near-close; strong social proof, effectively done"
+      strong: "50% – 74% — majority committed; late-stage dynamics apply"
+      median: "25% – 49% — meaningful early signal; round forming but not majority there"
+      weak: "1% – 24% — some early signal; coordination problem largely unsolved"
+      concerning: "0% — every investor must be first to commit"
+    notes: |
+      First 20–30% of a round is the hardest to close. Even a small
+      initial commitment from a credible angel changes the investor
+      conversation dynamic for subsequent participants.
+
+  cap-table-founder-ownership:
+    description: |
+      Founder equity ownership percentage at the time of the raise.
+      Institutional investors at pre-seed expect founders to retain
+      meaningful incentive alignment through to at least Series B.
+    applies-to-stage: ["pre-seed", "seed", "series-a"]
+    unit: "% combined founder ownership"
+    thresholds:
+      exceptional: "≥ 80% — clean cap table; minimal prior dilution"
+      strong: "70% – 79% — some prior angels or pre-seed dilution; within normal range"
+      median: "60% – 69% — noticeable dilution; investors will probe history and option pool headroom"
+      weak: "50% – 59% — significant prior dilution; incentive alignment conversation required"
+      concerning: "< 50% — below the level most institutional investors expect at pre-seed/seed"
+    notes: |
+      The 60% floor reflects the institutional expectation that founders
+      entering a seed round retain enough equity to remain incentivised
+      through to Series B, given expected option pool creation and
+      subsequent round dilution. Below 60% at pre-seed is a flag rather
+      than a blocker, but creates a required conversation.
