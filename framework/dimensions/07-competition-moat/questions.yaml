@@ -22,7 +22,7 @@ questions:
 
   - id: q7.1
     dimension: competition-moat
-    tier: required
+    tier: recommended
     type: long-text
     question: "Map your competitive landscape. Who are your direct competitors, indirect substitutes, and what does a customer do if they choose to do nothing at all?"
     helper-text: |
@@ -134,7 +134,7 @@ questions:
 
   - id: q7.4
     dimension: competition-moat
-    tier: required
+    tier: recommended
     type: long-text
     question: "Hypothetical: a major incumbent — a well-funded competitor or a large platform such as Salesforce, Microsoft, or Google — ships a directly competing product in the next 12 months. Walk through what you would do and why you would survive."
     helper-text: |

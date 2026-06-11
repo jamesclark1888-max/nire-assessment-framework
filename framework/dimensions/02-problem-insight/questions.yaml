@@ -19,7 +19,7 @@ questions:
 
   - id: q2.1
     dimension: problem-insight
-    tier: required
+    tier: recommended
     type: long-text
     question: "In plain language, describe the problem you are solving and who experiences it."
     helper-text: |
@@ -113,7 +113,7 @@ questions:
 
   - id: q2.4
     dimension: problem-insight
-    tier: required
+    tier: recommended
     type: long-text
     question: "Why does this problem need solving now? What has changed — technically, behaviourally, or regulatorily — to make this the right moment?"
     helper-text: |
