@@ -1,0 +1,94 @@
+# Dimension 6: Go-to-Market
+# UK benchmarks — internal calibration reference
+#
+# Source: NIRE internal calibration (2026-06-12).
+# This file documents the threshold assumptions behind the scoring rules in
+# scoring.yaml. It is not machine-read by the framework generator; it exists
+# for human review, audit, and future recalibration.
+#
+# All monetary values are GBP. Thresholds apply to pre-seed B2B SaaS UK
+# founders unless noted. US benchmarks are a v0.2 workstream.
+
+region: uk
+last-reviewed: "2026-06-12"
+expires: "2027-06-12"
+sources:
+  - name: NIRE internal calibration
+    url-or-citation: NIRE internal calibration — pre-seed UK B2B SaaS founder sample
+    year: 2026
+
+benchmarks:
+
+  sales-cycle-days:
+    description: |
+      Days from first substantive conversation with a qualified prospect to signed
+      contract or first payment. Ascending scoring: shorter cycles allow faster
+      evidence generation at pre-seed, reducing the risk that a runway ends before
+      meaningful deal data exists. Score 0 (no sale yet) separately from score 1
+      (fast cycle) to avoid rewarding pre-revenue founders with the same score as
+      those who have closed quickly.
+    applies-to-stage: [pre-seed]
+    applies-to-business-model: [saas]
+    thresholds:
+      exceptional: "1 to 30 days"
+      strong: "31 to 90 days"
+      median: "91 to 180 days (concerning for capital efficiency)"
+      weak: "181 days or more"
+      concerning: "0 (no sale closed)"
+    unit: days
+    notes: |
+      Pre-seed B2B SaaS UK norms derived from NIRE internal calibration.
+      Very short cycles (1 to 14 days) are typical for SMB self-serve or
+      strong referral relationships; 15 to 30 days is efficient founder-led
+      mid-market sales; 31 to 90 days is normal enterprise mid-market.
+      Cycles above 90 days become capital efficiency risks at pre-seed because
+      the number of closed deals within a 12 to 18 month runway becomes
+      too small to generate institutional-quality evidence.
+
+  pipeline-value-gbp:
+    description: |
+      Total value of qualified pipeline in GBP, where qualified means a
+      decision-maker has confirmed they are actively evaluating a solution.
+      Ascending scoring: larger pipeline provides a stronger forward revenue
+      signal. Bands calibrated against pre-seed UK B2B SaaS companies at
+      the point of raising institutional pre-seed capital.
+    applies-to-stage: [pre-seed]
+    applies-to-business-model: [saas]
+    thresholds:
+      exceptional: "£500k or more"
+      strong: "£150k to £499k"
+      median: "£50k to £149k"
+      weak: "£1k to £49k"
+      concerning: "£0 (pre-pipeline)"
+    unit: GBP thousands
+    notes: |
+      Pipeline value benchmarks are calibrated against the observed range for
+      UK pre-seed B2B SaaS founders raising £300k to £1.5m. A £150k to £500k
+      qualified pipeline is consistent with a raise seeking to close 2 to 5
+      enterprise customers. Pipeline below £50k suggests either a very early
+      stage or a low-velocity channel.
+
+  discovery-to-close-conversion-pct:
+    description: |
+      Proportion of qualified prospects (those who have had a discovery call
+      or demo) who convert to a paying customer or signed LOI. Non-monotonic
+      above 60%: very high rates at small sample sizes may reflect
+      non-representative pipeline rather than exceptional sales execution.
+    applies-to-stage: [pre-seed]
+    applies-to-business-model: [saas]
+    thresholds:
+      exceptional: "41 to 60%"
+      strong: "20 to 40%"
+      median: "10 to 19%"
+      weak: "1 to 9%"
+      concerning: "0 (not yet measured)"
+    unit: percentage
+    notes: |
+      Conversion rates above 60% at pre-seed with sample sizes below 10 deals
+      are treated as slightly less strong than 41 to 60%, not because higher is
+      worse, but because very high rates at small samples are statistically
+      fragile and may not persist as pipeline scales. Founders with rates above
+      60% should contextualise the sample size in q6.5 or q6.10.
+      Typical UK B2B SaaS enterprise discovery-to-close: 15 to 30% for mature
+      sales processes. Pre-seed with founder-led sales can exceed this due to
+      founder credibility and tight ICP selection.

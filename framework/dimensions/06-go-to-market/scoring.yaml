@@ -1,0 +1,356 @@
+# Dimension 6: Go-to-Market
+# Scoring rules
+#
+# Conventions:
+# - q6.1, q6.2, q6.8, q6.12 are informational-only; no rules needed here.
+# - Quantitative rules (q6.3, q6.6, q6.7) use GBP/% bands documented in
+#   benchmarks/uk.yaml. All thresholds are pre-seed flat unless noted.
+# - q6.3 (sales cycle) is ascending: shorter cycles generate evidence faster
+#   at pre-seed. Score 0 days as 30 (no sale yet, data unavailable).
+# - q6.7 (conversion rate) is non-monotonic above 60%: very high rates at
+#   small sample sizes may reflect non-representative pipeline.
+# - Two required prose anchors (q6.4, q6.5) and two recommended prose
+#   questions (q6.10, q6.11) use rubric scoring.
+# - q6.9 (channel concentration) uses categorical mapping.
+
+dimension: go-to-market
+version: "0.1.0"
+rules:
+
+  # ─────────────────────────────────────────────────────────────────
+  # q6.3 — Sales cycle days: ascending, flat across stages
+  # Score 0 as 30: no sales yet means data unavailable, not a signal
+  # of fast cycles.
+  # ─────────────────────────────────────────────────────────────────
+  - id: q6.3-sales-cycle
+    applies-to-question: q6.3
+    description: |
+      Maps sales cycle length (days) to a score. Ascending thresholds: shorter
+      cycles allow faster evidence generation at pre-seed. Entering 0 scores 30
+      to distinguish "no sale yet" from a genuinely fast cycle. Very long cycles
+      (above 180 days) create a structural capital efficiency problem: a founder
+      must restart fundraising before most deals have produced usable evidence.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 0
+          score: 30
+        - min: 1
+          max: 30
+          score: 82
+        - min: 31
+          max: 90
+          score: 65
+        - min: 91
+          max: 180
+          score: 38
+        - min: 181
+          max: null
+          score: 18
+
+  # ─────────────────────────────────────────────────────────────────
+  # q6.4 — ICP and sales motion: required prose anchor 1
+  # Highest weight in the dimension (0.22). Rewards specificity of
+  # buyer description and named purchase trigger.
+  # ─────────────────────────────────────────────────────────────────
+  - id: q6.4-icp-sales-motion
+    applies-to-question: q6.4
+    description: |
+      AI-evaluated scoring for the precision of the ICP definition, the clarity
+      of the purchase trigger, and the coherence of the described sales motion.
+      Rewards founders who name a specific buyer type with a specific event that
+      puts that buyer into active buying mode. Penalises generic buyer
+      descriptions and motions that do not match the stated ICP.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: buyer-specificity
+            weight: 0.40
+            description: |
+              Is the ideal customer profile defined with precision — a named
+              title, company size or AUM, and at least one firmographic qualifier
+              (sector, geography, regulatory status, or product stage) — or is
+              it described generically? "Head of Compliance at UK mid-market
+              buy-side firms with £500m to £10bn AUM, personally liable under
+              SMCR" is specific; "businesses that need help with compliance" is
+              not. Specific ICPs are actionable: a founder who names the title
+              and trigger can identify buyers in their buying moment; a generic
+              description cannot be used to build a repeatable pipeline.
+          - name: purchase-trigger-clarity
+            weight: 0.35
+            description: |
+              Does the answer name a specific event or condition that places this
+              buyer into active evaluation mode — an audit finding, a regulatory
+              deadline, a competitive loss, a near-miss — or does it describe a
+              general pain without a trigger? A named trigger is the keystone of
+              a repeatable pipeline: it tells the founder which buyers to contact
+              and when. An ICP description without a trigger is a persona, not
+              a pipeline tool.
+          - name: sales-motion-coherence
+            weight: 0.25
+            description: |
+              Does the described sequence from first contact to close match the
+              ICP and the product type? A 6-week enterprise procurement process
+              described for an SMB buyer is incoherent; a self-serve sign-up
+              flow described for a £50k annual contract value enterprise product
+              is equally so. The strongest answers name the decision-makers
+              beyond the primary contact, the common objections at each stage,
+              and the specific steps that move the deal forward.
+        score-bounds:
+          min: 15
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # q6.5 — Channel strategy and evidence: required prose anchor 2
+  # Captures the evidence signal that q6.4 does not.
+  # ─────────────────────────────────────────────────────────────────
+  - id: q6.5-channel-evidence
+    applies-to-question: q6.5
+    description: |
+      AI-evaluated scoring for the specificity of the channel rationale, the
+      quality of early observed evidence, and the concreteness of the next
+      validation step. Rewards founders who cite observed results with numbers
+      and name a specific bounded next test. Penalises strategy descriptions
+      with no observed data and next steps that are directions rather than
+      experiments.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: evidence-of-traction
+            weight: 0.40
+            description: |
+              Is there quantified or directly observed evidence that this channel
+              produces qualified conversations, and at what rate? For pre-seed,
+              directional evidence with observed rates qualifies: "11 of 16 first
+              meetings sourced via referral" is evidence; "we are building our
+              referral network" is not. The score floor is not "no evidence
+              whatsoever" but "no attempt to describe an observed result". A
+              single data point — one channel that produced one qualified meeting
+              for a named reason — changes the category of the answer.
+          - name: channel-selection-rationale
+            weight: 0.35
+            description: |
+              Is there a specific, reasoned argument for why this channel reaches
+              this ICP, or is the channel listed without a fit hypothesis? "We
+              use referrals from the Investment Association network because
+              compliance buyers trust peer recommendations and the IA is the only
+              concentrated pool of our exact buyer type" is a rationale. "We are
+              using referrals and LinkedIn" is a list. A named causal connection
+              between the channel and the buyer profile scores higher because it
+              suggests the founder can replicate the approach rather than having
+              stumbled onto a result.
+          - name: next-step-specificity
+            weight: 0.25
+            description: |
+              Does the founder name a specific, bounded next action to validate
+              or scale the channel — a test with a defined success condition,
+              a list of named targets, or a process to be built — or do they
+              describe a direction? "Formalise referral programme with 3 current
+              customers who have already offered introductions; success = 2
+              qualified meetings within 30 days" is specific. "Grow our referral
+              network" is a direction. Specific next steps indicate a founder who
+              is running their GTM as an experiment rather than hoping it will
+              compound on its own.
+        score-bounds:
+          min: 15
+          max: 90
+
+  # ─────────────────────────────────────────────────────────────────
+  # q6.6 — Qualified pipeline value (£k): ascending, flat across stages
+  # ─────────────────────────────────────────────────────────────────
+  - id: q6.6-pipeline-value
+    applies-to-question: q6.6
+    description: |
+      Maps qualified pipeline value (£k) to a score. Ascending thresholds:
+      larger pipeline translates GTM activity into a forward revenue indicator.
+      UK pre-seed B2B SaaS norms. Bands documented in benchmarks/uk.yaml.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 0
+          score: 15
+        - min: 1
+          max: 49
+          score: 38
+        - min: 50
+          max: 149
+          score: 62
+        - min: 150
+          max: 499
+          score: 80
+        - min: 500
+          max: null
+          score: 88
+
+  # ─────────────────────────────────────────────────────────────────
+  # q6.7 — Discovery-to-close conversion rate (%): non-monotonic
+  # above 60% to reflect small-sample noise at pre-seed.
+  # ─────────────────────────────────────────────────────────────────
+  - id: q6.7-conversion-rate
+    applies-to-question: q6.7
+    description: |
+      Maps discovery-to-close conversion rate (%) to a score. Ascending through
+      60%; slight modulation above 60% to reflect that very high rates at small
+      sample sizes may indicate non-representative pipeline rather than
+      exceptional sales execution. UK pre-seed B2B SaaS norms.
+    logic:
+      type: threshold
+      thresholds:
+        - min: null
+          max: 0
+          score: 15
+        - min: 1
+          max: 9
+          score: 32
+        - min: 10
+          max: 19
+          score: 52
+        - min: 20
+          max: 40
+          score: 75
+        - min: 41
+          max: 60
+          score: 82
+        - min: 61
+          max: null
+          score: 78
+
+  # ─────────────────────────────────────────────────────────────────
+  # q6.9 — Channel concentration: categorical mapping
+  # ─────────────────────────────────────────────────────────────────
+  - id: q6.9-channel-concentration
+    applies-to-question: q6.9
+    description: |
+      Maps channel concentration category to a score. Diversification scores
+      higher: a business with multiple active channels has lower structural
+      GTM risk. All-one-channel is stage-acceptable at very early pre-seed
+      but scores at the floor to reflect the structural fragility.
+    logic:
+      type: mapping
+      mapping:
+        below-50-pct: 80
+        50-to-79-pct: 68
+        80-to-99-pct: 50
+        all-one-channel: 42
+
+  # ─────────────────────────────────────────────────────────────────
+  # q6.10 — Channel economics and repeatability: recommended prose
+  # ─────────────────────────────────────────────────────────────────
+  - id: q6.10-channel-economics
+    applies-to-question: q6.10
+    description: |
+      AI-evaluated scoring for the specificity of customer acquisition cost
+      evidence and the quality of the repeatability argument. Rewards founders
+      who cite a calculated or observed CAC with a methodology and point to
+      consistent results across multiple executions of the same playbook.
+      Penalises vague cost descriptions and one-off results presented as
+      evidence of repeatability.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: cac-evidence
+            weight: 0.50
+            description: |
+              Does the founder state a specific estimate of what it costs to
+              acquire a customer through the primary channel, including how
+              the estimate was calculated — time invested, spend, or both? A
+              calculated or observed cost with a described methodology scores
+              higher than a modelled or assumed cost. Founders who have not
+              yet been able to calculate a CAC can score in the middle band by
+              describing what data they would need to calculate it and what
+              their current best estimate is based on.
+          - name: repeatability-case
+            weight: 0.50
+            description: |
+              Is there evidence or a specific argument that the channel produces
+              new customers on demand, not just historically? "Referral playbook
+              executed 11 times with 10 successful qualified meetings, consistent
+              conversion rate across 4 referral sources" is a repeatability
+              case. "We had a successful referral introduction from our investor"
+              is a single event. The strongest answers describe the number of
+              times the process has been run, the results across runs, and what
+              makes it repeatable rather than dependent on a specific relationship.
+        score-bounds:
+          min: 20
+          max: 82
+
+  # ─────────────────────────────────────────────────────────────────
+  # q6.11 — GTM roadmap: optional, ai-qualitative rubric
+  # ─────────────────────────────────────────────────────────────────
+  - id: q6.11-gtm-roadmap
+    applies-to-question: q6.11
+    description: |
+      AI-evaluated scoring for the specificity of planned GTM investments and
+      the coherence of milestone conditions. Rewards founders who name bounded
+      milestones and proportionate resource plans. Penalises directional plans
+      without named success conditions.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: milestone-specificity
+            weight: 0.55
+            description: |
+              Are the planned GTM milestones named and bounded — a specific
+              deal count, a revenue figure, or a market-entry event — or are
+              they directional? "Sign 5 enterprise contracts via referral by Q3,
+              then hire one outbound AE funded by the seed round" is a
+              milestone-based plan. "Grow sales and build out the channel" is a
+              direction. Specific milestones allow investors to assess whether
+              the current raise is sized correctly for the journey to the next
+              one.
+          - name: resource-coherence
+            weight: 0.45
+            description: |
+              Is the planned investment in channels and hires proportionate to
+              the current stage, the described raise amount, and the milestones?
+              A plan that requires five new sales hires on a £500k raise is
+              incoherent; a plan to formalise one referral channel before hiring
+              a single AE is proportionate. The strongest answers acknowledge
+              the specific assumption they are most uncertain about and describe
+              what they would adjust if it broke.
+        score-bounds:
+          min: 20
+          max: 78
+
+  # ─────────────────────────────────────────────────────────────────
+  # q6.13 — Pricing and discounting dynamics: optional, ai-qualitative
+  # ─────────────────────────────────────────────────────────────────
+  - id: q6.13-pricing-dynamics
+    applies-to-question: q6.13
+    description: |
+      AI-evaluated scoring for the presence of empirical pricing evidence and
+      any observed data on how customers respond to price changes. Rewards
+      any observed test, however early. Penalises entirely assumption-based
+      pricing with no test planned or executed.
+    logic:
+      type: rubric
+      rubric:
+        criteria:
+          - name: pricing-evidence
+            weight: 0.55
+            description: |
+              Has the current price been empirically tested — offered to a new
+              prospect at a higher level, tested across different packaging,
+              or raised on an existing customer? Any observed evidence of
+              willingness to pay above the current price scores higher than
+              purely stated belief. Founders who have not tested pricing can
+              score in the middle band by naming a specific planned experiment
+              and the data it would produce.
+          - name: churn-and-retention
+            weight: 0.45
+            description: |
+              Is there any observed data on how price changes affected retention
+              or deal conversion? Even a single observation — "we raised price
+              25% on one renewal and the customer stayed" — is worth more than
+              an assumption that customers would accept higher prices. The
+              strongest answers describe how price has been tested across
+              multiple customer interactions and what the results showed.
+        score-bounds:
+          min: 20
+          max: 80

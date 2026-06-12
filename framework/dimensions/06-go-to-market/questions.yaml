@@ -1,0 +1,479 @@
+# Dimension 6: Go-to-Market
+# Questions
+#
+# Validated against: schema/question.schema.json
+#
+# Conventions:
+# - Required tier: 5 questions (2 informational + 1 quantitative + 2 prose anchors)
+# - Recommended tier: 5 questions (2 quantitative + 1 informational + 2 scoring)
+# - Optional tier: 3 questions (1 informational file-upload + 2 ai-qualitative)
+# - Multi-faceted signal exception invoked: two required prose anchors covering
+#   ICP and sales motion (q6.4) and channel strategy and evidence (q6.5).
+#   These signals are non-interchangeable: a founder can have a clear ICP theory
+#   with no observed channel results, or surprising early results with no
+#   coherent theory. Both must be assessed independently.
+# - Quantitative questions (q6.3, q6.6, q6.7) use GBP thresholds documented in
+#   benchmarks/uk.yaml. US benchmarks are a v0.2 workstream.
+# - No showIf gates in v0.1. GTM motion type (q6.1) was evaluated as a gate
+#   candidate for q6.3 (PLG founders have no traditional sales cycle) but
+#   deferred: at pre-seed B2B SaaS virtually all founders run some founder-led
+#   sales motion even if PLG-aspiring, and adding showIf creates new
+#   penalty-bug surface area without material scoring benefit.
+# - Total scored weight: 1.09
+
+dimension: go-to-market
+version: "0.1.0"
+questions:
+
+  # ─────────────────────────────────────────────────────────────────
+  # REQUIRED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q6.1
+    dimension: go-to-market
+    tier: required
+    type: single-select
+    question: "What best describes your primary approach to acquiring customers?"
+    helper-text: |
+      Select the motion that accounts for most of your current customer
+      conversations. If you are running multiple motions, select the one
+      generating the most qualified pipeline today.
+    why-it-matters: |
+      The GTM motion shapes how investors read every other signal in this
+      section. A founder-led enterprise sales motion needs a tight ICP and
+      referral evidence; a product-led growth motion needs activation and
+      retention data. The motion type determines what evidence of traction
+      is expected.
+    options:
+      - value: founder-led-sales
+        label: "Founder-led sales — the founders are the primary salespeople"
+      - value: product-led-growth
+        label: "Product-led growth — customers discover and activate through the product itself"
+      - value: channel-partnerships
+        label: "Channel partnerships — resellers, agencies, or platform integrations"
+      - value: outbound-sales
+        label: "Outbound sales — structured outreach via SDR or AE motion"
+      - value: community-led
+        label: "Community-led — growth through a community, network, or ecosystem"
+      - value: inbound-marketing
+        label: "Inbound marketing — content, SEO, or paid acquisition driving inbound demand"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.02
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+    version-added: "0.1.0"
+
+  - id: q6.2
+    dimension: go-to-market
+    tier: required
+    type: multi-select
+    question: "Which channels are currently generating customer conversations or qualified leads?"
+    helper-text: |
+      Select all that are actively generating qualified conversations right now,
+      not channels you plan to use. If none are generating leads yet, select
+      "None yet".
+    why-it-matters: |
+      Active channel selection reveals whether customer acquisition is in motion
+      or still theoretical. The number and type of channels provides context
+      for interpreting the quantitative and qualitative GTM signals that follow.
+    options:
+      - value: direct-outbound
+        label: "Direct outbound — cold email, LinkedIn, direct calls"
+      - value: referrals-network
+        label: "Referrals and network — introductions from investors, advisors, or existing customers"
+      - value: inbound-content
+        label: "Inbound content — blog, SEO, or thought leadership"
+      - value: events-communities
+        label: "Events and communities — conferences, forums, Slack groups"
+      - value: channel-partners
+        label: "Channel partners — resellers, agencies, or platform integrations"
+      - value: paid-acquisition
+        label: "Paid acquisition — Google Ads, LinkedIn Ads, or similar"
+      - value: product-led
+        label: "Product-led — self-serve trial or freemium"
+      - value: cold-email-linkedin
+        label: "Cold email or LinkedIn sequences — structured automated outreach"
+      - value: none-yet
+        label: "None yet — not yet generating qualified leads from any channel"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.02
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+    version-added: "0.1.0"
+
+  - id: q6.3
+    dimension: go-to-market
+    tier: required
+    type: number
+    question: "Approximately how many days does it take from first contact with a qualified prospect to a signed contract or first payment? Enter 0 if you have not yet completed a sale."
+    helper-text: |
+      Count from the first substantive conversation with someone who turned out
+      to be a buyer, to the day they signed or paid. If you have closed more than
+      one sale, use your most representative deal, not your fastest. Enter 0 if
+      you have not closed a single paying customer yet.
+    why-it-matters: |
+      Sales cycle length is a direct proxy for deal complexity and capital
+      efficiency risk at pre-seed. A 180-day cycle means a founder must begin
+      fundraising again before most deals have had time to generate meaningful
+      evidence. Short cycles allow faster learning and more data points within
+      a given runway.
+    validation:
+      min: 0
+      max: 730
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.12
+      benchmark-ref: q6.3-sales-cycle
+    recommendation-trigger:
+      low-score: gtm-sales-cycle-long
+      medium-score: gtm-sales-cycle-moderate
+    version-added: "0.1.0"
+
+  - id: q6.4
+    dimension: go-to-market
+    tier: required
+    type: long-text
+    question: "Describe exactly who you sell to, how you identify them, and how they buy: include the buyer's title, what triggers them to start looking for a solution, and the specific steps from their first awareness of your product to signing."
+    helper-text: |
+      The strongest answers name a specific title, company profile, and an event
+      that puts this buyer into active buying mode. Then walk through what
+      happens between first contact and close: who else is involved in the
+      decision, what objections come up, and how long each stage typically takes.
+    why-it-matters: |
+      ICP specificity and sales motion clarity are the primary signals investors
+      use to assess whether a founder understands their buyer well enough to build
+      a repeatable pipeline. A generic buyer description means the founder has not
+      yet committed to a customer type, which makes every GTM metric harder to
+      interpret. This is the first of two required prose anchors.
+    validation:
+      min-chars: 80
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.22
+      rubric-ref: q6.4-icp-sales-motion
+    recommendation-trigger:
+      low-score: gtm-icp-undefined
+      medium-score: gtm-icp-partial
+    version-added: "0.1.0"
+
+  - id: q6.5
+    dimension: go-to-market
+    tier: required
+    type: long-text
+    question: "Walk through your best-performing acquisition channel: what it is, why you chose it, what you have tested, what the early results are, and what the next specific step is to validate or scale it."
+    helper-text: |
+      Focus on the channel producing the most qualified conversations, even if
+      results are early. Name a specific reason this channel reaches your buyer.
+      Include any numbers you have — meeting conversion rates, response rates,
+      deals sourced. Finish with one specific next test, not a direction.
+    why-it-matters: |
+      Channel evidence separates founders who have a GTM strategy from those
+      who have a GTM theory. For pre-seed, early observed results, however thin,
+      score meaningfully higher than plans with no empirical data. This is the
+      second required prose anchor; it captures the evidence signal that the ICP
+      anchor does not.
+    validation:
+      min-chars: 60
+      max-chars: 1000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.20
+      rubric-ref: q6.5-channel-evidence
+    recommendation-trigger:
+      low-score: gtm-channel-no-evidence
+      medium-score: gtm-channel-untested
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # RECOMMENDED TIER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q6.6
+    dimension: go-to-market
+    tier: recommended
+    type: number
+    question: "What is the total value of your current qualified sales pipeline? Enter in thousands of GBP (e.g. 150 for £150,000). Enter 0 if pre-pipeline."
+    helper-text: |
+      Include only deals where you have had a substantive conversation with a
+      decision-maker who has confirmed they are actively evaluating a solution.
+      Exclude exploratory meetings, contacts who have not confirmed a budget, and
+      deals stalled for more than 90 days without a next step. Enter 0 if you
+      are pre-pipeline.
+    why-it-matters: |
+      Pipeline value translates GTM activity into a forward indicator of
+      revenue. At pre-seed, even a small qualified pipeline demonstrates that
+      the ICP and channel are generating real commercial interest, not just
+      meetings. A strong pipeline also gives investors a concrete basis for
+      evaluating the current raise timing.
+    validation:
+      min: 0
+      max: 100000
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.12
+      benchmark-ref: q6.6-pipeline-value
+    recommendation-trigger:
+      low-score: gtm-pipeline-thin
+      medium-score: null
+    version-added: "0.1.0"
+
+  - id: q6.7
+    dimension: go-to-market
+    tier: recommended
+    type: number
+    question: "What proportion of qualified prospects — people who have had a discovery call or demo — convert to a paying customer or signed LOI? Enter as a whole percentage. Enter 0 if not yet measured."
+    helper-text: |
+      Count only prospects who completed a substantive evaluation conversation,
+      not everyone you contacted. Divide the number who became customers or
+      signed an LOI by the total who had that conversation. If you have had fewer
+      than 5 such conversations, enter the raw fraction (e.g. 2 out of 4 = 50).
+    why-it-matters: |
+      Discovery-to-close conversion rate is the most direct measure of sales
+      process effectiveness available at pre-seed. A low rate with a clear
+      hypothesis for why signals a founder who understands their pipeline; a low
+      rate with no explanation signals a founder who may not know where deals
+      are breaking down.
+    validation:
+      min: 0
+      max: 100
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: quantitative-threshold
+      weight: 0.10
+      benchmark-ref: q6.7-conversion-rate
+    recommendation-trigger:
+      low-score: gtm-conversion-low
+      medium-score: null
+    version-added: "0.1.0"
+
+  - id: q6.8
+    dimension: go-to-market
+    tier: recommended
+    type: single-select
+    question: "Who is currently responsible for sales?"
+    helper-text: |
+      Select the option that best describes who is actually leading sales
+      conversations today, not your planned future state.
+    why-it-matters: |
+      Sales team composition provides context for interpreting pipeline and
+      conversion data. Founder-only sales at pre-seed is expected; it also means
+      pipeline data reflects founder ability, not a repeatable sales process.
+      This is informational context for the report, not a scored signal.
+    options:
+      - value: founder-only
+        label: "Founders only — founders are running all sales conversations"
+      - value: founder-plus-one-ae
+        label: "Founder plus one AE or sales hire"
+      - value: small-sales-team-3-plus
+        label: "Small sales team of 3 or more people"
+      - value: partnerships-only
+        label: "Partnerships or channel only — no direct sales team"
+      - value: product-led-no-salespeople
+        label: "Product-led — no dedicated salespeople, product drives acquisition"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.02
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+    version-added: "0.1.0"
+
+  - id: q6.9
+    dimension: go-to-market
+    tier: recommended
+    type: single-select
+    question: "What proportion of your current pipeline or closed revenue comes from your single best-performing channel?"
+    helper-text: |
+      Consider where your closed customers and active pipeline deals originated.
+      If you have one channel generating most of your traction and a second
+      generating a small amount, that is concentrated even if two channels exist.
+    why-it-matters: |
+      Channel concentration is a risk signal at pre-seed. A business dependent
+      on a single channel for all revenue faces a structural fragility: if that
+      channel degrades — a referral source goes cold, an outbound list exhausts —
+      there is no fallback. Diversification, even modest, signals that the founder
+      has begun systematising acquisition beyond a single lucky relationship.
+    options:
+      - value: below-50-pct
+        label: "Below 50% — no single channel accounts for most of our pipeline or revenue"
+      - value: 50-to-79-pct
+        label: "50 to 79% — one channel is dominant but others contribute meaningfully"
+      - value: 80-to-99-pct
+        label: "80 to 99% — one channel accounts for nearly all pipeline or revenue"
+      - value: all-one-channel
+        label: "100% — all pipeline or revenue comes from a single channel"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: categorical
+      weight: 0.07
+      rubric-ref: q6.9-channel-concentration
+    recommendation-trigger:
+      low-score: gtm-channel-concentrated
+      medium-score: null
+    version-added: "0.1.0"
+
+  - id: q6.10
+    dimension: go-to-market
+    tier: recommended
+    type: long-text
+    question: "Describe the cost to acquire a customer through your best-performing channel, the evidence that the channel is repeatable, and the main bottleneck to scaling it."
+    helper-text: |
+      Include how you calculated the cost — time, spend, or both. For
+      repeatability, describe how many times you have run the same process and
+      what the results were. The bottleneck section is most useful when it names
+      a specific constraint rather than a general challenge.
+    why-it-matters: |
+      Channel economics and repeatability translate early traction into a
+      sustainable business signal. A founder who can name their cost to acquire
+      a customer and point to consistent results demonstrates that acquisition
+      is becoming a process rather than staying a series of individual wins.
+      This distinction matters when investors assess whether the current raise
+      will produce predictable revenue.
+    validation:
+      min-chars: 60
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.10
+      rubric-ref: q6.10-channel-economics
+    recommendation-trigger:
+      low-score: gtm-cac-unknown
+      medium-score: gtm-cac-partial
+    version-added: "0.1.0"
+
+  # ─────────────────────────────────────────────────────────────────
+  # OPTIONAL DEEP-DIVE
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: q6.11
+    dimension: go-to-market
+    tier: optional
+    type: long-text
+    question: "Describe your go-to-market plan for the next 12 months: channels you plan to invest in, hires you will make, and milestones that would indicate the strategy is working."
+    helper-text: |
+      The most useful answers name specific milestones rather than directions.
+      "Sign 5 enterprise contracts by Q3 via referral channel, then hire one
+      outbound AE funded by seed round" is more useful than "grow sales team and
+      scale outbound". Include what you would do differently if your primary
+      channel stops performing.
+    why-it-matters: |
+      A 12-month GTM roadmap reveals whether the current channel approach is
+      connected to a scaling plan, or whether the founder expects the same motion
+      to compound indefinitely without structural investment. Strong roadmaps name
+      the trigger condition for each channel investment.
+    validation:
+      min-chars: 60
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.05
+      rubric-ref: q6.11-gtm-roadmap
+    recommendation-trigger:
+      low-score: null
+      medium-score: null
+    version-added: "0.1.0"
+
+  - id: q6.12
+    dimension: go-to-market
+    tier: optional
+    type: file-upload
+    question: "Optional: upload a pipeline summary, CRM export, or sales data document."
+    helper-text: |
+      Any format accepted. Useful uploads: a CRM pipeline export showing active
+      deals and stages, a spreadsheet tracking outreach sequences and conversion
+      rates, or a sales data summary. Files are reviewed by the NIRE team when
+      assessing report depth.
+    why-it-matters: |
+      Pipeline documents allow independent verification of the quantitative GTM
+      signals provided elsewhere in this section. A CRM export showing deal
+      stages and ages provides the most direct evidence of pipeline health and
+      sales cycle claims.
+    validation:
+      pattern: "\\.(pdf|xlsx|csv|docx|pptx|png|jpg|jpeg|txt)$"
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: informational-only
+      weight: 0.00
+    version-added: "0.1.0"
+
+  - id: q6.13
+    dimension: go-to-market
+    tier: optional
+    type: long-text
+    question: "Describe how you set your price, whether you have tested higher prices, and what you know about how customers respond to price changes."
+    helper-text: |
+      Include how your current price was chosen and any experiments you have
+      run: offering a higher price to a new prospect, testing different packaging,
+      or raising prices on existing customers. If you have not tested pricing,
+      describe what you believe the ceiling might be and how you would test it.
+    why-it-matters: |
+      Pricing evidence is a forward indicator of unit economics quality.
+      Founders who have tested price sensitivity have the data to improve margins;
+      founders who have not are operating with a significant unknown. At pre-seed,
+      any observed evidence of willingness to pay above the current price is a
+      positive signal.
+    validation:
+      min-chars: 50
+      max-chars: 800
+    applies-to:
+      stages: all
+      business-models: all
+      regions: all
+    scoring:
+      type: ai-qualitative
+      weight: 0.05
+      rubric-ref: q6.13-pricing-dynamics
+    recommendation-trigger:
+      low-score: gtm-pricing-untested
+      medium-score: null
+    version-added: "0.1.0"

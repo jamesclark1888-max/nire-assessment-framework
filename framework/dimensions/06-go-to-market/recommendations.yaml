@@ -1,0 +1,521 @@
+# Dimension 6: Go-to-Market
+# Recommendation templates
+#
+# Validated against: schema/recommendation.schema.json
+#
+# Template inventory (12 total):
+# Required low-score  (3): gtm-sales-cycle-long, gtm-icp-undefined,
+#                           gtm-channel-no-evidence
+# Required medium     (3): gtm-sales-cycle-moderate, gtm-icp-partial,
+#                           gtm-channel-untested
+# Recommended low     (4): gtm-pipeline-thin, gtm-conversion-low,
+#                           gtm-channel-concentrated, gtm-cac-unknown
+# Recommended medium  (1): gtm-cac-partial
+# Optional low        (1): gtm-pricing-untested
+#
+# Voice guide applied throughout:
+# - Describes the investor-visible signal, not the founder's character
+# - Each fix ends with one step a founder can start this week
+# - UK English; no em dashes; no judgment language
+# - ICP and CAC defined inline on first use where they appear
+
+dimension: go-to-market
+version: "0.1.0"
+templates:
+
+  # ─────────────────────────────────────────────────────────────────
+  # REQUIRED LOW-SCORE TRIGGERS
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: gtm-sales-cycle-long
+    trigger:
+      question-ids: [q6.3]
+      score-band: low
+    priority: high
+    free-tier-visible: true
+    diagnostic: |
+      The sales cycle length creates a capital efficiency problem at pre-seed.
+      When closing a deal takes more than 90 days, a founder must begin
+      fundraising again before most active deals have produced usable evidence
+      of traction.
+    gap: |
+      Investors assessing the raise need to see that the current runway is long
+      enough to generate a meaningful set of closed deals. A very long cycle
+      means this raise may close before it produces the data the next round
+      requires.
+    fix: |
+      Two options depending on where the friction sits:
+
+      1. If the cycle is long because of procurement or legal review, compress
+         the early stages. Identify the step that most often takes longer than
+         expected and build a process to accelerate it: a standard pilot
+         agreement, a pre-answered security questionnaire, a reference call
+         from an existing customer who can speak to procurement speed.
+
+      2. If the cycle reflects genuine buyer complexity, document the cycle
+         explicitly and show how you will generate 3 to 5 completed deals within
+         the current runway. Investors need to see that the evidence set will
+         exist, not just that you are working hard to get there.
+
+      This week: identify the single stage in your sales process that takes the
+      longest and write down why. That analysis is the starting point for
+      either compressing the cycle or making it legible to investors.
+    evidence: |
+      At pre-seed, each closed deal is a data point investors can interrogate.
+      A cycle longer than the runway means investors are being asked to back
+      a future that cannot be evidenced before the money runs out.
+    stage-variants:
+      seed:
+        diagnostic: |
+          The sales cycle length relative to the current burn rate and funding
+          runway creates a capital efficiency concern. At seed stage, investors
+          expect to see a pattern of closed deals, not a pipeline of deals in
+          progress at close.
+        fix: |
+          Document the current cycle by stage and identify where time is being
+          lost. If the bottleneck is a specific review or approval step, build
+          a playbook to accelerate it with tools your existing customers used
+          successfully. This week: map the stages of your last 3 deals and
+          mark which stage took longest.
+
+  - id: gtm-icp-undefined
+    trigger:
+      question-ids: [q6.4]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      The ICP (ideal customer profile — the specific type of company or person
+      you are built to serve) description in this section does not yet name a
+      specific buyer type or a trigger event. Without both, the pipeline is
+      difficult to build repeatably.
+    gap: |
+      Without a named title, a company profile, and an event that puts a buyer
+      into active evaluation mode, there is no systematic way to identify who
+      to contact or when to contact them. Every prospecting decision becomes
+      a judgement call rather than a process.
+    fix: |
+      Three steps to build a specific ICP from your existing customers or
+      conversations:
+
+      1. List every paying customer or signed LOI. For each, write down the
+         buyer's exact title, the company's size and sector, and what was
+         happening at their company in the 30 days before they agreed to talk
+         to you.
+
+      2. Look for the pattern: is there a title that appears more than once?
+         A company profile that recurs? An event — a regulatory change, a
+         hire, a failed prior tool — that appeared in multiple cases? That
+         pattern is your ICP.
+
+      3. Write one sentence for the buyer and one for the trigger: "We sell to
+         [title] at [company type and size] who have recently [specific event]."
+         If you cannot write those two sentences from real data, your next
+         discovery task is to find out why customers bought from you.
+
+      This week: have one customer conversation with the explicit goal of
+      understanding what triggered their decision to evaluate your product.
+    evidence: |
+      Investors read the ICP section to assess whether the sales motion is
+      scalable. A specific ICP means the founder can hire someone to replicate
+      it; a generic one cannot be handed off.
+
+  - id: gtm-channel-no-evidence
+    trigger:
+      question-ids: [q6.5]
+      score-band: low
+    priority: critical
+    free-tier-visible: true
+    diagnostic: |
+      The channel description in this section does not include any observed
+      results. The description of the channel strategy is present but no
+      empirical data — meeting conversion rates, response rates, or deals
+      sourced — is cited.
+    gap: |
+      Investors assessing the GTM section are looking for at least one leading
+      indicator that acquisition is happening, not just planned. Without any
+      observed result, there is no signal to evaluate whether the described
+      channel will reach the buyer.
+    fix: |
+      The minimum evidence bar is not high: one named channel, one test run,
+      and one result. That single data point changes the category of the answer
+      from untested strategy to early empirical signal.
+
+      1. Choose your highest-conviction channel and run the smallest possible
+         test this week. For referrals: ask one existing customer or advisor
+         for one introduction to a named person. For outbound: send 10 targeted
+         messages to your most specific buyer list and track response rate.
+
+      2. Record what you send, who you send it to, and what happens. That record
+         is the evidence base.
+
+      3. Once you have one result, rewrite this section with the channel, the
+         test, and the result — even if the result was negative. A documented
+         negative result scores higher than no data because it shows the founder
+         is testing rather than assuming.
+
+      This week: run one channel test and record the result.
+    evidence: |
+      Pre-seed investors expect channels to be in early testing even when
+      evidence is thin. A founder who can point to one observed result and
+      name the next experiment signals that acquisition is being treated as a
+      process, not a future event.
+
+  # ─────────────────────────────────────────────────────────────────
+  # REQUIRED MEDIUM-SCORE TRIGGERS
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: gtm-sales-cycle-moderate
+    trigger:
+      question-ids: [q6.3]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      The sales cycle length is in the range where capital efficiency risk is
+      emerging. Cycles of 31 to 90 days are common for mid-market enterprise
+      SaaS at pre-seed, but they require careful runway management to ensure
+      enough deals close before the next raise.
+    gap: |
+      At the current cycle length, the number of deals that can close within a
+      12 to 18 month runway is bounded. Investors will want to see that the
+      pipeline is sized to produce enough closed deals to justify the round.
+    fix: |
+      Two things to address in the investor narrative:
+
+      1. Map out how many deals you expect to close in the next 12 months at
+         the current cycle length. Show that the pipeline, if converted at your
+         historical rate, produces a meaningful number of referenceable customers
+         before the next raise.
+
+      2. Identify whether any stage of the cycle can be compressed without
+         reducing the quality of the deal. Common leverage points: a faster
+         pilot structure, pre-answered security or procurement questions, or
+         a reference call that accelerates trust.
+
+      This week: calculate how many deals at the current cycle length can close
+      in the next 12 months from your current pipeline. That number is what
+      investors will see.
+    evidence: |
+      Investors model traction pace against runway. Cycle length determines
+      how many data points are available before the next fundraise begins.
+
+  - id: gtm-icp-partial
+    trigger:
+      question-ids: [q6.4]
+      score-band: medium
+    priority: high
+    free-tier-visible: true
+    diagnostic: |
+      The ICP (ideal customer profile) description names a buyer type but the
+      purchase trigger is absent or described generically. Without a trigger,
+      the ICP is a persona rather than a pipeline tool.
+    gap: |
+      Knowing who the buyer is does not tell a salesperson when to contact them.
+      The purchase trigger — the specific event or condition that puts a buyer
+      into active evaluation mode — is what turns an ICP into a prospecting
+      system.
+    fix: |
+      Two ways to find the trigger from your existing data:
+
+      1. For each customer or serious prospect, identify what was happening at
+         their company in the 4 to 6 weeks before they agreed to evaluate your
+         product. Look for a pattern: a regulatory change, a new hire, a failed
+         existing tool, a board request. That pattern is the trigger.
+
+      2. If you do not yet have enough customers to find a pattern, ask your
+         next three prospects directly: "What made this problem urgent enough to
+         look at solutions right now?" Their answers will surface the trigger
+         faster than any other method.
+
+      Once you have named the trigger, rewrite one paragraph in your investor
+      pitch narrative: "We sell to [title] at [company type] who have just
+      [trigger event]. This typically means they are [evaluation timeline] into
+      their search." That sentence is worth more than a page of ICP description.
+
+      This week: identify the trigger from your last three customer conversations
+      or schedule one call to find out.
+    evidence: |
+      Investors read the ICP section to assess whether the pipeline can be
+      handed to a salesperson. A named trigger is the step that makes the ICP
+      a sourcing system rather than a description.
+
+  - id: gtm-channel-untested
+    trigger:
+      question-ids: [q6.5]
+      score-band: medium
+    priority: high
+    free-tier-visible: true
+    diagnostic: |
+      The channel strategy is clearly described and the rationale for choosing
+      it is present, but the evidence base is thin. Early observed results are
+      present but not yet strong enough to indicate a reliable, repeatable
+      channel.
+    gap: |
+      A described rationale and a small number of early results leave investors
+      uncertain about whether the channel will scale to produce the pipeline
+      the current raise is predicated on. The next step is to define a
+      specific test that would move the channel from "promising" to "validated".
+    fix: |
+      Design one bounded channel experiment to run before the next investor
+      conversation:
+
+      1. State the hypothesis: "If we [specific action] to [specific target
+         list], we expect [specific result] within [timeframe]."
+
+      2. Define what success looks like and what failure looks like. A response
+         rate above 15% on a 30-message outbound sequence is success; below 5%
+         is failure; 5 to 15% is learning.
+
+      3. Run the experiment and record results. One completed experiment with
+         a clear result is stronger investor evidence than a longer description
+         of your channel rationale.
+
+      This week: write the hypothesis sentence above and identify the target
+      list for the test. Run it before your next fundraising conversation.
+    evidence: |
+      At pre-seed, investors are primarily assessing whether the channel is
+      being tested systematically rather than whether it is already proven.
+      A named experiment with a defined success condition shows the founder
+      is running GTM as a learning process.
+
+  # ─────────────────────────────────────────────────────────────────
+  # RECOMMENDED LOW-SCORE TRIGGERS
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: gtm-pipeline-thin
+    trigger:
+      question-ids: [q6.6]
+      score-band: low
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      The current qualified pipeline (the total value of deals where a
+      decision-maker has confirmed they are actively evaluating a solution) is
+      below the level expected for the current raise size and stage. This makes
+      the near-term revenue trajectory hard to model.
+    gap: |
+      Investors use pipeline value to cross-check whether the GTM motion is
+      generating enough commercial activity to support the milestones the raise
+      is sized for. A thin pipeline means the evidence base for near-term
+      revenue is limited.
+    fix: |
+      Two levers: add more qualified conversations or convert more existing
+      conversations to qualified status.
+
+      1. Review every active conversation in your pipeline and apply a strict
+         definition: has this person confirmed they have a budget and are
+         actively evaluating options? Move conversations that do not meet this
+         bar out of the qualified pipeline.
+
+      2. Identify the 5 to 10 companies most likely to be in active buying mode
+         right now based on your ICP trigger event. Reach out this week with a
+         specific offer: a 30-minute product walk-through tied to the trigger
+         event you know they have just experienced.
+
+      This week: define your pipeline qualification criteria and apply them
+      to your current list. The resulting number is your real pipeline value,
+      however small.
+    evidence: |
+      Pipeline value is the most direct forward indicator of revenue available
+      at pre-seed. Investors evaluating whether the raise timing is right will
+      look for enough qualified pipeline to cover the milestones the capital
+      is intended to reach.
+
+  - id: gtm-conversion-low
+    trigger:
+      question-ids: [q6.7]
+      score-band: low
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      The proportion of qualified prospects converting to paying customers or
+      signed LOIs is below what is typically expected for B2B SaaS at this
+      stage. A low conversion rate with no explanation signals that the sales
+      process may have a structural gap.
+    gap: |
+      Each unconverted prospect is a data point about where the process is
+      breaking down. Without understanding which stage of the sales process
+      is losing deals, it is difficult to improve the rate.
+    fix: |
+      A simple pipeline audit will surface the gap:
+
+      1. List every qualified prospect from the last 6 months. For each one
+         that did not convert, write down the last stage they reached and the
+         stated or inferred reason they did not progress.
+
+      2. Look for a pattern: are most deals lost at the same stage? The same
+         type of objection? The same profile of company? That pattern is the
+         hypothesis for what to fix.
+
+      3. Once you have a hypothesis, design one experiment to test it. If deals
+         are lost at the commercial proposal stage, test a different pricing
+         structure or a smaller initial commitment. If deals are lost after the
+         first meeting, test a different follow-up sequence.
+
+      This week: complete the lost deal audit for your last 5 prospects.
+    evidence: |
+      Conversion rate from qualified conversation to close is one of the few
+      leading indicators of sales process quality available at pre-seed.
+      A low rate with a clear hypothesis for the cause is a manageable problem;
+      a low rate with no explanation is a signal that the process has not yet
+      been examined.
+
+  - id: gtm-channel-concentrated
+    trigger:
+      question-ids: [q6.9]
+      score-band: low
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      All or nearly all of the current pipeline and revenue originates from a
+      single acquisition channel. This creates a structural fragility: if that
+      channel degrades, there is no fallback.
+    gap: |
+      A business dependent on one channel for all revenue cannot recover quickly
+      if that channel produces fewer results. This is acceptable as an early
+      stage condition but becomes a risk factor as the raise size grows.
+    fix: |
+      Starting a second channel does not require equal investment. The goal at
+      this stage is to have one backup channel in early testing, not a
+      diversified portfolio.
+
+      1. Identify the most natural adjacent channel for your ICP. If your
+         primary channel is referrals from your personal network, the adjacent
+         channel might be case study content that generates inbound enquiries
+         from the same buyer type.
+
+      2. Run one small test of the adjacent channel this month. The bar is low:
+         one outreach effort, one piece of content, one event appearance. Record
+         what happened.
+
+      3. Add the secondary channel to your investor narrative as "in early
+         testing" with one data point. That is enough to demonstrate awareness
+         of the concentration risk and a plan to address it.
+
+      This week: identify your highest-conviction adjacent channel and design
+      the first test.
+    evidence: |
+      Investors weight channel concentration risk when modelling the business
+      through the next 12 to 18 months. A second channel in early testing is
+      not a distraction from the primary channel; it is risk management.
+
+  - id: gtm-cac-unknown
+    trigger:
+      question-ids: [q6.10]
+      score-band: low
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      The cost to acquire a customer (CAC) through the primary channel is not
+      yet calculated or described. Without a CAC estimate, the economics of
+      scaling the channel cannot be evaluated.
+    gap: |
+      Investors use CAC to assess whether the GTM motion can be scaled
+      profitably. A business that cannot estimate what it costs to win a
+      customer cannot predict what revenue will cost to generate.
+    fix: |
+      Two approaches to produce a CAC estimate from existing data:
+
+      1. Direct cost approach: for your last 3 closed customers, add up the
+         time you spent on sales activities (calls, proposals, meetings) and
+         multiply by a reasonable hourly cost for your time. Add any direct
+         spend (LinkedIn Ads, event fees). Divide by 3. That is your
+         founder-time CAC.
+
+      2. If you have a sales hire or channel spend, calculate blended CAC:
+         total sales cost in the last 3 months divided by customers closed in
+         the same period.
+
+      Either estimate, with a described methodology, gives investors a basis
+      for modelling. An imprecise calculation with honest error bounds is more
+      useful than no calculation.
+
+      This week: produce a CAC estimate using the direct cost approach above.
+      Write down the methodology alongside the number.
+    evidence: |
+      CAC is the primary lever on whether the GTM motion can be profitable at
+      scale. Investors model whether revenue growth will outpace the cost of
+      acquiring it; without a CAC estimate, that calculation cannot be made.
+
+  # ─────────────────────────────────────────────────────────────────
+  # RECOMMENDED MEDIUM-SCORE TRIGGER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: gtm-cac-partial
+    trigger:
+      question-ids: [q6.10]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      An estimate of customer acquisition cost is present but the repeatability
+      case is thin: the channel has produced results but it is not yet clear
+      whether those results come from a process or from specific relationships
+      that may not be replicable.
+    gap: |
+      A single CAC data point from one or two customers is difficult to rely on
+      for scaling decisions. The missing piece is evidence that the same process,
+      run by someone other than the founders, produces similar results.
+    fix: |
+      Two ways to strengthen the repeatability case:
+
+      1. Document the process that produced the results, not just the results
+         themselves. Write down the sequence of steps from initial outreach to
+         close, the decision-makers involved at each stage, and the objections
+         handled. That documented process is the evidence that the result is
+         repeatable.
+
+      2. Run the same process again and record the result. The second and third
+         iterations of a process are more valuable as evidence than the first.
+         Even if the subsequent result is weaker, the comparison is informative.
+
+      This week: write a one-page description of the process that produced your
+      best CAC result. That document is the starting point for repeatability
+      evidence.
+    evidence: |
+      Repeatability is what separates a channel from a relationship. Investors
+      scaling a business need confidence that the process, not the founder's
+      personal network, is generating revenue.
+
+  # ─────────────────────────────────────────────────────────────────
+  # OPTIONAL LOW-SCORE TRIGGER
+  # ─────────────────────────────────────────────────────────────────
+
+  - id: gtm-pricing-untested
+    trigger:
+      question-ids: [q6.13]
+      score-band: low
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      The current pricing has not been empirically tested. The price was set
+      by benchmarking competitors or estimating cost coverage, but there is no
+      observed data on whether customers would pay more.
+    gap: |
+      Untested pricing leaves a significant unknown in the unit economics.
+      Founders who have not tested a higher price do not know whether their
+      current price is the ceiling or whether there is meaningful headroom.
+    fix: |
+      Pricing tests do not require formal experiments. Two low-friction options:
+
+      1. For the next new prospect, quote a price 20 to 30% above your current
+         price. Note how they respond. If they accept without negotiation, your
+         current price is below the ceiling. If they push back, the conversation
+         will reveal where the ceiling is.
+
+      2. At the next renewal for a customer who has seen strong results, propose
+         a price increase of 10 to 15% as part of a package review. Record the
+         outcome.
+
+      Either test produces more information than your current assumption. You
+      do not need to close at a higher price for the test to be valuable; the
+      response itself is the data.
+
+      This week: choose one new prospect or upcoming renewal and test a higher
+      price.
+    evidence: |
+      Founders who have tested pricing come to investor conversations with
+      observed data on where the ceiling is. That data point is worth more than
+      a stated belief that customers would pay more, because it closes an
+      unknown that investors would otherwise have to model themselves.
