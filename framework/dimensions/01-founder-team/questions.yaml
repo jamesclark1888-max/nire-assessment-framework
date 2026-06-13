@@ -424,8 +424,11 @@ questions:
     dimension: founder-team
     tier: optional
     type: file-upload
-    question: "Optional: upload your team page, team one-pager, or team section of your deck."
-    helper-text: "Helps us provide sharper analysis. Files are encrypted at rest and shared only with your consent."
+    question: "Optional: tell us more about your team."
+    helper-text: |
+      Examples: your team page, LinkedIn profiles, or the team section of your
+      pitch deck. Helps us provide sharper analysis. Shared with VCs only with
+      your explicit consent.
     why-it-matters: |
       Document uploads materially increase confidence rating. They also enable
       richer AI analysis (e.g. checking whether stated founder backgrounds

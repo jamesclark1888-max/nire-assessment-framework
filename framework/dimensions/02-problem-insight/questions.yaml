@@ -363,11 +363,11 @@ questions:
     dimension: problem-insight
     tier: optional
     type: file-upload
-    question: "Optional: upload customer discovery artefacts — interview notes, survey data, or research reports."
+    question: "Optional: share more about your customer discovery work."
     helper-text: |
-      Any format accepted. Files are encrypted at rest and shared with VCs only
-      with your explicit consent. Uploads increase your confidence rating and
-      allow richer AI analysis of your discovery rigour.
+      Examples: interview notes, survey data, or research reports. Adding
+      evidence behind your discovery claims increases your confidence rating.
+      Shared with VCs only with your explicit consent.
     why-it-matters: |
       Discovery artefacts provide external validation of problem claims and
       raise the confidence rating materially. They also give VCs visibility into

@@ -376,12 +376,12 @@ questions:
     dimension: round-capital
     tier: optional
     type: file-upload
-    question: "Optional: upload your cap table, term sheet, financial model, or investor deck."
+    question: "Optional: share more about your cap table, term sheet, or financial model."
     helper-text: |
-      Any format accepted. Useful uploads: a cap table spreadsheet showing
-      current and post-round ownership, a signed or draft term sheet, or a
-      financial model showing how the spend plan connects to projected results.
-      Files are reviewed by the NIRE team when assessing report depth.
+      Examples: current and post-round ownership, a signed or draft term sheet,
+      or a financial model connecting your spend plan to projected results.
+      Helps us assess report depth. Shared with VCs only with your explicit
+      consent.
     why-it-matters: |
       Uploaded documents allow independent verification of round structure
       claims. A cap table upload resolves ambiguity about dilution; a term sheet

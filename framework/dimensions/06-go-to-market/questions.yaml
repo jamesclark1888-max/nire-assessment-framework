@@ -424,12 +424,11 @@ questions:
     dimension: go-to-market
     tier: optional
     type: file-upload
-    question: "Optional: upload a pipeline summary, CRM export, or sales data document."
+    question: "Optional: share more about your sales pipeline and outreach activity."
     helper-text: |
-      Any format accepted. Useful uploads: a CRM pipeline export showing active
-      deals and stages, a spreadsheet tracking outreach sequences and conversion
-      rates, or a sales data summary. Files are reviewed by the NIRE team when
-      assessing report depth.
+      Examples: active deals and stages, outreach and conversion rates, or a
+      sales data summary. Helps us assess report depth. Shared with VCs only
+      with your explicit consent.
     why-it-matters: |
       Pipeline documents allow independent verification of the quantitative GTM
       signals provided elsewhere in this section. A CRM export showing deal
