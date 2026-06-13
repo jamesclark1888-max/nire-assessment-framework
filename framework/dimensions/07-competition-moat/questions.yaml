@@ -164,7 +164,7 @@ questions:
       rubric-ref: incumbent-threat-rubric
     recommendation-trigger:
       low-score: weak-incumbent-response
-      medium-score: null
+      medium-score: partial-incumbent-response
       high-score: null
     version-added: "0.1.0"
 
@@ -241,7 +241,7 @@ questions:
       rubric-ref: moat-compounding-rubric
     recommendation-trigger:
       low-score: no-moat-compounding
-      medium-score: null
+      medium-score: thin-moat-compounding
       high-score: null
     version-added: "0.1.0"
 
@@ -278,7 +278,7 @@ questions:
       rubric-ref: switching-costs-rubric
     recommendation-trigger:
       low-score: undefined-switching-costs
-      medium-score: null
+      medium-score: thin-switching-costs
       high-score: null
     version-added: "0.1.0"
 
@@ -351,7 +351,7 @@ questions:
       rubric-ref: competitive-deal-rubric
     recommendation-trigger:
       low-score: no-competitive-deal-evidence
-      medium-score: null
+      medium-score: partial-competitive-deal
       high-score: null
     version-added: "0.1.0"
 

@@ -471,6 +471,60 @@ templates:
       confidence: medium
 
   # -----------------------------------------------------------------
+  # ICP depth improvable
+  # -----------------------------------------------------------------
+  - id: improvable-icp-depth
+    trigger:
+      question-ids: [q3.7]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your ICP describes who your customer is (company size, sector, role)
+      but doesn't yet capture why they buy or when they are ready to buy.
+      Firmographic ICPs describe a population; psychographic ICPs describe a
+      buying moment. The second is what allows you to build a repeatable
+      outbound process.
+    gap: |
+      The missing elements are the trigger event (what causes this buyer to
+      actively search for a solution) and the internal motivation (what fear
+      or ambition makes the purchase feel personally important to the buyer).
+      Without these, your ICP identifies a group but doesn't describe the
+      condition that makes a member of that group a good prospect right now.
+    fix: |
+      Add the trigger and motivation layer using your three best existing
+      customers or most engaged prospects:
+
+      1. Ask each: "What was happening inside your company in the six weeks
+         before you decided to look for a solution to this problem?" The answer
+         is your trigger event. If the same trigger appears twice, it is
+         probably real. If three different triggers surface, you may have more
+         than one ICP worth separating.
+
+      2. Ask: "What were you most worried would happen if you didn't solve it?"
+         The answer is the buyer's fear: the psychological driver behind the
+         purchase. Name it specifically: "falling behind a regulatory deadline",
+         "losing a key customer because of the gap", or "failing a board target."
+
+      3. Write both into your ICP in one sentence: "We target [role] at [company
+         profile] who are triggered by [specific event] and are most concerned
+         about [specific fear]." That sentence is what separates a usable ICP
+         from a firmographic description.
+
+      This week: schedule one call with your most engaged customer and ask the
+      two questions above. One real answer changes the ICP from firmographic
+      to psychographic.
+    evidence: |
+      Psychographic ICP data consistently produces higher outbound response
+      rates and shorter sales cycles than firmographic data alone. The trigger
+      event in particular is the most actionable output of discovery: it tells
+      you exactly which external signals identify a prospect who is ready to
+      buy now, rather than any member of the target segment.
+    estimated-impact:
+      dimension-score-uplift: 6
+      confidence: medium
+
+  # -----------------------------------------------------------------
   # Weak market timing
   # -----------------------------------------------------------------
   - id: weak-market-timing

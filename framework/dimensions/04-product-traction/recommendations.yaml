@@ -12,11 +12,15 @@
 #   q4.4 low  -> low-growth                 (high)
 #   q4.5 low  -> weak-traction-evidence     (critical, free-tier)
 #   q4.5 med  -> improvable-traction-evidence (high)
-#   q4.6 low  -> no-retention-data          (critical)
-#   q4.7 low  -> no-customer-story          (high)
-#   q4.8 low  -> unclear-roadmap            (medium)
-#   q4.9 low  -> weak-nrr                   (medium)
-#   q4.10 low -> no-product-iteration-signal (medium)
+#   q4.6 low  -> no-retention-data            (critical)
+#   q4.6 med  -> improvable-retention-metric   (high)
+#   q4.7 low  -> no-customer-story            (high)
+#   q4.7 med  -> improvable-customer-story     (high)
+#   q4.8 low  -> unclear-roadmap              (medium)
+#   q4.8 med  -> improvable-product-roadmap    (medium)
+#   q4.9 low  -> weak-nrr                     (medium)
+#   q4.10 low -> no-product-iteration-signal   (medium)
+#   q4.10 med -> improvable-product-iteration  (medium)
 
 dimension: product-traction
 version: 0.1.0
@@ -284,6 +288,51 @@ templates:
       confidence: high
 
   # -----------------------------------------------------------------
+  # Improvable retention metric -- high
+  # -----------------------------------------------------------------
+  - id: improvable-retention-metric
+    trigger:
+      question-ids: [q4.6]
+      score-band: medium
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      You have retention data, but it isn't yet precise enough to use in an
+      investor conversation without qualification. The signal exists but is
+      incomplete: missing either a time period, a starting denominator, a
+      measurement methodology, or a comparison point that gives the number
+      meaning.
+    gap: |
+      A retention figure without a stated denominator and a specific time
+      period cannot be independently interpreted. "Most customers renew" and
+      "85% logo retention over 12 months from a cohort of 18 customers" are
+      both retention statements; only the second survives a partner meeting.
+    fix: |
+      Three additions make your retention figure investable:
+
+      1. State the denominator. How many customers were in the cohort at the
+         start of the period? The number matters: "85% from 3 customers" and
+         "85% from 40 customers" carry very different statistical weight and
+         investors distinguish between them.
+
+      2. State the time period precisely. A 6-month figure and a 12-month
+         figure are not equivalent. Use the longest period available and label
+         it: "gross logo retention over the 14 months from [month] to [month]."
+
+      3. State what counts as active. Have you defined "active" in a way that
+         excludes customers who contracted but are not using the product? If
+         your definition of retention excludes dormant customers, note that
+         alongside the figure.
+
+      This week: write your retention figure as a single sentence using this
+      format: "[X]% of the [N] customers who were active at [start date] are
+      still active today as of [end date]." If you cannot fill in all four
+      numbers, identify which one is missing and calculate it.
+    estimated-impact:
+      dimension-score-uplift: 8
+      confidence: medium
+
+  # -----------------------------------------------------------------
   # No customer story -- high
   # -----------------------------------------------------------------
   - id: no-customer-story
@@ -325,6 +374,49 @@ templates:
       value-per-hour preparation work available before a fundraise.
     estimated-impact:
       dimension-score-uplift: 8
+      confidence: medium
+
+  # -----------------------------------------------------------------
+  # Improvable customer story -- high
+  # -----------------------------------------------------------------
+  - id: improvable-customer-story
+    trigger:
+      question-ids: [q4.7]
+      score-band: medium
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your customer story has the right structure (a named relationship, a
+      problem, and a result) but it's missing the element that makes it
+      investable: either a measurable outcome, reference availability, or both.
+      A story without a number and a willing reference is evidence you hold but
+      investors cannot independently verify.
+    gap: |
+      An investor reading your story should be able to answer two questions:
+      what specifically changed for the customer, and can I call them to confirm
+      it? If the story doesn't enable both, it functions as a claim rather than
+      evidence in a diligence conversation.
+    fix: |
+      Two additions complete the story:
+
+      1. Quantify the outcome. Ask your customer: "What specifically changed
+         for you in measurable terms after using the product?" You are looking
+         for a number: hours saved per week, cost reduced per year, error rate
+         reduced, or revenue generated. Even a rough estimate with stated
+         assumptions is stronger than "significant time savings." One number
+         from a named customer changes the investor conversation.
+
+      2. Confirm reference availability. Ask directly: "If an investor asked
+         to speak with you about your experience using this product, would you
+         be willing to take a 20-minute call?" A customer who says yes is a
+         reference. That single commitment is worth more than any additional
+         metric you could add to the story.
+
+      This week: contact this customer with both questions. One conversation
+      produces either a number, a reference, or both. Either transforms the
+      story from a strong claim to a verifiable one.
+    estimated-impact:
+      dimension-score-uplift: 7
       confidence: medium
 
   # -----------------------------------------------------------------
@@ -404,6 +496,50 @@ templates:
          the trade-off demonstrates prioritisation discipline that investors
          find credible. It shows you're resource-constrained and have made a
          deliberate choice.
+    estimated-impact:
+      dimension-score-uplift: 5
+      confidence: medium
+
+  # -----------------------------------------------------------------
+  # Improvable product roadmap -- medium
+  # -----------------------------------------------------------------
+  - id: improvable-product-roadmap
+    trigger:
+      question-ids: [q4.8]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your roadmap names priorities and connects some of them to customer
+      evidence. The signal gap is completeness: either one or more of the named
+      priorities lacks a traceable source, or the roadmap doesn't state what is
+      being de-prioritised to make room for what you have chosen. Incomplete
+      evidence coverage or absent trade-off reasoning leaves an investor
+      uncertain about whether the team builds systematically or selectively.
+    gap: |
+      A roadmap is most credible when every item can be traced to a specific
+      signal and when the excluded items are acknowledged. The trade-off
+      statement (what you are not building and why) is often the most revealing
+      part of a product strategy conversation. Without it, a priority list is
+      indistinguishable from a wish list.
+    fix: |
+      For each of the two or three named priorities:
+
+      1. Confirm the evidence source is specific. "Multiple customers asked for
+         it" is vague. "Three of our six enterprise customers raised this in
+         their monthly review call in the past 90 days" is specific. If a
+         priority lacks a named source, find one or reconsider whether it
+         belongs in the top three.
+
+      2. State what you are not building in the next 12 months that you could
+         build. Name at least one item you have consciously de-prioritised and
+         the reason: "We are not building [X] yet because [specific reason]."
+         This demonstrates that the priority list is a choice, not a default.
+
+      This week: write one sentence of evidence justification for each named
+      priority, and one sentence naming the most significant item you have
+      de-prioritised and why. The resulting paragraph is your product strategy
+      in investor-ready form.
     estimated-impact:
       dimension-score-uplift: 5
       confidence: medium
@@ -490,6 +626,53 @@ templates:
       is intended to move, and review it 4 weeks after launch. That practice,
       described in investor conversations, is a stronger signal than any
       individual product outcome.
+    estimated-impact:
+      dimension-score-uplift: 4
+      confidence: medium
+
+  # -----------------------------------------------------------------
+  # Improvable product iteration -- medium
+  # -----------------------------------------------------------------
+  - id: improvable-product-iteration
+    trigger:
+      question-ids: [q4.10]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your product iteration story describes a change and an outcome, but the
+      learning loop is incomplete. A full iteration cycle has three elements:
+      a targeted metric, what the data showed after shipping, and a specific
+      decision made in the next cycle based on the result. One or more of these
+      is missing or vague, which makes the story look like a feature announcement
+      rather than an evidence-driven development process.
+    gap: |
+      The most important element is usually the third: what changed in the next
+      cycle as a result of what you measured. A change without an applied
+      learning is a data point; a change that demonstrably influenced the next
+      cycle is evidence of a systematic process. That distinction matters to
+      investors who are backing the team's ability to build efficiently over
+      years, not just months.
+    fix: |
+      Add the missing element to the iteration story:
+
+      1. If the targeted metric is missing: name the specific behaviour or
+         outcome the change was intended to move — a completion rate, an
+         engagement frequency, a conversion step. "We hoped it would improve
+         the product" is not a targeted metric.
+
+      2. If the result data is missing: pull the specific figure for the 4
+         weeks after shipping and compare it to the 4 weeks before. Even a
+         null result (the metric didn't move) is a useful learning.
+
+      3. If the applied learning is missing: write one sentence describing what
+         you built or changed differently in the next product cycle as a direct
+         result of this data. That sentence is the evidence that the loop closed.
+
+      This week: write the three-part iteration statement: "We shipped [X]
+      targeting [metric]. After 4 weeks, [what happened]. As a result, we
+      [specific change in next cycle]." If any part is blank, that is the gap
+      to close.
     estimated-impact:
       dimension-score-uplift: 4
       confidence: medium

@@ -240,7 +240,7 @@ questions:
       rubric-ref: retention-rubric
     recommendation-trigger:
       low-score: no-retention-data
-      medium-score: null
+      medium-score: improvable-retention-metric
       high-score: null
     version-added: "0.1.0"
 
@@ -274,7 +274,7 @@ questions:
       rubric-ref: customer-story-rubric
     recommendation-trigger:
       low-score: no-customer-story
-      medium-score: null
+      medium-score: improvable-customer-story
       high-score: null
     version-added: "0.1.0"
 
@@ -308,7 +308,7 @@ questions:
       rubric-ref: product-roadmap-rubric
     recommendation-trigger:
       low-score: unclear-roadmap
-      medium-score: null
+      medium-score: improvable-product-roadmap
       high-score: null
     version-added: "0.1.0"
 
@@ -381,7 +381,7 @@ questions:
       rubric-ref: product-iteration-rubric
     recommendation-trigger:
       low-score: no-product-iteration-signal
-      medium-score: null
+      medium-score: improvable-product-iteration
       high-score: null
     version-added: "0.1.0"
 

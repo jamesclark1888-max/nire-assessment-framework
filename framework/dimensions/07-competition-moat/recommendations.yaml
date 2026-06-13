@@ -10,14 +10,18 @@
 #   q7.1 low  -> weak-competitive-awareness      (critical, free-tier)
 #   q7.2 low  -> weak-differentiation            (critical, free-tier)
 #   q7.2 med  -> improvable-differentiation      (high)
-#   q7.4 low  -> weak-incumbent-response         (high)
-#   q7.5 low  -> no-moat-evidence                (critical, free-tier)
-#   q7.5 med  -> thin-moat-evidence              (high)
-#   q7.6 low  -> no-moat-compounding             (high)
-#   q7.7 low  -> undefined-switching-costs       (medium)
-#   q7.8 low  -> network-effects-undefined       (medium)
-#   q7.9 low  -> no-competitive-deal-evidence    (medium)
-#   q7.10 low -> limited-ip-barriers             (medium)
+#   q7.4 low  -> weak-incumbent-response          (high)
+#   q7.4 med  -> partial-incumbent-response       (medium)
+#   q7.5 low  -> no-moat-evidence                 (critical, free-tier)
+#   q7.5 med  -> thin-moat-evidence               (high)
+#   q7.6 low  -> no-moat-compounding              (high)
+#   q7.6 med  -> thin-moat-compounding            (medium)
+#   q7.7 low  -> undefined-switching-costs        (medium)
+#   q7.7 med  -> thin-switching-costs             (medium)
+#   q7.8 low  -> network-effects-undefined        (medium)
+#   q7.9 low  -> no-competitive-deal-evidence     (medium)
+#   q7.9 med  -> partial-competitive-deal         (medium)
+#   q7.10 low -> limited-ip-barriers              (medium)
 
 dimension: competition-moat
 version: 0.1.0
@@ -258,6 +262,55 @@ templates:
           competitors that reveal their constraints.
 
   # -----------------------------------------------------------------
+  # Partial incumbent response -- medium
+  # -----------------------------------------------------------------
+  - id: partial-incumbent-response
+    trigger:
+      question-ids: [q7.4]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      You have named the most likely incumbent mover and offered a structural
+      reason why you would survive. The argument is incomplete in one of two
+      ways: either the structural constraint on the incumbent is described but
+      not specific enough to survive pushback ("they are too slow" rather than
+      "they have a documented channel conflict with their partner network"), or
+      you have not described what you would do in the first 90 days if the
+      scenario occurred.
+    gap: |
+      Naming an incumbent and asserting a structural reason is the floor. The
+      ceiling is naming the specific mechanism that limits their effectiveness
+      and describing the concrete actions you would take before they gain
+      traction. The 90-day response is what distinguishes "we would survive"
+      from "we have a plan."
+    fix: |
+      Sharpen the argument with two additions:
+
+      1. Make the structural constraint specific. Generic constraints ("large
+         companies move slowly") are not credible without a named mechanism.
+         Pick the one that applies most directly to the named incumbent: channel
+         conflict (naming their partner relationships that would be threatened),
+         business model incompatibility (explaining exactly which of their revenue
+         lines the competing product would cannibalise), or customer relationship
+         gap (specifying which buyer role or segment they do not currently serve
+         and why). One specific mechanism beats three generic ones.
+
+      2. Add the 90-day response. If the scenario occurred tomorrow, what are
+         the first three things you would do? Name specific customers to lock
+         in with longer contracts, specific product features to accelerate, or
+         specific partnerships to close. This is not a contingency plan; it is
+         a pre-prepared list of moves that shows the competitive analysis has
+         been internalised.
+
+      This week: write the 90-day response as a list of three named actions
+      with specific owners and timelines. The act of writing it will also
+      reveal whether the structural constraint argument holds.
+    estimated-impact:
+      dimension-score-uplift: 6
+      confidence: medium
+
+  # -----------------------------------------------------------------
   # No moat evidence -- critical
   # -----------------------------------------------------------------
   - id: no-moat-evidence
@@ -425,6 +478,52 @@ templates:
           for a new entrant who is starting where you were 12 months ago?
 
   # -----------------------------------------------------------------
+  # Thin moat compounding -- medium
+  # -----------------------------------------------------------------
+  - id: thin-moat-compounding
+    trigger:
+      question-ids: [q7.6]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your compounding moat argument names a growth unit (the thing that
+      accumulates as you scale) but doesn't yet complete the full mechanism.
+      Investors need to see the link between accumulation and increasing
+      replication cost. Without that link, the argument describes growth, not
+      compounding.
+    gap: |
+      A moat that grows because the company grows is not automatically
+      compounding. Compounding requires a specific mechanism: the accumulated
+      asset must make the product meaningfully better for existing customers,
+      or make entry materially more expensive for a new competitor, or both.
+      The causal chain needs to be stated, not implied.
+    fix: |
+      Complete the three-part mechanism:
+
+      1. Name the growth unit. What accumulates with scale? Be specific: "each
+         customer's usage generates [type of data]", "each integration adds [Y]
+         to the workflow dependency graph", "each certified implementation adds
+         [Z] to the reference base." The unit should be nameable and countable.
+
+      2. Name what the accumulated unit creates. What does having 100 units of
+         the growth thing produce that 10 units does not? A measurably better
+         model, a deeper integration web, a richer benchmark dataset? The
+         accumulation effect must translate into something a customer experiences.
+
+      3. Name the replication cost. Given the accumulation described, how long
+         or how much capital would it take a well-funded new entrant to reach
+         the same position? "12 months and 50 enterprise customers" is specific.
+         "A long time" is not.
+
+      This week: write one sentence for each of the three parts. If any sentence
+      requires more than one sentence to explain, the mechanism is not yet
+      specific enough.
+    estimated-impact:
+      dimension-score-uplift: 5
+      confidence: medium
+
+  # -----------------------------------------------------------------
   # Undefined switching costs -- medium
   # -----------------------------------------------------------------
   - id: undefined-switching-costs
@@ -467,6 +566,54 @@ templates:
 
       Answering these four questions for one representative customer gives a
       concrete, defensible switching cost argument.
+    estimated-impact:
+      dimension-score-uplift: 5
+      confidence: medium
+
+  # -----------------------------------------------------------------
+  # Thin switching costs -- medium
+  # -----------------------------------------------------------------
+  - id: thin-switching-costs
+    trigger:
+      question-ids: [q7.7]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      You have described switching costs in general terms, but the argument
+      isn't yet operational. Investors test switching cost claims by asking
+      "what would actually happen if your largest customer tried to leave
+      tomorrow?" If the answer is a category description rather than a
+      walk-through of a specific customer's migration experience, the claim
+      is soft.
+    gap: |
+      Switching cost arguments are most credible when described from the
+      customer's perspective, not the vendor's. The friction should be
+      specific to one representative customer: their data footprint, their
+      configuration investment, their team's dependency on your workflows.
+      Generic descriptions ("we are deeply embedded") are claims; a specific
+      migration scenario is evidence.
+    fix: |
+      Walk through one representative customer's switching scenario:
+
+      1. Data: what is in your system for this customer? How much of it, in
+         what format, and what would be required to export and re-import it into
+         a competitor system? If the answer involves manual re-entry or format
+         conversion, name how long that would realistically take.
+
+      2. Configuration: what has the customer built inside your product?
+         Templates, rules, workflows, custom integrations, historical reports?
+         Items that cannot be exported and must be rebuilt represent a hard
+         switching cost. Name them specifically.
+
+      3. Retraining: how many of their team use your product daily? Even a
+         rough estimate of retraining days per person multiplied by headcount
+         gives a quantified cost that is far more credible than "our product
+         is embedded."
+
+      This week: answer all three questions for your largest current customer.
+      Write the answers down. The resulting paragraph is your switching cost
+      argument in investor-ready form.
     estimated-impact:
       dimension-score-uplift: 5
       confidence: medium
@@ -558,6 +705,52 @@ templates:
       If there genuinely hasn't been a direct competitive situation yet, describe
       the closest analogue: a prospect who compared your approach to an existing
       solution, even informally.
+    estimated-impact:
+      dimension-score-uplift: 4
+      confidence: medium
+
+  # -----------------------------------------------------------------
+  # Partial competitive deal -- medium
+  # -----------------------------------------------------------------
+  - id: partial-competitive-deal
+    trigger:
+      question-ids: [q7.9]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      You have described a competitive situation with a named competitor and a
+      stated outcome. The signal is incomplete because either the root cause is
+      missing (you know who won but not specifically why) or the applied lesson
+      is absent (the outcome hasn't changed how you compete). Both gaps matter:
+      root cause reveals what actually drives decisions in your market, and the
+      applied lesson signals whether competitive intelligence feeds back into
+      the business.
+    gap: |
+      A competitive result without a root cause is a data point. A root cause
+      without an applied lesson is a missed learning. The combination of all
+      three (outcome, root cause, and subsequent change) is what investors read
+      as evidence of a team running an evidence-based competitive process rather
+      than reacting to individual situations.
+    fix: |
+      Add the missing elements to the situation you described:
+
+      1. If the root cause is missing: go back to the source. For a lost deal,
+         contact the prospect and ask directly what drove the final decision.
+         "We went with [competitor] because [specific reason]" is the input you
+         need. For a won deal, ask the customer what tipped the decision in your
+         favour. Even a reply two months later is useful.
+
+      2. If the applied lesson is missing: write one specific thing that changed
+         in your product, pricing, sales process, or targeting as a result of
+         the situation. "We added a security questionnaire after three losses on
+         procurement timelines" is a lesson applied. "We learned we need to
+         improve on X" is not.
+
+      This week: write the full five-element version of the story: context,
+      named competitor, outcome, root cause, and lesson applied. If any element
+      is genuinely unavailable, label it as such. That honesty itself scores
+      better than a vague claim.
     estimated-impact:
       dimension-score-uplift: 4
       confidence: medium
