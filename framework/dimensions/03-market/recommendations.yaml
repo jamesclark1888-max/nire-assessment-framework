@@ -94,6 +94,11 @@ templates:
          smaller, highly concentrated market if the gross margin and
          defensibility are exceptional. If this applies, make that case
          explicitly.
+
+      This week: write two sentences for your investor pitch using the
+      argument from the three above that fits your market best, and include
+      one specific number to anchor the case. That addition moves the TAM
+      narrative from borderline to compelling.
     evidence: |
       Borderline TAMs are common for vertical SaaS companies attacking a
       specific regulated niche. The most successful of these, Veeva in pharma
@@ -184,6 +189,12 @@ templates:
         source (LinkedIn, company directory, regulatory register)? Name the
         source in your methodology.
       One stronger assumption makes the whole methodology more defensible.
+
+      This week: identify the single weakest assumption in your TAM
+      calculation and find one primary source to anchor it: a customer
+      conversation confirming the price point, a company directory count,
+      or a named industry register. That one sourced assumption makes the
+      whole calculation harder to challenge.
     evidence: |
       Investors who push back on TAM are almost always pushing back on a
       specific assumption, not the whole calculation. Knowing which assumption
@@ -326,6 +337,10 @@ templates:
       2. Macro tailwind. Are there structural forces (regulation, demographic
          change, technology shift) that will compress this market's slow growth
          into a shorter period of faster acceleration? If so, make this explicit.
+
+      This week: find the CAGR of the specific sub-segment your product
+      targets rather than the broader market category. A sector analyst
+      report or industry association data will give you a starting point.
     estimated-impact:
       dimension-score-uplift: 5
       confidence: low
@@ -411,6 +426,11 @@ templates:
         best existing customers and ask "what was happening inside your company
         in the six weeks before you decided to look for a solution?" The trigger
         event almost always surfaces in those conversations.
+
+      This week: write your segment description as a single sentence
+      covering the buyer role, the company context, and the trigger event
+      that starts the buying process. If the trigger is still a hypothesis,
+      note which one customer conversation would confirm it.
     estimated-impact:
       dimension-score-uplift: 7
       confidence: medium
@@ -530,6 +550,12 @@ templates:
       2. Connect it to your specific solution. Why does this change specifically
          advantage your approach? What would a competitor need to do differently
          to respond, that you don't?
+
+      This week: find one number that quantifies the catalyst you have
+      described and write a single sentence connecting it specifically to
+      why your product, not the market broadly, benefits. That combination
+      is what makes the timing argument specific to your company rather
+      than generic.
     estimated-impact:
       dimension-score-uplift: 6
       confidence: medium
@@ -595,6 +621,11 @@ templates:
       solutions (competitor growth, LinkedIn searches, community discussion).
       One additional corroborating signal makes the validation story materially
       stronger.
+
+      This week: identify the corroborating signal type easiest for you
+      to acquire: a prospect conversation about what solutions they are
+      actively evaluating, a competitor funding announcement, or a pre-sale
+      discussion. Make one direct effort to get it.
     estimated-impact:
       dimension-score-uplift: 6
       confidence: medium
