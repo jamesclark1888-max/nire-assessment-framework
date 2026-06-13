@@ -657,7 +657,7 @@ templates:
       Add the missing element to the iteration story:
 
       1. If the targeted metric is missing: name the specific behaviour or
-         outcome the change was intended to move — a completion rate, an
+         outcome the change was intended to move: a completion rate, an
          engagement frequency, a conversion step. "We hoped it would improve
          the product" is not a targeted metric.
 
