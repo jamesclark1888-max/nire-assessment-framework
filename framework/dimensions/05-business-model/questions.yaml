@@ -69,7 +69,7 @@ questions:
 
   - id: q5.2
     dimension: business-model
-    tier: recommended
+    tier: required
     type: long-text
     question: "What do you charge, how did you arrive at that pricing, and what evidence supports it?"
     helper-text: |

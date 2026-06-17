@@ -22,7 +22,7 @@ questions:
 
   - id: q7.1
     dimension: competition-moat
-    tier: recommended
+    tier: required
     type: long-text
     question: "Map your competitive landscape. Who are your direct competitors, indirect substitutes, and what does a customer do if they choose to do nothing at all?"
     helper-text: |
