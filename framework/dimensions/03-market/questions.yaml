@@ -21,11 +21,12 @@ questions:
     dimension: market
     tier: required
     type: number
-    question: "What is your total addressable market (TAM)? Enter your estimate in USD millions."
+    currency: "USD"
+    inputUnit: "millions"
+    question: "What is your total addressable market (TAM)?"
     helper-text: |
       Use the global or regional figure most relevant to your business. If
-      you have multiple estimates, enter the most defensible one. Enter 1000
-      for a $1 billion market, 500 for $500 million.
+      you have multiple estimates, enter the most defensible one.
     why-it-matters: |
       TAM sets the ceiling for every valuation conversation. VCs apply a
       rough heuristic: the company will capture 1-5% of TAM at maturity.
@@ -84,7 +85,9 @@ questions:
     dimension: market
     tier: required
     type: number
-    question: "What is your serviceable addressable market (SAM)? Enter your estimate in USD millions."
+    currency: "USD"
+    inputUnit: "millions"
+    question: "What is your serviceable addressable market (SAM)?"
     helper-text: |
       SAM is the portion of the TAM you can realistically reach with your
       current product, business model, and go-to-market approach. It is not
@@ -115,7 +118,9 @@ questions:
     dimension: market
     tier: required
     type: number
-    question: "What is your realistic Year 3 revenue target, expressed in USD millions?"
+    currency: "USD"
+    inputUnit: "millions"
+    question: "What is your realistic Year 3 revenue target?"
     helper-text: |
       Enter what you realistically expect to be generating in Year 3 of
       operation, not a best-case scenario. This represents your SOM

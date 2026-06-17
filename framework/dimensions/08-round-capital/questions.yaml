@@ -63,11 +63,13 @@ questions:
     dimension: round-capital
     tier: required
     type: number
-    question: "How much are you raising in this round? Enter in thousands (e.g. 1500 for £1.5m)."
+    currency: "GBP"
+    inputUnit: "thousands"
+    question: "How much are you raising in this round?"
     helper-text: |
       Enter the total target raise for this specific round — not cumulative
       including any prior funding. If you have a hard cap and a soft target,
-      use the target. Enter in whole thousands of pounds.
+      use the target.
     why-it-matters: |
       Round size tells investors whether the raise is large enough to reach the
       milestones that justify the next round. Very small raises rarely generate
@@ -94,7 +96,9 @@ questions:
     dimension: round-capital
     tier: required
     type: number
-    question: "What pre-money valuation are you seeking? Enter in millions (e.g. 7.5 for £7.5m). Enter 0 if this round uses an uncapped SAFE with no valuation cap."
+    currency: "GBP"
+    inputUnit: "millions"
+    question: "What pre-money valuation are you seeking? Enter 0 if this round uses an uncapped SAFE with no valuation cap."
     helper-text: |
       For priced equity, use the negotiated or target pre-money valuation. For
       a capped SAFE or convertible note, use the cap as the reference valuation.

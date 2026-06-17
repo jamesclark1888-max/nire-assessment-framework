@@ -98,7 +98,9 @@ questions:
     dimension: product-traction
     tier: required
     type: number
-    question: "What is your current monthly recurring revenue (MRR)? Enter in GBP."
+    currency: "GBP"
+    inputUnit: "raw"
+    question: "What is your current monthly recurring revenue (MRR)?"
     helper-text: |
       Enter the annualised value of all active subscriptions or contracts divided
       by 12. Do not include one-time project fees, pilots not yet contracted, or

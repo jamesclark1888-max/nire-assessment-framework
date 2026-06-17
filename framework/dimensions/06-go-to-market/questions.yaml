@@ -217,7 +217,9 @@ questions:
     dimension: go-to-market
     tier: recommended
     type: number
-    question: "What is the total value of your current qualified sales pipeline? Enter in thousands of GBP (e.g. 150 for £150,000). Enter 0 if pre-pipeline."
+    currency: "GBP"
+    inputUnit: "thousands"
+    question: "What is the total value of your current qualified sales pipeline? Enter 0 if pre-pipeline."
     helper-text: |
       Include only deals where you have had a substantive conversation with a
       decision-maker who has confirmed they are actively evaluating a solution.

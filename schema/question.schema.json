@@ -219,6 +219,16 @@
         "high-score": { "type": ["string", "null"] }
       }
     },
+    "currency": {
+      "type": "string",
+      "enum": ["GBP", "USD"],
+      "description": "Currency for monetary questions. Drives the visual prefix shown by the input component."
+    },
+    "inputUnit": {
+      "type": "string",
+      "enum": ["raw", "thousands", "millions"],
+      "description": "Storage scale convention for monetary questions. The input component divides full-figure user entry by 1000 or 1000000 before storing."
+    },
     "consistency-checks": {
       "type": "array",
       "description": "References to cross-question consistency rules",
