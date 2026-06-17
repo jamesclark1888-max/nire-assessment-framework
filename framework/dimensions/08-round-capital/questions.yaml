@@ -64,7 +64,7 @@ questions:
     tier: required
     type: number
     currency: "GBP"
-    inputUnit: "thousands"
+    input-unit: "thousands"
     question: "How much are you raising in this round?"
     helper-text: |
       Enter the total target raise for this specific round — not cumulative
@@ -97,7 +97,7 @@ questions:
     tier: required
     type: number
     currency: "GBP"
-    inputUnit: "millions"
+    input-unit: "millions"
     question: "What pre-money valuation are you seeking? Enter 0 if this round uses an uncapped SAFE with no valuation cap."
     helper-text: |
       For priced equity, use the negotiated or target pre-money valuation. For

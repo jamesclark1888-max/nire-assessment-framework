@@ -99,7 +99,7 @@ questions:
     tier: required
     type: number
     currency: "GBP"
-    inputUnit: "raw"
+    input-unit: "raw"
     question: "What is your current monthly recurring revenue (MRR)?"
     helper-text: |
       Enter the annualised value of all active subscriptions or contracts divided

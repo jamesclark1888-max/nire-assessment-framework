@@ -218,7 +218,7 @@ questions:
     tier: recommended
     type: number
     currency: "GBP"
-    inputUnit: "thousands"
+    input-unit: "thousands"
     question: "What is the total value of your current qualified sales pipeline? Enter 0 if pre-pipeline."
     helper-text: |
       Include only deals where you have had a substantive conversation with a

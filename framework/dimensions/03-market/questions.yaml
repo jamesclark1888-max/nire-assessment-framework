@@ -22,7 +22,7 @@ questions:
     tier: required
     type: number
     currency: "USD"
-    inputUnit: "millions"
+    input-unit: "millions"
     question: "What is your total addressable market (TAM)?"
     helper-text: |
       Use the global or regional figure most relevant to your business. If
@@ -86,7 +86,7 @@ questions:
     tier: required
     type: number
     currency: "USD"
-    inputUnit: "millions"
+    input-unit: "millions"
     question: "What is your serviceable addressable market (SAM)?"
     helper-text: |
       SAM is the portion of the TAM you can realistically reach with your
@@ -119,7 +119,7 @@ questions:
     tier: required
     type: number
     currency: "USD"
-    inputUnit: "millions"
+    input-unit: "millions"
     question: "What is your realistic Year 3 revenue target?"
     helper-text: |
       Enter what you realistically expect to be generating in Year 3 of
