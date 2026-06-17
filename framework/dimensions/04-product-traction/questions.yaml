@@ -246,40 +246,6 @@ questions:
       high-score: null
     version-added: "0.1.0"
 
-  - id: q4.7
-    dimension: product-traction
-    tier: recommended
-    type: long-text
-    question: "Describe your most compelling customer or pilot relationship. Name the organisation or role, describe the problem they came in with, what they experienced with your product, and what they said about the result."
-    helper-text: |
-      Name the customer or describe them precisely enough that they are
-      recognisable (e.g. "a 400-person logistics company in the UK"). Describe
-      the specific problem they had, what outcome your product produced, and
-      quote them directly if possible. Anonymised case studies with specific
-      outcomes are acceptable where confidentiality applies.
-    why-it-matters: |
-      A single well-documented customer story does more due diligence work than
-      any set of aggregate statistics. It establishes product fit, demonstrates
-      buyer profile clarity, and provides a reference anchor for investor
-      conversations. Named customers with documented outcomes are the highest-
-      value traction asset at early stage.
-    validation:
-      min-chars: 150
-      max-chars: 1200
-    applies-to:
-      stages: all
-      business-models: all
-      regions: all
-    scoring:
-      type: ai-qualitative
-      weight: 0.09
-      rubric-ref: customer-story-rubric
-    recommendation-trigger:
-      low-score: no-customer-story
-      medium-score: improvable-customer-story
-      high-score: null
-    version-added: "0.1.0"
-
   - id: q4.8
     dimension: product-traction
     tier: recommended

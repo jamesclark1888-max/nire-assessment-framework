@@ -238,48 +238,6 @@ rules:
         all-one-channel: 42
 
   # ─────────────────────────────────────────────────────────────────
-  # q6.10 — Channel economics and repeatability: recommended prose
-  # ─────────────────────────────────────────────────────────────────
-  - id: q6.10-channel-economics
-    applies-to-question: q6.10
-    description: |
-      AI-evaluated scoring for the specificity of customer acquisition cost
-      evidence and the quality of the repeatability argument. Rewards founders
-      who cite a calculated or observed CAC with a methodology and point to
-      consistent results across multiple executions of the same playbook.
-      Penalises vague cost descriptions and one-off results presented as
-      evidence of repeatability.
-    logic:
-      type: rubric
-      rubric:
-        criteria:
-          - name: cac-evidence
-            weight: 0.50
-            description: |
-              Does the founder state a specific estimate of what it costs to
-              acquire a customer through the primary channel, including how
-              the estimate was calculated — time invested, spend, or both? A
-              calculated or observed cost with a described methodology scores
-              higher than a modelled or assumed cost. Founders who have not
-              yet been able to calculate a CAC can score in the middle band by
-              describing what data they would need to calculate it and what
-              their current best estimate is based on.
-          - name: repeatability-case
-            weight: 0.50
-            description: |
-              Is there evidence or a specific argument that the channel produces
-              new customers on demand, not just historically? "Referral playbook
-              executed 11 times with 10 successful qualified meetings, consistent
-              conversion rate across 4 referral sources" is a repeatability
-              case. "We had a successful referral introduction from our investor"
-              is a single event. The strongest answers describe the number of
-              times the process has been run, the results across runs, and what
-              makes it repeatable rather than dependent on a specific relationship.
-        score-bounds:
-          min: 20
-          max: 82
-
-  # ─────────────────────────────────────────────────────────────────
   # q6.11 — GTM roadmap: optional, ai-qualitative rubric
   # ─────────────────────────────────────────────────────────────────
   - id: q6.11-gtm-roadmap

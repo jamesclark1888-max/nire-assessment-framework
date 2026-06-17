@@ -353,39 +353,6 @@ questions:
       medium-score: null
     version-added: "0.1.0"
 
-  - id: q6.10
-    dimension: go-to-market
-    tier: recommended
-    type: long-text
-    question: "Describe the cost to acquire a customer through your best-performing channel, the evidence that the channel is repeatable, and the main bottleneck to scaling it."
-    helper-text: |
-      Include how you calculated the cost — time, spend, or both. For
-      repeatability, describe how many times you have run the same process and
-      what the results were. The bottleneck section is most useful when it names
-      a specific constraint rather than a general challenge.
-    why-it-matters: |
-      Channel economics and repeatability translate early traction into a
-      sustainable business signal. A founder who can name their cost to acquire
-      a customer and point to consistent results demonstrates that acquisition
-      is becoming a process rather than staying a series of individual wins.
-      This distinction matters when investors assess whether the current raise
-      will produce predictable revenue.
-    validation:
-      min-chars: 60
-      max-chars: 800
-    applies-to:
-      stages: all
-      business-models: all
-      regions: all
-    scoring:
-      type: ai-qualitative
-      weight: 0.10
-      rubric-ref: q6.10-channel-economics
-    recommendation-trigger:
-      low-score: gtm-cac-unknown
-      medium-score: gtm-cac-partial
-    version-added: "0.1.0"
-
   # ─────────────────────────────────────────────────────────────────
   # OPTIONAL DEEP-DIVE
   # ─────────────────────────────────────────────────────────────────

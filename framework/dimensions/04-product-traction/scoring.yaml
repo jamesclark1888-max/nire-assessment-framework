@@ -314,57 +314,6 @@ rules:
           max: 90
 
   # ─────────────────────────────────────────────────────────────────
-  # Top customer / pilot story (q4.7)
-  # ─────────────────────────────────────────────────────────────────
-  - id: customer-story-rubric
-    applies-to-question: q4.7
-    description: |
-      AI-evaluated scoring for the depth and specificity of the top customer
-      or pilot relationship described. Rewards named customers with documented
-      outcomes and direct quotes. Penalises generic satisfaction claims, unnamed
-      customers with no contextual detail, and outcomes that cannot be verified
-      or connected to the product's core value proposition.
-    logic:
-      type: rubric
-      rubric:
-        criteria:
-          - name: customer-specificity
-            weight: 0.35
-            description: |
-              Is the customer named or precisely characterised — including
-              company size, the role of the buyer, and the context in which they
-              found and chose the product — or is the description generic? Named
-              customers with verifiable context are significantly more credible
-              than anonymised case studies without organisational context. If
-              confidentiality applies, the minimum bar is the buyer role, company
-              size, and sector: enough for an investor to assess fit and
-              reference quality.
-          - name: outcome-specificity
-            weight: 0.40
-            description: |
-              Is the outcome described in specific, measurable terms — time saved,
-              cost avoided, error rate reduced, revenue generated, or another
-              quantifiable change — or is it stated as general satisfaction?
-              "Reduced reconciliation time from 3.5 hours to 22 minutes" is
-              specific and verifiable. "Really happy with the product" is not.
-              The outcome must connect directly to the problem the product was
-              hired to solve, not to the product's general quality.
-          - name: reference-strength
-            weight: 0.25
-            description: |
-              Does the customer story include a direct quote, a signed agreement,
-              a documented reference, or another independently verifiable element —
-              or does it rely entirely on the founder's characterisation of the
-              outcome? A customer who made a public statement, a written case
-              study the customer co-authored, or a direct quote attributed to a
-              named person substantially increases credibility. Reference-quality
-              customer stories are the most valuable due diligence asset at
-              early stage.
-        score-bounds:
-          min: 15
-          max: 90
-
-  # ─────────────────────────────────────────────────────────────────
   # Product roadmap clarity (q4.8)
   # ─────────────────────────────────────────────────────────────────
   - id: product-roadmap-rubric

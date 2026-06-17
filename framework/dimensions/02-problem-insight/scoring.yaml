@@ -262,47 +262,6 @@ rules:
           max: 90
 
   # ─────────────────────────────────────────────────────────────────
-  # Contrarian insight (q2.10)
-  # ─────────────────────────────────────────────────────────────────
-  - id: contrarian-insight-rubric
-    applies-to-question: q2.10
-    description: |
-      AI-evaluated scoring for the contrarian belief question. The highest-
-      weighted recommended question. Rewards named, falsifiable, evidence-based
-      claims that diverge from conventional wisdom.
-    logic:
-      type: rubric
-      rubric:
-        criteria:
-          - name: specificity
-            weight: 0.35
-            description: |
-              Is this a named, falsifiable claim? Or a vague directional
-              statement about the market? A contrarian insight should be
-              specific enough that a reader could disagree and cite evidence
-              against it.
-            examples-strong:
-              - "The market believes the bottleneck is data access. We believe the bottleneck is analyst capacity — and therefore the right product is a reasoning layer, not a data layer."
-              - "Everyone thinks the enterprise contract cycle is the barrier to this market. We think it's churn at month 6 after onboarding fails. The contract gets signed; the usage dies."
-            examples-weak:
-              - "We believe AI is going to transform this industry."
-              - "Most people underestimate how big this market is."
-          - name: genuine-non-consensus
-            weight: 0.35
-            description: |
-              Would a smart, informed person in this industry actually disagree
-              with this? Or is it a comfortable statement that sounds contrarian
-              but isn't actually contested?
-          - name: evidence-or-reasoning
-            weight: 0.30
-            description: |
-              Is there evidence, data, or rigorous first-principles reasoning
-              to support the claim? Or is it asserted without grounding?
-        score-bounds:
-          min: 25
-          max: 90
-
-  # ─────────────────────────────────────────────────────────────────
   # Hypothesis evolution (q2.13)
   # ─────────────────────────────────────────────────────────────────
   - id: hypothesis-evolution-rubric

@@ -30,10 +30,9 @@ This dimension assesses:
 - **q4.4** — Month-over-month growth rate (number, quantitative-threshold): gated by showIf on mvp/live/scaling
 - **q4.5** — Strongest traction evidence (long-text, ai-qualitative): highest-weight question in dimension
 
-### Recommended tier (5 questions)
+### Recommended tier (4 questions)
 
 - **q4.6** — Primary retention metric (long-text, ai-qualitative): gated by showIf on live/scaling
-- **q4.7** — Top customer or pilot story (long-text, ai-qualitative)
 - **q4.8** — 12-month product roadmap (long-text, ai-qualitative)
 - **q4.9** — Net revenue retention / NRR (number, quantitative-threshold): gated by showIf on live/scaling; applies to SaaS/fintech/healthtech
 - **q4.10** — Recent product iteration evidence (long-text, ai-qualitative)
@@ -67,7 +66,6 @@ showIf conditions implement this adaptation at the question level. The benchmark
 | `improvable-traction-evidence` | q4.5 medium | High |
 | `low-growth` | q4.4 low | High |
 | `no-retention-data` | q4.6 low | Critical |
-| `no-customer-story` | q4.7 low | High |
 | `low-mrr` | q4.3 low | High |
 | `unclear-roadmap` | q4.8 low | Medium |
 | `weak-nrr` | q4.9 low | Medium |
@@ -77,7 +75,7 @@ showIf conditions implement this adaptation at the question level. The benchmark
 
 ## Weight distribution
 
-Total scored weight: 0.96 across 12 scored questions (q4.1 is informational at 0.02).
+Total scored weight: 0.87 across 11 scored questions (q4.1 is informational at 0.02).
 
 | Question | Weight | Notes |
 |---|---|---|
@@ -86,7 +84,6 @@ Total scored weight: 0.96 across 12 scored questions (q4.1 is informational at 0
 | q4.3 | 0.12 | MRR (showIf: live/scaling) |
 | q4.4 | 0.11 | MoM growth (showIf: mvp/live/scaling) |
 | q4.6 | 0.10 | Retention (showIf: live/scaling) |
-| q4.7 | 0.09 | Customer story |
 | q4.8 | 0.07 | Product roadmap |
 | q4.9 | 0.05 | NRR (showIf: live/scaling; SaaS only) |
 | q4.10 | 0.04 | Product iteration |
@@ -99,6 +96,6 @@ Total scored weight: 0.96 across 12 scored questions (q4.1 is informational at 0
 ## Files
 
 - `questions.yaml` — all 13 questions with showIf conditions and scoring metadata
-- `scoring.yaml` — 12 scoring rules (4 threshold, 8 rubric)
-- `recommendations.yaml` — 10 recommendation templates
+- `scoring.yaml` — 11 scoring rules (4 threshold, 7 rubric)
+- `recommendations.yaml` — 8 recommendation templates
 - `benchmarks/global.yaml` — stage-specific thresholds for customer count, MRR, growth rate, and NRR

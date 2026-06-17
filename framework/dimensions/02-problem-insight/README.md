@@ -47,14 +47,13 @@ Minimum for a meaningful score. Targets approximately 5-7 minutes to complete.
 | q2.4 | Long-text | Timing thesis |
 | q2.5 | Multi-select | Evidence signal breadth |
 
-### Recommended tier (3 questions)
+### Recommended tier (2 questions)
 Improves confidence and unlocks sharper recommendations. Adds approximately 3 minutes.
 
 | ID | Type | Signal |
 |----|------|--------|
 | q2.7 | Single-select | Problem severity |
 | q2.9 | Long-text | Knowledge of prior failed attempts |
-| q2.10 | Long-text | Contrarian belief |
 
 ### Optional deep-dive (3 questions)
 For founders seeking maximum precision. Adds approximately 5-10 minutes.
@@ -115,4 +114,3 @@ Different VC archetypes weight this dimension differently:
 - Calibration of the core-insight rubric with 3+ working VCs — the non-obviousness criterion is the hardest to score consistently
 - Whether to add a structured "customer interview log" repeating-block to replace or supplement q2.2 (count alone is a weak signal)
 - Whether to add a cross-dimension consistency check between q2.3 (insight) and q1.5 (founder-market fit) — the two answers should be mutually reinforcing
-- Whether q2.10 (contrarian insight) should be moved to required tier at pre-seed given its predictive weight

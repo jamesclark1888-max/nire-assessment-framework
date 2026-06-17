@@ -260,38 +260,6 @@ questions:
       high-score: null
     version-added: "0.1.0"
 
-  - id: q2.10
-    dimension: problem-insight
-    tier: recommended
-    type: long-text
-    question: "What do you believe about this market or problem that most smart, informed people would disagree with?"
-    helper-text: |
-      This is the contrarian truth question. The strongest answers name a
-      specific, falsifiable claim, not a vague vision statement. If you
-      genuinely don't hold a contrarian view, answering honestly scores better
-      than manufacturing one.
-    why-it-matters: |
-      Non-consensus insights are the origin of asymmetric returns in venture.
-      Founders with a specific, defensible view that diverges from conventional
-      wisdom are building a more defensible company than those executing on
-      consensus ideas. Top-tier funds use this as a primary filter.
-    validation:
-      min-chars: 150
-      max-chars: 800
-    applies-to:
-      stages: all
-      business-models: all
-      regions: all
-    scoring:
-      type: ai-qualitative
-      weight: 0.08
-      rubric-ref: contrarian-insight-rubric
-    recommendation-trigger:
-      low-score: weak-contrarian-insight
-      medium-score: improvable-contrarian-insight
-      high-score: null
-    version-added: "0.1.0"
-
   # ─────────────────────────────────────────────────────────────────
   # OPTIONAL DEEP-DIVE
   # ─────────────────────────────────────────────────────────────────

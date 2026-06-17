@@ -10,7 +10,7 @@
 
 A great product without distribution is a hobby. VCs weight GTM capability heavily at pre-seed because product-market fit is often achievable, but distribution is harder to build and harder to fake. A founder who can name a specific buyer, a specific purchase trigger, and a channel that is already producing customers is demonstrably further along than one who describes a plan.
 
-This dimension assesses the specificity of the ICP, the evidence of working channels, and the ability to describe acquisition economics — not the scale of current traction, which D4 (Product & Traction) handles.
+This dimension assesses the specificity of the ICP and the evidence of working channels — not the scale of current traction, which D4 (Product & Traction) handles.
 
 ---
 
@@ -21,9 +21,8 @@ This dimension assesses the specificity of the ICP, the evidence of working chan
 3. **Sales cycle length** (q6.3, required, quantitative-threshold, weight 0.12): ascending scoring; 0 = no sale yet; 1–30 days = highest signal
 4. **Pipeline value** (q6.6, recommended, quantitative-threshold, weight 0.12): qualified pipeline in GBP as a forward revenue signal
 5. **Conversion rate** (q6.7, recommended, quantitative-threshold, weight 0.10): discovery-to-close rate; non-monotonic above 60% (small-sample noise)
-6. **Channel economics** (q6.10, recommended, ai-qualitative, weight 0.10): CAC estimate and repeatability case
-7. **Channel concentration** (q6.9, recommended, categorical, weight 0.07): all-one-channel is structurally fragile even when the channel works
-8. **GTM roadmap** (q6.11, optional, ai-qualitative, weight 0.05): milestone-based plan with resource coherence
+6. **Channel concentration** (q6.9, recommended, categorical, weight 0.07): all-one-channel is structurally fragile even when the channel works
+7. **GTM roadmap** (q6.11, optional, ai-qualitative, weight 0.05): milestone-based plan with resource coherence
 
 Informational questions (q6.1 GTM motion type, q6.2 current channels, q6.8 sales team composition, q6.12 CRM upload) carry weight 0.02 or 0.00 and do not affect scoring.
 
@@ -38,12 +37,11 @@ Informational questions (q6.1 GTM motion type, q6.2 current channels, q6.8 sales
 - `q6.4` — ICP definition and sales motion (long-text, ai-qualitative, min-chars 80)
 - `q6.5` — Channel strategy and traction evidence (long-text, ai-qualitative, min-chars 60)
 
-### Recommended tier (5 questions)
+### Recommended tier (4 questions)
 - `q6.6` — Qualified pipeline value in GBP thousands (number, quantitative-threshold)
 - `q6.7` — Discovery-to-close conversion rate % (number, quantitative-threshold)
 - `q6.8` — Sales team composition (single-select, informational)
 - `q6.9` — Channel concentration (single-select, categorical)
-- `q6.10` — Channel economics and repeatability (long-text, ai-qualitative)
 
 ### Optional tier (2 questions)
 - `q6.11` — 12-month GTM roadmap (long-text, ai-qualitative)
@@ -60,7 +58,7 @@ Informational questions (q6.1 GTM motion type, q6.2 current channels, q6.8 sales
 
 ---
 
-## Recommendation templates (11)
+## Recommendation templates (9)
 
 | ID | Priority | Trigger | Free |
 |---|---|---|---|
@@ -73,8 +71,6 @@ Informational questions (q6.1 GTM motion type, q6.2 current channels, q6.8 sales
 | `gtm-pipeline-thin` | high | q6.6 low | no |
 | `gtm-conversion-low` | medium | q6.7 low | no |
 | `gtm-channel-concentrated` | medium | q6.9 low | no |
-| `gtm-cac-unknown` | medium | q6.10 low | no |
-| `gtm-cac-partial` | low | q6.10 medium | no |
 
 ---
 
