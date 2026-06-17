@@ -253,40 +253,6 @@ questions:
       high-score: null
     version-added: "0.1.0"
 
-  - id: q3.8
-    dimension: market
-    tier: recommended
-    type: long-text
-    question: "Why is now the right moment to build in this market? What has changed — or is changing — that creates a window of opportunity that didn't clearly exist two or three years ago?"
-    helper-text: |
-      Name the specific enabling change: a new technology becoming viable,
-      a regulatory shift, a behavioural change at scale, or an incumbent
-      failing in a way that creates an opening. If you believe timing is
-      secondary to scale of the opportunity, state that explicitly and
-      explain why the problem is large enough regardless.
-    why-it-matters: |
-      Market timing is a primary underwriting question at pre-seed and seed.
-      A named, specific catalyst shifts a VC's prior from scepticism to
-      conviction. Generic trend references ("AI is transforming every
-      industry") score near zero. VCs have heard them thousands of times
-      and they carry no differentiating signal for this specific company.
-    validation:
-      min-chars: 150
-      max-chars: 1000
-    applies-to:
-      stages: all
-      business-models: all
-      regions: all
-    scoring:
-      type: ai-qualitative
-      weight: 0.08
-      rubric-ref: market-timing-rubric
-    recommendation-trigger:
-      low-score: weak-market-timing
-      medium-score: improvable-market-timing
-      high-score: null
-    version-added: "0.1.0"
-
   - id: q3.9
     dimension: market
     tier: recommended
@@ -462,35 +428,3 @@ questions:
       high-score: null
     version-added: "0.1.0"
 
-  - id: q3.14
-    dimension: market
-    tier: optional
-    type: long-text
-    question: "What structural macro trends — technological, regulatory, demographic, or behavioural — does your business benefit from? Describe the most important one or two."
-    helper-text: |
-      Useful macro trends are specific and already in motion, not
-      hypothetical future developments. "AI adoption" is too broad.
-      "LLM inference costs falling 40x in 18 months, making our unit
-      economics viable for the first time" is specific and quantified.
-    why-it-matters: |
-      Macro tailwinds increase investor conviction that the problem and
-      market will grow without requiring the startup to create the growth
-      itself. Founders who cite vague trends add no underwriting signal;
-      founders who quantify a specific ongoing shift and connect it
-      explicitly to their business model add genuine conviction.
-    validation:
-      min-chars: 100
-      max-chars: 1000
-    applies-to:
-      stages: all
-      business-models: all
-      regions: all
-    scoring:
-      type: ai-qualitative
-      weight: 0.02
-      rubric-ref: macro-tailwinds-rubric
-    recommendation-trigger:
-      low-score: null
-      medium-score: null
-      high-score: null
-    version-added: "0.1.0"

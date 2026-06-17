@@ -24,7 +24,6 @@ This dimension assesses the specificity of the ICP, the evidence of working chan
 6. **Channel economics** (q6.10, recommended, ai-qualitative, weight 0.10): CAC estimate and repeatability case
 7. **Channel concentration** (q6.9, recommended, categorical, weight 0.07): all-one-channel is structurally fragile even when the channel works
 8. **GTM roadmap** (q6.11, optional, ai-qualitative, weight 0.05): milestone-based plan with resource coherence
-9. **Pricing dynamics** (q6.13, optional, ai-qualitative, weight 0.05): empirical pricing evidence and retention signal
 
 Informational questions (q6.1 GTM motion type, q6.2 current channels, q6.8 sales team composition, q6.12 CRM upload) carry weight 0.02 or 0.00 and do not affect scoring.
 
@@ -46,10 +45,9 @@ Informational questions (q6.1 GTM motion type, q6.2 current channels, q6.8 sales
 - `q6.9` — Channel concentration (single-select, categorical)
 - `q6.10` — Channel economics and repeatability (long-text, ai-qualitative)
 
-### Optional tier (3 questions)
+### Optional tier (2 questions)
 - `q6.11` — 12-month GTM roadmap (long-text, ai-qualitative)
 - `q6.12` — CRM or pipeline data upload (file-upload, informational)
-- `q6.13` — Pricing and discounting dynamics (long-text, ai-qualitative)
 
 ---
 
@@ -62,7 +60,7 @@ Informational questions (q6.1 GTM motion type, q6.2 current channels, q6.8 sales
 
 ---
 
-## Recommendation templates (12)
+## Recommendation templates (11)
 
 | ID | Priority | Trigger | Free |
 |---|---|---|---|
@@ -77,7 +75,6 @@ Informational questions (q6.1 GTM motion type, q6.2 current channels, q6.8 sales
 | `gtm-channel-concentrated` | medium | q6.9 low | no |
 | `gtm-cac-unknown` | medium | q6.10 low | no |
 | `gtm-cac-partial` | low | q6.10 medium | no |
-| `gtm-pricing-untested` | low | q6.13 low | no |
 
 ---
 

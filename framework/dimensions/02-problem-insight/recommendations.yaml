@@ -397,59 +397,6 @@ templates:
       confidence: medium
 
   # -----------------------------------------------------------------
-  # Customer story -- weak
-  # -----------------------------------------------------------------
-  - id: weak-customer-story
-    trigger:
-      question-ids: [q2.6]
-      score-band: low
-    priority: medium
-    free-tier-visible: false
-    diagnostic: |
-      Your customer story is either too abstract or told entirely in your
-      voice rather than the customer's. It describes a problem category
-      rather than a specific moment with a specific person.
-    gap: |
-      A good customer story needs three elements: a named role, a specific
-      moment or situation, and what it cost them. All three are missing or
-      underspecified.
-    fix: |
-      Go back to your best customer interview. Find the moment where someone
-      described their pain most vividly. Then write:
-      "A [role] at a [company type] told me: '[direct quote or close
-      paraphrase]'. They were spending [cost] on this problem and their best
-      existing solution was [what they were using] which failed because
-      [specific failure mode]."
-    evidence: |
-      The best pitch decks and fundraising emails open with a customer story.
-      Stories create emotional engagement. Statistics create intellectual
-      engagement. You need both, but stories open doors.
-    estimated-impact:
-      dimension-score-uplift: 5
-      confidence: medium
-
-  # -----------------------------------------------------------------
-  # Customer story -- improvable
-  # -----------------------------------------------------------------
-  - id: improvable-customer-story
-    trigger:
-      question-ids: [q2.6]
-      score-band: medium
-    priority: low
-    free-tier-visible: false
-    diagnostic: |
-      Your customer story has good bones: a named role and some specificity.
-      But it's missing either a direct quote or a clear cost signal.
-    gap: |
-      Adding one of: a direct quote from the customer, or a quantified cost
-      of the problem for them, would sharpen this materially.
-    fix: |
-      Go back to the notes from that interview. Find the exact words the
-      customer used, even a short phrase. "She said, 'I spend every Sunday
-      doing this before Monday's board call'" is more powerful than "She said
-      the problem takes too much time."
-
-  # -----------------------------------------------------------------
   # Problem severity -- low
   # -----------------------------------------------------------------
   - id: low-problem-severity
@@ -508,62 +455,6 @@ templates:
       The beachhead strategy (starting with customers for whom the product is
       mission-critical and expanding out) is the most reliable path to early
       revenue for mid-severity problems.
-
-  # -----------------------------------------------------------------
-  # Alternatives analysis -- weak
-  # -----------------------------------------------------------------
-  - id: weak-alternatives-analysis
-    trigger:
-      question-ids: [q2.8]
-      score-band: low
-    priority: high
-    free-tier-visible: false
-    diagnostic: |
-      Your alternatives analysis is generic. Naming "Excel" or "legacy systems"
-      without explaining the specific mechanism of failure signals that your
-      discovery conversations didn't go deep enough on this topic.
-    gap: |
-      Investors will ask "why can't they just use [specific competitor]?" in
-      every meeting. Without a specific, structural answer, your credibility
-      falls apart quickly.
-    fix: |
-      For each of your top 2-3 competitor categories, document:
-      1. The product name or process description
-      2. The specific failure mode (not "it's slow" but "it requires a full-time
-         analyst to maintain and breaks when the dataset exceeds 100k rows")
-      3. The customer quote that captures the frustration best
-      4. What the customer has to do as a workaround
-      This takes 2 hours to produce and handles the most common investor
-      questions on this topic reliably.
-    evidence: |
-      "Why won't [big company] just build this?" is the second-most common
-      investor question after "why hasn't anyone done this before?" Both require
-      structural answers, not vague claims about competitive advantage.
-    estimated-impact:
-      dimension-score-uplift: 7
-      confidence: high
-
-  # -----------------------------------------------------------------
-  # Alternatives analysis -- improvable
-  # -----------------------------------------------------------------
-  - id: improvable-alternatives-analysis
-    trigger:
-      question-ids: [q2.8]
-      score-band: medium
-    priority: low
-    free-tier-visible: false
-    diagnostic: |
-      You've named specific alternatives, but your failure-mode analysis is
-      surface level for one or more of them.
-    gap: |
-      "It doesn't scale" or "it's too expensive" are conclusions, not
-      explanations. The specific mechanism of failure is what makes the
-      answer stick in investor conversations.
-    fix: |
-      For the weakest failure-mode explanation, dig one level deeper. Why
-      specifically does it not scale? At what threshold does it break? What
-      happens to the customer when it does? One concrete example beats three
-      abstract assertions.
 
   # -----------------------------------------------------------------
   # Prior attempts -- weak

@@ -19,8 +19,7 @@ This dimension assesses:
 3. **Insight depth**: the non-obvious truth that makes this company defensible
 4. **Problem urgency**: why this needs solving now (timing thesis)
 5. **Evidence breadth**: what independent signals validate that the problem is real
-6. **Alternatives understanding**: what customers currently use and why it fails
-7. **Counter-intuitive beliefs**: what the founder knows that others don't
+6. **Counter-intuitive beliefs**: what the founder knows that others don't
 
 ---
 
@@ -48,14 +47,12 @@ Minimum for a meaningful score. Targets approximately 5-7 minutes to complete.
 | q2.4 | Long-text | Timing thesis |
 | q2.5 | Multi-select | Evidence signal breadth |
 
-### Recommended tier (5 questions)
-Improves confidence and unlocks sharper recommendations. Adds approximately 5 minutes.
+### Recommended tier (3 questions)
+Improves confidence and unlocks sharper recommendations. Adds approximately 3 minutes.
 
 | ID | Type | Signal |
 |----|------|--------|
-| q2.6 | Long-text | Best customer story / direct quote |
 | q2.7 | Single-select | Problem severity |
-| q2.8 | Long-text | Alternatives analysis depth |
 | q2.9 | Long-text | Knowledge of prior failed attempts |
 | q2.10 | Long-text | Contrarian belief |
 

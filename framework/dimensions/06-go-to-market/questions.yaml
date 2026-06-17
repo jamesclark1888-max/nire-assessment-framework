@@ -447,34 +447,3 @@ questions:
       weight: 0.00
     version-added: "0.1.0"
 
-  - id: q6.13
-    dimension: go-to-market
-    tier: optional
-    type: long-text
-    question: "Describe how you set your price, whether you have tested higher prices, and what you know about how customers respond to price changes."
-    helper-text: |
-      Include how your current price was chosen and any experiments you have
-      run: offering a higher price to a new prospect, testing different packaging,
-      or raising prices on existing customers. If you have not tested pricing,
-      describe what you believe the ceiling might be and how you would test it.
-    why-it-matters: |
-      Pricing evidence is a forward indicator of unit economics quality.
-      Founders who have tested price sensitivity have the data to improve margins;
-      founders who have not are operating with a significant unknown. At pre-seed,
-      any observed evidence of willingness to pay above the current price is a
-      positive signal.
-    validation:
-      min-chars: 50
-      max-chars: 800
-    applies-to:
-      stages: all
-      business-models: all
-      regions: all
-    scoring:
-      type: ai-qualitative
-      weight: 0.05
-      rubric-ref: q6.13-pricing-dynamics
-    recommendation-trigger:
-      low-score: gtm-pricing-untested
-      medium-score: null
-    version-added: "0.1.0"

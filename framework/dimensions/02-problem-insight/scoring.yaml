@@ -209,47 +209,6 @@ rules:
           max: 100
 
   # ─────────────────────────────────────────────────────────────────
-  # Customer story (q2.6)
-  # ─────────────────────────────────────────────────────────────────
-  - id: customer-story-rubric
-    applies-to-question: q2.6
-    description: |
-      AI-evaluated scoring for the best customer story or quote.
-      Rewards vivid, specific, role-anchored stories with direct quotes.
-    logic:
-      type: rubric
-      rubric:
-        criteria:
-          - name: specificity-and-role
-            weight: 0.30
-            description: |
-              Is a specific role, company type, or situation named? Or is the
-              story generic ("a customer told me they find it hard")? A named
-              role + scenario is the minimum for a strong story.
-          - name: customer-voice
-            weight: 0.30
-            description: |
-              Is the story told in the customer's words — what they said, what
-              they did, what they felt — rather than the founder's interpretation?
-              Direct quotes score highest; close paraphrases score well; summary
-              narration scores lowest.
-          - name: impact-signal
-            weight: 0.25
-            description: |
-              Does the story include what the problem cost the customer — in
-              time, money, risk, or emotional weight? Without a cost signal,
-              the story illustrates the problem but not the urgency.
-          - name: memorability
-            weight: 0.15
-            description: |
-              Is this a story a VC would repeat to a partner? Does it have
-              a beginning (situation), middle (pain), and implied end (what
-              the customer wanted)?
-        score-bounds:
-          min: 25
-          max: 90
-
-  # ─────────────────────────────────────────────────────────────────
   # Problem severity (q2.7)
   # ─────────────────────────────────────────────────────────────────
   - id: problem-severity-categorical
@@ -266,49 +225,6 @@ rules:
         medium-severity: 55
         low-severity: 30
         not-yet-confirmed: 35
-
-  # ─────────────────────────────────────────────────────────────────
-  # Alternatives analysis (q2.8)
-  # ─────────────────────────────────────────────────────────────────
-  - id: alternatives-analysis-rubric
-    applies-to-question: q2.8
-    description: |
-      AI-evaluated scoring of how well the founder understands existing
-      alternatives and their failure modes. Rewards specificity and
-      structural analysis of why alternatives fail.
-    logic:
-      type: rubric
-      rubric:
-        criteria:
-          - name: named-alternatives
-            weight: 0.40
-            description: |
-              Are specific alternatives named — product names, process names,
-              or specific workarounds? Or is it generic ("they use old tools")?
-              The strongest answers name 2-4 distinct alternatives with different
-              failure modes.
-            examples-strong:
-              - "Large customers use Workiva for the reporting layer but it requires a full-time analyst to maintain. Mid-market customers use Excel, where the main failure is version control and human error. Newer companies try to stitch together Google Sheets with Zapier, which breaks under any complexity."
-            examples-weak:
-              - "They use spreadsheets, which are inefficient."
-              - "There's no good solution out there right now."
-          - name: failure-mode-depth
-            weight: 0.40
-            description: |
-              For each alternative named, does the founder explain specifically
-              WHY it fails — the mechanism of failure, not just that it does?
-              "Excel doesn't scale" scores lower than "Excel fails because
-              formula auditing breaks when the file exceeds 50MB, and there's
-              no access control, so the finance director can't share it with
-              external auditors."
-          - name: completeness
-            weight: 0.20
-            description: |
-              Are the most obvious alternatives covered? Does the answer include
-              both build-it-internally options and buy options where both exist?
-        score-bounds:
-          min: 25
-          max: 90
 
   # ─────────────────────────────────────────────────────────────────
   # Prior failed attempts (q2.9)

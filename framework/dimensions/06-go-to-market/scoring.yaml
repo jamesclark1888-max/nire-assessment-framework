@@ -318,39 +318,3 @@ rules:
           min: 20
           max: 78
 
-  # ─────────────────────────────────────────────────────────────────
-  # q6.13 — Pricing and discounting dynamics: optional, ai-qualitative
-  # ─────────────────────────────────────────────────────────────────
-  - id: q6.13-pricing-dynamics
-    applies-to-question: q6.13
-    description: |
-      AI-evaluated scoring for the presence of empirical pricing evidence and
-      any observed data on how customers respond to price changes. Rewards
-      any observed test, however early. Penalises entirely assumption-based
-      pricing with no test planned or executed.
-    logic:
-      type: rubric
-      rubric:
-        criteria:
-          - name: pricing-evidence
-            weight: 0.55
-            description: |
-              Has the current price been empirically tested — offered to a new
-              prospect at a higher level, tested across different packaging,
-              or raised on an existing customer? Any observed evidence of
-              willingness to pay above the current price scores higher than
-              purely stated belief. Founders who have not tested pricing can
-              score in the middle band by naming a specific planned experiment
-              and the data it would produce.
-          - name: churn-and-retention
-            weight: 0.45
-            description: |
-              Is there any observed data on how price changes affected retention
-              or deal conversion? Even a single observation — "we raised price
-              25% on one renewal and the customer stayed" — is worth more than
-              an assumption that customers would accept higher prices. The
-              strongest answers describe how price has been tested across
-              multiple customer interactions and what the results showed.
-        score-bounds:
-          min: 20
-          max: 80

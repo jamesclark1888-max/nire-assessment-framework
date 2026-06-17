@@ -192,37 +192,6 @@ questions:
   # RECOMMENDED TIER
   # ─────────────────────────────────────────────────────────────────
 
-  - id: q2.6
-    dimension: problem-insight
-    tier: recommended
-    type: long-text
-    question: "Share the single most compelling customer story or direct quote that illustrates the problem."
-    helper-text: |
-      Name the person's role (not their name) and describe what they told you.
-      Direct quotes are more powerful than paraphrases. The best stories make
-      a VC lean forward.
-    why-it-matters: |
-      A vivid, specific customer story is the most persuasive element of a
-      problem narrative in a VC meeting. It converts partner scepticism more
-      effectively than any market size statistic. Founders who have it have
-      done real discovery; founders who don't, often haven't.
-    validation:
-      min-chars: 100
-      max-chars: 800
-    applies-to:
-      stages: all
-      business-models: all
-      regions: all
-    scoring:
-      type: ai-qualitative
-      weight: 0.08
-      rubric-ref: customer-story-rubric
-    recommendation-trigger:
-      low-score: weak-customer-story
-      medium-score: improvable-customer-story
-      high-score: null
-    version-added: "0.1.0"
-
   - id: q2.7
     dimension: problem-insight
     tier: recommended
@@ -256,38 +225,6 @@ questions:
     recommendation-trigger:
       low-score: low-problem-severity
       medium-score: medium-problem-severity
-      high-score: null
-    version-added: "0.1.0"
-
-  - id: q2.8
-    dimension: problem-insight
-    tier: recommended
-    type: long-text
-    question: "What do customers currently use to address this problem, and why is it unsatisfactory?"
-    helper-text: |
-      Name specific alternatives: spreadsheets, named incumbents, internal tools,
-      manual processes, or nothing at all. For each, explain what specifically
-      fails. Generic answers ("they use Excel") without explaining the failure
-      mode score lower.
-    why-it-matters: |
-      Knowing existing alternatives is essential for positioning and pricing.
-      Founders who name specific alternatives and articulate their failure modes
-      demonstrate deep customer understanding and a clear wedge. VCs ask this
-      question in every meeting; unprepared founders lose credibility fast.
-    validation:
-      min-chars: 100
-      max-chars: 800
-    applies-to:
-      stages: all
-      business-models: all
-      regions: all
-    scoring:
-      type: ai-qualitative
-      weight: 0.06
-      rubric-ref: alternatives-analysis-rubric
-    recommendation-trigger:
-      low-score: weak-alternatives-analysis
-      medium-score: improvable-alternatives-analysis
       high-score: null
     version-added: "0.1.0"
 
