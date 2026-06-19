@@ -664,3 +664,252 @@ templates:
     estimated-impact:
       dimension-score-uplift: 5
       confidence: low
+
+  # -----------------------------------------------------------------
+  # SAM derivation improvable — medium band
+  # -----------------------------------------------------------------
+  - id: improvable-sam
+    trigger:
+      question-ids: [q3.3]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your SAM figure exists but is derived as a percentage of TAM rather
+      than a count of reachable customers at a named contract value. A
+      percentage-of-TAM SAM is harder to defend than a bottoms-up count
+      because it leaves the underlying population assumption implicit.
+    gap: |
+      Investors who push back on SAM are almost always pushing back on
+      the population assumption or the contract value, not the arithmetic.
+      A bottoms-up derivation makes both explicit and reduces the surface
+      area for challenge.
+    fix: |
+      Rebuild the SAM from two specific inputs:
+
+      1. Count the reachable customer population directly. How many companies
+         or individuals match the criteria your current product and go-to-market
+         can serve without material adaptation? Use a specific source: a LinkedIn
+         filter, an industry register, or a company directory count. Name the
+         source in your methodology.
+
+      2. Multiply by a specific contract value based on what customers have
+         actually paid or agreed to pay, not your target price. The SAM derived
+         from real contract values survives a first-meeting challenge; one derived
+         from aspirational pricing does not.
+
+      This week: run a LinkedIn or company directory filter for your ICP
+      profile and count the result. That count, multiplied by your actual
+      average contract value, is your bottoms-up SAM.
+    estimated-impact:
+      dimension-score-uplift: 6
+      confidence: medium
+
+  # -----------------------------------------------------------------
+  # SOM capacity gap — medium band
+  # -----------------------------------------------------------------
+  - id: improvable-som
+    trigger:
+      question-ids: [q3.4]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your Year-3 revenue target is in a plausible range but the derivation
+      doesn't yet make the sales capacity assumptions visible. Without that
+      foundation, investors will stress-test the number using their own
+      assumptions, which typically produces a more conservative figure.
+    gap: |
+      A plausible revenue target without a capacity derivation leaves the
+      core question unanswered: is this achievable given your team, cycle,
+      and deal size?
+    fix: |
+      Add one bottom-up validation to your Year-3 figure:
+
+      1. State how many salespeople you will have by Year 3 and how many
+         deals each can close per year at your expected contract value.
+         The implied revenue from that calculation is the bottom-up ceiling.
+         If the ceiling exceeds your stated target, the plan is conservative
+         and can be explained as such. If it falls short, the gap is the
+         first question an investor will ask.
+
+      2. If there is a gap between the capacity-based ceiling and your
+         stated target, name the assumption that closes it: a higher
+         contract value, a shorter sales cycle, or an additional channel
+         beyond a direct sales team. Name the assumption explicitly rather
+         than letting investors find it.
+
+      This week: calculate the implied Year-3 revenue from your sales
+      capacity plan using annual deals per salesperson multiplied by ACV.
+      Compare the result to your stated target and write one sentence
+      that explains any gap.
+    estimated-impact:
+      dimension-score-uplift: 7
+      confidence: medium
+
+  # -----------------------------------------------------------------
+  # Market analogues strengthened — medium band
+  # -----------------------------------------------------------------
+  - id: strengthened-analogues
+    trigger:
+      question-ids: [q3.10]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your market analogues name comparable companies but the structural
+      connection is not yet stated. An analogue that names a company
+      without identifying the specific characteristic that makes it
+      analogous leaves investors to construct the comparison themselves,
+      which sometimes produces a less favourable reading than you intended.
+    gap: |
+      The value of an analogue is the structural implication: what does
+      the named company's trajectory predict about your market's dynamics,
+      timing, or exit path? Without that link, the comparison is a
+      reference point, not an argument.
+    fix: |
+      For each analogue cited, add two sentences:
+
+      1. The specific structural feature that makes it comparable. Name
+         the mechanism: vertical SaaS wedge, regulatory timing, data
+         flywheel, expansion sequence. One specific structural feature
+         is more persuasive than a general category resemblance.
+
+      2. The implication for your trajectory. What does the named company's
+         path from beachhead to category predict for how your market will
+         develop? A prediction grounded in a named analogue is more
+         credible than a general aspiration.
+
+      This week: for your strongest analogue, write the two sentences
+      above. If the structural connection is not specific enough to
+      fit in one sentence, find a more closely comparable company.
+    estimated-impact:
+      dimension-score-uplift: 4
+      confidence: low
+
+  # -----------------------------------------------------------------
+  # Market structure partial — medium band
+  # -----------------------------------------------------------------
+  - id: market-structure-partial
+    trigger:
+      question-ids: [q3.11]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      Your market description falls into one of three structures that
+      present a more significant entry challenge than a fragmented or
+      consolidating market: winner-take-all dynamics where the eventual
+      dominant player is not yet decided, a regulated oligopoly where
+      licensing barriers limit the number of viable entrants, or an
+      established two-to-three-player market where mature competitors
+      already own most customer relationships. Each structure raises a
+      specific investor question about how a new company gets in.
+    gap: |
+      In concentrated, winner-take-all, or licensed markets, investors
+      ask how do you enter before they assess product quality. A general
+      positioning argument is not sufficient. What is needed is a specific
+      entry thesis: the wedge, the timing window, or the licensing path
+      that makes entry viable for a company at your current scale.
+    fix: |
+      1. Identify the binding constraint in your market. For winner-take-all
+         dynamics: whether the window to establish a category-defining position
+         is still open, and which distribution or data advantage determines
+         who wins it. For a regulated oligopoly: your specific path to the
+         required licence or accreditation, and what you can sell or validate
+         while that process is in progress. For an established two-to-three-player
+         market: which incumbent is losing customers, why those customers are
+         leaving, and whether the profile switching away matches your ICP.
+
+      2. Write one sentence that begins "We can enter this market because"
+         and completes it with a mechanism specific to your structure. If the
+         sentence requires more than one clause to explain, the thesis is not
+         yet specific enough to use in an investor conversation.
+
+      This week: ask your two most engaged prospects what would prevent
+      their company from working with you. Their answer reveals the actual
+      structural barrier in your market and tests whether your entry thesis
+      addresses it.
+    estimated-impact:
+      dimension-score-uplift: 3
+      confidence: low
+
+  # -----------------------------------------------------------------
+  # Adjacent expansion vision improvable — medium band
+  # -----------------------------------------------------------------
+  - id: improvable-adjacency-vision
+    trigger:
+      question-ids: [q3.12]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      Your adjacent market narrative names expansion opportunities but
+      describes them in terms of thematic similarity rather than a
+      structural link: the data asset, customer relationship, or
+      distribution advantage that makes you specifically positioned to
+      expand there rather than a competitor entering from outside.
+    gap: |
+      An adjacency that any well-funded competitor could enter is less
+      valuable than one your beachhead position makes cheaper or faster
+      to execute. The structural connection is what makes the expansion
+      credible rather than aspirational.
+    fix: |
+      For each named adjacency, add one sentence explaining the specific
+      advantage your beachhead creates for that expansion:
+
+      1. Same buyer relationship: "Our existing accounts with the Head
+         of Finance mean we can sell [adjacent product] without a new
+         acquisition motion."
+      2. Proprietary data: "Our customer usage data creates a training
+         set that makes [adjacent AI function] more accurate than a
+         new entrant starting from scratch could build."
+      3. Distribution unlock: "Our integration into [platform] means
+         we can distribute [adjacent product] to the same customer
+         base without a second sales cycle."
+
+      This week: pick your strongest adjacency and write that one sentence.
+      If you cannot write it specifically, the adjacency may be structural
+      for a competitor but aspirational for you.
+    estimated-impact:
+      dimension-score-uplift: 4
+      confidence: low
+
+  # -----------------------------------------------------------------
+  # Geographic entry improvable — medium band
+  # -----------------------------------------------------------------
+  - id: improvable-geo-entry
+    trigger:
+      question-ids: [q3.13]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      Your geographic entry sequence names the markets in order but
+      the rationale for each transition is described in terms of market
+      size rather than execution enablers: existing relationships,
+      regulatory credentials, or distribution assets that make entry
+      into the second market cheaper than starting cold.
+    gap: |
+      A sequence justified only by market size leaves open the question
+      of why a well-capitalised competitor would not enter the same
+      market first. The defensible answer names a structural enabler
+      specific to you.
+    fix: |
+      For each market transition in your sequence, add one sentence
+      naming the specific enabler that reduces customer acquisition
+      cost in that market compared to a cold entry:
+
+      1. A local partner, existing customer reference, or regulatory
+         credential that provides access without building from scratch.
+      2. If no enabler yet exists, name the one that must be built
+         before entry: a named partner to engage, a licence to apply
+         for, or a reference customer to secure in the target market.
+
+      This week: for your planned second market, identify one relationship
+      or asset you currently have that provides a specific advantage there.
+      If none exists, name the first action to create one before the market
+      entry plan is credible.
+    estimated-impact:
+      dimension-score-uplift: 3
+      confidence: low

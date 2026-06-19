@@ -110,7 +110,7 @@ questions:
       benchmark-ref: sam-size-global
     recommendation-trigger:
       low-score: sam-undefined-or-tiny
-      medium-score: null
+      medium-score: improvable-sam
       high-score: null
     version-added: "0.1.0"
 
@@ -145,7 +145,7 @@ questions:
       benchmark-ref: som-target-by-stage
     recommendation-trigger:
       low-score: som-unrealistic
-      medium-score: null
+      medium-score: improvable-som
       high-score: null
     version-added: "0.1.0"
 
@@ -315,7 +315,7 @@ questions:
       rubric-ref: market-analogues-rubric
     recommendation-trigger:
       low-score: no-market-analogues
-      medium-score: null
+      medium-score: strengthened-analogues
       high-score: null
     version-added: "0.1.0"
 
@@ -354,7 +354,7 @@ questions:
       rubric-ref: market-structure-categorical
     recommendation-trigger:
       low-score: null
-      medium-score: null
+      medium-score: market-structure-partial
       high-score: null
     version-added: "0.1.0"
 
@@ -387,7 +387,7 @@ questions:
       rubric-ref: adjacent-expansion-rubric
     recommendation-trigger:
       low-score: limited-adjacent-vision
-      medium-score: null
+      medium-score: improvable-adjacency-vision
       high-score: null
     version-added: "0.1.0"
 
@@ -424,7 +424,7 @@ questions:
       rubric-ref: geographic-sequencing-rubric
     recommendation-trigger:
       low-score: null
-      medium-score: null
+      medium-score: improvable-geo-entry
       high-score: null
     version-added: "0.1.0"
 

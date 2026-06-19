@@ -90,7 +90,7 @@ questions:
       benchmark-ref: customer-count-by-stage
     recommendation-trigger:
       low-score: no-early-traction
-      medium-score: null
+      medium-score: early-traction-partial
       high-score: null
     version-added: "0.1.0"
 
@@ -130,7 +130,7 @@ questions:
       benchmark-ref: mrr-by-stage
     recommendation-trigger:
       low-score: low-mrr
-      medium-score: null
+      medium-score: mrr-growing
       high-score: null
     version-added: "0.1.0"
 
@@ -168,7 +168,7 @@ questions:
       benchmark-ref: mom-growth-rate
     recommendation-trigger:
       low-score: low-growth
-      medium-score: null
+      medium-score: growth-moderate
       high-score: null
     version-added: "0.1.0"
 
@@ -315,7 +315,7 @@ questions:
       benchmark-ref: nrr-saas-global
     recommendation-trigger:
       low-score: weak-nrr
-      medium-score: null
+      medium-score: nrr-developing
       high-score: null
     version-added: "0.1.0"
 
@@ -393,7 +393,7 @@ questions:
       rubric-ref: cohort-analysis-rubric
     recommendation-trigger:
       low-score: null
-      medium-score: null
+      medium-score: cohort-retention-partial
       high-score: null
     version-added: "0.1.0"
 
@@ -427,7 +427,7 @@ questions:
       rubric-ref: customer-detail-rubric
     recommendation-trigger:
       low-score: null
-      medium-score: null
+      medium-score: named-customers-partial
       high-score: null
     version-added: "0.1.0"
 
@@ -461,6 +461,6 @@ questions:
       rubric-ref: product-analytics-rubric
     recommendation-trigger:
       low-score: null
-      medium-score: null
+      medium-score: analytics-partial
       high-score: null
     version-added: "0.1.0"

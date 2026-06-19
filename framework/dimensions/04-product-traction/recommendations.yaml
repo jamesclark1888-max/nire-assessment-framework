@@ -589,3 +589,299 @@ templates:
     estimated-impact:
       dimension-score-uplift: 4
       confidence: medium
+
+  # -----------------------------------------------------------------
+  # Early traction partial — medium band
+  # -----------------------------------------------------------------
+  - id: early-traction-partial
+    trigger:
+      question-ids: [q4.2]
+      score-band: medium
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your paying customer count is above zero but below what investors
+      typically look for to identify a repeatable sales pattern. The
+      commercial signal exists; the volume is not yet sufficient for
+      investors to distinguish a founder relationship from a scalable
+      motion.
+    gap: |
+      A small customer count makes it difficult to identify whether the
+      sales motion works for buyers who don't already know the founders.
+      Customers sourced outside the founding team's personal network
+      carry significantly more evidential weight than those sourced within it.
+    fix: |
+      Two actions will increase the evidential value of your current
+      customer count:
+
+      1. Prioritise the next 2-3 customers from sources outside your
+         personal network: a referral from an existing customer, an
+         inbound inquiry, or a cold outreach close. These carry more
+         weight than additional warm-network closes because they demonstrate
+         the motion without founder relationships as the mechanism.
+
+      2. Document the pattern across your existing customers: same buyer
+         profile, same trigger event, same sales cycle length. Even a
+         pattern across 3-5 customers is meaningful if it is written down.
+         Without a documented pattern, additional customers from the same
+         network don't advance the argument.
+
+      This week: identify the next 3 most likely customers outside your
+      existing network and initiate contact with each. Those 3 names are
+      the pipeline that changes the investor conversation.
+    estimated-impact:
+      dimension-score-uplift: 0
+      confidence: low
+
+  # -----------------------------------------------------------------
+  # MRR growing — medium band
+  # -----------------------------------------------------------------
+  - id: mrr-growing
+    trigger:
+      question-ids: [q4.3]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your MRR is above the early traction threshold but below what
+      typically supports the raise size and valuation you are targeting.
+      Investors building a growth model from this starting point will
+      scrutinise whether the trajectory to the next-round milestone is
+      achievable within the proposed runway.
+    gap: |
+      The gap between your current MRR and the level that strongly supports
+      your target valuation is the most common source of friction at seed
+      discussions. Closing it before the round closes, or adjusting the
+      ask to match the current level, is simpler than managing that
+      friction in every investor conversation.
+    fix: |
+      Two approaches will move the MRR before the round closes or
+      make the current level more defensible:
+
+      1. Prioritise expansion with existing customers before new customer
+         acquisition. A seat expansion, module addition, or shift to annual
+         billing in your existing base is the fastest path to MRR growth
+         because the trust and access are already established.
+
+      2. For new customers, identify the 2-3 prospects in the active
+         pipeline with the shortest expected close timeline and concentrate
+         all sales effort on those before opening new prospecting cycles.
+
+      This week: contact each existing customer with one specific expansion
+      offer: a usage tier, a prepayment option, or an add-on relevant to
+      their current use case. One expansion close at your current ACV
+      meaningfully changes the starting MRR for the raise.
+    estimated-impact:
+      dimension-score-uplift: 0
+      confidence: low
+
+  # -----------------------------------------------------------------
+  # Growth moderate — medium band
+  # -----------------------------------------------------------------
+  - id: growth-moderate
+    trigger:
+      question-ids: [q4.4]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your month-over-month growth rate is positive and demonstrates a
+      functioning acquisition motion, but it sits in the range where
+      investors will ask about the constraint: whether the rate reflects
+      a deliberate pace, a channel ceiling, or a capacity limit that
+      additional capital would remove.
+    gap: |
+      A growth rate in the lower half of investor expectations requires
+      an accompanying narrative. Without a specific explanation of the
+      constraint and what changes when capital is deployed, investors
+      model the trajectory at the current rate, which produces a longer
+      path to an exit that clears their return threshold.
+    fix: |
+      Add two elements to your growth narrative:
+
+      1. Name the specific constraint on your current rate. Is it the
+         reachable pool in your current channel? The pace at which your
+         team can onboard new customers? A product gap that limits which
+         buyer profiles convert? The constraint determines the fix, so
+         naming it signals you have diagnosed rather than just observed
+         the rate.
+
+      2. State the specific change that the capital you are raising
+         enables. "Adding two account executives increases pipeline
+         capacity 3x from month 4 of the raise" is a specific growth
+         thesis. "More capital will accelerate growth" is not.
+
+      This week: calculate the maximum MRR you could reach in 12 months
+      at the current growth rate with the current team size. That number
+      is your baseline, and the gap between it and your plan is the
+      capital deployment thesis.
+    estimated-impact:
+      dimension-score-uplift: 0
+      confidence: low
+
+  # -----------------------------------------------------------------
+  # NRR developing — medium band
+  # -----------------------------------------------------------------
+  - id: nrr-developing
+    trigger:
+      question-ids: [q4.9]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your net revenue retention is at or slightly above 100%, which means
+      churn and contraction are offset by expansion but the expansion
+      motion is not yet generating meaningful additional growth. The product
+      is retained; the compounding revenue signal is limited.
+    gap: |
+      NRR between 100% and 115% is acceptable at early stage, but it does
+      not yet demonstrate the compounding revenue model that investors price
+      at a premium. Most customers are retained at the initial contract
+      value without growing it.
+    fix: |
+      Develop a deliberate expansion motion for existing customers:
+
+      1. Identify the natural usage trigger that indicates a customer is
+         ready to expand: a usage cap approaching, a team growing, a new
+         use case opening within the same organisation. Define that trigger
+         explicitly and build a proactive outreach process around it.
+
+      2. For each expansion conversation, prepare a specific offer tied
+         to the trigger: a higher usage tier, additional seats, or an
+         add-on module. Passive expansion (customers self-serve into a
+         higher tier) produces lower NRR than active expansion (a named
+         person at a named account is asked at the right moment with a
+         specific offer).
+
+      This week: review your 5 largest customers by contract value and
+      identify which is closest to a natural expansion trigger. Initiate
+      that conversation this month.
+    estimated-impact:
+      dimension-score-uplift: 5
+      confidence: medium
+
+  # -----------------------------------------------------------------
+  # Cohort retention partial — medium band
+  # -----------------------------------------------------------------
+  - id: cohort-retention-partial
+    trigger:
+      question-ids: [q4.11]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your cohort retention data is present but limited in either the
+      time period covered or the cohort size. A retention floor based
+      on fewer than 90 days of data, or a cohort of under 10 customers,
+      does not yet reveal whether the floor has been reached and where
+      it sits.
+    gap: |
+      Cohort retention is most valuable when it shows stabilisation: the
+      level at which churn stops and active users hold steady. Without
+      a long enough time series or a large enough cohort, the question
+      of whether a floor exists remains open.
+    fix: |
+      Two things will strengthen your cohort retention narrative:
+
+      1. Extend the time horizon. If you have at least 3 months of data,
+         present retention as a month-by-month table from cohort start date
+         to the most recent month. Even a 90-day chart shows whether the
+         curve is still declining or has flattened. A flattening curve,
+         even at 60%, is a meaningful signal that the product creates
+         lasting value for that cohort.
+
+      2. If the cohort is small, state the denominator explicitly.
+         "7 of 9 customers from the March cohort are still active 5 months
+         later" is a specific, honest statement. Investors don't expect
+         statistical significance at this stage; they expect transparency
+         about the basis.
+
+      This week: build a month-by-month retention table for your oldest
+      cohort. Label the starting customer count and highlight the month
+      where the curve appears to stabilise, if one is visible.
+    estimated-impact:
+      dimension-score-uplift: 6
+      confidence: medium
+
+  # -----------------------------------------------------------------
+  # Named customers partial — medium band
+  # -----------------------------------------------------------------
+  - id: named-customers-partial
+    trigger:
+      question-ids: [q4.12]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      You have named customers, but the documented outcomes are either
+      absent or described at a level of generality that doesn't give
+      investors a specific, independently verifiable data point. Named
+      customers are most valuable when paired with a quoted outcome that
+      an investor could confirm in a reference call.
+    gap: |
+      A named customer without a documented outcome shifts the evidence
+      standard from verifiable to trust-based. Investors can't confirm
+      that the customer received value; they have only your characterisation
+      of the relationship. That limits how much weight the reference carries
+      in a partner meeting.
+    fix: |
+      For each named customer, collect one specific outcome:
+
+      1. Ask the customer what changed in measurable terms after they
+         started using the product. A specific number is the most portable
+         form of outcome evidence and the most likely to travel in an
+         investor conversation: time saved, cost avoided, or error rate
+         reduced.
+
+      2. Ask whether they are comfortable being named in investor materials
+         and, ideally, willing to take a reference call. A direct call
+         from a customer is the single highest-value proof point available
+         at this stage.
+
+      This week: contact the customer you have worked with most closely
+      and ask two questions: what changed for them in measurable terms,
+      and would they be comfortable speaking to one of your investors?
+      Those two answers turn a named customer into a verifiable reference.
+    estimated-impact:
+      dimension-score-uplift: 7
+      confidence: medium
+
+  # -----------------------------------------------------------------
+  # Analytics partial — medium band
+  # -----------------------------------------------------------------
+  - id: analytics-partial
+    trigger:
+      question-ids: [q4.13]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      Product usage data exists but the measurement is at the product
+      level (logins, page views, session length) rather than at the
+      feature level: completion frequency on the core value-creating
+      action. The current metrics tell investors that users return;
+      they don't tell investors that users derive value.
+    gap: |
+      Core feature completion frequency is the metric investors use to
+      assess product-market fit at the usage level. Without it, engagement
+      data is present but the signal it provides is limited.
+    fix: |
+      Instrument one core feature completion metric:
+
+      1. Identify the single action that, when a user completes it, is
+         the strongest predictor that they found value in the product.
+         This is the event that, in your experience, correlates most
+         with retention. Name it specifically.
+
+      2. Measure what percentage of active users complete that action
+         in a typical week, and how many times per user. Even a rough
+         measurement from a small base is more informative than aggregate
+         login data from the same users.
+
+      This week: instrument one event tracking the core action if not
+      already in place, or if it is already tracked, produce the
+      completion rate for the last 30 days and compare it to the prior
+      30. That trend is your feature-level engagement signal.
+    estimated-impact:
+      dimension-score-uplift: 4
+      confidence: low

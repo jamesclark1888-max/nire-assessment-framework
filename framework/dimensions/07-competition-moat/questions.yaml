@@ -50,7 +50,7 @@ questions:
       rubric-ref: competitive-landscape-rubric
     recommendation-trigger:
       low-score: weak-competitive-awareness
-      medium-score: null
+      medium-score: competitive-map-partial
       high-score: null
     version-added: "0.1.0"
 
@@ -314,7 +314,7 @@ questions:
       rubric-ref: network-effects-rubric
     recommendation-trigger:
       low-score: network-effects-undefined
-      medium-score: null
+      medium-score: network-effects-partial
       high-score: null
     version-added: "0.1.0"
 
@@ -387,7 +387,7 @@ questions:
       rubric-ref: ip-regulatory-rubric
     recommendation-trigger:
       low-score: limited-ip-barriers
-      medium-score: null
+      medium-score: ip-barriers-partial
       high-score: null
     version-added: "0.1.0"
 
@@ -426,7 +426,7 @@ questions:
       rubric-ref: category-leadership-rubric
     recommendation-trigger:
       low-score: null
-      medium-score: null
+      medium-score: category-path-partial
       high-score: null
     version-added: "0.1.0"
 
@@ -461,6 +461,6 @@ questions:
       rubric-ref: third-party-validation-rubric
     recommendation-trigger:
       low-score: null
-      medium-score: null
+      medium-score: validation-partial
       high-score: null
     version-added: "0.1.0"

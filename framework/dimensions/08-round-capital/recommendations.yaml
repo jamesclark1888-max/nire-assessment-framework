@@ -669,3 +669,202 @@ templates:
          your comp set — even if the valuations are not available,
          the round sizes tell you whether your raise and valuation
          are in the right range.
+
+  # -----------------------------------------------------------------
+  # Round size high-end — medium band
+  # -----------------------------------------------------------------
+  - id: round-size-high-end
+    trigger:
+      question-ids: [q8.2]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      The raise target is above the level that creates immediate runway
+      concern but below the band that consistently generates the milestone
+      evidence institutional investors expect before a follow-on. The
+      available deployment scope is constrained relative to what the next
+      threshold band would support, which limits the ceiling on what can
+      be evidenced before the next raise.
+    gap: |
+      Investors who see a raise in this range assess whether the available
+      capital is sufficient to reach a milestone specific enough to justify
+      the next round. The practical question is whether the deployment plan
+      has been scoped tightly enough to make the most of the available
+      runway, or whether extending the raise to the next threshold band is
+      achievable with the current investor set.
+    fix: |
+      1. Confirm that the deployment plan accounts for each meaningful
+         portion of the raise with a specific outcome. If the plan allocates
+         a material share to "reserves" without a named reason, identify
+         which spend items could absorb that allocation more specifically,
+         or explain why the buffer is necessary given the milestone timeline.
+
+      2. State the case for the current size, naming the milestone it funds
+         and why that milestone supports the next round at the expected
+         step-up. Alternatively, model whether the raise can be extended
+         to the next threshold band and what stronger evidence that would
+         generate. One of those two answers closes the conversation; the
+         absence of either extends it.
+
+      This week: produce a line-item spend plan showing each cost category,
+      the monthly amount, and the cumulative total to the milestone. That
+      document is what an investor reads when assessing whether the round
+      size is the right match for the intended milestone.
+
+  # -----------------------------------------------------------------
+  # Cap table moderate — medium band
+  # -----------------------------------------------------------------
+  - id: cap-table-moderate
+    trigger:
+      question-ids: [q8.7]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      The cap table has some structural complexity (likely an outstanding
+      convertible, a small prior syndicate, or a non-standard share class)
+      that does not block an institutional raise but requires a prepared
+      explanation before legal diligence begins. Complexity that investors
+      encounter without prior explanation takes longer to work through
+      than complexity they have already been briefed on.
+    gap: |
+      Investors who encounter unexplained cap table elements pause diligence
+      and ask questions. The same elements, proactively explained, move
+      through the same process without friction. The difference is
+      preparation, not the elements themselves.
+    fix: |
+      1. Summarise the current structure in 3-4 sentences for investor
+         conversations: who owns what percentage, what instruments are
+         outstanding, and what the post-close ownership looks like after
+         the current raise. Being specific prevents investors from
+         constructing worst-case dilution scenarios.
+
+      2. For each non-standard element, add one sentence explaining why
+         it exists and when it resolves. A convertible with a named cap,
+         a specific discount, and a named conversion event is understandable.
+         "Outstanding convertibles" without those details is a diligence flag
+         that invites assumptions.
+
+      This week: write the 3-4 sentence cap table narrative and share
+      it with your legal adviser to confirm accuracy. Use it proactively
+      in cap table discussions before investors ask, not in response
+      to their questions.
+
+  # -----------------------------------------------------------------
+  # Convertible terms partial — medium band
+  # -----------------------------------------------------------------
+  - id: convertible-terms-partial
+    trigger:
+      question-ids: [q8.10]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      Your convertible terms name the cap, discount, and MFN clause, but
+      the dilution arithmetic at conversion has not been calculated and
+      presented. Investors modelling the economics of the next round need
+      the post-conversion ownership figures to assess the effective cost
+      of participating in the priced round the convertible converts into.
+    gap: |
+      Naming the terms is necessary but not sufficient. Investors need to
+      see the post-conversion ownership percentages under at least two
+      scenarios to understand the dilution implications for the next
+      lead investor. Without that model, they construct their own, which
+      typically produces a more conservative estimate.
+    fix: |
+      1. Build a simple conversion model in a spreadsheet showing the
+         current ownership, the convertible note allocation, and the
+         post-conversion ownership under two scenarios: conversion at
+         the cap, and conversion at 1.5x the cap. The calculation takes
+         10-15 minutes and prevents hours of diligence back-and-forth later.
+
+      2. Prepare to walk through the two scenarios fluently in investor
+         conversations for the next round. Founders who can present the
+         dilution arithmetic without hesitation signal that they understand
+         the full economics of their own capital structure.
+
+      This week: complete the two-scenario model and review it with
+      your legal adviser to confirm the conversion mechanics are
+      correctly represented. That model is the primary tool for
+      explaining convertible terms clearly to a new-round investor.
+
+  # -----------------------------------------------------------------
+  # Valuation comps partial — medium band
+  # -----------------------------------------------------------------
+  - id: valuation-comps-partial
+    trigger:
+      question-ids: [q8.12]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      Your valuation comparables name specific transactions but the
+      comparability rationale is thin: either the comps are from more
+      than 18 months ago and may not reflect current market conditions,
+      or the connection between each comp and your current situation
+      is left to the investor to construct.
+    gap: |
+      A named comp without a stated rationale for its comparability
+      invites investors to assess the connection themselves. That
+      assessment sometimes surfaces differences (stronger traction,
+      a larger market, a different stage) that undercut the valuation
+      rather than supporting it.
+    fix: |
+      1. For each comparable cited, write one sentence explaining the
+         specific attribute that makes it comparable: same stage and
+         traction level, same sector and buyer profile, or same
+         technology type with similar gross margin. If the comp is
+         materially stronger than your current position, name the
+         difference and explain why the valuation is nonetheless
+         in the right range.
+
+      2. For comps older than 12 months, add one sentence acknowledging
+         any market movement since close. If conditions have compressed
+         since the comp, noting this proactively is more credible than
+         presenting the nominal figure without context.
+
+      This week: write the comparability rationale sentence for each
+      comp you have cited. If you cannot write it for a specific
+      comp without stretching the comparison, consider whether
+      a more closely matched transaction is available.
+
+  # -----------------------------------------------------------------
+  # Investor targeting partial — medium band
+  # -----------------------------------------------------------------
+  - id: investor-targeting-partial
+    trigger:
+      question-ids: [q8.13]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      Your investor target list names funds that are active at your stage,
+      but the research has not reached partner level: you know the fund
+      invests in your category, but not which partner covers your specific
+      sector, which portfolio companies demonstrate the thesis fit, or what
+      each fund could contribute beyond capital.
+    gap: |
+      Fund-level research is the floor. Partner-level research is what
+      determines whether the first meeting converts. Founders who know
+      which partner to ask for, and why their portfolio history makes them
+      the right conversation, progress faster through the same investor
+      universe than those with a fund name and a general category match.
+    fix: |
+      1. For each fund on your target list, identify the specific partner
+         who covers your sector. Their portfolio page and recent public
+         writing or talks are the fastest source. If the fund does not
+         have a clear sector specialist, note this: generalist funds
+         without a dedicated sector partner move more slowly when
+         evaluating specialist opportunities.
+
+      2. For your three highest-priority funds, name one portfolio company
+         that demonstrates sector fit and write one sentence on what that
+         investment signals about the fund's thesis. If the portfolio
+         company is directly comparable to yours, note whether the fund
+         backs multiple competing companies in a sector.
+
+      This week: complete partner-level research on your three highest-
+      priority funds. Knowing the partner's name, their most relevant
+      portfolio company, and one specific thesis signal changes a
+      cold introduction request into a targeted, evidenced ask.

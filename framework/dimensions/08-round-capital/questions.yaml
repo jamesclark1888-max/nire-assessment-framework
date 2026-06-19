@@ -88,7 +88,7 @@ questions:
       benchmark-ref: round-size-by-stage
     recommendation-trigger:
       low-score: small-round-size
-      medium-score: null
+      medium-score: round-size-high-end
       high-score: null
     version-added: "0.1.0"
 
@@ -262,7 +262,7 @@ questions:
       rubric-ref: cap-table-health-categorical
     recommendation-trigger:
       low-score: complex-cap-table
-      medium-score: null
+      medium-score: cap-table-moderate
       high-score: null
     version-added: "0.1.0"
 
@@ -368,7 +368,7 @@ questions:
       rubric-ref: dilution-terms-rubric
     recommendation-trigger:
       low-score: opaque-dilution-terms
-      medium-score: null
+      medium-score: convertible-terms-partial
       high-score: null
     version-added: "0.1.0"
 
@@ -429,7 +429,7 @@ questions:
       rubric-ref: valuation-comps-rubric
     recommendation-trigger:
       low-score: weak-valuation-comps
-      medium-score: null
+      medium-score: valuation-comps-partial
       high-score: null
     version-added: "0.1.0"
 
@@ -462,6 +462,6 @@ questions:
       rubric-ref: investor-targeting-rubric
     recommendation-trigger:
       low-score: null
-      medium-score: null
+      medium-score: investor-targeting-partial
       high-score: null
     version-added: "0.1.0"

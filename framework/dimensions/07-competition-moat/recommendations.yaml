@@ -801,3 +801,214 @@ templates:
     estimated-impact:
       dimension-score-uplift: 3
       confidence: low
+
+  # -----------------------------------------------------------------
+  # Competitive map partial — medium band
+  # -----------------------------------------------------------------
+  - id: competitive-map-partial
+    trigger:
+      question-ids: [q7.1]
+      score-band: medium
+    priority: high
+    free-tier-visible: false
+    diagnostic: |
+      Your competitive landscape covers direct competitors but does not
+      yet address indirect substitutes or the do-nothing baseline.
+      Investors reading a map that names only direct competitors conclude
+      that the most common buyer objection, 'we'll manage this with our
+      existing tools', has not yet been examined.
+    gap: |
+      The do-nothing baseline is the alternative most buyers actually
+      choose. Without addressing it, the competitive narrative doesn't
+      explain the primary source of deals that don't close.
+    fix: |
+      Add two sections to your competitive map:
+
+      1. Indirect substitutes: name what a buyer does today if they don't
+         purchase a purpose-built solution. A spreadsheet, a manual
+         process, a team workaround, an adjacent tool repurposed for this
+         job. These alternatives define the status quo being displaced
+         and the switching cost you face from the market leader that
+         never appears on a comparison grid.
+
+      2. The do-nothing baseline: describe what happens to a buyer who
+         defers the decision for 12 months. What accumulates, what gets
+         more expensive, what risk grows? This is the urgency argument
+         that shortens long sales cycles.
+
+      This week: ask your most recent 2-3 customers what they were doing
+      before they bought from you. Their answers are your indirect
+      substitute category, named from real customer evidence.
+    estimated-impact:
+      dimension-score-uplift: 5
+      confidence: medium
+
+  # -----------------------------------------------------------------
+  # Network effects partial — medium band
+  # -----------------------------------------------------------------
+  - id: network-effects-partial
+    trigger:
+      question-ids: [q7.8]
+      score-band: medium
+    priority: medium
+    free-tier-visible: false
+    diagnostic: |
+      Your network effect or data flywheel mechanism is described but the
+      account doesn't identify the critical mass threshold or the specific
+      way accumulation produces a compounding advantage. Without those
+      elements, the argument describes a product that improves as it grows
+      rather than a flywheel that becomes self-reinforcing.
+    gap: |
+      A mechanism without a threshold and a compounding rate leaves
+      investors uncertain whether the effect is meaningful at current
+      scale. Effects that require a much larger base to activate are
+      valued at a discount to those already in operation.
+    fix: |
+      Add two elements to your mechanism description:
+
+      1. The threshold: at what scale does the effect become materially
+         self-sustaining? If you don't yet know, state the assumption
+         you are designing toward and how you will know when you have
+         crossed it: a specific metric that should improve as the base
+         grows.
+
+      2. A compounding proxy: is there any measurable signal the effect
+         is already operating at current scale? Time-to-first-value
+         shortening as the customer base grows, recommendation accuracy
+         improving with data volume, or a metric that gets better for
+         every customer as the total count rises. Even a small early
+         signal is worth naming.
+
+      This week: identify one metric in your product that should improve
+      as the user base grows. Track it from the earliest period available
+      to now and assess whether the trend supports the flywheel claim.
+    estimated-impact:
+      dimension-score-uplift: 4
+      confidence: low
+
+  # -----------------------------------------------------------------
+  # IP barriers partial — medium band
+  # -----------------------------------------------------------------
+  - id: ip-barriers-partial
+    trigger:
+      question-ids: [q7.10]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      Your IP or regulatory position is described but not yet connected
+      to a replication barrier: the time, cost, or structural constraint
+      that prevents a well-funded competitor from matching the position
+      within a relevant timeframe. A described asset without that
+      connection is noted but not yet investor-grade evidence.
+    gap: |
+      IP and regulatory assets are most valuable to investors when they
+      can be translated into a specific cost or time that a competitor
+      must bear to replicate them. Without that translation, the asset
+      is real but the moat argument built from it is incomplete.
+    fix: |
+      For each IP or regulatory asset, add one sentence connecting it
+      to a replication barrier:
+
+      1. For a patent or application: describe the specific action a
+         competitor must take to avoid infringement. A patent that
+         requires competitors to change their core architecture is a
+         meaningful barrier; one that can be designed around easily is
+         not. Your legal adviser can characterise this.
+
+      2. For a regulatory licence or accreditation: state how long the
+         same credential takes to obtain and whether any requirement
+         (operating history, capital reserve, track record) creates a
+         structural delay for fast followers. A credential that takes 18
+         months to obtain is an 18-month head start.
+
+      This week: write one paragraph describing each formal IP or
+      regulatory asset and the replication constraint it imposes. Share
+      it with your legal adviser to confirm accuracy before using it
+      in investor conversations.
+    estimated-impact:
+      dimension-score-uplift: 3
+      confidence: low
+
+  # -----------------------------------------------------------------
+  # Category path partial — medium band
+  # -----------------------------------------------------------------
+  - id: category-path-partial
+    trigger:
+      question-ids: [q7.11]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      Your five-year category path describes the destination and names
+      milestones on the way, but the milestones are structured as
+      time-based events rather than conditions grounded in market or
+      competitive signals. Time-based paths are harder for investors to
+      evaluate because they cannot be tested against current dynamics.
+    gap: |
+      A condition-based path answers the question "what happens if those
+      milestones slip by 18 months?" by tying each step to a market
+      signal rather than a calendar date. Without conditions, the path
+      relies on schedule adherence rather than market readiness.
+    fix: |
+      Convert the milestone sequence from time-based to condition-based:
+
+      1. For each major milestone on the path, replace the timeline with
+         a market or competitive condition: "We expand from the initial
+         vertical once we hold 15% market share and have at least one
+         referenceable customer in the adjacent segment." That condition
+         is testable from outside the company.
+
+      2. Name the one condition most likely to determine whether the path
+         proceeds on schedule or requires adjustment. That is the most
+         critical assumption in the category leadership thesis, and
+         naming it demonstrates it has been examined.
+
+      This week: rewrite the milestone sequence with conditions in place
+      of timelines and review whether each condition is achievable given
+      the current capital plan and the traction evidence so far.
+    estimated-impact:
+      dimension-score-uplift: 3
+      confidence: low
+
+  # -----------------------------------------------------------------
+  # Validation partial — medium band
+  # -----------------------------------------------------------------
+  - id: validation-partial
+    trigger:
+      question-ids: [q7.12]
+      score-band: medium
+    priority: low
+    free-tier-visible: false
+    diagnostic: |
+      External validation of your competitive positioning exists but
+      comes from sources with limited independence: advisors connected
+      to the founding team, early customers whose view may reflect
+      relationship loyalty, or general industry commentary rather than
+      direct competitive comparison.
+    gap: |
+      Validation is most useful to investors when it comes from sources
+      with both domain expertise and independence from the founding team.
+      The further the source from the founding team's influence, the
+      higher the evidential weight.
+    fix: |
+      Identify one additional validation source with higher independence:
+
+      1. A prospect who evaluated your product against multiple alternatives
+         and chose you. That evaluation, by definition, reflects an
+         independent comparison. Ask them whether they are comfortable
+         describing the evaluation process to an investor. Their account
+         is more credible than any internal characterisation of the result.
+
+      2. An industry analyst, sector-specialist journalist, or research
+         report that characterises the competitive dynamics in your market
+         and whose framing is consistent with your positioning. A public
+         citation from a named source is independently verifiable.
+
+      This week: review your last 3 competitive sales wins and identify
+      whether any prospect evaluated 2 or more alternatives before
+      choosing you. Ask the most recent one if they would be comfortable
+      describing that evaluation to one of your investors.
+    estimated-impact:
+      dimension-score-uplift: 3
+      confidence: low
