@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Fixed
+
+- D8 `weak-capital-plan` capital-deployment template: replaced the four
+  U+2192 (rightwards arrow) characters in the fix prose with ASCII `->`. The
+  embedded Quicksand PDF font has no glyph for U+2192, so the arrow rendered as
+  a stray glyph in the generated report. `->` renders in any font and preserves
+  the "input -> outcome by month" prescription semantics.
+
 ### Future work / Open questions
 
 - **Conditional question visibility based on prior answers.** For example, q1.3

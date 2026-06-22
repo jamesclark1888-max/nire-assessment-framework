@@ -284,8 +284,8 @@ templates:
     fix: |
       1. Rebuild the deployment plan around 2–3 investment areas, each
          with a named outcome. The format is: "£X into [specific
-         activity] → [measurable result] by [specific month]." For
-         example: "£350k into sales (1 AE hire + SDR) → £180k ARR from
+         activity] -> [measurable result] by [specific month]." For
+         example: "£350k into sales (1 AE hire + SDR) -> £180k ARR from
          5 paying enterprise customers by month 12." The milestone
          must be specific enough that an independent observer can
          evaluate whether it was reached.
@@ -307,7 +307,7 @@ templates:
       pre-seed:
         fix: |
           1. Rebuild the deployment plan around 2–3 investment areas,
-             each with a named outcome: "£X into [activity] → [result]
+             each with a named outcome: "£X into [activity] -> [result]
              by [month]." At pre-seed, the most credible outcomes are
              product milestones (launched, first paying customer) and
              early revenue figures (£20–50k ARR). Hiring outcomes
@@ -331,7 +331,7 @@ templates:
              expansion of a proven motion, not initial validation.
              Each investment area should reference a unit economic that
              has already been proven at smaller scale: "£1.2m into
-             outbound sales (3 enterprise AEs + 2 SDRs) → £1.8m ARR
+             outbound sales (3 enterprise AEs + 2 SDRs) -> £1.8m ARR
              added, consistent with our current £120k ACV and 6-month
              sales cycle." Without the proven unit, the plan is
              projecting rather than scaling.
