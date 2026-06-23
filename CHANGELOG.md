@@ -16,6 +16,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   a stray glyph in the generated report. `->` renders in any font and preserves
   the "input -> outcome by month" prescription semantics.
 
+- Founder-facing prose em-dash and en-dash sweep (Phase 1). Replaced the em
+  dashes in D6 recommendation prose, and in D6 question helper-text and
+  why-it-matters fields, with commas or colons per grammatical role. Normalised
+  the comment-only em dashes in D3, D4, and D7 recommendation files to hyphens.
+  Converted the D8 recommendation and D8 question en-dash numeric ranges to ASCII
+  hyphens. Rewrote the D8 `unclear-next-round` gap to remove blame-framing
+  language. The 37 D8 recommendation prose em dashes and 9 D8 question prose em
+  dashes remain, deferred to a separate prose rewrite.
+
 ### Future work / Open questions
 
 - **Conditional question visibility based on prior answers.** For example, q1.3

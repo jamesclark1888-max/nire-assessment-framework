@@ -666,7 +666,7 @@ templates:
       confidence: low
 
   # -----------------------------------------------------------------
-  # SAM derivation improvable — medium band
+  # SAM derivation improvable - medium band
   # -----------------------------------------------------------------
   - id: improvable-sam
     trigger:
@@ -706,7 +706,7 @@ templates:
       confidence: medium
 
   # -----------------------------------------------------------------
-  # SOM capacity gap — medium band
+  # SOM capacity gap - medium band
   # -----------------------------------------------------------------
   - id: improvable-som
     trigger:
@@ -748,7 +748,7 @@ templates:
       confidence: medium
 
   # -----------------------------------------------------------------
-  # Market analogues strengthened — medium band
+  # Market analogues strengthened - medium band
   # -----------------------------------------------------------------
   - id: strengthened-analogues
     trigger:
@@ -788,7 +788,7 @@ templates:
       confidence: low
 
   # -----------------------------------------------------------------
-  # Market structure partial — medium band
+  # Market structure partial - medium band
   # -----------------------------------------------------------------
   - id: market-structure-partial
     trigger:
@@ -835,7 +835,7 @@ templates:
       confidence: low
 
   # -----------------------------------------------------------------
-  # Adjacent expansion vision improvable — medium band
+  # Adjacent expansion vision improvable - medium band
   # -----------------------------------------------------------------
   - id: improvable-adjacency-vision
     trigger:
@@ -876,7 +876,7 @@ templates:
       confidence: low
 
   # -----------------------------------------------------------------
-  # Geographic entry improvable — medium band
+  # Geographic entry improvable - medium band
   # -----------------------------------------------------------------
   - id: improvable-geo-entry
     trigger:

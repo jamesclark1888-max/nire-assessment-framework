@@ -803,7 +803,7 @@ templates:
       confidence: low
 
   # -----------------------------------------------------------------
-  # Competitive map partial — medium band
+  # Competitive map partial - medium band
   # -----------------------------------------------------------------
   - id: competitive-map-partial
     trigger:
@@ -844,7 +844,7 @@ templates:
       confidence: medium
 
   # -----------------------------------------------------------------
-  # Network effects partial — medium band
+  # Network effects partial - medium band
   # -----------------------------------------------------------------
   - id: network-effects-partial
     trigger:
@@ -887,7 +887,7 @@ templates:
       confidence: low
 
   # -----------------------------------------------------------------
-  # IP barriers partial — medium band
+  # IP barriers partial - medium band
   # -----------------------------------------------------------------
   - id: ip-barriers-partial
     trigger:
@@ -931,7 +931,7 @@ templates:
       confidence: low
 
   # -----------------------------------------------------------------
-  # Category path partial — medium band
+  # Category path partial - medium band
   # -----------------------------------------------------------------
   - id: category-path-partial
     trigger:
@@ -972,7 +972,7 @@ templates:
       confidence: low
 
   # -----------------------------------------------------------------
-  # Validation partial — medium band
+  # Validation partial - medium band
   # -----------------------------------------------------------------
   - id: validation-partial
     trigger:

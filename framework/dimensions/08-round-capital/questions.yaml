@@ -162,7 +162,7 @@ questions:
     dimension: round-capital
     tier: required
     type: long-text
-    question: "Walk through how you will deploy this capital: name the 2–3 major investment areas, what each will specifically fund, and what success looks like at the end of this runway."
+    question: "Walk through how you will deploy this capital: name the 2-3 major investment areas, what each will specifically fund, and what success looks like at the end of this runway."
     helper-text: |
       Describe where the money goes and what it buys. The strongest answers name
       specific hires or outcomes ("hire 2 enterprise AEs, reach £200k ARR by
@@ -247,7 +247,7 @@ questions:
       - value: clean
         label: "Clean — founders hold ≥80% and the cap table has no complications"
       - value: standard
-        label: "Standard — founders hold 60–79%, with some angels or a prior round"
+        label: "Standard — founders hold 60-79%, with some angels or a prior round"
       - value: complex
         label: "Complex — founders hold below 60%, or outstanding instruments will materially affect the post-close structure"
       - value: not-yet-formed
@@ -407,7 +407,7 @@ questions:
     type: long-text
     question: "How does your target valuation compare to recent comparable raises at your stage? Name specific recent rounds that support your ask."
     helper-text: |
-      Describe 2–3 comparable companies or deals from the past 18 months —
+      Describe 2-3 comparable companies or deals from the past 18 months —
       similar stage, similar sector, or similar traction profile. Include the
       approximate round size and valuation if known. If you cannot find strong
       comps, explain what makes your valuation defensible on fundamentals.
@@ -441,8 +441,8 @@ questions:
     helper-text: |
       Be specific: name fund types, investment theses, or portfolio companies if
       you know them. "We are targeting pre-seed funds with B2B SaaS focus and a
-      median cheque of £200–400k" is more useful than "we are looking for smart
-      investors." The most useful answers name 2–3 specific funds and explain
+      median cheque of £200-400k" is more useful than "we are looking for smart
+      investors." The most useful answers name 2-3 specific funds and explain
       why each is a strong fit.
     why-it-matters: |
       Targeted investor selection improves conversion rates and shortens

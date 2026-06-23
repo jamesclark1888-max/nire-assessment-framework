@@ -85,7 +85,7 @@ templates:
     priority: critical
     free-tier-visible: true
     diagnostic: |
-      The ICP (ideal customer profile — the specific type of company or person
+      The ICP (ideal customer profile: the specific type of company or person
       you are built to serve) description in this section does not yet name a
       specific buyer type or a trigger event. Without both, the pipeline is
       difficult to build repeatably.
@@ -104,8 +104,8 @@ templates:
          to you.
 
       2. Look for the pattern: is there a title that appears more than once?
-         A company profile that recurs? An event — a regulatory change, a
-         hire, a failed prior tool — that appeared in multiple cases? That
+         A company profile that recurs? An event, a regulatory change, a
+         hire, a failed prior tool, that appeared in multiple cases? That
          pattern is your ICP.
 
       3. Write one sentence for the buyer and one for the trigger: "We sell to
@@ -129,8 +129,8 @@ templates:
     diagnostic: |
       The channel description in this section does not include any observed
       results. The description of the channel strategy is present but no
-      empirical data — meeting conversion rates, response rates, or deals
-      sourced — is cited.
+      empirical data, meeting conversion rates, response rates, or deals
+      sourced, is cited.
     gap: |
       Investors assessing the GTM section are looking for at least one leading
       indicator that acquisition is happening, not just planned. Without any
@@ -150,7 +150,7 @@ templates:
          is the evidence base.
 
       3. Once you have one result, rewrite this section with the channel, the
-         test, and the result — even if the result was negative. A documented
+         test, and the result, even if the result was negative. A documented
          negative result scores higher than no data because it shows the founder
          is testing rather than assuming.
 
@@ -212,8 +212,8 @@ templates:
       the ICP is a persona rather than a pipeline tool.
     gap: |
       Knowing who the buyer is does not tell a salesperson when to contact them.
-      The purchase trigger — the specific event or condition that puts a buyer
-      into active evaluation mode — is what turns an ICP into a prospecting
+      The purchase trigger, the specific event or condition that puts a buyer
+      into active evaluation mode, is what turns an ICP into a prospecting
       system.
     fix: |
       Two ways to find the trigger from your existing data:

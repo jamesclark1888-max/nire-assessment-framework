@@ -591,7 +591,7 @@ templates:
       confidence: medium
 
   # -----------------------------------------------------------------
-  # Early traction partial — medium band
+  # Early traction partial - medium band
   # -----------------------------------------------------------------
   - id: early-traction-partial
     trigger:
@@ -634,7 +634,7 @@ templates:
       confidence: low
 
   # -----------------------------------------------------------------
-  # MRR growing — medium band
+  # MRR growing - medium band
   # -----------------------------------------------------------------
   - id: mrr-growing
     trigger:
@@ -676,7 +676,7 @@ templates:
       confidence: low
 
   # -----------------------------------------------------------------
-  # Growth moderate — medium band
+  # Growth moderate - medium band
   # -----------------------------------------------------------------
   - id: growth-moderate
     trigger:
@@ -720,7 +720,7 @@ templates:
       confidence: low
 
   # -----------------------------------------------------------------
-  # NRR developing — medium band
+  # NRR developing - medium band
   # -----------------------------------------------------------------
   - id: nrr-developing
     trigger:
@@ -761,7 +761,7 @@ templates:
       confidence: medium
 
   # -----------------------------------------------------------------
-  # Cohort retention partial — medium band
+  # Cohort retention partial - medium band
   # -----------------------------------------------------------------
   - id: cohort-retention-partial
     trigger:
@@ -804,7 +804,7 @@ templates:
       confidence: medium
 
   # -----------------------------------------------------------------
-  # Named customers partial — medium band
+  # Named customers partial - medium band
   # -----------------------------------------------------------------
   - id: named-customers-partial
     trigger:
@@ -847,7 +847,7 @@ templates:
       confidence: medium
 
   # -----------------------------------------------------------------
-  # Analytics partial — medium band
+  # Analytics partial - medium band
   # -----------------------------------------------------------------
   - id: analytics-partial
     trigger:
