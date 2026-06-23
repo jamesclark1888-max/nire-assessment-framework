@@ -25,6 +25,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
   language. The 37 D8 recommendation prose em dashes and 9 D8 question prose em
   dashes remain, deferred to a separate prose rewrite.
 
+- D8 recommendation and question prose rewritten to remove 49 em dashes across 35
+  fields. Voice-guide compliant. All numbers, named examples, thresholds, and
+  prescription actions preserved.
+
 ### Future work / Open questions
 
 - **Conditional question visibility based on prior answers.** For example, q1.3

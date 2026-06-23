@@ -67,8 +67,8 @@ questions:
     input-unit: "thousands"
     question: "How much are you raising in this round?"
     helper-text: |
-      Enter the total target raise for this specific round — not cumulative
-      including any prior funding. If you have a hard cap and a soft target,
+      Enter the total target raise for this specific round, not the cumulative
+      figure including any prior funding. If you have a hard cap and a soft target,
       use the target.
     why-it-matters: |
       Round size tells investors whether the raise is large enough to reach the
@@ -107,7 +107,7 @@ questions:
     why-it-matters: |
       Pre-money valuation sets the price investors pay for their ownership and
       determines the milestone gap to the next raise. Valuations outside the
-      typical range for the stage — either too low or too high — create friction
+      typical range for the stage, either too low or too high, create friction
       that slows rounds and reduces the quality of investors who will participate.
     validation:
       min: 0
@@ -139,7 +139,7 @@ questions:
     why-it-matters: |
       Runway determines how long the business has to reach the milestones that
       unlock the next raise. Rounds providing less than 12 months of runway mean
-      founders must start fundraising again within 6 months of close — before
+      founders must start fundraising again within 6 months of close, before
       the current capital has had time to generate meaningful results.
     validation:
       min: 0
@@ -168,7 +168,7 @@ questions:
       specific hires or outcomes ("hire 2 enterprise AEs, reach £200k ARR by
       month 18") rather than functional categories ("invest in sales and
       marketing"). Finish by describing the state the business will be in when
-      this runway ends — that is the bridge to your next round.
+      this runway ends. That state is the bridge to your next round.
     why-it-matters: |
       Capital deployment quality reveals whether the current raise is connected
       to a specific, achievable outcome. A plan describing functional categories
@@ -240,8 +240,8 @@ questions:
       is "clean" even if founders hold slightly below 80%.
     why-it-matters: |
       Cap table clarity reduces legal friction during fundraising. Complex
-      structures — heavy prior dilution, outstanding convertibles, multiple share
-      classes — can delay a round close, require restructuring, or make
+      structures (heavy prior dilution, outstanding convertibles, or multiple share
+      classes) can delay a round close, require restructuring, or make
       institutional investors less likely to participate.
     options:
       - value: clean
@@ -274,7 +274,7 @@ questions:
     helper-text: |
       Describe the concrete thing that needs to happen before you raise again:
       a revenue figure, a customer count, a product capability, or a combination.
-      Then state what you expect the next round to look like — approximate size,
+      Then state what you expect the next round to look like: approximate size,
       round type, and timeframe if you have a view. Specific conditions score
       higher than timeframes alone.
     why-it-matters: |
@@ -310,8 +310,8 @@ questions:
       include an equity investment.
     why-it-matters: |
       Prior funding history provides context for the current valuation and cap
-      table structure. This question is informational — it provides context for
-      the report narrative, not for scoring.
+      table structure. This question is informational. It provides context for
+      the report narrative without affecting scoring.
     options:
       - value: no-prior-funding
         label: "No — this is our first external raise"
@@ -349,7 +349,7 @@ questions:
       SAFE and convertible note mechanics determine what equity each investor
       receives at conversion. Caps, discounts, and MFN clauses can produce
       materially different post-close ownership from what the headline raise
-      amount implies — which is why investors examine these terms carefully.
+      amount implies, which is why investors examine these terms carefully.
     show-if:
       conditions:
         - field: q8.1
@@ -407,7 +407,7 @@ questions:
     type: long-text
     question: "How does your target valuation compare to recent comparable raises at your stage? Name specific recent rounds that support your ask."
     helper-text: |
-      Describe 2-3 comparable companies or deals from the past 18 months —
+      Describe 2-3 comparable companies or deals from the past 18 months:
       similar stage, similar sector, or similar traction profile. Include the
       approximate round size and valuation if known. If you cannot find strong
       comps, explain what makes your valuation defensible on fundamentals.
