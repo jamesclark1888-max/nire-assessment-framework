@@ -10,6 +10,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- D4 product-traction recommendations.yaml: contractions expanded, voice-guide
+  compliance. Forty-one contractions across the diagnostic, gap, fix, and
+  evidence fields of 19 templates and the 3 stage-variants were expanded to
+  their full forms. Three contractions inside quoted customer-interview scripts
+  and example phrases were preserved as authored. Retention and growth claims,
+  product-stage terms, percentages, and prescription actions are unchanged. D4
+  carried no em dashes.
+
 - D3 market recommendations.yaml: contractions expanded, voice-guide
   compliance. Thirty-five contractions across the diagnostic, gap, fix, and
   evidence fields of all 22 templates and the 3 stage-variants were expanded to

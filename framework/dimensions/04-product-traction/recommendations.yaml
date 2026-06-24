@@ -36,11 +36,11 @@ templates:
     priority: critical
     free-tier-visible: true
     diagnostic: |
-      Your traction evidence doesn't establish that the product creates
+      Your traction evidence does not establish that the product creates
       measurable value for users beyond the founding team. General satisfaction
       claims, early sign-ups without active usage, or internal assertions are
       not traction signals. Traction is the primary thing investors check before
-      engaging with anything else; it's the evidence that the product works.
+      engaging with anything else; it is the evidence that the product works.
     gap: |
       You need at least one specific, independently verifiable signal: a named
       customer with a documented outcome, a retention figure with a denominator
@@ -98,11 +98,11 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your traction signal exists, but it either lacks independent verifiability,
-      isn't connected to a measurable customer outcome, or doesn't have enough
+      is not connected to a measurable customer outcome, or does not have enough
       specificity to use in investor conversations.
     gap: |
       Your signal is real but not yet portable enough for due diligence.
-      Investors need to be able to confirm what you're describing, either by
+      Investors need to be able to confirm what you are describing, either by
       calling the customer or seeing the underlying data, before they can rely
       on it in a partner meeting.
     fix: |
@@ -111,7 +111,7 @@ templates:
       1. Add verifiability. Can the customer be named, or can a screenshot of
          the usage data be shared? A signal an investor can independently
          confirm is worth significantly more than one they take on trust. Ask
-         your most engaged customer whether they're comfortable being named in
+         your most engaged customer whether they are comfortable being named in
          investor conversations.
 
       2. Add a number. Even if you already have a qualitative traction story,
@@ -161,7 +161,7 @@ templates:
          a documented, specific experience of value creation.
 
       3. At the end of 4 weeks, ask what specifically changed for them. If
-         nothing changed, you've learned something critical about the product
+         nothing changed, you have learned something critical about the product
          that must be addressed before the next external deployment.
 
       One real user with a documented outcome is the minimum signal required to
@@ -197,10 +197,10 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your month-over-month growth rate is below what investors expect at this
-      stage. Low growth isn't a death sentence, but it requires an explanation:
-      whether you're deliberately pausing to fix retention before scaling
-      acquisition, you're hitting a market timing issue, or there's a product
-      problem that hasn't been resolved yet.
+      stage. Low growth is not a death sentence, but it requires an explanation:
+      whether you are deliberately pausing to fix retention before scaling
+      acquisition, you are hitting a market timing issue, or there is a product
+      problem that has not been resolved yet.
     gap: |
       Growth rate is the key input investors use to extrapolate from your current
       position to exit. A rate below 10% monthly at seed implies roughly 3x
@@ -220,7 +220,7 @@ templates:
          underway to increase the rate, what are you measuring, and when will
          results be visible?
 
-      3. If growth is intentionally low because you're prioritising retention
+      3. If growth is intentionally low because you are prioritising retention
          over acquisition, say this explicitly in investor conversations. A
          deliberate pause to improve product quality before scaling is credible;
          unexplained slow growth is not.
@@ -251,10 +251,10 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your product has paying customers but no defined retention metric, or the
-      retention metric you've described is too vague to use in a valuation
+      retention metric you have described is too vague to use in a valuation
       conversation. For a company with revenue, the absence of retention data
       is the single most important gap to close before raising. Growth without
-      a retention figure is incomplete; it's the denominator that gives any
+      a retention figure is incomplete; it is the denominator that gives any
       growth rate meaning.
     gap: |
       Without a retention figure, investors cannot model your revenue trajectory
@@ -263,15 +263,15 @@ templates:
       than 20% monthly growth with 50% annual retention. Investors know this
       and will ask.
     fix: |
-      Calculate your gross logo retention rate this week. It's a straightforward
+      Calculate your gross logo retention rate this week. It is a straightforward
       calculation:
 
       1. List every customer who was active 12 months ago, or at any earlier
-         date if 12 months of data isn't available. Use the longest period
+         date if 12 months of data is not available. Use the longest period
          available.
 
       2. Count how many of those customers are still active today. Divide that
-         number by the total from step 1. That's your gross logo retention rate.
+         number by the total from step 1. That is your gross logo retention rate.
 
       3. If the rate is below 80%, identify the 1-2 customers who churned and
          find out why. The root cause for churn is more valuable than the number
@@ -297,7 +297,7 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      You have retention data, but it isn't yet precise enough to use in an
+      You have retention data, but it is not yet precise enough to use in an
       investor conversation without qualification. The signal exists but is
       incomplete: missing either a time period, a starting denominator, a
       measurement methodology, or a comparison point that gives the number
@@ -343,8 +343,8 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your monthly recurring revenue is below what investors typically expect
-      at your stated stage and for the size of raise you're contemplating. This
-      doesn't make the round impossible, but it requires a stronger narrative on
+      at your stated stage and for the size of raise you are contemplating. This
+      does not make the round impossible, but it requires a stronger narrative on
       the path to the MRR level that makes the round defensible.
     gap: |
       Investors model from your current MRR to exit ARR. A low starting MRR
@@ -367,8 +367,8 @@ templates:
 
       3. Calculate what your MRR would look like if both expansion and the
          named pipeline came through. If the result is 3x or more of current
-         MRR within 12 months at a realistic conversion rate, that's your
-         plan to present to investors. If it isn't, the question is what
+         MRR within 12 months at a realistic conversion rate, that is your
+         plan to present to investors. If it is not, the question is what
          product or go-to-market change would unlock that trajectory.
     estimated-impact:
       dimension-score-uplift: 0
@@ -384,20 +384,20 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Your product roadmap either lacks specific priorities or isn't connected
+      Your product roadmap either lacks specific priorities or is not connected
       to observable customer evidence. A list of features to build is a backlog,
       not a product strategy. The distinction that matters to investors is
       whether you build what customers need or what you think customers might want.
     gap: |
-      A roadmap that can't be traced to specific customer conversations, usage
-      data, or sales patterns doesn't demonstrate an evidence-driven development
+      A roadmap that cannot be traced to specific customer conversations, usage
+      data, or sales patterns does not demonstrate an evidence-driven development
       process. This becomes more important as you grow: teams that build on
       evidence waste less capital than teams that build on assumption.
     fix: |
       Reframe your roadmap around three specific questions for each item:
 
       1. Which customers asked for this, or which data point showed it was
-         needed? If you can't answer this for a roadmap item, either find the
+         needed? If you cannot answer this for a roadmap item, either find the
          evidence or remove the item from your 12-month plan.
 
       2. What will change for those customers when it ships? State the outcome,
@@ -407,7 +407,7 @@ templates:
 
       3. What will you NOT build in the next 12 months because of this? Naming
          the trade-off demonstrates prioritisation discipline that investors
-         find credible. It shows you're resource-constrained and have made a
+         find credible. It shows you are resource-constrained and have made a
          deliberate choice.
     estimated-impact:
       dimension-score-uplift: 5
@@ -425,7 +425,7 @@ templates:
     diagnostic: |
       Your roadmap names priorities and connects some of them to customer
       evidence. The signal gap is completeness: either one or more of the named
-      priorities lacks a traceable source, or the roadmap doesn't state what is
+      priorities lacks a traceable source, or the roadmap does not state what is
       being de-prioritised to make room for what you have chosen. Incomplete
       evidence coverage or absent trade-off reasoning leaves an investor
       uncertain about whether the team builds systematically or selectively.
@@ -469,7 +469,7 @@ templates:
     diagnostic: |
       Your net revenue retention is below 100%, which means your existing
       customer cohort is contracting. This happens either because customers
-      are churning faster than they're expanding, or because there's no
+      are churning faster than they are expanding, or because there is no
       expansion motion at all. For subscription businesses, NRR below 100%
       is one of the most important signals investors track. It determines
       how much growth must come from new customers simply to stay flat.
@@ -491,7 +491,7 @@ templates:
       2. Identify an expansion motion. Do your current customers have a natural
          path to spend more? More users, more modules, usage-based pricing as
          they scale, or an annual contract at a premium to monthly? If no
-         expansion path exists in your current pricing model, that's a
+         expansion path exists in your current pricing model, that is a
          structural problem to address before the next raise.
 
       If you have answers to both churn root cause and expansion path, combine
@@ -512,14 +512,14 @@ templates:
     diagnostic: |
       Your product development process has no visible iteration loop: ship a
       change, measure what happened, update what you know about user needs.
-      Without this, it's hard for investors to distinguish your process from
+      Without this, it is hard for investors to distinguish your process from
       one that builds features on intuition and declares success without
       measurement.
     gap: |
       Investors backing a software company are also backing the team's ability
       to improve the product efficiently over time. A team that builds, measures,
       and learns compounds its capital faster than one that builds and ships
-      without measurement. That loop isn't visible yet.
+      without measurement. That loop is not visible yet.
     fix: |
       Pick the last significant product change and reconstruct the measurement
       story around it:
@@ -576,7 +576,7 @@ templates:
 
       2. If the result data is missing: pull the specific figure for the 4
          weeks after shipping and compare it to the 4 weeks before. Even a
-         null result (the metric didn't move) is a useful learning.
+         null result (the metric did not move) is a useful learning.
 
       3. If the applied learning is missing: write one sentence describing what
          you built or changed differently in the next product cycle as a direct
@@ -607,7 +607,7 @@ templates:
       motion.
     gap: |
       A small customer count makes it difficult to identify whether the
-      sales motion works for buyers who don't already know the founders.
+      sales motion works for buyers who do not already know the founders.
       Customers sourced outside the founding team's personal network
       carry significantly more evidential weight than those sourced within it.
     fix: |
@@ -624,7 +624,7 @@ templates:
          profile, same trigger event, same sales cycle length. Even a
          pattern across 3-5 customers is meaningful if it is written down.
          Without a documented pattern, additional customers from the same
-         network don't advance the argument.
+         network do not advance the argument.
 
       This week: identify the next 3 most likely customers outside your
       existing network and initiate contact with each. Those 3 names are
@@ -792,7 +792,7 @@ templates:
 
       2. If the cohort is small, state the denominator explicitly.
          "7 of 9 customers from the March cohort are still active 5 months
-         later" is a specific, honest statement. Investors don't expect
+         later" is a specific, honest statement. Investors do not expect
          statistical significance at this stage; they expect transparency
          about the basis.
 
@@ -814,13 +814,13 @@ templates:
     free-tier-visible: false
     diagnostic: |
       You have named customers, but the documented outcomes are either
-      absent or described at a level of generality that doesn't give
+      absent or described at a level of generality that does not give
       investors a specific, independently verifiable data point. Named
       customers are most valuable when paired with a quoted outcome that
       an investor could confirm in a reference call.
     gap: |
       A named customer without a documented outcome shifts the evidence
-      standard from verifiable to trust-based. Investors can't confirm
+      standard from verifiable to trust-based. Investors cannot confirm
       that the customer received value; they have only your characterisation
       of the relationship. That limits how much weight the reference carries
       in a partner meeting.
@@ -860,7 +860,7 @@ templates:
       level (logins, page views, session length) rather than at the
       feature level: completion frequency on the core value-creating
       action. The current metrics tell investors that users return;
-      they don't tell investors that users derive value.
+      they do not tell investors that users derive value.
     gap: |
       Core feature completion frequency is the metric investors use to
       assess product-market fit at the usage level. Without it, engagement
