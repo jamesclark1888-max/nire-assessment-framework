@@ -10,6 +10,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- D7 competition-moat recommendations.yaml: contractions expanded, voice-guide
+  compliance. Thirty-eight contractions across the diagnostic, gap, fix, and
+  evidence fields of all 20 templates and the 5 stage-variants were expanded to
+  their full forms. Three contractions inside quoted dialogue were preserved as
+  authored; one single-quoted buyer objection was re-quoted with double quotes
+  to match the house style for inline dialogue. Moat and differentiation claims,
+  named thresholds, competitor reference patterns, and prescription actions are
+  unchanged. D7 carried no em dashes.
+
 - D4 product-traction recommendations.yaml: contractions expanded, voice-guide
   compliance. Forty-one contractions across the diagnostic, gap, fix, and
   evidence fields of 19 templates and the 3 stage-variants were expanded to

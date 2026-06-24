@@ -60,7 +60,7 @@ templates:
          their primary strength from a buyer's perspective, and the type of
          customer who chooses them.
 
-      2. Indirect substitutes: name what a buyer does today if they don't buy
+      2. Indirect substitutes: name what a buyer does today if they do not buy
          any purpose-built solution: a spreadsheet, a consultant, a manual
          process, or an adjacent product they already own. This is often the
          most important competitor category because it represents the status quo.
@@ -70,7 +70,7 @@ templates:
          and the cost of inaction, which directly affects sales cycle length.
 
       Completing this exercise requires direct customer conversations if those
-      haven't happened yet, which is its own high-value activity.
+      have not happened yet, which is its own high-value activity.
     evidence: |
       Founders who map their competitive landscape precisely demonstrate customer
       knowledge, market intelligence, and strategic self-awareness. Conversely,
@@ -102,14 +102,14 @@ templates:
     priority: critical
     free-tier-visible: true
     diagnostic: |
-      Your differentiation claim isn't specific enough to test, or it isn't clearly
+      Your differentiation claim is not specific enough to test, or it is not clearly
       distinct from what competitors already offer. "We are better" and "we are more
       user-friendly" are not differentiation; they are claims every founder makes
       about their own product. Investors have heard every general quality claim and
       discount them entirely. What they look for is the specific, verifiable,
       structural reason a customer chooses one product over another.
     gap: |
-      A differentiation that can't be stated in specific, testable terms can't
+      A differentiation that cannot be stated in specific, testable terms cannot
       survive due diligence. Investors will ask your existing and potential customers
       exactly this question ("why would you choose this product over the
       alternatives?") and if the answer matches your general claims, it reduces
@@ -169,8 +169,8 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your differentiation is named, but it either lacks a specific customer
-      outcome or isn't clearly connected to a structural reason why competitors
-      can't replicate it. The claim is a good starting point but would not
+      outcome or is not clearly connected to a structural reason why competitors
+      cannot replicate it. The claim is a good starting point but would not
       survive a detailed due diligence conversation without strengthening.
     gap: |
       Your differentiation needs either more specificity (a quantified outcome
@@ -187,7 +187,7 @@ templates:
       2. Structural backing: why is the advantage durable? Is it a proprietary
          process that would take 12 months to copy, a data asset that grows with
          each customer, or a domain expertise embedded in the product that a
-         generalist competitor can't quickly replicate? One sentence on why this
+         generalist competitor cannot quickly replicate? One sentence on why this
          advantage persists makes the claim structurally credible rather than
          just currently true.
 
@@ -211,8 +211,8 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your response to the incumbent threat relies primarily on execution speed
-      without a structural argument, doesn't name the specific incumbent most likely
-      to move, or doesn't articulate what you would do proactively if the scenario
+      without a structural argument, does not name the specific incumbent most likely
+      to move, or does not articulate what you would do proactively if the scenario
       occurred. Investors treat this question as a strategic thinking test; the
       quality of the answer reveals whether you have a realistic model of competitive
       dynamics or are depending on obscurity as a strategy.
@@ -394,10 +394,10 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      Your moat evidence exists, but it's concentrated in a single signal type
+      Your moat evidence exists, but it is concentrated in a single signal type
       or is qualitative without quantification. A single signal is a finding;
       multiple independent signals pointing to the same conclusion are a pattern.
-      Patterns are far more credible to investors because they're harder to
+      Patterns are far more credible to investors because they are harder to
       attribute to noise, a single unusual customer, or selective presentation.
     gap: |
       A second independent moat signal, particularly of a different type from
@@ -432,8 +432,8 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      Your moat description doesn't explain how the advantage gets stronger over
-      time. It states that the moat compounds but doesn't name the mechanism.
+      Your moat description does not explain how the advantage gets stronger over
+      time. It states that the moat compounds but does not name the mechanism.
       Static moats can be overcome by a well-capitalised competitor willing to pay
       the entry cost. Only compounding moats become more expensive to replicate
       as you scale.
@@ -466,7 +466,7 @@ templates:
       pre-seed:
         fix: |
           At pre-seed, the compounding mechanism can be described as a design
-          intention rather than a demonstrated dynamic. State what you're building
+          intention rather than a demonstrated dynamic. State what you are building
           toward: "We are designing our data architecture so that each customer's
           usage improves model performance for all customers. We are at 8 customers
           now; we expect the effect to become material above 50."
@@ -488,7 +488,7 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your compounding moat argument names a growth unit (the thing that
-      accumulates as you scale) but doesn't yet complete the full mechanism.
+      accumulates as you scale) but does not yet complete the full mechanism.
       Investors need to see the link between accumulation and increasing
       replication cost. Without that link, the argument describes growth, not
       compounding.
@@ -533,8 +533,8 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Your switching costs aren't articulated, or the switching costs described
-      are generic and unquantified. Customer stickiness that can't be described
+      Your switching costs are not articulated, or the switching costs described
+      are generic and unquantified. Customer stickiness that cannot be described
       in operational terms (how long migration would take, what data or
       configuration would be lost, what retraining is required, what financial
       penalty is embedded in the contract) is difficult for investors to underwrite
@@ -543,7 +543,7 @@ templates:
       Switching cost arguments are most valuable to investors when described
       operationally and, ideally, quantified. An operational description forces
       engagement with the actual customer experience of leaving, rather than an
-      abstract claim that customers don't want to.
+      abstract claim that customers do not want to.
     fix: |
       Work through the switching cost argument from the customer's perspective
       by answering: what would actually happen if one of your largest customers
@@ -581,7 +581,7 @@ templates:
     free-tier-visible: false
     diagnostic: |
       You have described switching costs in general terms, but the argument
-      isn't yet operational. Investors test switching cost claims by asking
+      is not yet operational. Investors test switching cost claims by asking
       "what would actually happen if your largest customer tried to leave
       tomorrow?" If the answer is a category description rather than a
       walk-through of a specific customer's migration experience, the claim
@@ -628,14 +628,14 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Either network effects or data dynamics don't apply to your business model
-      and that hasn't been addressed directly, or they've been claimed without a
+      Either network effects or data dynamics do not apply to your business model
+      and that has not been addressed directly, or they have been claimed without a
       mechanism that holds up to structural analysis. Both are problematic: the
       former leaves a recommended question unanswered; the latter creates
       credibility risk if the claim is examined by an experienced investor.
     gap: |
       The two most common failure modes here are: a genuine network effect or data
-      flywheel that exists but hasn't been described precisely enough to be credible,
+      flywheel that exists but has not been described precisely enough to be credible,
       and a spurious claim of network effects in a business that operates more like
       a traditional SaaS product. Both require different responses.
     fix: |
@@ -649,7 +649,7 @@ templates:
          mass threshold can be described above which the effect becomes
          self-sustaining, include it.
 
-      2. If they don't genuinely apply: state this directly and describe what
+      2. If they do not genuinely apply: state this directly and describe what
          alternative moat dynamics your business relies on instead. "Network effects
          are not a primary moat for us; our defensibility comes from switching costs
          embedded in workflow integration and proprietary customer data that cannot
@@ -702,7 +702,7 @@ templates:
       5. The lesson applied: has anything changed in your product, sales motion,
          pricing, or positioning as a result of this situation?
 
-      If there genuinely hasn't been a direct competitive situation yet, describe
+      If there genuinely has not been a direct competitive situation yet, describe
       the closest analogue: a prospect who compared your approach to an existing
       solution, even informally.
     estimated-impact:
@@ -722,7 +722,7 @@ templates:
       You have described a competitive situation with a named competitor and a
       stated outcome. The signal is incomplete because either the root cause is
       missing (you know who won but not specifically why) or the applied lesson
-      is absent (the outcome hasn't changed how you compete). Both gaps matter:
+      is absent (the outcome has not changed how you compete). Both gaps matter:
       root cause reveals what actually drives decisions in your market, and the
       applied lesson signals whether competitive intelligence feeds back into
       the business.
@@ -765,15 +765,15 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Your formal IP or regulatory barrier position isn't described with sufficient
-      specificity. The assessment doesn't address whether formal IP is relevant to
+      Your formal IP or regulatory barrier position is not described with sufficient
+      specificity. The assessment does not address whether formal IP is relevant to
       your model. Many early-stage companies have no filed patents or formal regulatory
-      licences; this isn't inherently a problem. The issue is the absence of a
+      licences; this is not inherently a problem. The issue is the absence of a
       clear-eyed assessment of whether formal IP should be a priority and what
       protection your model relies on instead.
     gap: |
       Later-stage investors and acquirers assess formal IP as part of company
-      valuation. A company that hasn't considered its formal IP position at all,
+      valuation. A company that has not considered its formal IP position at all,
       or that describes informal advantages as if they were formal ones, is less
       prepared for that conversation than one that has thought through the question
       explicitly, even if the answer is "we don't yet have formal IP and here
@@ -792,7 +792,7 @@ templates:
          them, and what is the timeline? If already held, name them explicitly in
          pitch materials.
 
-      3. If formal IP isn't relevant to your model, state why explicitly and
+      3. If formal IP is not relevant to your model, state why explicitly and
          identify the structural protection you rely on instead. "We have no filed
          patents because the speed of iteration in our market means a process patent
          would be obsolete before it was granted; our defensibility comes from the
@@ -815,16 +815,16 @@ templates:
       Your competitive landscape covers direct competitors but does not
       yet address indirect substitutes or the do-nothing baseline.
       Investors reading a map that names only direct competitors conclude
-      that the most common buyer objection, 'we'll manage this with our
-      existing tools', has not yet been examined.
+      that the most common buyer objection, "we'll manage this with our
+      existing tools", has not yet been examined.
     gap: |
       The do-nothing baseline is the alternative most buyers actually
-      choose. Without addressing it, the competitive narrative doesn't
-      explain the primary source of deals that don't close.
+      choose. Without addressing it, the competitive narrative does not
+      explain the primary source of deals that do not close.
     fix: |
       Add two sections to your competitive map:
 
-      1. Indirect substitutes: name what a buyer does today if they don't
+      1. Indirect substitutes: name what a buyer does today if they do not
          purchase a purpose-built solution. A spreadsheet, a manual
          process, a team workaround, an adjacent tool repurposed for this
          job. These alternatives define the status quo being displaced
@@ -854,7 +854,7 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your network effect or data flywheel mechanism is described but the
-      account doesn't identify the critical mass threshold or the specific
+      account does not identify the critical mass threshold or the specific
       way accumulation produces a compounding advantage. Without those
       elements, the argument describes a product that improves as it grows
       rather than a flywheel that becomes self-reinforcing.
@@ -867,7 +867,7 @@ templates:
       Add two elements to your mechanism description:
 
       1. The threshold: at what scale does the effect become materially
-         self-sustaining? If you don't yet know, state the assumption
+         self-sustaining? If you do not yet know, state the assumption
          you are designing toward and how you will know when you have
          crossed it: a specific metric that should improve as the base
          grows.
