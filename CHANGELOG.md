@@ -8,6 +8,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ## [Unreleased]
 
+### Changed
+
+- D1 founder-team recommendations.yaml: contractions expanded, voice-guide
+  compliance. Forty-eight contractions across the diagnostic, gap, fix, and
+  evidence fields of all base templates, the `solo-founder-no-plan`
+  stage-variant, and the UK, FR, and DE regional templates were expanded to
+  their full forms (for example "you're" to "you are", "doesn't" to "does not",
+  "can't" to "cannot"). One residual contraction in D8 `short-runway`
+  series-a fix was expanded in the same pass. Prose content, numbers, named
+  thresholds, and prescription actions are unchanged; only the contractions
+  were expanded. D1 carried no em dashes, so no dash sweep was needed.
+
 ### Fixed
 
 - D8 `weak-capital-plan` capital-deployment template: replaced the four
