@@ -10,6 +10,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- D2 problem-insight recommendations.yaml: contractions expanded, voice-guide
+  compliance. Twenty-five contractions across the diagnostic, gap, fix, and
+  evidence fields of all 13 templates and the 4 stage-variants were expanded to
+  their full forms. The quoted investor question "Why hasn't anyone done this
+  before?" was preserved as authored. Prose content, numbers, and prescription
+  actions are unchanged. D2 carried no em dashes, so no dash sweep was needed.
+
 - D1 founder-team recommendations.yaml: contractions expanded, voice-guide
   compliance. Forty-eight contractions across the diagnostic, gap, fix, and
   evidence fields of all base templates, the `solo-founder-no-plan`
