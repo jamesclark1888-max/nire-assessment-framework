@@ -10,6 +10,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- D5 business-model recommendations.yaml: contractions expanded, voice-guide
+  compliance. Recommendations.yaml contraction sweep complete across all eight
+  dimensions. Nineteen contractions across the diagnostic, gap, fix, and evidence
+  fields of all 10 templates and the 4 stage-variants were expanded to their full
+  forms. D5 carried no quoted dialogue requiring preservation. Monetary figures,
+  ratio thresholds (CAC, LTV, gross margin), named percentages, and prescription
+  actions are unchanged. D5 carried no em dashes.
+
 - D7 competition-moat recommendations.yaml: contractions expanded, voice-guide
   compliance. Thirty-eight contractions across the diagnostic, gap, fix, and
   evidence fields of all 20 templates and the 5 stage-variants were expanded to

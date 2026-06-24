@@ -32,7 +32,7 @@ templates:
     priority: critical
     free-tier-visible: true
     diagnostic: |
-      Your unit economics don't yet form a complete picture of customer value.
+      Your unit economics do not yet form a complete picture of customer value.
       Key components (acquisition cost, delivery cost, and lifetime revenue) are
       missing, vague, or not connected to specific numbers. Investors examining
       unit economics are checking whether each customer generates more value than
@@ -66,13 +66,13 @@ templates:
     evidence: |
       Unit economics describe whether each customer is worth more than the cost
       of acquiring and serving them. Without this picture, investors cannot build
-      a return estimate; they can't know whether your growth compounds value or
+      a return estimate; they cannot know whether your growth compounds value or
       compounds losses.
     stage-variants:
       pre-seed:
         diagnostic: |
           At pre-seed, unit economics are necessarily estimated rather than
-          measured. The concern is not accuracy; it is whether you've worked
+          measured. The concern is not accuracy; it is whether you have worked
           through the model at all. Investors back founders who have stress-tested
           their assumptions, even with incomplete data, not those who've stated a
           price and assumed the costs will work out.
@@ -137,7 +137,7 @@ templates:
           At pre-seed with a modelled gross margin below 40%, the question is
           whether this is a deliberate model choice (hardware, marketplace, or
           services-led businesses can be venture-scalable with lower margins)
-          or whether your cost structure hasn't yet been designed for scale.
+          or whether your cost structure has not yet been designed for scale.
           Some low-margin models are intentional and defensible; the concern is
           whether you designed this outcome deliberately.
       series-a:
@@ -158,7 +158,7 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      Your pricing isn't connected to evidence of what the market will pay.
+      Your pricing is not connected to evidence of what the market will pay.
       No test, customer conversation, or competitive benchmark explains why
       this number is right. Investors read unvalidated pricing as an assumption,
       one that may prove structurally wrong as the business encounters a broader
@@ -189,7 +189,7 @@ templates:
     evidence: |
       Investors treat unvalidated pricing as a live risk because it affects every
       unit economics projection in the model. Founders who have tested their price,
-      even once, are operating from a validated data point; those who haven't are
+      even once, are operating from a validated data point; those who have not are
       operating on an assumption that could require a fundamental model change
       if wrong.
 
@@ -204,14 +204,14 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your path to viable unit economics is described in general terms: margins
-      will improve at scale, costs will fall with volume. But there's no specific
+      will improve at scale, costs will fall with volume. But there is no specific
       milestone or inflection point. Investors funding you before you reach viable
       economics are backing a journey; without a defined destination, the journey
       has no measurable endpoint they can underwrite.
     gap: |
       You need a specific, identifiable milestone: a customer count, a revenue
       level, or a named structural change at which your economics become
-      self-sustaining. Directional statements aren't sufficient; investors need
+      self-sustaining. Directional statements are not sufficient; investors need
       to know when your business no longer requires external capital for each
       incremental unit of growth.
     fix: |
@@ -227,7 +227,7 @@ templates:
          £380 to £60 and we reach 72% gross margin" is a milestone. "Costs will
          fall as we grow" is a direction. One is fundable; the other is not.
 
-      3. Connect the milestone to the raise you're seeking. Does the capital from
+      3. Connect the milestone to the raise you are seeking. Does the capital from
          this round take the business to that milestone, beyond it, or is it still
          a round away? That question has a specific answer; naming it shows
          investors that your capital deployment is coherent with your unit
@@ -270,8 +270,8 @@ templates:
 
       2. For a CAC problem: identify the channel with the lowest CAC in your
          current mix and examine whether it can be scaled. Referral from existing
-         customers is typically the cheapest acquisition channel; if it's not yet
-         formalised with a specific process, that's the first step.
+         customers is typically the cheapest acquisition channel; if it is not yet
+         formalised with a specific process, that is the first step.
 
       3. For an LTV problem: review your top five customers for expansion
          opportunity (more seats, an annual upgrade, an additional module). An
@@ -281,7 +281,7 @@ templates:
       pre-seed:
         diagnostic: |
           At pre-seed, an LTV:CAC below 3x is expected; the business typically
-          doesn't yet have the data to calculate it accurately, and early
+          does not yet have the data to calculate it accurately, and early
           acquisition tactics are more expensive than at scale. The concern is
           less the current number and more whether you understand the levers that
           will improve it and have a specific plan for doing so.
@@ -291,7 +291,7 @@ templates:
           significant problem. Investors building growth models use this ratio
           as the primary input for sales and marketing investment decisions. A
           ratio below the threshold indicates your current go-to-market motion
-          doesn't justify continued capital deployment at the same mix.
+          does not justify continued capital deployment at the same mix.
 
   # -----------------------------------------------------------------
   # Long CAC payback -- high
@@ -306,7 +306,7 @@ templates:
       Your CAC payback period is longer than investors expect for a
       capital-efficient business. A payback period above 24 months means each
       new customer requires external capital to fund their own acquisition.
-      Your current revenue can't recycle fast enough to fund the next customer.
+      Your current revenue cannot recycle fast enough to fund the next customer.
       This compresses how far each pound of raised capital goes.
     gap: |
       The constraint is either in your acquisition cost (CAC is high relative
@@ -390,7 +390,7 @@ templates:
     diagnostic: |
       Your pricing rationale is present but lacks either a direct market signal
       or a clear connection between price and the value delivered to customers.
-      The current description explains the number but isn't yet strong enough to
+      The current description explains the number but is not yet strong enough to
       anchor the commercial confidence investors look for at this stage.
     gap: |
       One direct market signal (a customer who accepted a price increase, a
@@ -425,7 +425,7 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Your pricing power is an assumption rather than a measured fact. There's
+      Your pricing power is an assumption rather than a measured fact. There is
       no observed evidence that customers would pay more than your current price:
       no pricing test, no accepted increase, no direct customer statement that
       the price is below what the product is worth. Assumptions about price
@@ -469,10 +469,10 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Your model's economics at scale aren't described specifically enough to
+      Your model's economics at scale are not described specifically enough to
       model the business at 5-10x current revenue. General statements that margins
-      improve at scale or costs decrease with growth aren't wrong, but without a
-      named mechanism and a named cost category, they can't be used to build a
+      improve at scale or costs decrease with growth are not wrong, but without a
+      named mechanism and a named cost category, they cannot be used to build a
       credible long-run financial model.
     gap: |
       The specific mechanism that drives your margin improvement at scale needs to
