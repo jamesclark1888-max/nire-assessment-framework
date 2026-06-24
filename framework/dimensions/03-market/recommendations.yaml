@@ -51,18 +51,18 @@ templates:
       company. A fund targeting $50M returns per deal requires a company
       capable of reaching $500M or more in exit value. That requires a
       market large enough to sustain a company of that scale. TAM is the
-      primary filter; most conversations don't start if it doesn't pass.
+      primary filter; most conversations do not start if it does not pass.
     stage-variants:
       pre-seed:
         diagnostic: |
           At pre-seed, a small TAM is a structural problem because the entire
           investment thesis rests on the market ceiling. Product and traction
-          haven't yet proved the case. Addressing this now, before pitching,
+          have not yet proved the case. Addressing this now, before pitching,
           saves significant time.
       series-a:
         diagnostic: |
           At Series A, a small TAM is doubly problematic: product and traction
-          now exist, but they can't overcome a structural market ceiling.
+          now exist, but they cannot overcome a structural market ceiling.
           Series A investors are explicitly modelling exit value and will ask
           this question in the first meeting.
 
@@ -121,10 +121,10 @@ templates:
       Your TAM methodology relies primarily on analyst reports without
       interrogating the assumptions behind them, or shows no derivation at
       all. Investors will ask "how did you get to this number?" in every
-      meeting. A methodology that can't survive that question undermines the
+      meeting. A methodology that cannot survive that question undermines the
       entire market narrative.
     gap: |
-      Your TAM number doesn't show the building blocks. This signals a gap
+      Your TAM number does not show the building blocks. This signals a gap
       in customer knowledge, because the same conversations that produce a
       bottom-up TAM also produce the customer understanding needed for product
       and pricing decisions.
@@ -147,7 +147,7 @@ templates:
       Founders who can defend every number in their TAM calculation from first
       principles are materially more credible in investor meetings. The process
       of building a bottom-up TAM forces the customer conversations that most
-      pre-seed founders haven't yet had, making it one of the highest-leverage
+      pre-seed founders have not yet had, making it one of the highest-leverage
       activities before a fundraise.
     stage-variants:
       pre-seed:
@@ -172,7 +172,7 @@ templates:
     priority: high
     free-tier-visible: false
     diagnostic: |
-      Your TAM methodology shows some bottom-up reasoning, but it's missing
+      Your TAM methodology shows some bottom-up reasoning, but it is missing
       either the source for a key assumption, a named customer count, or a
       specific price point derived from customer conversations rather than
       estimate.
@@ -184,7 +184,7 @@ templates:
       Identify the weakest assumption in your current calculation (typically
       the price point or the population count) and ground it in direct evidence:
       - Price point: do you have customer conversations where someone named
-        what they currently spend on this problem? That's your anchor.
+        what they currently spend on this problem? That is your anchor.
       - Population count: have you verified the count using a specific data
         source (LinkedIn, company directory, regulatory register)? Name the
         source in your methodology.
@@ -230,7 +230,7 @@ templates:
       2. Have you excluded adjacent geographies that your current GTM can
          reach without significant additional investment?
       3. Is your SAM a subset of TAM for reasons of product completeness,
-         for features you're not yet building, that could be included in the
+         for features you are not yet building, that could be included in the
          roadmap with a clear timeline?
       The goal is a SAM that is both achievable with the current product and
       large enough to justify the investment thesis on its own.
@@ -246,13 +246,13 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your Year-3 revenue target is either far too low relative to the market
-      you've described and the investment you're raising, or it implies an
+      you have described and the investment you are raising, or it implies an
       unrealistic market penetration rate without a structural reason for it
       (regulatory mandate, exclusive distribution, network effects, or similar).
       Either version creates a credibility problem.
     gap: |
       An SOM too low relative to investment asked signals that your business
-      hasn't been modelled from the demand side. An SOM that implies implausible
+      has not been modelled from the demand side. An SOM that implies implausible
       market share signals wishful thinking over rigorous bottom-up modelling.
     fix: |
       Rebuild your Year-3 target from the bottom up:
@@ -280,7 +280,7 @@ templates:
     diagnostic: |
       Your target market is flat or declining. This is not a disqualifier in
       every case, but it requires a specific and compelling investment thesis
-      that most growth-oriented investors won't accept without explicit
+      that most growth-oriented investors will not accept without explicit
       articulation. A declining market means you must grow by taking share,
       not by riding tailwinds. That is harder and more capital-intensive.
     gap: |
@@ -290,13 +290,13 @@ templates:
       power. Without a thesis for why this dynamic is acceptable or surmountable,
       the investment case is structurally weak.
     fix: |
-      If your market is declining but you're still building in it, make the
+      If your market is declining but you are still building in it, make the
       displacement thesis explicit:
       1. Obsolescence play: a legacy incumbent is declining, but the underlying
          need is not. Name the incumbent and explain why you, not another
          challenger, will capture the switching cohort.
       2. Regulatory reset: a regulation is forcing the market to restructure.
-         The incumbent can't adapt; you're purpose-built for the new requirement.
+         The incumbent cannot adapt; you are purpose-built for the new requirement.
       3. Segment growth within a declining market: name the specific sub-segment
          that is growing (e.g. the enterprise tier within a declining SMB market)
          and restrict your TAM to that.
@@ -379,15 +379,15 @@ templates:
       makes your go-to-market 10x easier to execute.
     evidence: |
       The most common cause of slow sales in early-stage companies is not the
-      wrong product. It's the wrong ICP. Founders with a precise, specific
+      wrong product. It is the wrong ICP. Founders with a precise, specific
       segment description close faster, write better outbound, produce clearer
-      product roadmaps, and onboard customers more predictably. It's arguably
+      product roadmaps, and onboard customers more predictably. It is arguably
       the single highest-leverage output of customer discovery work.
     stage-variants:
       pre-seed:
         fix: |
           At pre-seed, you may not have enough data to fully validate your
-          segment. That's acceptable. Write your best hypothesis as specifically
+          segment. That is acceptable. Write your best hypothesis as specifically
           as possible, and plan to test it with 10 customer conversations in
           the next 30 days. A wrong-but-specific hypothesis is easier to
           correct than a vague one.
@@ -396,7 +396,7 @@ templates:
           At Series A, a vague customer segment is a serious credibility risk.
           You should have 12-18 months of customer data that has sharpened your
           ICP considerably. A still-generic segment description suggests you
-          haven't extracted the pattern from your customer base.
+          have not extracted the pattern from your customer base.
 
   # -----------------------------------------------------------------
   # Customer segment improvable
@@ -408,7 +408,7 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Your customer segment has good bones: a named role or industry. But it's
+      Your customer segment has good bones: a named role or industry. But it is
       missing either the situational qualifier (what company context applies) or
       the trigger event (what causes this buyer to start looking for a solution).
       These are the two details that most transform a segment description from
@@ -446,12 +446,12 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your ideal customer profile describes firmographics: company size, sector,
-      geography. But it doesn't capture the buyer's internal motivations, fears,
+      geography. But it does not capture the buyer's internal motivations, fears,
       or the specific trigger event that causes them to seek a solution. A
       firmographic ICP is a starting point, not a finished one.
     gap: |
       Firmographic ICPs produce generic outbound that converts poorly. They
-      describe who your customers are, but not why they buy or when they're
+      describe who your customers are, but not why they buy or when they are
       ready to buy. Those two inputs determine your conversion rates.
     fix: |
       Interview your best 3-5 existing customers or most engaged prospects
@@ -464,7 +464,7 @@ templates:
       against your next outbound campaign to measure the impact on response rates.
     evidence: |
       Psychographic ICPs consistently produce higher outbound response rates,
-      shorter sales cycles, and lower churn than firmographic ones. They're the
+      shorter sales cycles, and lower churn than firmographic ones. They are the
       foundation of every successful demand generation playbook in B2B SaaS.
     estimated-impact:
       dimension-score-uplift: 6
@@ -481,7 +481,7 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your ICP describes who your customer is (company size, sector, role)
-      but doesn't yet capture why they buy or when they are ready to buy.
+      but does not yet capture why they buy or when they are ready to buy.
       Firmographic ICPs describe a population; psychographic ICPs describe a
       buying moment. The second is what allows you to build a repeatable
       outbound process.
@@ -489,7 +489,7 @@ templates:
       The missing elements are the trigger event (what causes this buyer to
       actively search for a solution) and the internal motivation (what fear
       or ambition makes the purchase feel personally important to the buyer).
-      Without these, your ICP identifies a group but doesn't describe the
+      Without these, your ICP identifies a group but does not describe the
       condition that makes a member of that group a good prospect right now.
     fix: |
       Add the trigger and motivation layer using your three best existing
@@ -536,14 +536,14 @@ templates:
     diagnostic: |
       Your market validation evidence is thin or relies entirely on secondary
       sources: analyst reports, market research, or general trend data. At this
-      evidence level, you're asserting market demand rather than demonstrating
+      evidence level, you are asserting market demand rather than demonstrating
       it. Investors fund demonstrated demand, not asserted demand, and the gap
       between the two is a primary filter at every stage.
     gap: |
       Your evidence base lacks any direct market-level signals (conversations
       where someone confirmed they are actively seeking a solution, pre-sales,
-      LOIs, or competitor traction data). You're asking investors to take a
-      hypothesis on faith. Most won't.
+      LOIs, or competitor traction data). You are asking investors to take a
+      hypothesis on faith. Most will not.
     fix: |
       Acquire one primary market validation signal before your raise:
       1. Fastest (1-2 weeks): call 10 people who match your ICP and ask "are
@@ -569,7 +569,7 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      You have market validation evidence, but it's concentrated in a single
+      You have market validation evidence, but it is concentrated in a single
       type or source. Multiple independent signal types (especially when they
       point to the same conclusion) are materially more credible than depth
       in one source.
@@ -606,7 +606,7 @@ templates:
     diagnostic: |
       Your market analogues are either absent or too large and generic to be
       informative ("our market is like Amazon's"). Without specific structural
-      analogues, investors can't rapidly contextualise the opportunity, the
+      analogues, investors cannot rapidly contextualise the opportunity, the
       likely competitive dynamics, or the exit path.
     gap: |
       A well-chosen analogue does two things for an investor: it rapidly orients
@@ -638,7 +638,7 @@ templates:
     priority: medium
     free-tier-visible: false
     diagnostic: |
-      Your adjacent expansion narrative either doesn't exist or describes
+      Your adjacent expansion narrative either does not exist or describes
       expansions without a coherent structural logic connecting them to your
       beachhead. This limits your venture-scale narrative, particularly if
       your initial market is at the lower end of what most investors would
@@ -646,7 +646,7 @@ templates:
     gap: |
       Without a clear expansion map, investors model your company as constrained
       to its initial market. If that market produces a $50-100M revenue ceiling,
-      most investors can't justify the commitment without a credible path to a
+      most investors cannot justify the commitment without a credible path to a
       larger opportunity.
     fix: |
       Work through this adjacency mapping process:
@@ -716,7 +716,7 @@ templates:
     free-tier-visible: false
     diagnostic: |
       Your Year-3 revenue target is in a plausible range but the derivation
-      doesn't yet make the sales capacity assumptions visible. Without that
+      does not yet make the sales capacity assumptions visible. Without that
       foundation, investors will stress-test the number using their own
       assumptions, which typically produces a more conservative figure.
     gap: |
