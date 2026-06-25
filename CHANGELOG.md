@@ -10,6 +10,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 
 ### Changed
 
+- questions.yaml helper-text and why-it-matters: contractions expanded across
+  all eight dimensions, voice-guide compliance. Seventeen contractions across
+  the helper-text and why-it-matters fields of D1, D2, D3, D5, and D7 were
+  expanded to their full forms, bringing these fields in line with the
+  recommendations.yaml sweep. Contractions inside quoted dialogue were preserved
+  as authored. Question text and option labels were not touched; their em dashes
+  remain a separate tracked backlog item.
+
 - D5 business-model recommendations.yaml: contractions expanded, voice-guide
   compliance. Recommendations.yaml contraction sweep complete across all eight
   dimensions. Nineteen contractions across the diagnostic, gap, fix, and evidence

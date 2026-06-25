@@ -30,7 +30,7 @@ questions:
       Problem clarity is the most basic test of founder insight. Founders who
       can describe their problem in customer terms, not solution terms, have
       done the discovery work. Vague or solution-first descriptions signal that
-      the problem hasn't been validated with real customers.
+      the problem has not been validated with real customers.
     validation:
       min-chars: 200
       max-chars: 1000
@@ -148,7 +148,7 @@ questions:
     tier: required
     type: multi-select
     question: "Which of the following evidence types support the existence and urgency of this problem? Select all that apply."
-    helper-text: "Be honest. Claiming evidence you can't back up scores lower than honest absence. We verify where possible."
+    helper-text: "Be honest. Claiming evidence you cannot back up scores lower than honest absence. We verify where possible."
     why-it-matters: |
       Evidence of problem existence separates a hypothesis from a validated
       opportunity. Multiple independent corroborating signals are far more
@@ -197,7 +197,7 @@ questions:
     tier: recommended
     type: single-select
     question: "How do the customers you've spoken to characterise the severity of this problem?"
-    helper-text: "Choose the most honest option based on what you've actually heard, not the most optimistic framing."
+    helper-text: "Choose the most honest option based on what you have actually heard, not the most optimistic framing."
     why-it-matters: |
       Problem severity is a primary input for TAM sizing and willingness to pay.
       Hair-on-fire problems drive urgency, faster sales cycles, and premium pricing.
@@ -236,10 +236,10 @@ questions:
     helper-text: |
       Include direct competitors that pivoted or failed, adjacent products that
       pulled back, and internal tools that never scaled. If no one has tried,
-      explain why, and whether that's a positive signal or a concern.
+      explain why, and whether that is a positive signal or a concern.
     why-it-matters: |
       Prior failed attempts are one of the strongest signals of insight depth.
-      Founders who know why previous solutions didn't work understand the problem
+      Founders who know why previous solutions did not work understand the problem
       at a structural level. It also defuses the "why hasn't anyone done this
       before?" challenge, which VCs raise in virtually every meeting on a
       genuinely new problem space.
@@ -332,7 +332,7 @@ questions:
     question: "How has your understanding of the problem evolved since you started? What did you believe at the outset that turned out to be wrong?"
     helper-text: |
       Founders who have meaningfully changed their view often understand the
-      problem better than those who haven't. Honest reflection about being
+      problem better than those who have not. Honest reflection about being
       wrong scores higher than a static narrative of consistent conviction.
     why-it-matters: |
       Hypothesis evolution is a reliable marker of genuine discovery. Founders

@@ -226,7 +226,7 @@ questions:
     question: "Describe your ideal customer profile (ICP) in depth. What are their key characteristics, motivations, trigger events, and specific pain points?"
     helper-text: |
       Go beyond firmographics (company size, sector). Describe the buyer's
-      internal situation: what decision they're trying to make, what fear
+      internal situation: what decision they are trying to make, what fear
       drives them, what success looks like for them personally and
       professionally. Name the trigger event that causes them to search.
     why-it-matters: |
@@ -372,7 +372,7 @@ questions:
       Adjacent expansion potential is how VCs stress-test the venture-scale
       argument. A $200M beachhead that gates a $2B adjacency changes the
       investment thesis materially. Founders who can articulate a coherent
-      expansion map signal strategic maturity; those who can't often plateau
+      expansion map signal strategic maturity; those who cannot often plateau
       at first-market revenue and become too small to exit cleanly.
     validation:
       min-chars: 100

@@ -221,7 +221,7 @@ questions:
       makes the network more valuable for the next. Name the specific unit of
       growth that drives compounding and explain why it creates an increasing
       barrier over time. If your moat is primarily static (a licence that
-      doesn't change in value with scale), state that and explain what
+      does not change in value with scale), state that and explain what
       compounding dynamic you are building toward instead.
     why-it-matters: |
       Static moats can be overcome with capital; compounding moats become more
@@ -294,7 +294,7 @@ questions:
       data for all users). If you have a data flywheel, describe how it
       compounds with scale. If neither applies, say so directly. An accurate
       "not applicable to our model, and here is what we have instead" scores
-      higher than a strained claim that doesn't hold up to structural analysis.
+      higher than a strained claim that does not hold up to structural analysis.
     why-it-matters: |
       Network effects and data flywheels are the moat types VCs price most
       aggressively because they compound non-linearly. A genuine, well-articulated

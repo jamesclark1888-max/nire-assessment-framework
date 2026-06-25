@@ -352,7 +352,7 @@ questions:
     tier: recommended
     type: single-select
     question: "What's your current advisor and board structure?"
-    helper-text: "We're looking for the most formal structure you currently have."
+    helper-text: "We are looking for the most formal structure you currently have."
     why-it-matters: |
       Structured advisor and board involvement signals operational maturity
       and access to talent and capital. Stage-appropriate structures vary:
@@ -485,7 +485,7 @@ questions:
     tier: optional
     type: long-text
     question: "Have any founders left the company since inception? If yes, briefly explain."
-    helper-text: "Founder departures aren't necessarily negative if handled cleanly. We're looking for transparency."
+    helper-text: "Founder departures are not necessarily negative if handled cleanly. We are looking for transparency."
     why-it-matters: |
       VCs will discover prior founder departures during diligence. Founders
       who proactively disclose and explain score higher than those who omit.
@@ -546,7 +546,7 @@ questions:
     question: "Have you set up an EMI option scheme for employees?"
     helper-text: "Enterprise Management Incentive is the UK's tax-advantaged share option scheme. Highly attractive to employees and standard from seed stage."
     why-it-matters: |
-      UK-based companies that don't have an EMI scheme by seed stage signal
+      UK-based companies that do not have an EMI scheme by seed stage signal
       a lack of attention to employee equity. Sophisticated UK VCs expect
       this to be in place or actively being established as part of the raise.
     options:
@@ -656,7 +656,7 @@ questions:
     helper-text: "JEI provides significant tax and social charge relief for innovative French startups."
     why-it-matters: |
       JEI status is a substantial financial advantage for eligible French
-      startups. Eligible companies that haven't applied are leaving money on
+      startups. Eligible companies that have not applied are leaving money on
       the table, which is a flag for operational rigour.
     options:
       - value: yes-active
